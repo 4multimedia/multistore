@@ -1,12 +1,16 @@
 {
     "name": "multimedia/multistore",
     "type": "library",
-    "require": {
-        "nwidart/laravel-modules": "^9.0"
-    },
     "autoload": {
         "psr-4": {
             "Multimedia\\Multistore\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Multimedia\\Multistore\\App\\Providers\\MultiStoreServiceProvider"
+            ]
         }
     },
     "authors": [

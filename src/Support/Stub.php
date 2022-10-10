@@ -13,19 +13,23 @@
         protected $stubLocation;
         protected $type;
         protected $namespace;
+        protected $extended = false;
 
-        public function __construct($type, $inputs = [])
+        public function __construct($path, $type, $inputs = [])
         {
             $dir = app_path();
             $this->type = $type;
             $this->inputs = $inputs;
             $this->module = $this->inputs['module'];
+            if (isset($this->inputs['extended'])) {
+                $this->extended = $this->inputs['extended'];
+            }
             $this->className = $this->inputs['class'];
             $this->filename = $this->inputs['class'].$this->type.'.php';
-            $this->stubLocation = dirname(__FILE__)."/../Commands/stubs/".Str::lower($this->type).".stub";
-            $this->namespace = "App\\Modules\\".$this->module."\\".$this->type."s";
+            $this->stubLocation = dirname(__FILE__)."/../Commands/stubs/".$path.".stub";
+            $this->namespace = "App\\".($this->extended ? "Extended\\" : "")."Modules\\".$this->module."\\".$this->type."s";
 
-            $this->fileLocation = app_path('Modules/'.$this->module.'/'.$this->type.'s/'.$this->filename);
+            $this->fileLocation = app_path(($this->extended ? "Extended/" : "").'Modules/'.$this->module.'/'.$this->type.'s/'.$this->filename);
         }
 
         public function getContent() {
@@ -38,6 +42,9 @@
             $array['{{class}}'] = Str::lower($this->className);
             $array['{{module}}'] = Str::lower($this->module);
             $array['{{Module}}'] = $this->module;
+
+            $array['{{EXTENDEDDIR}}'] = $this->extended ? 'Extended/' : '';
+            $array['{{EXTENDEDNAMESPACE}}'] = $this->extended ? 'Extended\\' : '';
 
             $content = strtr($content, $array);
 

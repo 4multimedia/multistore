@@ -3,7 +3,6 @@
     namespace Multimedia\Multistore\Providers;
 
     use Illuminate\Support\ServiceProvider;
-    use \App\Modules\Stock\Providers;
 
     class MultiStoreServiceProvider extends ServiceProvider {
 
@@ -11,7 +10,18 @@
         {
             $this->app->register(ConsoleServiceProvider::class);
 
-            $provider = "\\App\\Modules\\Stock\\Providers\\StockServiceProvider";
-            $this->app->register($provider);
+            if (is_dir(app_path('Modules'))) {
+                $dirs = array_diff(scandir(app_path('Modules')), array('..', '.'));
+                foreach($dirs as $dir) {
+                    $provider = "\\App\\Modules\\$dir\\Providers\\{$dir}ServiceProvider";
+                    $this->app->register($provider);
+                }
+
+                $dirs = array_diff(scandir(app_path('Extended/Modules')), array('..', '.'));
+                foreach($dirs as $dir) {
+                    $provider = "\\App\\Extended\\Modules\\$dir\\Providers\\{$dir}ServiceProvider";
+                    $this->app->register($provider);
+                }
+            }
         }
     }

@@ -3,6 +3,7 @@
 namespace Multimedia\Multistore\Commands;
 
 use Illuminate\Console\Command;
+use Multimedia\Multistore\Support\Creating;
 
 class ModulesCreateCommand extends Command
 {
@@ -27,6 +28,8 @@ class ModulesCreateCommand extends Command
      */
     public function handle()
     {
+        $module = $this->ask('Enter module name');
 
+        return (new Creating($module))->generate();
     }
 }

@@ -29,9 +29,17 @@ class ModulesCommandCommand extends Command
     public function handle()
     {
         $array = [];
+        $array["extended"] = false;
         $array["module"] = $this->ask('Enter module name');
-        $array["class"] = $this->ask('Enter command name');
+        $isDir = is_dir(app_path('Modules/'.$array["module"]));
+        if (!$isDir) {
+            $this->error('Wrong module name');
+        } else {
+            $array["class"] = $this->ask('Enter command name');
 
-        return (new Stub('Command', $array))->save();
+            $array["extended"] = $this->confirm('Added to extended module?', true);
+
+            return (new Stub('command', 'Command', $array))->save();
+        }
     }
 }

@@ -1,0 +1,17 @@
+<?php
+
+    namespace {{NAMESPACE}};
+
+    use Illuminate\Support\ServiceProvider;
+
+    class {{Module}}ServiceProvider extends ServiceProvider {
+        public function boot()
+        {
+
+        }
+
+        public function register()
+        {
+            $this->app->register(CommandsServiceProvider::class);
+        }
+    }
