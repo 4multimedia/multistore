@@ -1,6 +1,6 @@
 <?php
 
-namespace MultiMedia\MultiStore\Commands;
+namespace Multimedia\Multistore\Commands;
 
 use Illuminate\Console\Command;
 

@@ -1,6 +1,6 @@
 <?php
 
-    namespace MultiMedia\MultiStore\Providers;
+    namespace Multimedia\Multistore\Providers;
 
     use Illuminate\Support\ServiceProvider;
     use \App\Modules\Stock\Providers;

@@ -1,5 +1,5 @@
 <?php
 
-     namespace MultiMedia\MultiStore;
+     namespace Multimedia\Multistore;
 
 ?>

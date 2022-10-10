@@ -1,9 +1,9 @@
 <?php
 
-namespace MultiMedia\MultiStore\Commands;
+namespace Multimedia\Multistore\Commands;
 
 use Illuminate\Console\Command;
-use MultiMedia\MultiStore\Support\Stub;
+use Multimedia\Multistore\Support\Stub;
 
 class ModulesCommandCommand extends Command
 {

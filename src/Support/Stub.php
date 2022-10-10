@@ -1,6 +1,6 @@
 <?php
 
-    namespace MultiMedia\MultiStore\Support;
+    namespace Multimedia\Multistore\Support;
 
     use Str;
 

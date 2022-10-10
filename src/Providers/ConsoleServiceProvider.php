@@ -1,9 +1,9 @@
 <?php
 
-    namespace MultiMedia\MultiStore\Providers;
+    namespace Multimedia\Multistore\Providers;
 
     use Illuminate\Support\ServiceProvider;
-    use MultiMedia\MultiStore\Commands;
+    use Multimedia\Multistore\Commands;
 
     class ConsoleServiceProvider extends ServiceProvider {
         protected $commands = [
