@@ -13,14 +13,28 @@
             if (is_dir(app_path('Modules'))) {
                 $dirs = array_diff(scandir(app_path('Modules')), array('..', '.'));
                 foreach($dirs as $dir) {
-                    $provider = "\\App\\Modules\\$dir\\Providers\\{$dir}ServiceProvider";
-                    $this->app->register($provider);
-                }
+                    $providers = array_diff(scandir(app_path('Modules/'.$dir.'/Providers')), array('..', '.'));
 
+                    foreach($providers as $providerFile) {
+                        $providerFile = strtr($providerFile, ['.php' => '']);
+
+                        $provider = "\\App\\Modules\\$dir\\Providers\\{$providerFile}";
+                        $this->app->register($provider);
+                    }
+                }
+            }
+
+            if (is_dir(app_path('Extended/Modules'))) {
                 $dirs = array_diff(scandir(app_path('Extended/Modules')), array('..', '.'));
                 foreach($dirs as $dir) {
-                    $provider = "\\App\\Extended\\Modules\\$dir\\Providers\\{$dir}ServiceProvider";
-                    $this->app->register($provider);
+                    $providers = array_diff(scandir(app_path('Extended/Modules/'.$dir.'/Providers')), array('..', '.'));
+
+                    foreach($providers as $providerFile) {
+                        $providerFile = strtr($providerFile, ['.php' => '']);
+
+                        $provider = "\\App\\Extended\\Modules\\$dir\\Providers\\{$providerFile}";
+                        $this->app->register($provider);
+                    }
                 }
             }
         }
