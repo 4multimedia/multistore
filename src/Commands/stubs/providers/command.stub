@@ -8,11 +8,11 @@
         public function boot() {
 
             $commands = [];
-            $files = array_diff(scandir(app_path('{{EXTENDEDDIR}}Modules/{{Module}}/Commands')), array('..', '.'));
+            $files = array_diff(scandir(app_path('{{EXTENDEDDIR}}Modules/{{Module}}/Console')), array('..', '.'));
             foreach($files as $file) {
                 $filePath = strtr($file, ['.php' => '']);
 
-                $commands[] = "App\\{{EXTENDEDNAMESPACE}}Modules\\{{Module}}\\Commands\\$filePath";
+                $commands[] = "App\\{{EXTENDEDNAMESPACE}}Modules\\{{Module}}\\Console\\$filePath";
             }
 
             $this->commands($commands);

@@ -13,7 +13,7 @@
         protected $stubLocation;
         protected $type;
         protected $namespace;
-        protected $namespaceCobtroller;
+        protected $namespaceController;
         protected $extended = false;
         protected $filename;
         protected $path;
@@ -21,27 +21,30 @@
         public function __construct($path, $type, $inputs = [])
         {
             $dir = app_path();
-            if($type !== null) {
-                $this->type = $type;
+
+            if (isset($this->inputs['extended'])) {
+                $this->extended = $this->inputs['extended'];
             }
+
+            $this->type = $type;
+
             $this->inputs = $inputs;
             if (isset($this->inputs['module'])) {
                 $this->module = $this->inputs['module'];
             }
-            if (isset($this->inputs['extended'])) {
-                $this->extended = $this->inputs['extended'];
-            }
+
+            $this->stubLocation = dirname(__FILE__)."/../Commands/stubs/".$path.".stub";
+            $this->namespace = "App\\".($this->extended ? "Extended\\" : "")."Modules\\".$this->module."\\".$this->type;
+            $this->newLocation = null;
+            $this->className = null;
+
             if (isset($this->inputs['class'])) {
-                $this->className = $this->inputs['class'];
-                $this->filename = $this->inputs['class'].$this->type.'.php';
+                $this->className = $this->inputs['class'].($this->extended ? "Extended" : "");
+                $this->filename = $this->inputs['class'].substr($this->type, 0, strlen($this->type)-1).'.php';
             }
             $this->path = $path;
-            $this->stubLocation = dirname(__FILE__)."/../Commands/stubs/".$path.".stub";
-            $this->namespace = "App\\".($this->extended ? "Extended\\" : "")."Modules\\".$this->module."\\".$this->type."s";
-
-            $this->namespaceController = "App\\".($this->extended ? "Extended\\" : "")."Modules\\".$this->module."\\Controllers";
-
-            $this->fileLocation = app_path(($this->extended ? "Extended/" : "").'Modules/'.$this->module.'/'.$this->type.'s/'.$this->filename);
+            $this->namespaceController = "App\\".($this->extended ? "Extended\\" : "")."Modules\\".$this->module."\\Http\\Controllers";
+            $this->fileLocation = app_path(($this->extended ? "Extended/" : "").'Modules/'.$this->module.'/'.$this->type.'/'.$this->filename);
         }
 
         public function getContent() {
@@ -58,6 +61,7 @@
 
             $array['{{EXTENDEDDIR}}'] = $this->extended ? 'Extended/' : '';
             $array['{{EXTENDEDNAMESPACE}}'] = $this->extended ? 'Extended\\' : '';
+            $array['{{EXTENDED}}'] = $this->extended ? '.extended' : '';
 
             $content = strtr($content, $array);
 

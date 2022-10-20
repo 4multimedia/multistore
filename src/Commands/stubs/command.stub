@@ -11,7 +11,7 @@ class {{CLASS}}Command extends Command
      *
      * @var string
      */
-    protected $signature = '{{module}}:{{class}}';
+    protected $signature = '{{module}}:{{class}}{{EXTENDED}}';
 
     /**
      * The console command description.

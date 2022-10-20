@@ -39,7 +39,7 @@ class ModulesCommandCommand extends Command
 
             $array["extended"] = $this->confirm('Added to extended module?', true);
 
-            return (new Stub('command', 'Command', $array))->save();
+            return (new Stub('command', 'Console', $array))->save();
         }
     }
 }

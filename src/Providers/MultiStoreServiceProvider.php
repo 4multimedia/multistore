@@ -6,9 +6,18 @@
 
     class MultiStoreServiceProvider extends ServiceProvider {
 
+        public function boot() {
+            $this->loadViewsFrom(dirname(__FILE__).'/../core/resources/views', 'backend');
+            $this->loadViewsFrom(dirname(__FILE__).'/../core/resources/components', 'components');
+        }
+
         public function register()
         {
+			$this->app->register(AssetsServiceProvider::class);
             $this->app->register(ConsoleServiceProvider::class);
+            $this->app->register(RouteServiceProvider::class);
+            $this->app->register(MiddlewareServiceProvider::class);
+            $this->app->register(DirectiveServiceProvider::class);
 
             if (is_dir(app_path('Modules'))) {
                 $dirs = array_diff(scandir(app_path('Modules')), array('..', '.'));

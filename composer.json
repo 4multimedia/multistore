@@ -1,7 +1,13 @@
 {
     "name": "multimedia/multistore",
     "type": "library",
+    "require": {
+        "millat/laravel-hooks": "^1.2"
+    },
     "autoload": {
+		"files": [
+			"src/Core/helpers.php"
+		],
         "psr-4": {
             "Multimedia\\Multistore\\": "src/"
         }
