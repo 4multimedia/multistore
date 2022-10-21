@@ -14,6 +14,7 @@
 			$this->css = [];
 		}
 
+		/* HOOKS StyleSheets */
 		public function register_css($path, $place) {
 			$this->css[] = $this->assetsPath.$path.".css";
 		}

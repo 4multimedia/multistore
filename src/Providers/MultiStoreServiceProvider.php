@@ -2,7 +2,7 @@
 
     namespace Multimedia\Multistore\Providers;
 
-    use Illuminate\Support\ServiceProvider;
+	use Illuminate\Support\ServiceProvider;
 
     class MultiStoreServiceProvider extends ServiceProvider {
 
@@ -18,6 +18,8 @@
             $this->app->register(RouteServiceProvider::class);
             $this->app->register(MiddlewareServiceProvider::class);
             $this->app->register(DirectiveServiceProvider::class);
+			$this->app->register(RegisterServiceProvider::class);
+			$this->app->register(MigrationServiceProvider::class);
 
             if (is_dir(app_path('Modules'))) {
                 $dirs = array_diff(scandir(app_path('Modules')), array('..', '.'));

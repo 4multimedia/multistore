@@ -1,7 +1,7 @@
 {{ get_css() }}
-
-<h1>SYSTEM CMS</h1>
-
-<div>
+<div id="app">
+	<h1>SYSTEM CMS</h1>
     @yield('content')
 </div>
+
+<script src="{{ mix('js/backend.js') }}"></script>

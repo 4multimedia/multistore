@@ -5,6 +5,10 @@
         return app('hooks');
     }
 
+	function plugins() {
+		return app('plugins');
+	}
+
 	function register_css_path($path) {
 		hook()->register_css_path($path);
 	}
