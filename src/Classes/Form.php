@@ -39,6 +39,10 @@
             return "<input-password label=\"$label\" type=\"text\" name=\"$name\" value=\"".old($name)."\" :error=\"$error\"></input-password>";
         }
 
+        public function button($label, $type = 'submit') {
+            return "<button type=\"$type\">$label</button>";
+        }
+
         public function dropdown($label, $name, $options) {
             return '';
         }

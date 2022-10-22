@@ -4,10 +4,9 @@
 
 
 
-	<form method="post">
+	<form-body>
         @csrf
         {!! form()->text('Adres e-mail', 'email') !!}
         {!! form()->password('Hasło', 'password') !!}
-        <button>WYSLIJ</button>
-	</form>
+	</form-body>
 @endsection
