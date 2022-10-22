@@ -1,9 +1,6 @@
 @extends('backend::layout.main')
 
 @section('content')
-
-
-
 	<form-body>
         @csrf
         {!! form()->text('Adres e-mail', 'email') !!}

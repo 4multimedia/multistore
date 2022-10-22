@@ -5,6 +5,7 @@ namespace Multimedia\Multistore\Core\Http\Middleware;
 use Closure;
 use Illuminate\Routing\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Backend
 {
@@ -32,10 +33,12 @@ class Backend
     public function handle(Request $request, Closure $next)
     {
         $routeName = $this->route->getName();
+		if (Auth::check()) {
+			echo '1234 = zalogowany '; die;
+		}
         if (in_array($routeName, $this->routesAuth)) {
             return $next($request);
         } else {
-
             return redirect()->route('backend.auth.login');
         }
     }
