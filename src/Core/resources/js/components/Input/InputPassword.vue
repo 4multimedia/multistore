@@ -1,14 +1,26 @@
 <template>
 	<InputField :label="label">
-		<input type="password" />
+		<input type="password" :name="name" v-model="modelValue" />
+        <InputError :error="error" />
 	</InputField>
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
 import InputField from './InputField.vue';
+import InputError from './InputError.vue';
 
-defineProps({
+const props = defineProps({
 	label: String,
-	value: String
+	value: String,
+    name: String,
+    error: Array
+});
+
+const modelValue = ref();
+
+onMounted(() => {
+    modelValue.value = props.value;
 })
 </script>
+

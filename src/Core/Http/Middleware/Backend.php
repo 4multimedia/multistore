@@ -12,6 +12,7 @@ class Backend
 
     protected $routesAuth = [
         'backend.auth.login',
+        'backend.auth.login.request',
         'backend.auth.reset',
         'backend.auth.password'
     ];

@@ -5,6 +5,10 @@
         return app('hooks');
     }
 
+    function form() {
+        return app('form');
+    }
+
 	function plugins() {
 		return app('plugins');
 	}

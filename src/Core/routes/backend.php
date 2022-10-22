@@ -17,5 +17,6 @@ Route::get('/', 'Dashboard\IndexController@index')->name('backend.dashboard');
 
 Route::prefix('auth')->group(function() {
     Route::get('login', 'Auth\LoginController@view')->name('backend.auth.login');
-    Route::post('login', 'Auth\LoginController@login');
+    Route::post('login', 'Auth\LoginController@login')->name('backend.auth.login.request');
+    Route::post('login2', 'Auth\LoginController@login');
 });

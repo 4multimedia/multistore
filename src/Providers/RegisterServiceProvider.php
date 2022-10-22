@@ -5,6 +5,7 @@ namespace Multimedia\Multistore\Providers;
 use Illuminate\Support\ServiceProvider;
 use Multimedia\Multistore\Classes\Modules;
 use Multimedia\Multistore\Classes\Plugins;
+use Multimedia\Multistore\Classes\Form;
 
 class RegisterServiceProvider extends ServiceProvider {
 
@@ -15,6 +16,10 @@ class RegisterServiceProvider extends ServiceProvider {
 
 		$this->app->singleton('plugins', function($app) {
 			return new Plugins();
+		});
+
+        $this->app->singleton('form', function($app) {
+			return new Form();
 		});
 	}
 

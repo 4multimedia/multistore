@@ -1,8 +1,13 @@
 @extends('backend::layout.main')
 
 @section('content')
-	<form-body>
-		<input-text label="Adres e-mail"></input-text>
-		<input-password label="Hasło"></input-password>
-	</form-body>
+
+
+
+	<form method="post">
+        @csrf
+        {!! form()->text('Adres e-mail', 'email') !!}
+        {!! form()->password('Hasło', 'password') !!}
+        <button>WYSLIJ</button>
+	</form>
 @endsection

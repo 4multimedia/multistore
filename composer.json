@@ -15,7 +15,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Multimedia\\Multistore\\App\\Providers\\MultiStoreServiceProvider"
+                "Multimedia\\Multistore\\Providers\\MultiStoreServiceProvider"
             ]
         }
     },
