@@ -16,7 +16,7 @@
 			$credentials = [
 				'email' => $request->email,
 				'password' => $request->password,
-				'id_user_status' => 1
+				'id_user_status' => 2
 			];
 
 			if (Auth::attempt($credentials)) {

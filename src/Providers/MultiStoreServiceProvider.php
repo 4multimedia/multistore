@@ -20,7 +20,12 @@
             $this->app->register(DirectiveServiceProvider::class);
 			$this->app->register(RegisterServiceProvider::class);
 			$this->app->register(MigrationServiceProvider::class);
+            $this->app->register(SeederServiceProvider::class);
 
+            $this->loadModuleServiceProvider();
+        }
+
+        public function loadModuleServiceProvider() {
             if (is_dir(app_path('Modules'))) {
                 $dirs = array_diff(scandir(app_path('Modules')), array('..', '.'));
                 foreach($dirs as $dir) {

@@ -4,9 +4,11 @@ namespace Multimedia\Multistore\Commands;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Multimedia\Multistore\Core\Models\User;
 use Multimedia\Multistore\Core\Models\UserRole;
+use Multimedia\Multistore\Core\Models\UserToRole;
 use Str;
 
 class ModulesCreateUser extends Command
@@ -68,21 +70,38 @@ class ModulesCreateUser extends Command
 			$passwordLength = strlen($password);
 		}
 
+        $name = $this->ask('Please enter your name');
+        while(empty($name)) {
+			$name = $this->ask('Please enter your name');
+		}
+
 		$role = $this->choice('Set the role',
 			UserRole::select('id_user_role', 'name')->get()->pluck('name', 'id_user_role')->toArray()
 		);
 
-		$id_user_role = UserRole::where('name', $role)->first();
+		$userRole = UserRole::where('name', $role)->first();
 
-		$this->info('Success! The user has been created');
-		$this->line("Email: $email");
-		$this->line("Password: $password");
-		$this->line("Role: $role");
+        DB::beginTransaction();
+        try {
+            $user = User::create([
+                'name' => $name,
+                'email' => $email,
+                'password' => Hash::make($password),
+                'id_user_status' => 2
+            ]);
 
-		User::create([
-			'email' => $email,
-			'password' => Hash::make($password),
-			'id_user_status' => 1
-		]);
+            UserToRole::create(['id_user' => $user->id_user, 'id_user_role' => $userRole->id_user_role]);
+
+            $this->info('Success! The user has been created');
+            $this->line("Email: $email");
+            $this->line("Password: $password");
+            $this->line("Role: $role");
+
+            DB::commit();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            // DB::rollback();
+            $this->error('Error');
+        }
     }
 }

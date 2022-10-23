@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id('id_user_role');
             $table->timestamps();
 			$table->string('name');
+            $table->json('area');
+            $table->json('permission')->nullable();
         });
     }
 

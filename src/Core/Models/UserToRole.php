@@ -4,14 +4,10 @@ namespace Multimedia\Multistore\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserRole extends Model
+class UserToRole extends Model
 {
-	public $table = "user_role";
-	public $primaryKey = "id_user_role";
-
-    public $casts = [
-        'area' => 'array'
-    ];
+	public $table = "user_to_role";
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +15,7 @@ class UserRole extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'area'
+        'id_user',
+        'id_user_role'
     ];
 }
