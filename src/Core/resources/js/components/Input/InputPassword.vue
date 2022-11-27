@@ -5,22 +5,29 @@
 	</InputField>
 </template>
 
-<script setup>
-import { onMounted, ref } from 'vue';
+<script>
 import InputField from './InputField.vue';
 import InputError from './InputError.vue';
 
-const props = defineProps({
-	label: String,
-	value: String,
-    name: String,
-    error: Array
-});
-
-const modelValue = ref();
-
-onMounted(() => {
-    modelValue.value = props.value;
-})
+export default {
+    components: {
+        InputError,
+        InputField
+    },
+    props: {
+        label: String,
+        value: String,
+        name: String,
+        error: Array
+    },
+    data() {
+        return {
+            modelValue: '',
+        }
+    },
+    mounted() {
+        this.modelValue = this.value;
+    },
+}
 </script>
 

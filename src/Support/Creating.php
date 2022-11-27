@@ -25,7 +25,11 @@
                     'Seeders'
                 ],
                 'Http' => [
-                    'Controllers',
+                    'Controllers' => [
+                        'Frontend',
+                        'Backend',
+                        'Api'
+                    ],
                     'Middleware',
                     'Request'
                 ],

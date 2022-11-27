@@ -7,23 +7,25 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider {
 
-    public $namespace = "{{NAMESPACECONTROLLER}}";
+    public $namespaceFrontend = "{{NAMESPACECONTROLLER}}\Frontend";
+    public $namespaceBackend = "{{NAMESPACECONTROLLER}}\Backend";
+    public $namespaceApi = "{{NAMESPACECONTROLLER}}\Api";
 
     public function register() {
 
     }
 
     public function boot() {
-        Route::namespace($this->namespace)
+        Route::namespace($this->namespaceFrontend)
         ->middleware(['multimedia.web', 'web'])
         ->group(app_path('{{EXTENDEDDIR}}Modules/{{Module}}/routes/web.php'));
 
-        Route::namespace($this->namespace)
+        Route::namespace($this->namespaceApi)
         ->prefix('api')
         ->middleware(['api'])
         ->group(app_path('{{EXTENDEDDIR}}Modules/{{Module}}/routes/api.php'));
 
-        Route::namespace($this->namespace)
+        Route::namespace($this->namespaceBackend)
         ->prefix(config('multimedia.backend'))
         ->middleware(['multimedia.backend', 'web'])
         ->group(app_path('{{EXTENDEDDIR}}Modules/{{Module}}/routes/backend.php'));

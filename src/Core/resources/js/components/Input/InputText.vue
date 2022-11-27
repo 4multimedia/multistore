@@ -1,25 +1,32 @@
 <template>
 	<InputField :label="label">
-		<input type="text" :name="name" v-model="modelValue" />
+		<input type="text" :name="name" v-model="modelValue" /> ???
         <InputError :error="error" />
 	</InputField>
 </template>
 
-<script setup>
-import { onMounted, ref } from 'vue';
+<script>
 import InputField from './InputField.vue';
 import InputError from './InputError.vue';
 
-const props = defineProps({
-	label: String,
-	value: String,
-    name: String,
-    error: Array
-});
-
-const modelValue = ref();
-
-onMounted(() => {
-    modelValue.value = props.value;
-})
+export default {
+    components: {
+        InputField,
+        InputError
+    },
+    props: {
+        label: String,
+        value: String,
+        name: String,
+        error: Array
+    },
+    mounted() {
+        this.modelValue = this.value;
+    },
+    data() {
+        return {
+            modelValue: ''
+        }
+    }
+}
 </script>

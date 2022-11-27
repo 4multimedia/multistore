@@ -4,8 +4,10 @@
     </ul>
 </template>
 
-<script setup>
-defineProps({
-    error: Array
-})
+<script>
+    export default {
+        props: {
+            error: Array
+        }
+    }
 </script>

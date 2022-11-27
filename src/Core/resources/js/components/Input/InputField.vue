@@ -5,8 +5,10 @@
 	</div>
 </template>
 
-<script setup>
-defineProps({
-	label: String
-})
+<script>
+    export default {
+        props: {
+            label: String
+        }
+    }
 </script>
