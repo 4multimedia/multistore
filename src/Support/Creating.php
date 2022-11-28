@@ -3,6 +3,7 @@
     namespace Multimedia\Multistore\Support;
 
     use Multimedia\Multistore\Support\Stub;
+    use Illuminate\Support\Arr;
 
     class Creating {
 
@@ -14,51 +15,57 @@
         }
 
         public function createDirs() {
-
-            $dirs = ['Commands', 'Providers', 'Models', 'Controllers', 'routes'];
-
             $dirs = [
-                'Config',
-                'Console',
-                'Database' => [
-                    'Migration',
-                    'Seeders'
-                ],
-                'Http' => [
-                    'Controllers' => [
-                        'Frontend',
-                        'Backend',
-                        'Api'
-                    ],
-                    'Middleware',
-                    'Request'
-                ],
-                'Providers',
-                'Resources' => [
-                    'assets',
-                    'lang'
-                ],
-                'routes'
+                'Modules' => [
+                    $this->module => [
+                        'Config',
+                        'Console',
+                        'Database' => [
+                            'Migration',
+                            'Seeders'
+                        ],
+                        'Http' => [
+                            'Controllers' => [
+                                'Frontend',
+                                'Backend',
+                            ],
+                            'Middleware',
+                            'Request'
+                        ],
+                        'Providers',
+                        'Resources' => [
+                            'assets',
+                            'lang'
+                        ],
+                        'routes'
+                    ]
+                ]
             ];
 
-            foreach($dirs as $key => $dir) {
-                @mkdir(app_path('Modules'));
-                @mkdir(app_path("Modules/".$this->module));
-                @mkdir(app_path('Extended'));
-                @mkdir(app_path('Extended/Modules'));
-                @mkdir(app_path("Extended/Modules/".$this->module));
+            $flattened = Arr::dot($dirs);
 
-                if (is_array($dir)) {
-                    @mkdir(app_path("Modules/".$this->module."/".$key));
-                    @mkdir(app_path("Extended/Modules/".$this->module."/".$key));
+            $array_dirs = [];
+            foreach($flattened as $key => $item) {
+                $dirs = explode(".", $key);
+                $dirs[count($dirs)-1] = $item;
 
-                    foreach($dir as $subkey) {
-                        @mkdir(app_path("Modules/".$this->module."/".$key."/".$subkey));
-                        @mkdir(app_path("Extended/Modules/".$this->module."/".$key."/".$subkey));
-                    }
-                } else {
-                    @mkdir(app_path("Modules/".$this->module."/".$dir));
-                    @mkdir(app_path("Extended/Modules/".$this->module."/".$dir));
+                $path = [];
+                foreach($dirs as $dir) {
+                    $path[] = $dir;
+                    $path_extended[] = $dir;
+                    $dir = implode('/', $path);
+                    $array_dirs[$dir] = true;
+                }
+            }
+
+            foreach($array_dirs as $dir => $status) {
+                $dir = explode("/", $dir);
+                $path = [];
+                foreach($dir as $dir_name) {
+                    $path[] = $dir_name;
+                    $dir_path = implode("/", $path);
+                    @mkdir(app_path($dir_path));
+                    @mkdir(app_path('Extended/'.$dir_path));
                 }
             }
         }

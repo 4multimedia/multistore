@@ -10,7 +10,8 @@
             Commands\ModulesCreateCommand::class,
             Commands\ModulesCommandCommand::class,
 			Commands\ModulesCreateUser::class,
-			Commands\ModulesCreateUserRole::class
+			Commands\ModulesCreateUserRole::class,
+            Commands\ModulesControllerCreate::class
         ];
 
         public function boot() {
