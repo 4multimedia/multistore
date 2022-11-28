@@ -21,6 +21,7 @@
         public function __construct($path, $type, $inputs = [])
         {
             $dir = app_path();
+            $this->inputs = $inputs;
 
             if (isset($this->inputs['extended'])) {
                 $this->extended = $this->inputs['extended'];
@@ -28,13 +29,20 @@
 
             $this->type = $type;
 
-            $this->inputs = $inputs;
             if (isset($this->inputs['module'])) {
                 $this->module = $this->inputs['module'];
+            }
+            if (isset($this->inputs['fileLocation'])) {
+                $this->fileLocation = app_path(($this->extended ? "Extended/" : "").'Modules/'.$this->module.'/'.$this->inputs['fileLocation']);
             }
 
             $this->stubLocation = dirname(__FILE__)."/../Commands/stubs/".$path.".stub";
             $this->namespace = "App\\".($this->extended ? "Extended\\" : "")."Modules\\".$this->module."\\".$this->type;
+
+            if (isset($this->inputs['namespace'])) {
+                $this->namespace = $this->inputs['namespace'];
+            }
+
             $this->newLocation = null;
             $this->className = null;
 
@@ -44,7 +52,9 @@
             }
             $this->path = $path;
             $this->namespaceController = "App\\".($this->extended ? "Extended\\" : "")."Modules\\".$this->module."\\Http\\Controllers";
-            $this->fileLocation = app_path(($this->extended ? "Extended/" : "").'Modules/'.$this->module.'/'.$this->type.'/'.$this->filename);
+            if (!isset($this->inputs['fileLocation'])) {
+                $this->fileLocation = app_path(($this->extended ? "Extended/" : "").'Modules/'.$this->module.'/'.$this->type.'/'.$this->filename);
+            }
         }
 
         public function getContent() {

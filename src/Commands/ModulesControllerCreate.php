@@ -36,8 +36,13 @@ class ModulesControllerCreate extends Command
             $this->error('Wrong module name');
         } else {
             $controller = $this->ask('Enter controller name');
-            $array['namespace'] = "App\Modules\Layout\Http\Controllers\Frontend";
-            $array['class'] = $controller;
+
+            $array["extended"] = $this->confirm('Added to extended module?', false);
+            $backend = $this->confirm('Added to backend?', false);
+
+            $array['namespace'] = "App\\".($array["extended"] ? "Extended\\" : "")."Modules\Layout\Http\Controllers\\".($backend ? "Backend" : "Frontend");
+            $array['class'] = $controller."Controller";
+            $array['fileLocation'] = "Http/Controllers/".($backend ? "Backend" : "Frontend")."/".$array['class'].".php";
 
             return (new Stub('controllers/controller', 'Controllers', $array))->save();
         }
