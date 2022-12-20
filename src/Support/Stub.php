@@ -45,6 +45,14 @@
 
             $this->newLocation = null;
             $this->className = null;
+            $this->table = null;
+
+            if (isset($this->inputs['table'])) {
+                $this->table = $this->inputs['table'];
+                $this->fileLocation = app_path(($this->extended ? "Extended/" : "").'Modules/'.$this->module.'/Database/Migration');
+                $this->filename = date('Y_m_d_His').'_create_'.mb_strtolower($this->table, 'utf-8').'_table.php';
+                $this->primaryKey = 'id_'.mb_strtolower($this->table, 'utf-8');
+            }
 
             if (isset($this->inputs['class'])) {
                 $this->className = $this->inputs['class'].($this->extended ? "Extended" : "");
@@ -68,6 +76,9 @@
             $array['{{class}}'] = Str::lower($this->className);
             $array['{{module}}'] = Str::lower($this->module);
             $array['{{Module}}'] = $this->module;
+
+            $array['{{Table}}'] = $this->table;
+            $array['{{primaryKey}}'] = $this->primaryKey;
 
             $array['{{EXTENDEDDIR}}'] = $this->extended ? 'Extended/' : '';
             $array['{{EXTENDEDNAMESPACE}}'] = $this->extended ? 'Extended\\' : '';
