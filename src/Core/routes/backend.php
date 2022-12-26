@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Dashboard\IndexController@index')->name('backend.dashboard');
 
-Route::prefix('auth')->group(function() {
-    Route::get('login', 'Auth\LoginController@view')->name('backend.auth.login');
-    Route::post('login', 'Auth\LoginController@authenticate')->name('backend.auth.login.request');
+Route::prefix('auth')->namespace('Auth')->group(function() {
+    Route::get('login', 'LoginController@view')->name('backend.auth.login');
+    Route::post('login', 'LoginController@authenticate')->name('backend.auth.login.request');
+    Route::get('logout', 'LogoutController@view')->name('backend.auth.logout');
 });

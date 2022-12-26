@@ -6,7 +6,7 @@
 	use Illuminate\Support\Facades\Auth;
     use Multimedia\Multistore\Core\Http\Requests\LoginRequest;
 
-    class LoginController extends Controller
+    class LogoutController extends Controller
     {
         public function view() {
             return view('backend::auth.login');

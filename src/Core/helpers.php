@@ -25,4 +25,41 @@
 		return hook()->get_css();
 	}
 
+    function do_action($tag, $arg = '') {
+        hook()->do_action($tag, $arg);
+    }
+
+    function add_action($tag, $callback, $priority = 10, $accepted_args = 1) {
+        return hook()->add_action($tag, getHookCallback($callback), $priority, $accepted_args);
+    }
+
+    function getHookCallback($callback) {
+        if (is_string($callback) && strpos($callback, '@')) {
+            $callback = explode('@', $callback);
+            return [app('\\'.$callback[0]), $callback[1]];
+        }
+
+        if (is_string($callback)) {
+            return [app('\\'.$callback), 'handle'];
+        }
+
+        if (is_callable($callback)) {
+            return $callback;
+        }
+
+        if (is_array($callback)) {
+            return $callback;
+        }
+
+        throw new \Exception($callback . ' is not a Callable', 1);
+    }
+
+    function apply_filters($tag, $value) {
+        return hook()->apply_filters($tag, $value);
+    }
+
+    function add_filter($tag, $callback, $priority = 10, $accepted_args = 1) {
+        return hook()->add_filter($tag, getHookCallback($callback), $priority, $accepted_args);
+    }
+
 ?>
