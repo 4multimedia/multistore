@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Dashboard\IndexController@index')->name('backend.dashboard');
+Route::get('/access-blocked', 'Page\PageController@accessBlocked')->name('backend.access-blocked');
 
 Route::prefix('auth')->namespace('Auth')->group(function() {
     Route::get('login', 'LoginController@view')->name('backend.auth.login');

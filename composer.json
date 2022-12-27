@@ -2,7 +2,7 @@
     "name": "multimedia/multistore",
     "type": "library",
     "require": {
-        "millat/laravel-hooks": "^1.2"
+        "jenssegers/agent": "^2.6"
     },
     "autoload": {
 		"files": [

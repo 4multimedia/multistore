@@ -9,6 +9,7 @@
     class LogoutController extends Controller
     {
         public function index() {
+            register_user_log('Logout');
 			Auth::logout();
 			return redirect()->route('backend.auth.login');
         }

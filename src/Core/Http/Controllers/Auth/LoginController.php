@@ -20,6 +20,7 @@
 			];
 
 			if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
+                register_user_log('Login');
 				return redirect()->route('backend.dashboard');
 			}
 

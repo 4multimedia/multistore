@@ -6,7 +6,7 @@
 
 	class Menu {
 
-		public $items;
+		public $items = [];
 
 		public function add_to_menu($id, $label, $url, $params) {
 			$this->items[$id] = [

@@ -7,6 +7,7 @@ use Multimedia\Multistore\Classes\Modules;
 use Multimedia\Multistore\Classes\Plugins;
 use Multimedia\Multistore\Classes\Form;
 use Multimedia\Multistore\Classes\Menu;
+use Multimedia\Multistore\Classes\UserLog;
 
 class RegisterServiceProvider extends ServiceProvider {
 
@@ -25,6 +26,10 @@ class RegisterServiceProvider extends ServiceProvider {
 
 		$this->app->singleton('menu', function($app) {
 			return new Menu();
+		});
+
+        $this->app->singleton('user_log', function($app) {
+			return new UserLog();
 		});
 	}
 

@@ -45,4 +45,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRoles() {
+        return UserToRole::where('id_user', $this->id_user)->pluck('id_user_role')->toArray();
+    }
 }

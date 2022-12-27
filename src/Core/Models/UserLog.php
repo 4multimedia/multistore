@@ -21,4 +21,9 @@ class UserLog extends Model
 		'params',
 		'changes'
     ];
+
+    protected $casts = [
+        'params' => 'array',
+        'changes' => 'array'
+    ];
 }

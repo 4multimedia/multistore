@@ -56,7 +56,7 @@
 		return menu()->do_menu();
 	}
 
-	function register_user_log($module, $id_record, $params = []) {
+	function register_user_log($module, $id_record = null, $params = []) {
 		return user_log()->register($module, $id_record, $params);
 	}
 
