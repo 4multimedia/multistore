@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id_user_status');
             $table->timestamps();
 			$table->string('name');
+			$table->boolean('login');
         });
     }
 

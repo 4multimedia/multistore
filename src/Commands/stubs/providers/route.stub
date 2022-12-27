@@ -17,17 +17,17 @@ class RouteServiceProvider extends ServiceProvider {
 
     public function boot() {
         Route::namespace($this->namespaceFrontend)
-        ->middleware(['multimedia.web', 'web'])
+        ->middleware(['web', 'multimedia.web'])
         ->group(app_path('{{EXTENDEDDIR}}Modules/{{Module}}/routes/web.php'));
 
         Route::namespace($this->namespaceApi)
         ->prefix('api')
-        ->middleware(['api'])
+        ->middleware(['api', 'multimedia.api'])
         ->group(app_path('{{EXTENDEDDIR}}Modules/{{Module}}/routes/api.php'));
 
         Route::namespace($this->namespaceBackend)
         ->prefix(config('multimedia.backend'))
-        ->middleware(['multimedia.backend', 'web'])
+        ->middleware(['web', 'multimedia.backend'])
         ->group(app_path('{{EXTENDEDDIR}}Modules/{{Module}}/routes/backend.php'));
     }
 }

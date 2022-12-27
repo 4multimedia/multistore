@@ -12,7 +12,8 @@
 			Commands\ModulesCreateUser::class,
 			Commands\ModulesCreateUserRole::class,
             Commands\ModulesControllerCreate::class,
-            Commands\ModulesCreateMigration::class
+            Commands\ModulesClassCreate::class,
+            Commands\ModulesCreateMigration::class,
         ];
 
         public function boot() {

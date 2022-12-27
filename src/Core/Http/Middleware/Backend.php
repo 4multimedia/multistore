@@ -9,19 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class Backend
 {
-    protected $route;
-
     protected $routesAuth = [
         'backend.auth.login',
         'backend.auth.login.request',
         'backend.auth.reset',
         'backend.auth.password'
     ];
-
-    public function __construct(Route $route)
-    {
-        $this->route = $route;
-    }
 
     /**
      * Handle an incoming request.
@@ -32,14 +25,21 @@ class Backend
      */
     public function handle(Request $request, Closure $next)
     {
-        $routeName = $this->route->getName();
+		$user = $request->user();
+        $routeName = $request->route()->getName();
 		if (Auth::check()) {
-			echo '1234 = zalogowany '; die;
+			if (in_array($routeName, $this->routesAuth)) {
+				return redirect()->route('backend.dashboard');
+			} else {
+				return $next($request);
+			}
 		}
-        if (in_array($routeName, $this->routesAuth)) {
-            return $next($request);
-        } else {
-            return redirect()->route('backend.auth.login');
-        }
+		else {
+			if (in_array($routeName, $this->routesAuth)) {
+				return $next($request);
+			} else {
+				return redirect()->route('backend.auth.login');
+			}
+		}
     }
 }

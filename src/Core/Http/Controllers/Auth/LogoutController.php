@@ -8,22 +8,8 @@
 
     class LogoutController extends Controller
     {
-        public function view() {
-            return view('backend::auth.login');
-        }
-
-        public function authenticate(LoginRequest $request) {
-			$credentials = [
-				'email' => $request->email,
-				'password' => $request->password,
-				'id_user_status' => 2
-			];
-
-			if (Auth::attempt($credentials)) {
-				$request->session()->regenerate();
-				return redirect()->intended('backend.dashboard');
-			}
-
-			return back()->withErrors(['email' => 'The provided credentials do not match our records.'])->onlyInput('email');
+        public function index() {
+			Auth::logout();
+			return redirect()->route('backend.auth.login');
         }
     }

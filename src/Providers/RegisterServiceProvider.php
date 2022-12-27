@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Multimedia\Multistore\Classes\Modules;
 use Multimedia\Multistore\Classes\Plugins;
 use Multimedia\Multistore\Classes\Form;
+use Multimedia\Multistore\Classes\Menu;
 
 class RegisterServiceProvider extends ServiceProvider {
 
@@ -20,6 +21,10 @@ class RegisterServiceProvider extends ServiceProvider {
 
         $this->app->singleton('form', function($app) {
 			return new Form();
+		});
+
+		$this->app->singleton('menu', function($app) {
+			return new Menu();
 		});
 	}
 

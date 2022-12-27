@@ -25,7 +25,9 @@
                             'Seeders'
                         ],
                         'Http' => [
+							'Classes',
                             'Controllers' => [
+								'Api',
                                 'Frontend',
                                 'Backend',
                             ],
@@ -82,12 +84,14 @@
             $returned['route'] = (new Stub('providers/route', 'Providers', array_merge($array, ['class' => 'RouteService'])))->save();
             $returned['assets'] = (new Stub('providers/assets', 'Providers', array_merge($array, ['class' => 'AssetsService'])))->save();
             $returned['migration'] = (new Stub('providers/migration', 'Providers', array_merge($array, ['class' => 'MigrationService'])))->save();
+            $returned['function'] = (new Stub('providers/function', 'Providers', array_merge($array, ['class' => 'FunctionService'])))->save();
 
             $returned['module'] = (new Stub('providers/module', 'Providers', array_merge($array, ['extended' => true, 'class' => $this->module.'Service'])))->save();
             $returned['command'] = (new Stub('providers/command', 'Providers', array_merge($array, ['extended' => true, 'class' => 'CommandsService'])))->save();
             $returned['route'] = (new Stub('providers/route', 'Providers', array_merge($array, ['extended' => true, 'class' => 'RouteService'])))->save();
 			$returned['assets'] = (new Stub('providers/assets', 'Providers', array_merge($array, ['extended' => true, 'class' => 'AssetsService'])))->save();
 			$returned['migration'] = (new Stub('providers/migration', 'Providers', array_merge($array, ['extended' => true, 'class' => 'MigrationService'])))->save();
+			$returned['function'] = (new Stub('providers/function', 'Providers', array_merge($array, ['extended' => true, 'class' => 'FunctionService'])))->save();
 
             (new Stub('routes/web', null, $array))->copy('routes/web');
             (new Stub('routes/api', null, $array))->copy('routes/api');

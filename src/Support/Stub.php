@@ -17,6 +17,7 @@
         protected $extended = false;
         protected $filename;
         protected $path;
+		protected $primaryKey;
 
         public function __construct($path, $type, $inputs = [])
         {

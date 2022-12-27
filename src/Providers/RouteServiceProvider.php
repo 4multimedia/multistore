@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider {
     public function boot() {
         Route::namespace($this->namespace)
         ->prefix(config('multimedia.backend'))
-        ->middleware(['multimedia.backend', 'web'])
+        ->middleware(['web', 'multimedia.backend'])
         ->group(dirname(__FILE__).'/../Core/routes/backend.php');
     }
 }

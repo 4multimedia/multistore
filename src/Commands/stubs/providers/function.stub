@@ -1,0 +1,14 @@
+<?php
+
+    namespace {{NAMESPACE}};
+
+	use Illuminate\Support\ServiceProvider;
+
+	class FunctionServiceProvider extends ServiceProvider {
+		public function boot() {
+			// Register item in menu
+			// add_to_menu('a', 'b', 'c');
+		}
+	}
+
+?>

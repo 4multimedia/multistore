@@ -14,9 +14,9 @@ class UserStatusSeeder extends Seeder
      */
     public function run()
     {
-        UserStatus::create(['name' => 'Nieaktywny']);
-        UserStatus::create(['name' => 'Aktywny']);
-        UserStatus::create(['name' => 'Zablokowany']);
-        UserStatus::create(['name' => 'Ukryty']);
+        UserStatus::create(['name' => 'Nieaktywny', 'login' => 0]);
+        UserStatus::create(['name' => 'Aktywny', 'login' => 1]);
+        UserStatus::create(['name' => 'Zablokowany', 'login' => 0]);
+        UserStatus::create(['name' => 'Ukryty', 'login' => 0]);
     }
 }

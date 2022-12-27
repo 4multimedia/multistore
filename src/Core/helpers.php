@@ -1,7 +1,6 @@
 <?php
 
-	function hook()
-    {
+	function hook() {
         return app('hooks');
     }
 
@@ -11,6 +10,18 @@
 
 	function plugins() {
 		return app('plugins');
+	}
+
+	function menu() {
+		return app('menu');
+	}
+
+	function modules() {
+		return app('modules');
+	}
+
+	function user_log() {
+		return app('user_log');
 	}
 
 	function register_css_path($path) {
@@ -25,6 +36,10 @@
 		return hook()->get_css();
 	}
 
+	function get_modules() {
+		return modules()->get_modules();
+	}
+
     function do_action($tag, $arg = '') {
         hook()->do_action($tag, $arg);
     }
@@ -32,6 +47,18 @@
     function add_action($tag, $callback, $priority = 10, $accepted_args = 1) {
         return hook()->add_action($tag, getHookCallback($callback), $priority, $accepted_args);
     }
+
+	function add_to_menu($id, $title, $link, $params = []) {
+		menu()->add_to_menu($id, $title, $link, $params);
+	}
+
+	function do_menu() {
+		return menu()->do_menu();
+	}
+
+	function register_user_log($module, $id_record, $params = []) {
+		return user_log()->register($module, $id_record, $params);
+	}
 
     function getHookCallback($callback) {
         if (is_string($callback) && strpos($callback, '@')) {

@@ -30,7 +30,10 @@ class ModulesControllerCreate extends Command
     public function handle()
     {
         $array = [];
-        $array["module"] = $this->ask('Enter module name');
+		$modules = get_modules();
+        $module = $this->choice('Select module', get_modules());
+
+		$array["module"] = $modules[array_search($module, $modules)];
         $isDir = is_dir(app_path('Modules/'.$array["module"]));
         if (!$isDir) {
             $this->error('Wrong module name');
@@ -38,13 +41,36 @@ class ModulesControllerCreate extends Command
             $controller = $this->ask('Enter controller name');
 
             $array["extended"] = $this->confirm('Added to extended module?', false);
+			$frontend = $this->confirm('Added to frontend?', false);
             $backend = $this->confirm('Added to backend?', false);
+			$api = $this->confirm('Added to api?', false);
 
-            $array['namespace'] = "App\\".($array["extended"] ? "Extended\\" : "")."Modules\Layout\Http\Controllers\\".($backend ? "Backend" : "Frontend");
+            $array['namespace'] = "App\\".($array["extended"] ? "Extended\\" : "")."Modules\\".ucfirst(strtolower($array["module"]))."\Http\Controllers\\".($backend ? "Backend" : "Frontend");
             $array['class'] = $controller."Controller";
-            $array['fileLocation'] = "Http/Controllers/".($backend ? "Backend" : "Frontend")."/".$array['class'].".php";
 
-            return (new Stub('controllers/controller', 'Controllers', $array))->save();
+			if ($frontend) {
+            	$array['fileLocation'] = "Http/Controllers/Frontend/".$array['class'].".php";
+            	(new Stub('controllers/controller', 'Controllers', $array))->save();
+				$this->info('Create Frontend Controller');
+				$this->line('App/Modules/'.$array["module"].'/'.$array['fileLocation']);
+				$this->newLine();
+			}
+
+			if ($backend) {
+            	$array['fileLocation'] = "Http/Controllers/Backend/".$array['class'].".php";
+            	(new Stub('controllers/controller', 'Controllers', $array))->save();
+				$this->info('Create Backend Controller');
+				$this->line('App/Modules/'.$array["module"].'/'.$array['fileLocation']);
+				$this->newLine();
+			}
+
+			if ($api) {
+            	$array['fileLocation'] = "Http/Controllers/Api/".$array['class'].".php";
+            	(new Stub('controllers/controller', 'Controllers', $array))->save();
+				$this->info('Create Api Controller');
+				$this->line('App/Modules/'.$array["module"].'/'.$array['fileLocation']);
+				$this->newLine();
+			}
         }
     }
 }

@@ -4,12 +4,10 @@ namespace Multimedia\Multistore\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserStatus extends Model
+class UserLog extends Model
 {
-	public $table = "user_status";
-	public $primaryKey = "id_user_status";
-
-	const ACTIVE = 2;
+	public $table = "user_log";
+	public $primaryKey = "id_user_log";
 
     /**
      * The attributes that are mass assignable.
@@ -17,6 +15,10 @@ class UserStatus extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name'
+        'id_user',
+		'module',
+		'id_record',
+		'params',
+		'changes'
     ];
 }

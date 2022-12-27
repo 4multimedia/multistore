@@ -20,6 +20,7 @@ class SeederServiceProvider extends ServiceProvider {
         $seeders = $this->seeders;
         $this->callAfterResolving(DatabaseSeeder::class, function ($seeder) use ($seeders) {
             foreach ((array) $seeders as $path) {
+				echo $path;
                 $seeder->call($path);
             }
         });

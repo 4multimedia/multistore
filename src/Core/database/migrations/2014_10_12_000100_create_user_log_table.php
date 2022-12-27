@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_to_role', function (Blueprint $table) {
+        Schema::create('user_log', function (Blueprint $table) {
+			$table->id('id_user_log');
 			$table->unsignedBigInteger('id_user');
-			$table->unsignedBigInteger('id_user_role');
+			$table->timestamps();
+			$table->string('module')->nullable();
+			$table->bigInteger('id_record')->nullable();
+			$table->json('params')->nullable();
+			$table->json('changes')->nullable();
 
-            $table->primary(['id_user', 'id_user_role']);
-
-            $table->foreign('id_user_role')->references('id_user_role')->on('user_role')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('id_user')->references('id_user')->on('user')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_to_role');
+        Schema::dropIfExists('user_log');
     }
 };

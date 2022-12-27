@@ -18,5 +18,5 @@ Route::get('/', 'Dashboard\IndexController@index')->name('backend.dashboard');
 Route::prefix('auth')->namespace('Auth')->group(function() {
     Route::get('login', 'LoginController@view')->name('backend.auth.login');
     Route::post('login', 'LoginController@authenticate')->name('backend.auth.login.request');
-    Route::get('logout', 'LogoutController@view')->name('backend.auth.logout');
+    Route::get('logout', 'LogoutController@index')->name('backend.auth.logout');
 });

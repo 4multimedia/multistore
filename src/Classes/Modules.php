@@ -6,12 +6,19 @@
 
 	class Modules {
 
-		public function hasModule($module) {
+		public function get_modules() {
 			$find = false;
 
 			$path = app_path('Modules');
 			$dirs = File::directories($path);
 
-			print_r($dirs);
+			foreach($dirs as $dir) {
+				$module = explode("/", $dir);
+				$array[] = $module[count($module)-1];
+			}
+
+			asort($array);
+
+			return $array;
 		}
 	}
