@@ -11,19 +11,33 @@
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
-        "autoprefixer": "^10.4.12",
+        "autoprefixer": "^10.4.13",
         "axios": "^0.27",
         "laravel-mix": "^6.0.49",
         "lodash": "^4.17.19",
-        "postcss": "^8.4.18",
+        "mix-tailwindcss": "^1.3.0",
+        "postcss": "^8.4.20",
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
-        "tailwindcss": "^3.2.0"
+        "tailwindcss": "^3.0.24"
     },
     "dependencies": {
+        "@left4code/tw-starter": "^3.1.39",
+        "dropzone": "^6.0.0-beta.2",
+        "highlight.js": "^11.7.0",
+        "postcss-advanced-variables": "^3.0.1",
+        "postcss-cli": "^10.1.0",
+        "postcss-import": "^15.1.0",
+        "simplebar": "^5.3.9",
+        "tabulator-tables": "^5.4.3",
+        "tiny-slider": "^2.9.4",
+        "tippy.js": "^6.3.7",
+        "toastify-js": "^1.12.0",
+        "tom-select": "^2.2.2",
         "vue": "^2.6.14",
         "vue-loader": "^15.9.6",
-        "vue-template-compiler": "^2.6.14"
+        "vue-template-compiler": "^2.6.14",
+        "zoom-vanilla.js": "^2.0.6"
     }
 }
