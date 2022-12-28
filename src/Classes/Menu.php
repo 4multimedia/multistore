@@ -7,9 +7,11 @@
 	class Menu {
 
 		public $items = [];
+        public $subitems = [];
 
 		public function add_to_menu($id, $label, $route, $priority, $params) {
-			$this->items[$id] = [
+			$this->items[$priority][] = [
+                "id" => $id,
 				"label" => $label,
 				"route" => $route,
 				"icon" => isset($params["icon"]) ? $params["icon"] : null,
@@ -17,7 +19,36 @@
 			];
 		}
 
+        public function sort() {
+            ksort($this->items);
+
+            $array = [];
+            foreach($this->items as $items) {
+                foreach ($items as $item) {
+                    $subarray = [];
+                    if (isset($item["id"]) && isset($this->subitems[$item["id"]])) {
+                        ksort($this->subitems[$item["id"]]);
+                        foreach($this->subitems[$item["id"]] as $subitems) {
+                            foreach($subitems as $subitem) {
+                                $subarray[] = $subitem;
+                            }
+                        }
+                    }
+
+                    if (!isset($item["id"])) {
+                        $item["id"] = "d_".rand(0,1000);
+                    }
+                    $array[$item["id"]] = $item;
+                    $array[$item["id"]]["items"] = $subarray;
+                }
+            }
+
+            $this->items = $array;
+        }
+
 		public function do_menu() {
+            $this->sort();
+
 			$html = '<nav class="side-nav">';
 			$html .= $this->items($this->items);
 			$html .= '</nav>';
@@ -48,28 +79,36 @@
 		public function items($items) {
 			$html = '<ul class="">';
 			foreach($items as $item) {
+                if (isset($item["type"]) && $item["type"] === 'devider') {
+                    $html .= '<li class="side-nav__devider my-6"></li>';
+                } else {
 				$html .= '
-				<li>
-					<a href="'.($item["route"] ? route($item["route"]) : 'javascript:;').'" class="side-menu '.($this->current_route() === $item["route"] ? 'side-menu--active' : '').'">
-						'.($item["icon"] ? '<div class="side-menu__icon"> <i data-lucide="home"></i> </div>' : '').'
-						<div class="side-menu__title">
-							'.__($item["label"]).'
-							'.(count($item["items"]) > 0 ? '<div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i></div>' : '').'
-						</div>
-					</a>
-					'.(count($item["items"]) > 0 ? $this->items($item["items"]) : '').'
-				</li>';
+                    <li>
+                        <a href="'.($item["route"] ? route($item["route"]) : 'javascript:;').'" class="side-menu '.($this->current_route() === $item["route"] ? 'side-menu--active' : '').'">
+                            '.($item["icon"] ? '<div class="side-menu__icon"> <i data-lucide="'.$item["icon"].'"></i> </div>' : '').'
+                            <div class="side-menu__title">
+                                '.__($item["label"]).'
+                                '.(count($item["items"]) > 0 ? '<div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i></div>' : '').'
+                            </div>
+                        </a>
+                        '.(count($item["items"]) > 0 ? $this->items($item["items"]) : '').'
+                    </li>';
+                }
 			}
 			$html .= '</ul>';
 			return $html;
 		}
 
 		public function add_to_submenu($id, $label, $route, $priority, $params) {
-			$this->items[$id]["items"][] = [
+			$this->subitems[$id][$priority][] = [
 				"label" => $label,
 				"route" => $route,
 				"icon" => isset($params["icon"]) ? $params["icon"] : null,
 				"items" => []
 			];
 		}
+
+        public function add_devider_menu($priority) {
+            $this->items[$priority][] = ["type" => "devider"];
+        }
 	}

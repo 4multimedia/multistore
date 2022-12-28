@@ -897,10 +897,7 @@
 					@if (get_title())
 						<div class="intro-y flex items-center mt-8  justify-between">
 							<h2 class="text-lg font-medium mr-auto">{{ get_title() }}</h2>
-
-							<div>
-								<a href="" class="btn btn-primary shadow-md ml-2">Add New Category</a>
-							</div>
+                            {!! get_action_header() !!}
 						</div>
 					@endif
 

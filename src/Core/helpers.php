@@ -81,6 +81,10 @@
 		hook()->add_button_header($label, $route, $color);
 	}
 
+    function get_action_header() {
+        return hook()->get_action_header();
+    }
+
     function do_action($tag, $arg = '') {
         hook()->do_action($tag, $arg);
     }
@@ -89,13 +93,17 @@
         return hook()->add_action($tag, getHookCallback($callback), $priority, $accepted_args);
     }
 
-	function add_to_menu($id, $title, $route = null, $priority = 0, $params = []) {
+	function add_to_menu($id, $title, $route = null, $priority = 10, $params = []) {
 		menu()->add_to_menu($id, $title, $route, $priority, $params);
 	}
 
-	function add_to_submenu($id, $title, $route = null, $priority = 0, $params = []) {
+	function add_to_submenu($id, $title, $route = null, $priority = 10, $params = []) {
 		menu()->add_to_submenu($id, $title, $route, $priority, $params);
 	}
+
+    function add_devider_menu($priority) {
+        menu()->add_devider_menu($priority);
+    }
 
 	function get_json_menu() {
 		return menu()->get_json_menu();

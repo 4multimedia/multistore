@@ -26,4 +26,8 @@ Route::prefix('user')->namespace('User')->group(function() {
 	Route::get('/', 'UserController@index')->name('backend.user');
 	Route::get('/create', 'UserController@create')->name('backend.user.create');
 	Route::get('/me', 'UserController@me')->name('backend.user.me');
+
+    Route::prefix('group')->group(function() {
+        Route::get('/', 'GroupController@index')->name('backend.user.group');
+    });
 });

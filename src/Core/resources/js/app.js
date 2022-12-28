@@ -59,12 +59,17 @@ import Column from './components/VisualBuilder/Elements/Column/Index';
 import Headline from './components/VisualBuilder/Elements/Headline/Index';
 import Row from './components/VisualBuilder/Elements/Row/Index';
 import UiSidebar from './components/Ui/Sidebar/Index';
+import UiBox from './components/Ui/Box/Index';
 
 import FormBody from './components/Form/Body.vue';
+import FormModule from './components/Form/Module.vue';
+import FormSection from './components/Form/Section.vue';
 
 Vue.component('InputText', InputText);
 Vue.component('InputPassword', InputPassword);
 Vue.component('FormBody', FormBody);
+Vue.component('FormModule', FormModule);
+Vue.component('FormSection', FormSection);
 Vue.component('VisualBuilder', VisualBuilder);
 Vue.component('Paragraph', Paragraph);
 Vue.component('Container', Container);
@@ -72,6 +77,7 @@ Vue.component('Column', Column);
 Vue.component('Headline', Headline);
 Vue.component('Row', Row);
 Vue.component('UiSidebar', UiSidebar);
+Vue.component('UiBox', UiBox);
 
 new Vue({
     el: '#app',

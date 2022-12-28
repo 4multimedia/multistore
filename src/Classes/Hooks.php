@@ -14,6 +14,7 @@
         public $current_filter = [];
 		public $title = '';
 		public $meta_title = '';
+        public $button_header = [];
 
 		public function __construct()
 		{
@@ -70,6 +71,22 @@
 		public function get_title() {
 			return $this->title;
 		}
+
+        /* HOOKS Action Buttons */
+        public function add_button_header($label, $route, $color) {
+            $this->button_header[] = [
+                "label" => $label,
+                "route" => $route
+            ];
+        }
+
+        public function get_action_header() {
+            $buttons = [];
+            foreach($this->button_header as $button) {
+                $buttons[] = '<a href="'.$button["route"].'" class="btn btn-primary shadow-md ml-2">'.$button["label"].'</a>';
+            }
+            return implode(" ", $buttons);
+        }
 
 		/* HOOKS Meta */
 		public function set_meta_title($title) {
