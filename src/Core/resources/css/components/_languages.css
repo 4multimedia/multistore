@@ -1,0 +1,10 @@
+.languages {
+
+}
+.languages-content {
+	width: 160px;
+
+	.languages-content__box {
+        @apply p-5;
+    }
+}

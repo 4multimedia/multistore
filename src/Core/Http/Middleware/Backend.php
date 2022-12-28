@@ -26,7 +26,13 @@ class Backend
      */
     public function handle(Request $request, Closure $next)
     {
-
+		if ($request->has('lang')) {
+			app()->setLocale($request->lang);
+			$request->session()->put('_language', $request->lang);
+		} else {
+			$sessionLanguage = $request->session()->get('_language', app()->getLocale());
+			app()->setLocale($sessionLanguage);
+		}
         $routeName = $request->route()->getName();
 		if (Auth::check()) {
             $admin_roles = UserRole::where("area->backend", true)->pluck('id_user_role')->toArray();

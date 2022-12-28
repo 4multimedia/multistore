@@ -1,0 +1,1616 @@
+.fib {
+	background-size: contain;
+	background-position: 50%;
+	background-repeat: no-repeat;
+  }
+  .fi {
+	background-size: contain;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	position: relative;
+	display: inline-block;
+	width: 1.33333333em;
+	line-height: 1em;
+  }
+  .fi:before {
+	content: '\00a0';
+  }
+  .fi.fis {
+	width: 1em;
+  }
+  .fi-xx {
+	background-image: url('../images/4x3_xx.svg');
+  }
+  .fi-xx.fis {
+	background-image: url('../images/1x1_xx.svg');
+  }
+  .fi-ad {
+	background-image: url('../images/4x3_ad.svg');
+  }
+  .fi-ad.fis {
+	background-image: url('../images/1x1_ad.svg');
+  }
+  .fi-ae {
+	background-image: url('../images/4x3_ae.svg');
+  }
+  .fi-ae.fis {
+	background-image: url('../images/1x1_ae.svg');
+  }
+  .fi-af {
+	background-image: url('../images/4x3_af.svg');
+  }
+  .fi-af.fis {
+	background-image: url('../images/1x1_af.svg');
+  }
+  .fi-ag {
+	background-image: url('../images/4x3_ag.svg');
+  }
+  .fi-ag.fis {
+	background-image: url('../images/1x1_ag.svg');
+  }
+  .fi-ai {
+	background-image: url('../images/4x3_ai.svg');
+  }
+  .fi-ai.fis {
+	background-image: url('../images/1x1_ai.svg');
+  }
+  .fi-al {
+	background-image: url('../images/4x3_al.svg');
+  }
+  .fi-al.fis {
+	background-image: url('../images/1x1_al.svg');
+  }
+  .fi-am {
+	background-image: url('../images/4x3_am.svg');
+  }
+  .fi-am.fis {
+	background-image: url('../images/1x1_am.svg');
+  }
+  .fi-ao {
+	background-image: url('../images/4x3_ao.svg');
+  }
+  .fi-ao.fis {
+	background-image: url('../images/1x1_ao.svg');
+  }
+  .fi-aq {
+	background-image: url('../images/4x3_aq.svg');
+  }
+  .fi-aq.fis {
+	background-image: url('../images/1x1_aq.svg');
+  }
+  .fi-ar {
+	background-image: url('../images/4x3_ar.svg');
+  }
+  .fi-ar.fis {
+	background-image: url('../images/1x1_ar.svg');
+  }
+  .fi-as {
+	background-image: url('../images/4x3_as.svg');
+  }
+  .fi-as.fis {
+	background-image: url('../images/1x1_as.svg');
+  }
+  .fi-at {
+	background-image: url('../images/4x3_at.svg');
+  }
+  .fi-at.fis {
+	background-image: url('../images/1x1_at.svg');
+  }
+  .fi-au {
+	background-image: url('../images/4x3_au.svg');
+  }
+  .fi-au.fis {
+	background-image: url('../images/1x1_au.svg');
+  }
+  .fi-aw {
+	background-image: url('../images/4x3_aw.svg');
+  }
+  .fi-aw.fis {
+	background-image: url('../images/1x1_aw.svg');
+  }
+  .fi-ax {
+	background-image: url('../images/4x3_ax.svg');
+  }
+  .fi-ax.fis {
+	background-image: url('../images/1x1_ax.svg');
+  }
+  .fi-az {
+	background-image: url('../images/4x3_az.svg');
+  }
+  .fi-az.fis {
+	background-image: url('../images/1x1_az.svg');
+  }
+  .fi-ba {
+	background-image: url('../images/4x3_ba.svg');
+  }
+  .fi-ba.fis {
+	background-image: url('../images/1x1_ba.svg');
+  }
+  .fi-bb {
+	background-image: url('../images/4x3_bb.svg');
+  }
+  .fi-bb.fis {
+	background-image: url('../images/1x1_bb.svg');
+  }
+  .fi-bd {
+	background-image: url('../images/4x3_bd.svg');
+  }
+  .fi-bd.fis {
+	background-image: url('../images/1x1_bd.svg');
+  }
+  .fi-be {
+	background-image: url('../images/4x3_be.svg');
+  }
+  .fi-be.fis {
+	background-image: url('../images/1x1_be.svg');
+  }
+  .fi-bf {
+	background-image: url('../images/4x3_bf.svg');
+  }
+  .fi-bf.fis {
+	background-image: url('../images/1x1_bf.svg');
+  }
+  .fi-bg {
+	background-image: url('../images/4x3_bg.svg');
+  }
+  .fi-bg.fis {
+	background-image: url('../images/1x1_bg.svg');
+  }
+  .fi-bh {
+	background-image: url('../images/4x3_bh.svg');
+  }
+  .fi-bh.fis {
+	background-image: url('../images/1x1_bh.svg');
+  }
+  .fi-bi {
+	background-image: url('../images/4x3_bi.svg');
+  }
+  .fi-bi.fis {
+	background-image: url('../images/1x1_bi.svg');
+  }
+  .fi-bj {
+	background-image: url('../images/4x3_bj.svg');
+  }
+  .fi-bj.fis {
+	background-image: url('../images/1x1_bj.svg');
+  }
+  .fi-bl {
+	background-image: url('../images/4x3_bl.svg');
+  }
+  .fi-bl.fis {
+	background-image: url('../images/1x1_bl.svg');
+  }
+  .fi-bm {
+	background-image: url('../images/4x3_bm.svg');
+  }
+  .fi-bm.fis {
+	background-image: url('../images/1x1_bm.svg');
+  }
+  .fi-bn {
+	background-image: url('../images/4x3_bn.svg');
+  }
+  .fi-bn.fis {
+	background-image: url('../images/1x1_bn.svg');
+  }
+  .fi-bo {
+	background-image: url('../images/4x3_bo.svg');
+  }
+  .fi-bo.fis {
+	background-image: url('../images/1x1_bo.svg');
+  }
+  .fi-bq {
+	background-image: url('../images/4x3_bq.svg');
+  }
+  .fi-bq.fis {
+	background-image: url('../images/1x1_bq.svg');
+  }
+  .fi-br {
+	background-image: url('../images/4x3_br.svg');
+  }
+  .fi-br.fis {
+	background-image: url('../images/1x1_br.svg');
+  }
+  .fi-bs {
+	background-image: url('../images/4x3_bs.svg');
+  }
+  .fi-bs.fis {
+	background-image: url('../images/1x1_bs.svg');
+  }
+  .fi-bt {
+	background-image: url('../images/4x3_bt.svg');
+  }
+  .fi-bt.fis {
+	background-image: url('../images/1x1_bt.svg');
+  }
+  .fi-bv {
+	background-image: url('../images/4x3_bv.svg');
+  }
+  .fi-bv.fis {
+	background-image: url('../images/1x1_bv.svg');
+  }
+  .fi-bw {
+	background-image: url('../images/4x3_bw.svg');
+  }
+  .fi-bw.fis {
+	background-image: url('../images/1x1_bw.svg');
+  }
+  .fi-by {
+	background-image: url('../images/4x3_by.svg');
+  }
+  .fi-by.fis {
+	background-image: url('../images/1x1_by.svg');
+  }
+  .fi-bz {
+	background-image: url('../images/4x3_bz.svg');
+  }
+  .fi-bz.fis {
+	background-image: url('../images/1x1_bz.svg');
+  }
+  .fi-ca {
+	background-image: url('../images/4x3_ca.svg');
+  }
+  .fi-ca.fis {
+	background-image: url('../images/1x1_ca.svg');
+  }
+  .fi-cc {
+	background-image: url('../images/4x3_cc.svg');
+  }
+  .fi-cc.fis {
+	background-image: url('../images/1x1_cc.svg');
+  }
+  .fi-cd {
+	background-image: url('../images/4x3_cd.svg');
+  }
+  .fi-cd.fis {
+	background-image: url('../images/1x1_cd.svg');
+  }
+  .fi-cf {
+	background-image: url('../images/4x3_cf.svg');
+  }
+  .fi-cf.fis {
+	background-image: url('../images/1x1_cf.svg');
+  }
+  .fi-cg {
+	background-image: url('../images/4x3_cg.svg');
+  }
+  .fi-cg.fis {
+	background-image: url('../images/1x1_cg.svg');
+  }
+  .fi-ch {
+	background-image: url('../images/4x3_ch.svg');
+  }
+  .fi-ch.fis {
+	background-image: url('../images/1x1_ch.svg');
+  }
+  .fi-ci {
+	background-image: url('../images/4x3_ci.svg');
+  }
+  .fi-ci.fis {
+	background-image: url('../images/1x1_ci.svg');
+  }
+  .fi-ck {
+	background-image: url('../images/4x3_ck.svg');
+  }
+  .fi-ck.fis {
+	background-image: url('../images/1x1_ck.svg');
+  }
+  .fi-cl {
+	background-image: url('../images/4x3_cl.svg');
+  }
+  .fi-cl.fis {
+	background-image: url('../images/1x1_cl.svg');
+  }
+  .fi-cm {
+	background-image: url('../images/4x3_cm.svg');
+  }
+  .fi-cm.fis {
+	background-image: url('../images/1x1_cm.svg');
+  }
+  .fi-cn {
+	background-image: url('../images/4x3_cn.svg');
+  }
+  .fi-cn.fis {
+	background-image: url('../images/1x1_cn.svg');
+  }
+  .fi-co {
+	background-image: url('../images/4x3_co.svg');
+  }
+  .fi-co.fis {
+	background-image: url('../images/1x1_co.svg');
+  }
+  .fi-cr {
+	background-image: url('../images/4x3_cr.svg');
+  }
+  .fi-cr.fis {
+	background-image: url('../images/1x1_cr.svg');
+  }
+  .fi-cu {
+	background-image: url('../images/4x3_cu.svg');
+  }
+  .fi-cu.fis {
+	background-image: url('../images/1x1_cu.svg');
+  }
+  .fi-cv {
+	background-image: url('../images/4x3_cv.svg');
+  }
+  .fi-cv.fis {
+	background-image: url('../images/1x1_cv.svg');
+  }
+  .fi-cw {
+	background-image: url('../images/4x3_cw.svg');
+  }
+  .fi-cw.fis {
+	background-image: url('../images/1x1_cw.svg');
+  }
+  .fi-cx {
+	background-image: url('../images/4x3_cx.svg');
+  }
+  .fi-cx.fis {
+	background-image: url('../images/1x1_cx.svg');
+  }
+  .fi-cy {
+	background-image: url('../images/4x3_cy.svg');
+  }
+  .fi-cy.fis {
+	background-image: url('../images/1x1_cy.svg');
+  }
+  .fi-cz {
+	background-image: url('../images/4x3_cz.svg');
+  }
+  .fi-cz.fis {
+	background-image: url('../images/1x1_cz.svg');
+  }
+  .fi-de {
+	background-image: url('../images/4x3_de.svg');
+  }
+  .fi-de.fis {
+	background-image: url('../images/1x1_de.svg');
+  }
+  .fi-dj {
+	background-image: url('../images/4x3_dj.svg');
+  }
+  .fi-dj.fis {
+	background-image: url('../images/1x1_dj.svg');
+  }
+  .fi-dk {
+	background-image: url('../images/4x3_dk.svg');
+  }
+  .fi-dk.fis {
+	background-image: url('../images/1x1_dk.svg');
+  }
+  .fi-dm {
+	background-image: url('../images/4x3_dm.svg');
+  }
+  .fi-dm.fis {
+	background-image: url('../images/1x1_dm.svg');
+  }
+  .fi-do {
+	background-image: url('../images/4x3_do.svg');
+  }
+  .fi-do.fis {
+	background-image: url('../images/1x1_do.svg');
+  }
+  .fi-dz {
+	background-image: url('../images/4x3_dz.svg');
+  }
+  .fi-dz.fis {
+	background-image: url('../images/1x1_dz.svg');
+  }
+  .fi-ec {
+	background-image: url('../images/4x3_ec.svg');
+  }
+  .fi-ec.fis {
+	background-image: url('../images/1x1_ec.svg');
+  }
+  .fi-ee {
+	background-image: url('../images/4x3_ee.svg');
+  }
+  .fi-ee.fis {
+	background-image: url('../images/1x1_ee.svg');
+  }
+  .fi-eg {
+	background-image: url('../images/4x3_eg.svg');
+  }
+  .fi-eg.fis {
+	background-image: url('../images/1x1_eg.svg');
+  }
+  .fi-eh {
+	background-image: url('../images/4x3_eh.svg');
+  }
+  .fi-eh.fis {
+	background-image: url('../images/1x1_eh.svg');
+  }
+  .fi-er {
+	background-image: url('../images/4x3_er.svg');
+  }
+  .fi-er.fis {
+	background-image: url('../images/1x1_er.svg');
+  }
+  .fi-es {
+	background-image: url('../images/4x3_es.svg');
+  }
+  .fi-es.fis {
+	background-image: url('../images/1x1_es.svg');
+  }
+  .fi-et {
+	background-image: url('../images/4x3_et.svg');
+  }
+  .fi-et.fis {
+	background-image: url('../images/1x1_et.svg');
+  }
+  .fi-fi {
+	background-image: url('../images/4x3_fi.svg');
+  }
+  .fi-fi.fis {
+	background-image: url('../images/1x1_fi.svg');
+  }
+  .fi-fj {
+	background-image: url('../images/4x3_fj.svg');
+  }
+  .fi-fj.fis {
+	background-image: url('../images/1x1_fj.svg');
+  }
+  .fi-fk {
+	background-image: url('../images/4x3_fk.svg');
+  }
+  .fi-fk.fis {
+	background-image: url('../images/1x1_fk.svg');
+  }
+  .fi-fm {
+	background-image: url('../images/4x3_fm.svg');
+  }
+  .fi-fm.fis {
+	background-image: url('../images/1x1_fm.svg');
+  }
+  .fi-fo {
+	background-image: url('../images/4x3_fo.svg');
+  }
+  .fi-fo.fis {
+	background-image: url('../images/1x1_fo.svg');
+  }
+  .fi-fr {
+	background-image: url('../images/4x3_fr.svg');
+  }
+  .fi-fr.fis {
+	background-image: url('../images/1x1_fr.svg');
+  }
+  .fi-ga {
+	background-image: url('../images/4x3_ga.svg');
+  }
+  .fi-ga.fis {
+	background-image: url('../images/1x1_ga.svg');
+  }
+  .fi-gb {
+	background-image: url('../images/4x3_gb.svg');
+  }
+  .fi-gb.fis {
+	background-image: url('../images/1x1_gb.svg');
+  }
+  .fi-gd {
+	background-image: url('../images/4x3_gd.svg');
+  }
+  .fi-gd.fis {
+	background-image: url('../images/1x1_gd.svg');
+  }
+  .fi-ge {
+	background-image: url('../images/4x3_ge.svg');
+  }
+  .fi-ge.fis {
+	background-image: url('../images/1x1_ge.svg');
+  }
+  .fi-gf {
+	background-image: url('../images/4x3_gf.svg');
+  }
+  .fi-gf.fis {
+	background-image: url('../images/1x1_gf.svg');
+  }
+  .fi-gg {
+	background-image: url('../images/4x3_gg.svg');
+  }
+  .fi-gg.fis {
+	background-image: url('../images/1x1_gg.svg');
+  }
+  .fi-gh {
+	background-image: url('../images/4x3_gh.svg');
+  }
+  .fi-gh.fis {
+	background-image: url('../images/1x1_gh.svg');
+  }
+  .fi-gi {
+	background-image: url('../images/4x3_gi.svg');
+  }
+  .fi-gi.fis {
+	background-image: url('../images/1x1_gi.svg');
+  }
+  .fi-gl {
+	background-image: url('../images/4x3_gl.svg');
+  }
+  .fi-gl.fis {
+	background-image: url('../images/1x1_gl.svg');
+  }
+  .fi-gm {
+	background-image: url('../images/4x3_gm.svg');
+  }
+  .fi-gm.fis {
+	background-image: url('../images/1x1_gm.svg');
+  }
+  .fi-gn {
+	background-image: url('../images/4x3_gn.svg');
+  }
+  .fi-gn.fis {
+	background-image: url('../images/1x1_gn.svg');
+  }
+  .fi-gp {
+	background-image: url('../images/4x3_gp.svg');
+  }
+  .fi-gp.fis {
+	background-image: url('../images/1x1_gp.svg');
+  }
+  .fi-gq {
+	background-image: url('../images/4x3_gq.svg');
+  }
+  .fi-gq.fis {
+	background-image: url('../images/1x1_gq.svg');
+  }
+  .fi-gr {
+	background-image: url('../images/4x3_gr.svg');
+  }
+  .fi-gr.fis {
+	background-image: url('../images/1x1_gr.svg');
+  }
+  .fi-gs {
+	background-image: url('../images/4x3_gs.svg');
+  }
+  .fi-gs.fis {
+	background-image: url('../images/1x1_gs.svg');
+  }
+  .fi-gt {
+	background-image: url('../images/4x3_gt.svg');
+  }
+  .fi-gt.fis {
+	background-image: url('../images/1x1_gt.svg');
+  }
+  .fi-gu {
+	background-image: url('../images/4x3_gu.svg');
+  }
+  .fi-gu.fis {
+	background-image: url('../images/1x1_gu.svg');
+  }
+  .fi-gw {
+	background-image: url('../images/4x3_gw.svg');
+  }
+  .fi-gw.fis {
+	background-image: url('../images/1x1_gw.svg');
+  }
+  .fi-gy {
+	background-image: url('../images/4x3_gy.svg');
+  }
+  .fi-gy.fis {
+	background-image: url('../images/1x1_gy.svg');
+  }
+  .fi-hk {
+	background-image: url('../images/4x3_hk.svg');
+  }
+  .fi-hk.fis {
+	background-image: url('../images/1x1_hk.svg');
+  }
+  .fi-hm {
+	background-image: url('../images/4x3_hm.svg');
+  }
+  .fi-hm.fis {
+	background-image: url('../images/1x1_hm.svg');
+  }
+  .fi-hn {
+	background-image: url('../images/4x3_hn.svg');
+  }
+  .fi-hn.fis {
+	background-image: url('../images/1x1_hn.svg');
+  }
+  .fi-hr {
+	background-image: url('../images/4x3_hr.svg');
+  }
+  .fi-hr.fis {
+	background-image: url('../images/1x1_hr.svg');
+  }
+  .fi-ht {
+	background-image: url('../images/4x3_ht.svg');
+  }
+  .fi-ht.fis {
+	background-image: url('../images/1x1_ht.svg');
+  }
+  .fi-hu {
+	background-image: url('../images/4x3_hu.svg');
+  }
+  .fi-hu.fis {
+	background-image: url('../images/1x1_hu.svg');
+  }
+  .fi-id {
+	background-image: url('../images/4x3_id.svg');
+  }
+  .fi-id.fis {
+	background-image: url('../images/1x1_id.svg');
+  }
+  .fi-ie {
+	background-image: url('../images/4x3_ie.svg');
+  }
+  .fi-ie.fis {
+	background-image: url('../images/1x1_ie.svg');
+  }
+  .fi-il {
+	background-image: url('../images/4x3_il.svg');
+  }
+  .fi-il.fis {
+	background-image: url('../images/1x1_il.svg');
+  }
+  .fi-im {
+	background-image: url('../images/4x3_im.svg');
+  }
+  .fi-im.fis {
+	background-image: url('../images/1x1_im.svg');
+  }
+  .fi-in {
+	background-image: url('../images/4x3_in.svg');
+  }
+  .fi-in.fis {
+	background-image: url('../images/1x1_in.svg');
+  }
+  .fi-io {
+	background-image: url('../images/4x3_io.svg');
+  }
+  .fi-io.fis {
+	background-image: url('../images/1x1_io.svg');
+  }
+  .fi-iq {
+	background-image: url('../images/4x3_iq.svg');
+  }
+  .fi-iq.fis {
+	background-image: url('../images/1x1_iq.svg');
+  }
+  .fi-ir {
+	background-image: url('../images/4x3_ir.svg');
+  }
+  .fi-ir.fis {
+	background-image: url('../images/1x1_ir.svg');
+  }
+  .fi-is {
+	background-image: url('../images/4x3_is.svg');
+  }
+  .fi-is.fis {
+	background-image: url('../images/1x1_is.svg');
+  }
+  .fi-it {
+	background-image: url('../images/4x3_it.svg');
+  }
+  .fi-it.fis {
+	background-image: url('../images/1x1_it.svg');
+  }
+  .fi-je {
+	background-image: url('../images/4x3_je.svg');
+  }
+  .fi-je.fis {
+	background-image: url('../images/1x1_je.svg');
+  }
+  .fi-jm {
+	background-image: url('../images/4x3_jm.svg');
+  }
+  .fi-jm.fis {
+	background-image: url('../images/1x1_jm.svg');
+  }
+  .fi-jo {
+	background-image: url('../images/4x3_jo.svg');
+  }
+  .fi-jo.fis {
+	background-image: url('../images/1x1_jo.svg');
+  }
+  .fi-jp {
+	background-image: url('../images/4x3_jp.svg');
+  }
+  .fi-jp.fis {
+	background-image: url('../images/1x1_jp.svg');
+  }
+  .fi-ke {
+	background-image: url('../images/4x3_ke.svg');
+  }
+  .fi-ke.fis {
+	background-image: url('../images/1x1_ke.svg');
+  }
+  .fi-kg {
+	background-image: url('../images/4x3_kg.svg');
+  }
+  .fi-kg.fis {
+	background-image: url('../images/1x1_kg.svg');
+  }
+  .fi-kh {
+	background-image: url('../images/4x3_kh.svg');
+  }
+  .fi-kh.fis {
+	background-image: url('../images/1x1_kh.svg');
+  }
+  .fi-ki {
+	background-image: url('../images/4x3_ki.svg');
+  }
+  .fi-ki.fis {
+	background-image: url('../images/1x1_ki.svg');
+  }
+  .fi-km {
+	background-image: url('../images/4x3_km.svg');
+  }
+  .fi-km.fis {
+	background-image: url('../images/1x1_km.svg');
+  }
+  .fi-kn {
+	background-image: url('../images/4x3_kn.svg');
+  }
+  .fi-kn.fis {
+	background-image: url('../images/1x1_kn.svg');
+  }
+  .fi-kp {
+	background-image: url('../images/4x3_kp.svg');
+  }
+  .fi-kp.fis {
+	background-image: url('../images/1x1_kp.svg');
+  }
+  .fi-kr {
+	background-image: url('../images/4x3_kr.svg');
+  }
+  .fi-kr.fis {
+	background-image: url('../images/1x1_kr.svg');
+  }
+  .fi-kw {
+	background-image: url('../images/4x3_kw.svg');
+  }
+  .fi-kw.fis {
+	background-image: url('../images/1x1_kw.svg');
+  }
+  .fi-ky {
+	background-image: url('../images/4x3_ky.svg');
+  }
+  .fi-ky.fis {
+	background-image: url('../images/1x1_ky.svg');
+  }
+  .fi-kz {
+	background-image: url('../images/4x3_kz.svg');
+  }
+  .fi-kz.fis {
+	background-image: url('../images/1x1_kz.svg');
+  }
+  .fi-la {
+	background-image: url('../images/4x3_la.svg');
+  }
+  .fi-la.fis {
+	background-image: url('../images/1x1_la.svg');
+  }
+  .fi-lb {
+	background-image: url('../images/4x3_lb.svg');
+  }
+  .fi-lb.fis {
+	background-image: url('../images/1x1_lb.svg');
+  }
+  .fi-lc {
+	background-image: url('../images/4x3_lc.svg');
+  }
+  .fi-lc.fis {
+	background-image: url('../images/1x1_lc.svg');
+  }
+  .fi-li {
+	background-image: url('../images/4x3_li.svg');
+  }
+  .fi-li.fis {
+	background-image: url('../images/1x1_li.svg');
+  }
+  .fi-lk {
+	background-image: url('../images/4x3_lk.svg');
+  }
+  .fi-lk.fis {
+	background-image: url('../images/1x1_lk.svg');
+  }
+  .fi-lr {
+	background-image: url('../images/4x3_lr.svg');
+  }
+  .fi-lr.fis {
+	background-image: url('../images/1x1_lr.svg');
+  }
+  .fi-ls {
+	background-image: url('../images/4x3_ls.svg');
+  }
+  .fi-ls.fis {
+	background-image: url('../images/1x1_ls.svg');
+  }
+  .fi-lt {
+	background-image: url('../images/4x3_lt.svg');
+  }
+  .fi-lt.fis {
+	background-image: url('../images/1x1_lt.svg');
+  }
+  .fi-lu {
+	background-image: url('../images/4x3_lu.svg');
+  }
+  .fi-lu.fis {
+	background-image: url('../images/1x1_lu.svg');
+  }
+  .fi-lv {
+	background-image: url('../images/4x3_lv.svg');
+  }
+  .fi-lv.fis {
+	background-image: url('../images/1x1_lv.svg');
+  }
+  .fi-ly {
+	background-image: url('../images/4x3_ly.svg');
+  }
+  .fi-ly.fis {
+	background-image: url('../images/1x1_ly.svg');
+  }
+  .fi-ma {
+	background-image: url('../images/4x3_ma.svg');
+  }
+  .fi-ma.fis {
+	background-image: url('../images/1x1_ma.svg');
+  }
+  .fi-mc {
+	background-image: url('../images/4x3_mc.svg');
+  }
+  .fi-mc.fis {
+	background-image: url('../images/1x1_mc.svg');
+  }
+  .fi-md {
+	background-image: url('../images/4x3_md.svg');
+  }
+  .fi-md.fis {
+	background-image: url('../images/1x1_md.svg');
+  }
+  .fi-me {
+	background-image: url('../images/4x3_me.svg');
+  }
+  .fi-me.fis {
+	background-image: url('../images/1x1_me.svg');
+  }
+  .fi-mf {
+	background-image: url('../images/4x3_mf.svg');
+  }
+  .fi-mf.fis {
+	background-image: url('../images/1x1_mf.svg');
+  }
+  .fi-mg {
+	background-image: url('../images/4x3_mg.svg');
+  }
+  .fi-mg.fis {
+	background-image: url('../images/1x1_mg.svg');
+  }
+  .fi-mh {
+	background-image: url('../images/4x3_mh.svg');
+  }
+  .fi-mh.fis {
+	background-image: url('../images/1x1_mh.svg');
+  }
+  .fi-mk {
+	background-image: url('../images/4x3_mk.svg');
+  }
+  .fi-mk.fis {
+	background-image: url('../images/1x1_mk.svg');
+  }
+  .fi-ml {
+	background-image: url('../images/4x3_ml.svg');
+  }
+  .fi-ml.fis {
+	background-image: url('../images/1x1_ml.svg');
+  }
+  .fi-mm {
+	background-image: url('../images/4x3_mm.svg');
+  }
+  .fi-mm.fis {
+	background-image: url('../images/1x1_mm.svg');
+  }
+  .fi-mn {
+	background-image: url('../images/4x3_mn.svg');
+  }
+  .fi-mn.fis {
+	background-image: url('../images/1x1_mn.svg');
+  }
+  .fi-mo {
+	background-image: url('../images/4x3_mo.svg');
+  }
+  .fi-mo.fis {
+	background-image: url('../images/1x1_mo.svg');
+  }
+  .fi-mp {
+	background-image: url('../images/4x3_mp.svg');
+  }
+  .fi-mp.fis {
+	background-image: url('../images/1x1_mp.svg');
+  }
+  .fi-mq {
+	background-image: url('../images/4x3_mq.svg');
+  }
+  .fi-mq.fis {
+	background-image: url('../images/1x1_mq.svg');
+  }
+  .fi-mr {
+	background-image: url('../images/4x3_mr.svg');
+  }
+  .fi-mr.fis {
+	background-image: url('../images/1x1_mr.svg');
+  }
+  .fi-ms {
+	background-image: url('../images/4x3_ms.svg');
+  }
+  .fi-ms.fis {
+	background-image: url('../images/1x1_ms.svg');
+  }
+  .fi-mt {
+	background-image: url('../images/4x3_mt.svg');
+  }
+  .fi-mt.fis {
+	background-image: url('../images/1x1_mt.svg');
+  }
+  .fi-mu {
+	background-image: url('../images/4x3_mu.svg');
+  }
+  .fi-mu.fis {
+	background-image: url('../images/1x1_mu.svg');
+  }
+  .fi-mv {
+	background-image: url('../images/4x3_mv.svg');
+  }
+  .fi-mv.fis {
+	background-image: url('../images/1x1_mv.svg');
+  }
+  .fi-mw {
+	background-image: url('../images/4x3_mw.svg');
+  }
+  .fi-mw.fis {
+	background-image: url('../images/1x1_mw.svg');
+  }
+  .fi-mx {
+	background-image: url('../images/4x3_mx.svg');
+  }
+  .fi-mx.fis {
+	background-image: url('../images/1x1_mx.svg');
+  }
+  .fi-my {
+	background-image: url('../images/4x3_my.svg');
+  }
+  .fi-my.fis {
+	background-image: url('../images/1x1_my.svg');
+  }
+  .fi-mz {
+	background-image: url('../images/4x3_mz.svg');
+  }
+  .fi-mz.fis {
+	background-image: url('../images/1x1_mz.svg');
+  }
+  .fi-na {
+	background-image: url('../images/4x3_na.svg');
+  }
+  .fi-na.fis {
+	background-image: url('../images/1x1_na.svg');
+  }
+  .fi-nc {
+	background-image: url('../images/4x3_nc.svg');
+  }
+  .fi-nc.fis {
+	background-image: url('../images/1x1_nc.svg');
+  }
+  .fi-ne {
+	background-image: url('../images/4x3_ne.svg');
+  }
+  .fi-ne.fis {
+	background-image: url('../images/1x1_ne.svg');
+  }
+  .fi-nf {
+	background-image: url('../images/4x3_nf.svg');
+  }
+  .fi-nf.fis {
+	background-image: url('../images/1x1_nf.svg');
+  }
+  .fi-ng {
+	background-image: url('../images/4x3_ng.svg');
+  }
+  .fi-ng.fis {
+	background-image: url('../images/1x1_ng.svg');
+  }
+  .fi-ni {
+	background-image: url('../images/4x3_ni.svg');
+  }
+  .fi-ni.fis {
+	background-image: url('../images/1x1_ni.svg');
+  }
+  .fi-nl {
+	background-image: url('../images/4x3_nl.svg');
+  }
+  .fi-nl.fis {
+	background-image: url('../images/1x1_nl.svg');
+  }
+  .fi-no {
+	background-image: url('../images/4x3_no.svg');
+  }
+  .fi-no.fis {
+	background-image: url('../images/1x1_no.svg');
+  }
+  .fi-np {
+	background-image: url('../images/4x3_np.svg');
+  }
+  .fi-np.fis {
+	background-image: url('../images/1x1_np.svg');
+  }
+  .fi-nr {
+	background-image: url('../images/4x3_nr.svg');
+  }
+  .fi-nr.fis {
+	background-image: url('../images/1x1_nr.svg');
+  }
+  .fi-nu {
+	background-image: url('../images/4x3_nu.svg');
+  }
+  .fi-nu.fis {
+	background-image: url('../images/1x1_nu.svg');
+  }
+  .fi-nz {
+	background-image: url('../images/4x3_nz.svg');
+  }
+  .fi-nz.fis {
+	background-image: url('../images/1x1_nz.svg');
+  }
+  .fi-om {
+	background-image: url('../images/4x3_om.svg');
+  }
+  .fi-om.fis {
+	background-image: url('../images/1x1_om.svg');
+  }
+  .fi-pa {
+	background-image: url('../images/4x3_pa.svg');
+  }
+  .fi-pa.fis {
+	background-image: url('../images/1x1_pa.svg');
+  }
+  .fi-pe {
+	background-image: url('../images/4x3_pe.svg');
+  }
+  .fi-pe.fis {
+	background-image: url('../images/1x1_pe.svg');
+  }
+  .fi-pf {
+	background-image: url('../images/4x3_pf.svg');
+  }
+  .fi-pf.fis {
+	background-image: url('../images/1x1_pf.svg');
+  }
+  .fi-pg {
+	background-image: url('../images/4x3_pg.svg');
+  }
+  .fi-pg.fis {
+	background-image: url('../images/1x1_pg.svg');
+  }
+  .fi-ph {
+	background-image: url('../images/4x3_ph.svg');
+  }
+  .fi-ph.fis {
+	background-image: url('../images/1x1_ph.svg');
+  }
+  .fi-pk {
+	background-image: url('../images/4x3_pk.svg');
+  }
+  .fi-pk.fis {
+	background-image: url('../images/1x1_pk.svg');
+  }
+  .fi-pl {
+	background-image: url('../images/4x3_pl.svg');
+  }
+  .fi-pl.fis {
+	background-image: url('../images/1x1_pl.svg');
+  }
+  .fi-pm {
+	background-image: url('../images/4x3_pm.svg');
+  }
+  .fi-pm.fis {
+	background-image: url('../images/1x1_pm.svg');
+  }
+  .fi-pn {
+	background-image: url('../images/4x3_pn.svg');
+  }
+  .fi-pn.fis {
+	background-image: url('../images/1x1_pn.svg');
+  }
+  .fi-pr {
+	background-image: url('../images/4x3_pr.svg');
+  }
+  .fi-pr.fis {
+	background-image: url('../images/1x1_pr.svg');
+  }
+  .fi-ps {
+	background-image: url('../images/4x3_ps.svg');
+  }
+  .fi-ps.fis {
+	background-image: url('../images/1x1_ps.svg');
+  }
+  .fi-pt {
+	background-image: url('../images/4x3_pt.svg');
+  }
+  .fi-pt.fis {
+	background-image: url('../images/1x1_pt.svg');
+  }
+  .fi-pw {
+	background-image: url('../images/4x3_pw.svg');
+  }
+  .fi-pw.fis {
+	background-image: url('../images/1x1_pw.svg');
+  }
+  .fi-py {
+	background-image: url('../images/4x3_py.svg');
+  }
+  .fi-py.fis {
+	background-image: url('../images/1x1_py.svg');
+  }
+  .fi-qa {
+	background-image: url('../images/4x3_qa.svg');
+  }
+  .fi-qa.fis {
+	background-image: url('../images/1x1_qa.svg');
+  }
+  .fi-re {
+	background-image: url('../images/4x3_re.svg');
+  }
+  .fi-re.fis {
+	background-image: url('../images/1x1_re.svg');
+  }
+  .fi-ro {
+	background-image: url('../images/4x3_ro.svg');
+  }
+  .fi-ro.fis {
+	background-image: url('../images/1x1_ro.svg');
+  }
+  .fi-rs {
+	background-image: url('../images/4x3_rs.svg');
+  }
+  .fi-rs.fis {
+	background-image: url('../images/1x1_rs.svg');
+  }
+  .fi-ru {
+	background-image: url('../images/4x3_ru.svg');
+  }
+  .fi-ru.fis {
+	background-image: url('../images/1x1_ru.svg');
+  }
+  .fi-rw {
+	background-image: url('../images/4x3_rw.svg');
+  }
+  .fi-rw.fis {
+	background-image: url('../images/1x1_rw.svg');
+  }
+  .fi-sa {
+	background-image: url('../images/4x3_sa.svg');
+  }
+  .fi-sa.fis {
+	background-image: url('../images/1x1_sa.svg');
+  }
+  .fi-sb {
+	background-image: url('../images/4x3_sb.svg');
+  }
+  .fi-sb.fis {
+	background-image: url('../images/1x1_sb.svg');
+  }
+  .fi-sc {
+	background-image: url('../images/4x3_sc.svg');
+  }
+  .fi-sc.fis {
+	background-image: url('../images/1x1_sc.svg');
+  }
+  .fi-sd {
+	background-image: url('../images/4x3_sd.svg');
+  }
+  .fi-sd.fis {
+	background-image: url('../images/1x1_sd.svg');
+  }
+  .fi-se {
+	background-image: url('../images/4x3_se.svg');
+  }
+  .fi-se.fis {
+	background-image: url('../images/1x1_se.svg');
+  }
+  .fi-sg {
+	background-image: url('../images/4x3_sg.svg');
+  }
+  .fi-sg.fis {
+	background-image: url('../images/1x1_sg.svg');
+  }
+  .fi-sh {
+	background-image: url('../images/4x3_sh.svg');
+  }
+  .fi-sh.fis {
+	background-image: url('../images/1x1_sh.svg');
+  }
+  .fi-si {
+	background-image: url('../images/4x3_si.svg');
+  }
+  .fi-si.fis {
+	background-image: url('../images/1x1_si.svg');
+  }
+  .fi-sj {
+	background-image: url('../images/4x3_sj.svg');
+  }
+  .fi-sj.fis {
+	background-image: url('../images/1x1_sj.svg');
+  }
+  .fi-sk {
+	background-image: url('../images/4x3_sk.svg');
+  }
+  .fi-sk.fis {
+	background-image: url('../images/1x1_sk.svg');
+  }
+  .fi-sl {
+	background-image: url('../images/4x3_sl.svg');
+  }
+  .fi-sl.fis {
+	background-image: url('../images/1x1_sl.svg');
+  }
+  .fi-sm {
+	background-image: url('../images/4x3_sm.svg');
+  }
+  .fi-sm.fis {
+	background-image: url('../images/1x1_sm.svg');
+  }
+  .fi-sn {
+	background-image: url('../images/4x3_sn.svg');
+  }
+  .fi-sn.fis {
+	background-image: url('../images/1x1_sn.svg');
+  }
+  .fi-so {
+	background-image: url('../images/4x3_so.svg');
+  }
+  .fi-so.fis {
+	background-image: url('../images/1x1_so.svg');
+  }
+  .fi-sr {
+	background-image: url('../images/4x3_sr.svg');
+  }
+  .fi-sr.fis {
+	background-image: url('../images/1x1_sr.svg');
+  }
+  .fi-ss {
+	background-image: url('../images/4x3_ss.svg');
+  }
+  .fi-ss.fis {
+	background-image: url('../images/1x1_ss.svg');
+  }
+  .fi-st {
+	background-image: url('../images/4x3_st.svg');
+  }
+  .fi-st.fis {
+	background-image: url('../images/1x1_st.svg');
+  }
+  .fi-sv {
+	background-image: url('../images/4x3_sv.svg');
+  }
+  .fi-sv.fis {
+	background-image: url('../images/1x1_sv.svg');
+  }
+  .fi-sx {
+	background-image: url('../images/4x3_sx.svg');
+  }
+  .fi-sx.fis {
+	background-image: url('../images/1x1_sx.svg');
+  }
+  .fi-sy {
+	background-image: url('../images/4x3_sy.svg');
+  }
+  .fi-sy.fis {
+	background-image: url('../images/1x1_sy.svg');
+  }
+  .fi-sz {
+	background-image: url('../images/4x3_sz.svg');
+  }
+  .fi-sz.fis {
+	background-image: url('../images/1x1_sz.svg');
+  }
+  .fi-tc {
+	background-image: url('../images/4x3_tc.svg');
+  }
+  .fi-tc.fis {
+	background-image: url('../images/1x1_tc.svg');
+  }
+  .fi-td {
+	background-image: url('../images/4x3_td.svg');
+  }
+  .fi-td.fis {
+	background-image: url('../images/1x1_td.svg');
+  }
+  .fi-tf {
+	background-image: url('../images/4x3_tf.svg');
+  }
+  .fi-tf.fis {
+	background-image: url('../images/1x1_tf.svg');
+  }
+  .fi-tg {
+	background-image: url('../images/4x3_tg.svg');
+  }
+  .fi-tg.fis {
+	background-image: url('../images/1x1_tg.svg');
+  }
+  .fi-th {
+	background-image: url('../images/4x3_th.svg');
+  }
+  .fi-th.fis {
+	background-image: url('../images/1x1_th.svg');
+  }
+  .fi-tj {
+	background-image: url('../images/4x3_tj.svg');
+  }
+  .fi-tj.fis {
+	background-image: url('../images/1x1_tj.svg');
+  }
+  .fi-tk {
+	background-image: url('../images/4x3_tk.svg');
+  }
+  .fi-tk.fis {
+	background-image: url('../images/1x1_tk.svg');
+  }
+  .fi-tl {
+	background-image: url('../images/4x3_tl.svg');
+  }
+  .fi-tl.fis {
+	background-image: url('../images/1x1_tl.svg');
+  }
+  .fi-tm {
+	background-image: url('../images/4x3_tm.svg');
+  }
+  .fi-tm.fis {
+	background-image: url('../images/1x1_tm.svg');
+  }
+  .fi-tn {
+	background-image: url('../images/4x3_tn.svg');
+  }
+  .fi-tn.fis {
+	background-image: url('../images/1x1_tn.svg');
+  }
+  .fi-to {
+	background-image: url('../images/4x3_to.svg');
+  }
+  .fi-to.fis {
+	background-image: url('../images/1x1_to.svg');
+  }
+  .fi-tr {
+	background-image: url('../images/4x3_tr.svg');
+  }
+  .fi-tr.fis {
+	background-image: url('../images/1x1_tr.svg');
+  }
+  .fi-tt {
+	background-image: url('../images/4x3_tt.svg');
+  }
+  .fi-tt.fis {
+	background-image: url('../images/1x1_tt.svg');
+  }
+  .fi-tv {
+	background-image: url('../images/4x3_tv.svg');
+  }
+  .fi-tv.fis {
+	background-image: url('../images/1x1_tv.svg');
+  }
+  .fi-tw {
+	background-image: url('../images/4x3_tw.svg');
+  }
+  .fi-tw.fis {
+	background-image: url('../images/1x1_tw.svg');
+  }
+  .fi-tz {
+	background-image: url('../images/4x3_tz.svg');
+  }
+  .fi-tz.fis {
+	background-image: url('../images/1x1_tz.svg');
+  }
+  .fi-ua {
+	background-image: url('../images/4x3_ua.svg');
+  }
+  .fi-ua.fis {
+	background-image: url('../images/1x1_ua.svg');
+  }
+  .fi-ug {
+	background-image: url('../images/4x3_ug.svg');
+  }
+  .fi-ug.fis {
+	background-image: url('../images/1x1_ug.svg');
+  }
+  .fi-um {
+	background-image: url('../images/4x3_um.svg');
+  }
+  .fi-um.fis {
+	background-image: url('../images/1x1_um.svg');
+  }
+  .fi-us {
+	background-image: url('../images/4x3_us.svg');
+  }
+  .fi-us.fis {
+	background-image: url('../images/1x1_us.svg');
+  }
+  .fi-uy {
+	background-image: url('../images/4x3_uy.svg');
+  }
+  .fi-uy.fis {
+	background-image: url('../images/1x1_uy.svg');
+  }
+  .fi-uz {
+	background-image: url('../images/4x3_uz.svg');
+  }
+  .fi-uz.fis {
+	background-image: url('../images/1x1_uz.svg');
+  }
+  .fi-va {
+	background-image: url('../images/4x3_va.svg');
+  }
+  .fi-va.fis {
+	background-image: url('../images/1x1_va.svg');
+  }
+  .fi-vc {
+	background-image: url('../images/4x3_vc.svg');
+  }
+  .fi-vc.fis {
+	background-image: url('../images/1x1_vc.svg');
+  }
+  .fi-ve {
+	background-image: url('../images/4x3_ve.svg');
+  }
+  .fi-ve.fis {
+	background-image: url('../images/1x1_ve.svg');
+  }
+  .fi-vg {
+	background-image: url('../images/4x3_vg.svg');
+  }
+  .fi-vg.fis {
+	background-image: url('../images/1x1_vg.svg');
+  }
+  .fi-vi {
+	background-image: url('../images/4x3_vi.svg');
+  }
+  .fi-vi.fis {
+	background-image: url('../images/1x1_vi.svg');
+  }
+  .fi-vn {
+	background-image: url('../images/4x3_vn.svg');
+  }
+  .fi-vn.fis {
+	background-image: url('../images/1x1_vn.svg');
+  }
+  .fi-vu {
+	background-image: url('../images/4x3_vu.svg');
+  }
+  .fi-vu.fis {
+	background-image: url('../images/1x1_vu.svg');
+  }
+  .fi-wf {
+	background-image: url('../images/4x3_wf.svg');
+  }
+  .fi-wf.fis {
+	background-image: url('../images/1x1_wf.svg');
+  }
+  .fi-ws {
+	background-image: url('../images/4x3_ws.svg');
+  }
+  .fi-ws.fis {
+	background-image: url('../images/1x1_ws.svg');
+  }
+  .fi-ye {
+	background-image: url('../images/4x3_ye.svg');
+  }
+  .fi-ye.fis {
+	background-image: url('../images/1x1_ye.svg');
+  }
+  .fi-yt {
+	background-image: url('../images/4x3_yt.svg');
+  }
+  .fi-yt.fis {
+	background-image: url('../images/1x1_yt.svg');
+  }
+  .fi-za {
+	background-image: url('../images/4x3_za.svg');
+  }
+  .fi-za.fis {
+	background-image: url('../images/1x1_za.svg');
+  }
+  .fi-zm {
+	background-image: url('../images/4x3_zm.svg');
+  }
+  .fi-zm.fis {
+	background-image: url('../images/1x1_zm.svg');
+  }
+  .fi-zw {
+	background-image: url('../images/4x3_zw.svg');
+  }
+  .fi-zw.fis {
+	background-image: url('../images/1x1_zw.svg');
+  }
+  .fi-ac {
+	background-image: url('../images/4x3_ac.svg');
+  }
+  .fi-ac.fis {
+	background-image: url('../images/1x1_ac.svg');
+  }
+  .fi-cefta {
+	background-image: url('../images/4x3_cefta.svg');
+  }
+  .fi-cefta.fis {
+	background-image: url('../images/1x1_cefta.svg');
+  }
+  .fi-cp {
+	background-image: url('../images/4x3_cp.svg');
+  }
+  .fi-cp.fis {
+	background-image: url('../images/1x1_cp.svg');
+  }
+  .fi-dg {
+	background-image: url('../images/4x3_dg.svg');
+  }
+  .fi-dg.fis {
+	background-image: url('../images/1x1_dg.svg');
+  }
+  .fi-ea {
+	background-image: url('../images/4x3_ea.svg');
+  }
+  .fi-ea.fis {
+	background-image: url('../images/1x1_ea.svg');
+  }
+  .fi-es-ct {
+	background-image: url('../images/4x3_es-ct.svg');
+  }
+  .fi-es-ct.fis {
+	background-image: url('../images/1x1_es-ct.svg');
+  }
+  .fi-es-ga {
+	background-image: url('../images/4x3_es-ga.svg');
+  }
+  .fi-es-ga.fis {
+	background-image: url('../images/1x1_es-ga.svg');
+  }
+  .fi-eu {
+	background-image: url('../images/4x3_eu.svg');
+  }
+  .fi-eu.fis {
+	background-image: url('../images/1x1_eu.svg');
+  }
+  .fi-gb-eng {
+	background-image: url('../images/4x3_gb-eng.svg');
+  }
+  .fi-gb-eng.fis {
+	background-image: url('../images/1x1_gb-eng.svg');
+  }
+  .fi-gb-nir {
+	background-image: url('../images/4x3_gb-nir.svg');
+  }
+  .fi-gb-nir.fis {
+	background-image: url('../images/1x1_gb-nir.svg');
+  }
+  .fi-gb-sct {
+	background-image: url('../images/4x3_gb-sct.svg');
+  }
+  .fi-gb-sct.fis {
+	background-image: url('../images/1x1_gb-sct.svg');
+  }
+  .fi-gb-wls {
+	background-image: url('../images/4x3_gb-wls.svg');
+  }
+  .fi-gb-wls.fis {
+	background-image: url('../images/1x1_gb-wls.svg');
+  }
+  .fi-ic {
+	background-image: url('../images/4x3_ic.svg');
+  }
+  .fi-ic.fis {
+	background-image: url('../images/1x1_ic.svg');
+  }
+  .fi-ta {
+	background-image: url('../images/4x3_ta.svg');
+  }
+  .fi-ta.fis {
+	background-image: url('../images/1x1_ta.svg');
+  }
+  .fi-un {
+	background-image: url('../images/4x3_un.svg');
+  }
+  .fi-un.fis {
+	background-image: url('../images/1x1_un.svg');
+  }
+  .fi-xk {
+	background-image: url('../images/4x3_xk.svg');
+  }
+  .fi-xk.fis {
+	background-image: url('../images/1x1_xk.svg');
+  }

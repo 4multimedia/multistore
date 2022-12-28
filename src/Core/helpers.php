@@ -24,6 +24,10 @@
 		return app('user_log');
 	}
 
+	function backend() {
+		return app('backend');
+	}
+
 	function register_css_path($path) {
 		hook()->register_css_path($path);
 	}
@@ -71,6 +75,10 @@
 
 	function set_meta_title($title) {
 		hook()->set_meta_title($title);
+	}
+
+	function add_action_header($label, $route = null, $color = null) {
+		hook()->add_button_header($label, $route, $color);
 	}
 
     function do_action($tag, $arg = '') {
@@ -133,5 +141,13 @@
     function add_filter($tag, $callback, $priority = 10, $accepted_args = 1) {
         return hook()->add_filter($tag, getHookCallback($callback), $priority, $accepted_args);
     }
+
+	function get_backend_languages() {
+		return backend()->get_languages();
+	}
+
+	function get_backend_language() {
+		return backend()->get_language();
+	}
 
 ?>

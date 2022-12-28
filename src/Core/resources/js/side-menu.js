@@ -3,7 +3,6 @@
 
     // Side Menu
     $(".side-menu").on("click", function () {
-		alert('test');
         if ($(this).parent().find("ul").length) {
             if ($(this).parent().find("ul").first()[0].offsetParent !== null) {
                 $(this)

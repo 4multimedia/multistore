@@ -664,7 +664,7 @@
                 <!-- BEGIN: Search -->
                 <div class="intro-x relative mr-3 sm:mr-6">
                     <div class="search hidden sm:block">
-                        <input type="text" class="search__input form-control border-transparent" placeholder="Search...">
+                        <input type="text" class="search__input form-control border-transparent" placeholder="Search....">
                         <i data-lucide="search" class="search__icon dark:text-slate-500"></i>
                     </div>
                     <a class="notification notification--light sm:hidden" href=""> <i data-lucide="search" class="notification__icon dark:text-slate-500"></i> </a>
@@ -749,6 +749,30 @@
                     </div>
                 </div>
                 <!-- END: Search -->
+
+				<div class="intro-x dropdown mr-4 sm:mr-6">
+					<div class="dropdown-toggle languages languages--items cursor-pointer" role="button" aria-expanded="false" data-tw-toggle="dropdown">
+						<div class="flex text-white">
+							<span class="fi fi-{{ get_backend_language()["flag"] }} mr-2"></span>
+							<span>{{ get_backend_language()["label"] }}</span>
+						</div>
+					</div>
+					<div class="languages-content pt-2 dropdown-menu">
+						<div class="languages-content__box dropdown-content">
+							<ul class="px-2">
+								@foreach(get_backend_languages() as $key => $lang)
+									<li class="@if ($key > 0) mt-3 @endif">
+										<a href="?lang={{ $lang["code"] }}" class="flex">
+											<span class="fi fi-{{ $lang["flag"] }} mr-2"></span>
+											<span>{{ $lang["label"] }}</span>
+										</a>
+									</li>
+								@endforeach
+							</ul>
+						</div>
+					</div>
+				</div>
+
                 <!-- BEGIN: Notifications -->
                 <div class="intro-x dropdown mr-4 sm:mr-6">
                     <div class="dropdown-toggle notification notification--bullet cursor-pointer" role="button" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="bell" class="notification__icon dark:text-slate-500"></i> </div>
@@ -863,7 +887,7 @@
             </div>
         </div>
         <!-- END: Top Bar -->
-        <div class="wrapper" id="app">
+        <div class="wrapper">
             <div class="wrapper-box">
                 <!-- BEGIN: Side Menu -->
 				{!! get_menu() !!}
@@ -880,7 +904,9 @@
 						</div>
 					@endif
 
-					@yield('content')
+					<div id="app">
+						@yield('content')
+					</div>
                 </div>
                 <!-- END: Content -->
             </div>

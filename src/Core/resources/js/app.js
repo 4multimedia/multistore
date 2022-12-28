@@ -1,5 +1,3 @@
-import Vue from 'vue'
-
 import "./bootstrap";
 import "@left4code/tw-starter/dist/js/svg-loader";
 import "@left4code/tw-starter/dist/js/accordion";
@@ -50,6 +48,7 @@ import './side-menu';
  |
  */
 
+import Vue from 'vue'
 import InputText from './components/Input/InputText.vue';
 import InputPassword from './components/Input/InputPassword.vue';
 import VisualBuilder from './components/VisualBuilder/Index.vue';

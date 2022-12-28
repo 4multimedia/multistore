@@ -3,6 +3,7 @@
 namespace Multimedia\Multistore\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Multimedia\Multistore\Classes\Backend;
 use Multimedia\Multistore\Classes\Modules;
 use Multimedia\Multistore\Classes\Plugins;
 use Multimedia\Multistore\Classes\Form;
@@ -30,6 +31,10 @@ class RegisterServiceProvider extends ServiceProvider {
 
         $this->app->singleton('user_log', function($app) {
 			return new UserLog();
+		});
+
+		$this->app->singleton('backend', function($app) {
+			return new Backend();
 		});
 	}
 
