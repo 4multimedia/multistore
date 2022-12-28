@@ -40,6 +40,39 @@
 		return modules()->get_modules();
 	}
 
+	function get_meta_title($default = '') {
+		return hook()->get_meta_title($default);
+	}
+
+	function get_title() {
+		return hook()->get_title();
+	}
+
+	function get_name() {
+		return '4MultiStore';
+	}
+
+	function get_host() {
+		$protocol = 'http://';
+		if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+			$protocol = 'https://';
+		}
+
+		return $protocol.$_SERVER['SERVER_NAME'];
+	}
+
+	function has_module($module) {
+		return modules()->has_module($module);
+	}
+
+	function set_title($title) {
+		hook()->set_title($title);
+	}
+
+	function set_meta_title($title) {
+		hook()->set_meta_title($title);
+	}
+
     function do_action($tag, $arg = '') {
         hook()->do_action($tag, $arg);
     }
@@ -48,11 +81,23 @@
         return hook()->add_action($tag, getHookCallback($callback), $priority, $accepted_args);
     }
 
-	function add_to_menu($id, $title, $link, $params = []) {
-		menu()->add_to_menu($id, $title, $link, $params);
+	function add_to_menu($id, $title, $route = null, $priority = 0, $params = []) {
+		menu()->add_to_menu($id, $title, $route, $priority, $params);
 	}
 
-	function do_menu() {
+	function add_to_submenu($id, $title, $route = null, $priority = 0, $params = []) {
+		menu()->add_to_submenu($id, $title, $route, $priority, $params);
+	}
+
+	function get_json_menu() {
+		return menu()->get_json_menu();
+	}
+
+	function current_route() {
+		return menu()->current_route();
+	}
+
+	function get_menu() {
 		return menu()->do_menu();
 	}
 

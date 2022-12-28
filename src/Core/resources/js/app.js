@@ -1,5 +1,55 @@
 import Vue from 'vue'
 
+import "./bootstrap";
+import "@left4code/tw-starter/dist/js/svg-loader";
+import "@left4code/tw-starter/dist/js/accordion";
+import "@left4code/tw-starter/dist/js/alert";
+import "@left4code/tw-starter/dist/js/dropdown";
+import "@left4code/tw-starter/dist/js/modal";
+import "@left4code/tw-starter/dist/js/tab";
+
+/*
+ |--------------------------------------------------------------------------
+ | 3rd Party Libraries
+ |--------------------------------------------------------------------------
+ |
+ | Import 3rd party library JS files.
+ |
+ */
+
+import "./chart";
+import "./highlight";
+import "./lucide";
+import "./tiny-slider";
+import "./tippy";
+import "./datepicker";
+import "./tom-select";
+import "./dropzone";
+import "./validation";
+import "./zoom";
+import "./notification";
+
+
+/*
+ |--------------------------------------------------------------------------
+ | Custom Components
+ |--------------------------------------------------------------------------
+ |
+ | Import JS custom components.
+ |
+ */
+
+import './side-menu';
+
+/*
+ |--------------------------------------------------------------------------
+ | Vue Components
+ |--------------------------------------------------------------------------
+ |
+ | Import Vue Component files.
+ |
+ */
+
 import InputText from './components/Input/InputText.vue';
 import InputPassword from './components/Input/InputPassword.vue';
 import VisualBuilder from './components/VisualBuilder/Index.vue';
@@ -9,6 +59,7 @@ import Container from './components/VisualBuilder/Elements/Container';
 import Column from './components/VisualBuilder/Elements/Column/Index';
 import Headline from './components/VisualBuilder/Elements/Headline/Index';
 import Row from './components/VisualBuilder/Elements/Row/Index';
+import UiSidebar from './components/Ui/Sidebar/Index';
 
 import FormBody from './components/Form/Body.vue';
 
@@ -21,6 +72,7 @@ Vue.component('Container', Container);
 Vue.component('Column', Column);
 Vue.component('Headline', Headline);
 Vue.component('Row', Row);
+Vue.component('UiSidebar', UiSidebar);
 
 new Vue({
     el: '#app',

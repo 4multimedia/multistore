@@ -42,7 +42,7 @@ class ModulesClassCreate extends Command
 
             $array["extended"] = $this->confirm('Added to extended module?', false);
 			$array['fileLocation'] = "Http/Classes/".$array['class'].".php";
-            $array['namespace'] = "App\\".($array["extended"] ? "Extended\\" : "")."Modules\\".ucfirst(strtolower($array["module"]))."\Http\Classes\\".$array['class'];
+            $array['namespace'] = "App\\".($array["extended"] ? "Extended\\" : "")."Modules\\".ucfirst(strtolower($array["module"]))."\Http\Classes";
 
 			(new Stub('classes/class', 'Classes', $array))->save();
         }

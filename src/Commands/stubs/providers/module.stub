@@ -7,7 +7,7 @@
     class {{Module}}ServiceProvider extends ServiceProvider {
         public function boot()
         {
-
+			$this->loadTranslationsFrom(dirname(__FILE__).'/../resources/lang', '{{module}}');
         }
 
         public function register()

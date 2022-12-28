@@ -94,8 +94,8 @@
             return file_put_contents($this->fileLocation, $this->getContent());
         }
 
-        public function copy($destiny) {
-            $destiny = app_path(($this->extended ? "Extended/" : "").'Modules/'.$this->module.'/'.$this->path.'.php');
+        public function copy($destiny, $path = null) {
+            $destiny = app_path(($this->extended ? "Extended/" : "").'Modules/'.$this->module.'/'.(!empty($path) ? $path : $this->path).'.php');
             return file_put_contents($destiny, $this->getContent());
         }
     }

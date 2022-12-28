@@ -14,10 +14,10 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
-        UserRole::create(['name' => 'Gość', 'area' => ['web' => true, 'backend' => false]]); // niezalogowany
-        UserRole::create(['name' => 'Użytkownik', 'area' => ['web' => true, 'backend' => false]]); // zalogowany
-        UserRole::create(['name' => 'Administrator', 'area' => ['web' => true, 'backend' => true]]); // zalogowany admin
-        UserRole::create(['name' => 'Redaktor', 'area' => ['web' => true, 'backend' => true]]); // zalogowany,
-        UserRole::create(['name' => 'Autor', 'area' => ['web' => true, 'backend' => true]]);
+        UserRole::create(['name' => ['pl' => 'Gość'], 'area' => ['web' => true, 'backend' => false]]); // niezalogowany
+        UserRole::create(['name' => ['pl' => 'Użytkownik'], 'area' => ['web' => true, 'backend' => false]]); // zalogowany
+        UserRole::create(['name' => ['pl' => 'Administrator'], 'area' => ['web' => true, 'backend' => true]]); // zalogowany admin
+        UserRole::create(['name' => ['pl' => 'Redaktor'], 'area' => ['web' => true, 'backend' => true]]); // zalogowany,
+        UserRole::create(['name' => ['pl' => 'Autor'], 'area' => ['web' => true, 'backend' => true]]);
     }
 }

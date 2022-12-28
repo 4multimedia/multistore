@@ -8,10 +8,12 @@
     class Creating {
 
         public $module;
+		public $languages = [];
 
         public function __construct($module)
         {
             $this->module = $module;
+			$this->languages = ['pl', 'en', 'de'];
         }
 
         public function createDirs() {
@@ -43,6 +45,8 @@
                     ]
                 ]
             ];
+
+			$dirs["Modules"][$this->module]["Resources"]["lang"] = $this->languages;
 
             $flattened = Arr::dot($dirs);
 
@@ -101,6 +105,11 @@
             (new Stub('routes/web', null, array_merge($array, ['extended' => true])))->copy('routes/web');
             (new Stub('routes/api', null, array_merge($array, ['extended' => true])))->copy('routes/api');
             (new Stub('routes/backend', null, array_merge($array, ['extended' => true])))->copy('routes/backend');
+
+			foreach($this->languages as $lang) {
+				(new Stub('lang/lang', null, $array))->copy(null, 'Resources/lang/'.$lang.'/core');
+				(new Stub('lang/lang', null, array_merge($array, ['extended' => true])))->copy(null, 'Resources/lang/'.$lang.'/core');
+			}
         }
 
         public function generate() {

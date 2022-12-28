@@ -3,6 +3,7 @@
 namespace Multimedia\Multistore\Core\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,4 +50,12 @@ class User extends Authenticatable
     public function getRoles() {
         return UserToRole::where('id_user', $this->id_user)->pluck('id_user_role')->toArray();
     }
+
+	protected function role(): Attribute {
+		$role = UserRole::where('id_user_role', $this->getRoles()[0])->first();
+
+		return Attribute::make(
+			get: fn () => $role->name,
+		);
+	}
 }

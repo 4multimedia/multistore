@@ -12,6 +12,8 @@
         protected $merged_filters = [];
         protected $actions = [];
         public $current_filter = [];
+		public $title = '';
+		public $meta_title = '';
 
 		public function __construct()
 		{
@@ -58,6 +60,28 @@
 			}
 
 			echo '<link rel="stylesheet" href="/assets/css/web.css">';
+		}
+
+		/* HOOKS Title */
+		public function set_title($title) {
+			$this->title = $title;
+		}
+
+		public function get_title() {
+			return $this->title;
+		}
+
+		/* HOOKS Meta */
+		public function set_meta_title($title) {
+			$this->meta_title = $title;
+		}
+
+		public function get_meta_title($title = '') {
+			$array = [];
+			if ($this->meta_title) { $array[] = $this->meta_title; }
+			if (!$this->meta_title && $this->title) { $array[] = $this->title; }
+			if ($title) { $array[] = $title; }
+			return implode(" | ", $array);
 		}
 
         /* General */
