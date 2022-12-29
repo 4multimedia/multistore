@@ -10,7 +10,8 @@ class UserRole extends Model
 	public $primaryKey = "id_user_role";
 
     public $casts = [
-        'area' => 'array'
+        'area' => 'array',
+		'name' => 'array'
     ];
 
     /**

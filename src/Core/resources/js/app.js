@@ -65,6 +65,8 @@ import FormBody from './components/Form/Body.vue';
 import FormModule from './components/Form/Module.vue';
 import FormSection from './components/Form/Section.vue';
 
+import Media from './components/Media/Index.vue';
+
 Vue.component('InputText', InputText);
 Vue.component('InputPassword', InputPassword);
 Vue.component('FormBody', FormBody);
@@ -78,6 +80,7 @@ Vue.component('Headline', Headline);
 Vue.component('Row', Row);
 Vue.component('UiSidebar', UiSidebar);
 Vue.component('UiBox', UiBox);
+Vue.component('Media', Media);
 
 new Vue({
     el: '#app',

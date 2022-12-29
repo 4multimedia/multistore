@@ -1,24 +1,23 @@
 <template>
-	<InputField :label="label">
-		<input type="text" :name="name" v-model="modelValue" /> ???
-        <InputError :error="error" />
+	<InputField :label="label" :help="help" :error="error" :max="max" :modelValue="modelValue">
+		<input type="text" class="form-control" :help="help" :name="name" v-model="modelValue" :placeholder="label" :maxlength="max" />
 	</InputField>
 </template>
 
 <script>
 import InputField from './InputField.vue';
-import InputError from './InputError.vue';
 
 export default {
     components: {
         InputField,
-        InputError
     },
     props: {
         label: String,
         value: String,
+		help: String,
         name: String,
-        error: Array
+        error: Array,
+		max: Number
     },
     mounted() {
         this.modelValue = this.value;

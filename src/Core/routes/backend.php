@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Backend Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -30,4 +30,8 @@ Route::prefix('user')->namespace('User')->group(function() {
     Route::prefix('group')->group(function() {
         Route::get('/', 'GroupController@index')->name('backend.user.group');
     });
+});
+
+Route::prefix('media')->namespace('Media')->group(function() {
+	Route::get('/{hash?}', 'MediaController@index')->name('backend.media');
 });

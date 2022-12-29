@@ -75,11 +75,15 @@ class ModulesCreateUser extends Command
 			$name = $this->ask('Please enter your name');
 		}
 
-		$role = $this->choice('Set the role',
-			UserRole::select('id_user_role', 'name')->get()->pluck('name', 'id_user_role')->toArray()
-		);
+		$roleArray = [];
+		$roles = UserRole::select('id_user_role', 'name')->get();
+		foreach($roles as $role) {
+			$roleArray[$role->id_user_role] = $role->name["pl"];
+		}
 
-		$userRole = UserRole::where('name', $role)->first();
+		$role = $this->choice('Set the role', $roleArray);
+
+		$userRole = UserRole::where('name->pl', $role)->first();
 
         DB::beginTransaction();
         try {

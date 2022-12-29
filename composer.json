@@ -3,7 +3,8 @@
     "type": "library",
     "require": {
         "jenssegers/agent": "^2.6",
-		"livewire/livewire": "^2.10"
+		"livewire/livewire": "^2.10",
+		"vinkla/hashids": "^10.0"
     },
     "autoload": {
 		"files": [

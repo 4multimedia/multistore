@@ -23,9 +23,9 @@ class FunctionServiceProvider extends ServiceProvider {
 		add_to_submenu('blog', 'backend::blog.comments', 'backend.user');
 		add_to_menu('translate', 'backend::translate.title', null, 62, ['icon' => 'languages']);
 		add_to_menu('content', 'backend::content.title', null, 63, ['icon' => 'layout-template']);
+		add_to_menu('media', 'backend::media.title', 'backend.media', 70, ['icon' => 'image']);
 
-		add_devider_menu(69);
-		add_to_menu('media', 'backend::media.title', null, 70, ['icon' => 'image']);
+		add_devider_menu(79);
 		add_to_menu('user', 'backend::user.title', null, 80, ['icon' => 'users']);
         add_to_submenu('user', 'backend::user.list', 'backend.user');
         add_to_submenu('user', 'backend::user.create', 'backend.user.create');
@@ -33,7 +33,10 @@ class FunctionServiceProvider extends ServiceProvider {
 
 		add_to_menu('setting', 'backend::setting.title', null, 90, ['icon' => 'settings']);
 		add_to_submenu('setting', 'backend::blog.title', 'backend.user', 20);
-		add_to_submenu('cookie', 'backend::cookie.title', 'backend.user', 20);
+		add_to_submenu('setting', 'backend::cookie.title', 'backend.user', 40);
+		add_to_submenu('setting', 'backend::seo.title', 'backend.user', 30);
+		add_to_submenu('setting', 'backend::redirect.title', 'backend.user', 31);
+		add_to_submenu('setting', 'backend::task.title', 'backend.user', 50);
     }
 }
 
