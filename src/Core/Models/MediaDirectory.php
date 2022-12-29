@@ -4,10 +4,11 @@ namespace Multimedia\Multistore\Core\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Multimedia\Multistore\Core\Http\Traits\useHash;
+use Multimedia\Multistore\Core\Http\Traits\usePath;
 
 class MediaDirectory extends Model
 {
-	use SoftDeletes, useHash;
+	use SoftDeletes, useHash, usePath;
 
 	public $table = "media_directory";
 	public $primaryKey = "id_media_directory";
@@ -26,4 +27,6 @@ class MediaDirectory extends Model
 	protected $casts = [
 		'params' => 'array'
 	];
+
+
 }

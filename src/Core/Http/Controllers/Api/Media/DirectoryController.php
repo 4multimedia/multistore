@@ -23,7 +23,8 @@
 		}
 
 		public function view(MediaDirectory $mediaDirectory) {
-			return $mediaDirectory->items;
+			$mediaDirectory->path = $mediaDirectory->path;
+            return $mediaDirectory;
 		}
 
 		public function restore(StoreRequest $request, MediaDirectory $mediaDirectory) {

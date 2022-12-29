@@ -48,7 +48,8 @@ import './side-menu';
  |
  */
 
-import Vue from 'vue'
+import Vue from 'vue';
+import PrimeVue from 'primevue/config';
 import InputText from './components/Input/InputText.vue';
 import InputPassword from './components/Input/InputPassword.vue';
 import VisualBuilder from './components/VisualBuilder/Index.vue';
@@ -60,12 +61,17 @@ import Headline from './components/VisualBuilder/Elements/Headline/Index';
 import Row from './components/VisualBuilder/Elements/Row/Index';
 import UiSidebar from './components/Ui/Sidebar/Index';
 import UiBox from './components/Ui/Box/Index';
+import UiTip from './components/Ui/Tip/Index';
 
 import FormBody from './components/Form/Body.vue';
 import FormModule from './components/Form/Module.vue';
 import FormSection from './components/Form/Section.vue';
 
+import Dialog from 'primevue/dialog';
+
 import Media from './components/Media/Index.vue';
+
+Vue.use(PrimeVue);
 
 Vue.component('InputText', InputText);
 Vue.component('InputPassword', InputPassword);
@@ -81,6 +87,8 @@ Vue.component('Row', Row);
 Vue.component('UiSidebar', UiSidebar);
 Vue.component('UiBox', UiBox);
 Vue.component('Media', Media);
+Vue.component('Dialog', Dialog);
+Vue.component('UiTip', UiTip);
 
 new Vue({
     el: '#app',

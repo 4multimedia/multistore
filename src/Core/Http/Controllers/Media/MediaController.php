@@ -8,9 +8,7 @@
     class MediaController extends Controller
     {
         public function index(Request $request) {
-			set_title(__('backend::media.title'));
-			add_action_header('Wgraj plik');
-			add_action_header('Dodaj folder');
+			set_meta_title(__('backend::media.title'));
 			return view('backend::media.index', ['hash' => $request->hash]);
         }
     }

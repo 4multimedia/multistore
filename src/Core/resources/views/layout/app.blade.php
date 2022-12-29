@@ -2,7 +2,6 @@
     <head>
         <link rel="stylesheet" href="{{ mix('css/backend.css') }}" />
         <title>{{ get_meta_title('4MutliStore - Panel administracyjny') }}</title>
-		@livewireStyles
     </head>
     <body class="main">
         <!-- BEGIN: Mobile Menu -->
@@ -917,6 +916,5 @@
         <!-- END: Dark Mode Switcher-->
 
         <script src="{{ mix('js/backend.js') }}"></script>
-		@livewireScripts
     </body>
 </html>

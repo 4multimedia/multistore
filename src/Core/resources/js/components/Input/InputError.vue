@@ -1,6 +1,6 @@
 <template>
-    <ul>
-        <li v-for="e, index in error" :key="index">{{ e }}</li>
+    <ul class="mt-2">
+        <li class="text-xs text-red-600" v-for="e, index in error" :key="index">{{ e }}</li>
     </ul>
 </template>
 

@@ -3,6 +3,6 @@
 }
 
 .inbox-filter__dropdown-menu .dropdown-content {
-    margin-left: -228px;
+    margin-left: -212px;
     @apply w-auto;
 }
