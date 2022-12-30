@@ -58,7 +58,7 @@
 
                 <div v-else class="intro-y flex items-center justify-center flex-col h-full">
                     <div class="text-lg font-medium">Nie masz jeszcze żadnych folderów ani plików</div>
-                    <p class="text-md mt-5 w-96 text-center">Dodawaj i zarządzaj plikami, twórz foldery aby zorgainizować i uprządkować pliki.</p>
+                    <p class="text-md mt-5 w-96 text-center">Dodawaj i zarządzaj plikami.<br /> Twórz foldery aby zorgainizować i uprządkować pliki.</p>
                     <button @click="onHandleOpenDialog('directory')" class="btn bg-white shadow-md w-32 my-5">Dodaj folder</button>
                     <p class="text-xs text-slate-500 font-medium">Potrzebujesz wsparcia? Zajrzyj do <a href="" class="text-blue-500 underline">Centrum Pomocy</a></p>
                 </div>
