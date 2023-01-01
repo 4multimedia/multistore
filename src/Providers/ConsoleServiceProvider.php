@@ -14,6 +14,7 @@
             Commands\ModulesControllerCreate::class,
             Commands\ModulesClassCreate::class,
             Commands\ModulesCreateMigration::class,
+            Commands\ModulesTransaltionMerge::class
         ];
 
         public function boot() {

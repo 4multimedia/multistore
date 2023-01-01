@@ -1,23 +1,23 @@
 <template>
 	<div>
         <div class="intro-y flex items-center mt-8  justify-between">
-			<h2 class="text-lg font-medium mr-auto">Media</h2>
-            <button @click="onHandleOpenDialog('file')" class="btn btn-primary shadow-md w-32 ml-2">Wgraj plik</button>
-            <button @click="onHandleOpenDialog('directory')" class="btn btn-primary shadow-md w-32 ml-2">Dodaj folder</button>
+			<h2 class="text-lg font-medium mr-auto">{{ translation('media') }}</h2>
+            <FileUpload name="files[]" mode="basic" url="./upload" class="ml-2" buttonClass="shadow-md w-32" chooseIcon="pi pi-times" uploadIcon="pi pi-times" chooseLabel="Wgraj pliki" :multiple="true" />
+            <Button @click="onHandleOpenDialog('directory')" class="btn btn-primary shadow-md w-32 ml-2" label="Dodaj folder"></Button>
 		</div>
         <div class="grid grid-cols-12 gap-6 mt-8">
             <div class="col-span-12 lg:col-span-3 2xl:col-span-2">
                 <media-search class="intro-y"></media-search>
                 <div class="intro-y box p-5 mt-5">
                     <div class="mt-1">
-                        <span @click="onHandleGetType('all')" class="cursor-pointer flex items-center px-3 py-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'all'}"><Files class="w-4 h-4 mr-2" /> Wszystkie pliki </span>
-                        <span @click="onHandleGetType('images')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'images'}"><FileImage class="w-4 h-4 mr-2" /> Pliki graficzne </span>
-                        <span @click="onHandleGetType('docs')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'docs'}"><FileText class="w-4 h-4 mr-2" /> Dokumenty </span>
-                        <span @click="onHandleGetType('archive')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'archive'}"><FileArchive class="w-4 h-4 mr-2" /> Spakowane pliki </span>
-                        <span @click="onHandleGetType('trash')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'trash'}"><Trash2 class="w-4 h-4 mr-2" /> Usunięte </span>
+                        <span @click="onHandleGetType('all')" class="cursor-pointer flex items-center px-3 py-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'all'}"><Files class="w-4 h-4 mr-2" /> {{ translation('All files') }} </span>
+                        <span @click="onHandleGetType('images')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'images'}"><FileImage class="w-4 h-4 mr-2" /> {{ translation('Images') }} </span>
+                        <span @click="onHandleGetType('docs')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'docs'}"><FileText class="w-4 h-4 mr-2" /> {{ translation('Documents') }} </span>
+                        <span @click="onHandleGetType('archive')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'archive'}"><FileArchive class="w-4 h-4 mr-2" /> {{ translation('Archived') }} </span>
+                        <span @click="onHandleGetType('trash')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'trash'}"><Trash2 class="w-4 h-4 mr-2" /> {{ translation('Trashed') }} </span>
                     </div>
                     <div class="border-t border-slate-200 dark:border-darkmode-400 mt-4 pt-4">
-                        <span class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md"><Plus class="w-4 h-4 mr-2" /> Dodaj tag </span>
+                        <span class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md"><Plus class="w-4 h-4 mr-2" /> {{ translation('Add tag') }} </span>
                     </div>
                 </div>
 
@@ -84,6 +84,8 @@
 import axios from 'axios';
 import MediaSearch from './Search.vue';
 import { Files, FileImage, FileText, FileArchive, Trash2, Plus, ChevronLeft, ChevronRight } from 'lucide-vue';
+import FileUpload from 'primevue/fileupload';
+import pl from './../../../lang/pl.json';
 
 export default {
 	props: {
@@ -98,7 +100,8 @@ export default {
         Plus,
         ChevronLeft,
         ChevronRight,
-        MediaSearch
+        MediaSearch,
+        FileUpload
     },
 	data() {
 		return {
@@ -120,6 +123,9 @@ export default {
                 directory: {
                     name: ''
                 }
+            },
+            lang: {
+                pl
             }
 		}
 	},
@@ -163,6 +169,9 @@ export default {
         },
         onHandleHideDialog(type) {
             this.dialog[type] = false;
+        },
+        translation(key) {
+            return this.lang['pl'][key] === undefined ? key : this.lang['pl'][key];
         }
 	},
     computed: {

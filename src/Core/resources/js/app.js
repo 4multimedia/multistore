@@ -67,6 +67,7 @@ import FormBody from './components/Form/Body.vue';
 import FormModule from './components/Form/Module.vue';
 import FormSection from './components/Form/Section.vue';
 
+import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 
 import Media from './components/Media/Index.vue';
@@ -89,6 +90,7 @@ Vue.component('UiBox', UiBox);
 Vue.component('Media', Media);
 Vue.component('Dialog', Dialog);
 Vue.component('UiTip', UiTip);
+Vue.component('Button', Button);
 
 new Vue({
     el: '#app',
