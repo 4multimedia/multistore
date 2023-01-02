@@ -1,15 +1,13 @@
 <template>
-    <div class="intro-y box p-5 mt-5">
-        <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
-            <div class="font-medium text-base flex items-center" :class="{'pb-5 border-b border-slate-200/60 dark:border-darkmode-400': open}">
-                <div class="flex justify-between items-center w-full">
-                    <span>{{ header }}</span>
-                    <ChevronDown @click="onHandleOpen" :class="{'transform rotate-180' : open}" class="w-4 h-4 cursor-pointer" />
-                </div>
+    <div class="intro-y box mt-5">
+        <div class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+            <div class="flex justify-between w-full">
+                <h2 class="font-medium text-base mr-auto">{{ header }}</h2>
+                <ChevronDown @click="onHandleOpen" :class="{'transform rotate-180' : open}" />
             </div>
-            <div class="mt-5" v-show="open">
-                <slot />
-            </div>
+        </div>
+        <div class="p-5" v-show="open">
+            <slot />
         </div>
     </div>
 </template>
@@ -22,7 +20,11 @@ export default {
         ChevronDown
     },
     props: {
-        header: String
+        header: String,
+        noTab: {
+            type: Boolean,
+            default: true
+        }
     },
     data() {
         return {

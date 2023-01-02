@@ -52,6 +52,7 @@ import Vue from 'vue';
 import PrimeVue from 'primevue/config';
 import InputText from './components/Input/InputText.vue';
 import InputPassword from './components/Input/InputPassword.vue';
+import Dropdown from './components/Input/Dropdown.vue';
 import VisualBuilder from './components/VisualBuilder/Index.vue';
 
 import Paragraph from './components/VisualBuilder/Elements/Paragraph';
@@ -93,6 +94,7 @@ Vue.component('Dialog', Dialog);
 Vue.component('UiTip', UiTip);
 Vue.component('Button', Button);
 Vue.component('Table', Table);
+Vue.component('Dropdown', Dropdown);
 
 new Vue({
     el: '#app',

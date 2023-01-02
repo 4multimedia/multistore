@@ -1,6 +1,6 @@
 <template>
-    <div class="grid grid-cols-11 gap-x-6 mt-5 pb-20">
-        <div class="intro-y col-span-2 hidden 2xl:block">
+    <div class="flex mt-5 pb-20">
+        <div class="intro-y flex-initial w-80">
             <div class="sticky mt-5 top-0">
                 <ul class="text-slate-500 relative before:content-[''] before:w-[2px] before:bg-slate-200 before:dark:bg-darkmode-600 before:h-full before:absolute before:right-0 before:z-[-1]">
                     <li
@@ -12,8 +12,12 @@
                     </li>
                 </ul>
             </div>
+
+            <ui-box v-if="publish" class="mt-5" :noTab="true" header="Publikacja">
+
+            </ui-box>
         </div>
-        <div class="intro-y col-span-11 2xl:col-span-9">
+        <div class="intro-y flex-auto pl-5 mt-5">
             <slot />
         </div>
     </div>
@@ -21,6 +25,12 @@
 
 <script>
     export default {
+        props: {
+            publish: {
+                type: Boolean,
+                default: false
+            }
+        },
         data() {
             return {
                 active: null,
@@ -37,7 +47,12 @@
             },
         },
         mounted() {
-            this.tabs = this.$children;
+            this.tabs = [];
+            this.$children.forEach((tab, i) => {
+                if (tab.$options.propsData.noTab !== true) {
+                    this.tabs.push(tab);
+                }
+            });
             this.changeTab(0);
         },
     }

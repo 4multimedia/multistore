@@ -61,7 +61,18 @@
             return "<button type=\"$type\">$label</button>";
         }
 
-        public function dropdown($label, $name, $options) {
-            return '';
+        public function dropdown($label, $name, $params = []) {
+            $error = $this->error($name);
+
+			$array = [];
+			$array["label"] = $label;
+			$array["name"] = $name;
+			foreach($params as $param_key => $param_value) {
+				$array[$param_key] = $param_value;
+			}
+			$array["value"] = old($name);
+			$array[":error"] = $error;
+
+            return "<dropdown ".$this->attr($array)."></dropdown>";
         }
     }

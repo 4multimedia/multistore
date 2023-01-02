@@ -1,6 +1,6 @@
 <template>
-	<div class="items-start mt-3 pt-3 first:mt-0 first:pt-0" :class="{'form-inline flex-col xl:flex-row' : !column, 'has-error' : error}">
-		<div class="form-label xl:w-64 xl:!mr-10" :class="{'mb-2': column}">
+	<div class="items-start mt-3 pt-3 first:mt-0 first:pt-0" :class="{'form-inline flex-col xl:flex-row' : !column, 'has-error' : error.length > 0}">
+		<div class="form-label xl:w-64 xl:!mr-10" :class="{'mb-2': column}" v-if="label">
             <div class="text-left">
                 <div class="flex items-center" :class="{'mt-2': !column}">
                     <div class="font-medium">{{ label }}</div> <span class="ml-2 text-red-700">*</span>
@@ -32,7 +32,10 @@
             label: String,
 			help: String,
 			max: Number,
-            error: Array,
+            error: {
+                type: Array,
+                default: () => []
+            },
 			modelValue: [Number,String,Array,Object],
             column: {
                 type: Boolean,

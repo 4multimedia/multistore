@@ -39,5 +39,6 @@ Route::prefix('media')->namespace('Media')->group(function() {
 Route::namespace('Content')->group(function() {
 	Route::prefix('page')->group(function() {
 		Route::get('/', 'PageController@index')->name('backend.page');
+		Route::get('/create', 'PageController@create')->name('backend.page.create');
 	});
 });
