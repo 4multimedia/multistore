@@ -15,7 +15,7 @@ class FunctionServiceProvider extends ServiceProvider {
 
 		add_devider_menu(59);
 
-		add_to_menu('page', 'backend::page.title', null, 60, ['icon' => 'file-text']);
+		add_to_menu('page', 'backend::page.title', 'backend.page', 60, ['icon' => 'file-text']);
 		add_to_menu('blog', 'backend::blog.title', null, 61, ['icon' => 'layout-list']);
 		add_to_submenu('blog', 'backend::blog.list', 'backend.user');
 		add_to_submenu('blog', 'backend::blog.categories', 'backend.user');
@@ -23,6 +23,8 @@ class FunctionServiceProvider extends ServiceProvider {
 		add_to_submenu('blog', 'backend::blog.comments', 'backend.user');
 		add_to_menu('translate', 'backend::translate.title', null, 62, ['icon' => 'languages']);
 		add_to_menu('content', 'backend::content.title', null, 63, ['icon' => 'layout-template']);
+		add_to_submenu('content', 'backend::content.popup', 'backend.user', 10);
+		add_to_submenu('content', 'backend::content.slider', 'backend.user', 20);
 		add_to_menu('media', 'backend::media.title', 'backend.media', 70, ['icon' => 'image']);
 
 		add_devider_menu(79);

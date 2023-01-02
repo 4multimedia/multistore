@@ -15,6 +15,7 @@
 		public $title = '';
 		public $meta_title = '';
         public $button_header = [];
+		public $assets_js = [];
 
 		public function __construct()
 		{
@@ -23,6 +24,7 @@
             $this->merged_filters = [];
             $this->actions = [];
             $this->current_filter = [];
+			$this->assets_js = ['before' => [], 'after' => []];
 		}
 
 		/* HOOKS StyleSheets */
@@ -61,6 +63,19 @@
 			}
 
 			echo '<link rel="stylesheet" href="/assets/css/web.css">';
+		}
+
+		/* HOOKS JavaScript */
+		public function register_assets_js_path($path, $position = 'after') {
+			if (!in_array($path, $this->assets_js[$position])) {
+				$this->assets_js[$position][] = $path;
+			}
+		}
+
+		public function get_assets_backend_js($position = 'after') {
+			foreach($this->assets_js[$position] as $path) {
+				echo "\n\t\t<script src=\"".asset($path)."\" referrerpolicy=\"origin\"></script>";
+			}
 		}
 
 		/* HOOKS Title */

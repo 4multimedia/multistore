@@ -35,3 +35,9 @@ Route::prefix('user')->namespace('User')->group(function() {
 Route::prefix('media')->namespace('Media')->group(function() {
 	Route::get('/{hash?}', 'MediaController@index')->name('backend.media');
 });
+
+Route::namespace('Content')->group(function() {
+	Route::prefix('page')->group(function() {
+		Route::get('/', 'PageController@index')->name('backend.page');
+	});
+});

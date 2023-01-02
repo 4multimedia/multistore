@@ -9,6 +9,7 @@
         public function boot() {
             $this->loadViewsFrom(dirname(__FILE__).'/../core/resources/views', 'backend');
             $this->loadViewsFrom(dirname(__FILE__).'/../core/resources/components', 'components');
+			$this->loadViewsFrom(dirname(__FILE__).'/../core/resources/views', 'frontend');
 			$this->loadTranslationsFrom(dirname(__FILE__).'/../core/resources/lang', 'backend');
         }
 
@@ -23,6 +24,7 @@
 			$this->app->register(MigrationServiceProvider::class);
             $this->app->register(SeederServiceProvider::class);
             $this->app->register(FunctionServiceProvider::class);
+            $this->app->register(ComponentServiceProvider::class);
 
             $this->loadModuleServiceProvider();
         }

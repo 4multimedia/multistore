@@ -36,6 +36,14 @@
 		return hook()->register_css($path, $place);
 	}
 
+	function register_assets_js($path, $position = 'after') {
+		hook()->register_assets_js_path($path, $position);
+	}
+
+	function get_assets_backend_js($position = 'after') {
+		hook()->get_assets_backend_js($position);
+	}
+
 	function get_css() {
 		return hook()->get_css();
 	}

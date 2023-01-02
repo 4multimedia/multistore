@@ -4,7 +4,8 @@
     "require": {
         "jenssegers/agent": "^2.6",
 		"livewire/livewire": "^2.10",
-		"vinkla/hashids": "^10.0"
+		"vinkla/hashids": "^10.0",
+		"tinymce/tinymce": "^6.3"
     },
     "autoload": {
 		"files": [

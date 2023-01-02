@@ -2,6 +2,7 @@
     <head>
         <link rel="stylesheet" href="{{ mix('css/backend.css') }}" />
         <title>{{ get_meta_title('4MutliStore - Panel administracyjny') }}</title>
+		{{ get_assets_backend_js('before') }}
     </head>
     <body class="main">
         <!-- BEGIN: Mobile Menu -->
@@ -916,5 +917,6 @@
         <!-- END: Dark Mode Switcher-->
 
         <script src="{{ mix('js/backend.js') }}"></script>
+		{{ get_assets_backend_js('after') }}
     </body>
 </html>
