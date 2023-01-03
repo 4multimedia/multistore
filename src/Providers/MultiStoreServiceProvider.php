@@ -25,6 +25,7 @@
             $this->app->register(SeederServiceProvider::class);
             $this->app->register(FunctionServiceProvider::class);
             $this->app->register(ComponentServiceProvider::class);
+			$this->app->register(ConfigServiceProvider::class);
 
             $this->loadModuleServiceProvider();
         }
