@@ -34,7 +34,8 @@
                                 'Backend',
                             ],
                             'Middleware',
-                            'Request'
+                            'Request',
+                            'Models'
                         ],
                         'Providers',
                         'Resources' => [

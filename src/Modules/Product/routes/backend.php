@@ -20,7 +20,7 @@ Route::prefix('product')->group(function() {
 		Route::get('/', 'CategoryController@index')->name('backend.product.category');
 		Route::get('/create', 'CategoryController@create')->name('backend.product.category.create');
 		Route::post('/create', 'CategoryController@store')->name('backend.product.category.store');
-		Route::get('/{category}', 'CategoryController@view')->name('backend.product.category.view');
+		Route::get('/{category}', 'CategoryController@update')->name('backend.product.category.update');
 		Route::put('/{category}', 'CategoryController@restore')->name('backend.product.category.restore');
 		Route::delete('/{category}', 'CategoryController@delete')->name('backend.product.category.delete');
 	});
