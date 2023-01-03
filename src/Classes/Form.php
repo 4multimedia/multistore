@@ -25,14 +25,33 @@
             return strtr(json_encode($error), ["\"" => "'"]);
         }
 
-        public function field($label) {
+        public function field($component, $label, $name, $params = []) {
+			$error = $this->error($name);
 
+			$array = [];
+			$array["label"] = $label;
+			$array["name"] = $name;
+			foreach($params as $param_key => $param_value) {
+				$array[$param_key] = $param_value;
+			}
+			$array["value"] = old($name);
+			$array[":error"] = $error;
+
+            return "<$component ".$this->attr($array)."></$component>";
         }
 
 		public function attr($array) {
 			$html = [];
 			foreach($array as $key => $value) {
-				$html[] = "$key=\"$value\"";
+				if (is_bool($value)) {
+					if ($value === true) {
+						$html[] = "$key=\"true\"";
+					} else {
+						$html[] = "$key=\"false\"";
+					}
+				} else {
+					$html[] = "$key=\"$value\"";
+				}
 			}
 			return implode(" ", $html);
 		}
@@ -52,9 +71,19 @@
             return "<input-text ".$this->attr($array)."></input-text>";
         }
 
-        public function password($label, $name) {
+        public function password($label, $name, $params = []) {
             $error = $this->error($name);
-            return "<input-password label=\"$label\" name=\"$name\" value=\"".old($name)."\" :error=\"$error\"></input-password>";
+
+			$array = [];
+			$array["label"] = $label;
+			$array["name"] = $name;
+			foreach($params as $param_key => $param_value) {
+				$array[$param_key] = $param_value;
+			}
+			$array["value"] = old($name);
+			$array[":error"] = $error;
+
+            return "<input-password ".$this->attr($array)."></input-password>";
         }
 
         public function button($label, $type = 'submit') {
@@ -75,4 +104,8 @@
 
             return "<dropdown ".$this->attr($array)."></dropdown>";
         }
+
+		public function checkbox($label, $name, $params = []) {
+			return $this->field('input-checkbox', $label, $name, $params);
+		}
     }

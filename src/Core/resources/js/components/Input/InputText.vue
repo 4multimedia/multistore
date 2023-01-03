@@ -1,6 +1,6 @@
 <template>
 	<InputField :label="label" :help="help" :error="error" :max="max" :modelValue="modelValue" :column="column">
-		<PrimeInputText class="form-control" :help="help" :name="name" v-model="modelValue" :placeholder="label" :maxlength="max" @input="onChange($event)" />
+		<PrimeInputText class="form-control" :help="help" :name="name" v-model="modelValue" :placeholder="getplaceholder" :maxlength="max" @input="onChange($event)" />
 	</InputField>
 </template>
 
@@ -15,6 +15,7 @@ export default {
     },
     props: {
         label: String,
+		placeholder: String,
         value: String,
 		help: String,
         name: String,
@@ -28,6 +29,17 @@ export default {
     mounted() {
         this.modelValue = this.value;
     },
+	computed: {
+		getplaceholder() {
+			if (this.placeholder) {
+				return this.placeholder;
+			} else if (this.label) {
+				return this.label;
+			} else {
+				return null;
+			}
+		}
+	},
     methods: {
         onChange(value) {
             this.$emit('update:value', value)

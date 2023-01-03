@@ -51,6 +51,12 @@ class User extends Authenticatable
         return UserToRole::where('id_user', $this->id_user)->pluck('id_user_role')->toArray();
     }
 
+	public function hasBackendAccess(): Attribute {
+		return Attribute::make(
+			get: fn () => true
+		);
+	}
+
 	protected function role(): Attribute {
 		$role = UserRole::where('id_user_role', $this->getRoles()[0])->first();
 

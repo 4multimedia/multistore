@@ -1,6 +1,6 @@
 <?php
 
-namespace Multimedia\Multistore\Core\Http\Requests;
+namespace Multimedia\Multistore\Core\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,4 +28,12 @@ class LoginRequest extends FormRequest
             'password' => ['required']
         ];
     }
+
+	public function attributes()
+	{
+		return [
+			'email' => mb_strtolower(__('backend::auth.E-mail adress'), 'utf-8'),
+			'password' => mb_strtolower(__('backend::auth.Password'), 'utf-8'),
+		];
+	}
 }

@@ -651,7 +651,7 @@
             <div class="h-full flex items-center">
                 <!-- BEGIN: Logo -->
                 <a href="{{ route('backend.dashboard') }}" class="-intro-x hidden md:flex">
-                    <span class="text-white text-lg ml-3"> 4MultiStore </span>
+                    <span class="text-white text-lg ml-3"> 4Multi.Store </span>
                 </a>
                 <!-- END: Logo -->
                 <!-- BEGIN: Breadcrumb -->

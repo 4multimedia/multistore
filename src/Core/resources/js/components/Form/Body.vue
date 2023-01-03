@@ -1,7 +1,8 @@
 <template>
 	<form method="post">
-		???
 		<slot />
-		<button type="submit">ZAPISZ</button>
+		<slot name="buttons">
+			<button type="submit">ZAPISZ</button>
+		</slot>
 	</form>
 </template>

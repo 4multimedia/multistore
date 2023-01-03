@@ -53,6 +53,7 @@ import PrimeVue from 'primevue/config';
 import InputText from './components/Input/InputText.vue';
 import InputPassword from './components/Input/InputPassword.vue';
 import Dropdown from './components/Input/Dropdown.vue';
+import InputCheckbox from './components/Input/InputCheckbox.vue';
 import VisualBuilder from './components/VisualBuilder/Index.vue';
 
 import Paragraph from './components/VisualBuilder/Elements/Paragraph';
@@ -73,6 +74,7 @@ import Dialog from 'primevue/dialog';
 
 import Media from './components/Media/Index.vue';
 import Table from './components/Table/Index.vue';
+import Message from 'primevue/message';
 
 Vue.use(PrimeVue);
 
@@ -95,6 +97,8 @@ Vue.component('UiTip', UiTip);
 Vue.component('Button', Button);
 Vue.component('Table', Table);
 Vue.component('Dropdown', Dropdown);
+Vue.component('InputCheckbox', InputCheckbox);
+Vue.component('Message', Message);
 
 new Vue({
     el: '#app',

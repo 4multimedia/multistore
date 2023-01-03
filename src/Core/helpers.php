@@ -61,7 +61,7 @@
 	}
 
 	function get_name() {
-		return '4MultiStore';
+		return '4Multi.Store';
 	}
 
 	function get_host() {

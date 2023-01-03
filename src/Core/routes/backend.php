@@ -20,6 +20,9 @@ Route::prefix('auth')->namespace('Auth')->group(function() {
     Route::get('login', 'LoginController@view')->name('backend.auth.login');
     Route::post('login', 'LoginController@authenticate')->name('backend.auth.login.request');
     Route::get('logout', 'LogoutController@index')->name('backend.auth.logout');
+
+	Route::get('reset', 'ResetController@view')->name('backend.auth.reset');
+	Route::post('reset', 'ResetController@reset')->name('backend.auth.reset.request');
 });
 
 Route::prefix('user')->namespace('User')->group(function() {

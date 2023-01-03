@@ -15,6 +15,7 @@ class Backend
         'backend.auth.login.request',
         'backend.auth.reset',
         'backend.auth.password',
+		'backend.auth.reset.request',
     ];
 
     /**

@@ -14,6 +14,7 @@ class ConfigServiceProvider extends ServiceProvider {
 		if ($this->app->runningInConsole()) {
 			$this->publishes([__DIR__ . '/../config/multimedia.php' => config_path('multimedia.php')], 'multimedia');
 			$this->publishes([__DIR__ . '/../public' => public_path()], 'multimedia');
+			$this->publishes([__DIR__ . '/../Core/resources/lang/pl/validation.php' => base_path('lang/pl/validation.php')], 'multimedia');
 		}
 	}
 }

@@ -11,6 +11,6 @@
         public function index() {
             register_user_log('Logout');
 			Auth::logout();
-			return redirect()->route('backend.auth.login');
+			return redirect()->route('backend.auth.login')->with('success', __('backend::auth.You have been successfully logged out to the administration panel'));
         }
     }
