@@ -1,7 +1,7 @@
 <html lang="en" class="light">
     <head>
         <link rel="stylesheet" href="{{ mix('css/backend.css') }}" />
-        <title>{{ get_meta_title('4MutliStore - Panel administracyjny') }}</title>
+        <title>{{ get_meta_title('4Mutli.Store - Panel administracyjny') }}</title>
 		{{ get_assets_backend_js('before') }}
     </head>
     <body class="main">
@@ -651,7 +651,7 @@
             <div class="h-full flex items-center">
                 <!-- BEGIN: Logo -->
                 <a href="{{ route('backend.dashboard') }}" class="-intro-x hidden md:flex">
-                    <span class="text-white text-lg ml-3"> 4Multi.Store </span>
+                    <span class="text-white text-lg ml-3"> {{ config('multimedia.name') }} </span>
                 </a>
                 <!-- END: Logo -->
                 <!-- BEGIN: Breadcrumb -->

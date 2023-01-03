@@ -27,7 +27,7 @@
 		'A message with a link to reset your password has been sent to the address provided. Receive the message and follow the instructions in the email.' => 'A message with a link to reset your password has been sent to the address provided. Receive the message and follow the instructions in the email.',
 		'The email address or password is incorrect' => 'The email address or password is incorrect',
 		'You have been successfully logged into the administration panel' => 'You have been successfully logged into the administration panel',
-		'You have been successfully logged out to the administration panel' => 'You have been successfully logged out to the administration panel'
+		'You have been successfully logged out of the administration panel' => 'You have been successfully logged out of the administration panel'
 	];
 
 ?>

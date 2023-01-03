@@ -17,7 +17,7 @@
 		'A message with a link to reset your password has been sent to the address provided. Receive the message and follow the instructions in the email.' => 'Na wskazany adres została wysłana wiadomość z linkiem do resetu hasła. Odbierz wiadomość i postępuj według instrukcji zawartych w wiadomości email.',
 		'The email address or password is incorrect' => 'Adres e-mail lub hasło są nieprawidłowe',
 		'You have been successfully logged into the administration panel' => 'Zostałeś poprawnie zalogowany do panelu administracyjnego',
-		'You have been successfully logged out to the administration panel' => 'Zostałeś poprawnie wylogowany do panelu administracyjnego'
+		'You have been successfully logged out of the administration panel' => 'Zostałeś poprawnie wylogowany z panelu administracyjnego'
  	];
 
 ?>

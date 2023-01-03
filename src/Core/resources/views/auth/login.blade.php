@@ -17,8 +17,8 @@
 			</div>
 
 			<template #buttons>
-				<div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-					<button class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">{{ __('backend::auth.Log in') }}</button>
+				<div class="intro-x mt-5 xl:mt-8 text-right">
+					<button class="btn btn-primary py-3 px-4 w-full xl:w-40 align-top">{{ __('backend::auth.Log in') }}</button>
 				</div>
 			</template>
 		</form-body>

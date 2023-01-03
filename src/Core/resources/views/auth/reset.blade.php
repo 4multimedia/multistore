@@ -11,15 +11,12 @@
 			@csrf
 			{!! form()->text(null, 'email', ['placeholder' => __('backend::auth.E-mail adress'), 'class' => 'intro-x login__input']) !!}
 
-			<div class="intro-x flex justify-end text-slate-600 dark:text-slate-500 text-xs sm:text-sm mt-4">
+			<div class="intro-x flex justify-between items-center text-slate-600 dark:text-slate-500 text-xs sm:text-sm mt-4">
 				<a href="{{ route('backend.auth.login') }}">{{ __('backend::auth.Go back to login') }}</a>
+				<button class="btn btn-primary py-3 px-4 w-full xl:w-40 align-top">{{ __('backend::auth.Reset password') }}</button>
 			</div>
 
-			<template #buttons>
-				<div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-					<button class="btn btn-primary py-3 px-4 w-full xl:w-40 xl:mr-3 align-top">{{ __('backend::auth.Reset password') }}</button>
-				</div>
-			</template>
+			<template #buttons> <div></div> </template>
 		</form-body>
 	</div>
 @endsection

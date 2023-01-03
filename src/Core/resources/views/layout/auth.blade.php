@@ -2,7 +2,7 @@
     <!-- BEGIN: Head -->
     <head>
         <link rel="stylesheet" href="{{ asset('css/backend.css') }}" />
-        <title>{{ get_meta_title('4MutliStore - Panel administracyjny') }}</title>
+        <title>{{ get_meta_title(config('multimedia.name').' - Panel administracyjny') }}</title>
 		{{ get_assets_backend_js('before') }}
     </head>
     <!-- END: Head -->
@@ -18,7 +18,7 @@
             <div class="block xl:grid grid-cols-2 gap-4">
                 <div class="hidden xl:flex flex-col min-h-screen">
                     <a href="" class="-intro-x flex items-center pt-5">
-                        <span class="text-white text-lg"> 4Multi.Store </span>
+                        <span class="text-white text-lg"> {{ config('multimedia.name') }} </span>
                     </a>
                     <div class="my-auto">
                         <div class="-intro-x text-white font-medium text-4xl leading-tight">

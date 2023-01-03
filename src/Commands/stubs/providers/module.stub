@@ -7,7 +7,9 @@
     class {{Module}}ServiceProvider extends ServiceProvider {
         public function boot()
         {
-			$this->loadTranslationsFrom(dirname(__FILE__).'/../resources/lang', '{{module}}');
+			$this->loadTranslationsFrom(dirname(__FILE__).'/../Resources/lang', 'module.{{module}}');
+			$this->loadViewsFrom(dirname(__FILE__).'/../Resources/views/backend', 'module.{{module}}.backend');
+			$this->loadViewsFrom(dirname(__FILE__).'/../Resources/views/frontend', 'module.{{module}}.frontend');
         }
 
         public function register()

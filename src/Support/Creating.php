@@ -39,7 +39,11 @@
                         'Providers',
                         'Resources' => [
                             'assets',
-                            'lang'
+                            'lang',
+							'views' => [
+								'backend',
+								'frontend'
+							]
                         ],
                         'routes'
                     ]

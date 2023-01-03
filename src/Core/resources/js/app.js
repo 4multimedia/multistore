@@ -73,7 +73,7 @@ import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 
 import Media from './components/Media/Index.vue';
-import Table from './components/Table/Index.vue';
+import DataTable from './components/Data/Index.vue';
 import Message from 'primevue/message';
 
 Vue.use(PrimeVue);
@@ -95,7 +95,7 @@ Vue.component('Media', Media);
 Vue.component('Dialog', Dialog);
 Vue.component('UiTip', UiTip);
 Vue.component('Button', Button);
-Vue.component('Table', Table);
+Vue.component('DataTable', DataTable);
 Vue.component('Dropdown', Dropdown);
 Vue.component('InputCheckbox', InputCheckbox);
 Vue.component('Message', Message);

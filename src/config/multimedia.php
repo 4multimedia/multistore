@@ -1,13 +1,19 @@
 <?php
 
 return [
+	'name' => '4Multi.Store',
     'backend' => 'admin',
 	'modules' => [
 		'page' => true,
-		'blog' => false,
+		'blog' => true,
 		'media' => true,
+		'translate' => true,
 		'setting' => [
 			'cookie' => true
+		],
+		'content' => [
+			'popup' => true,
+			'slider' => true,
 		]
 	]
 ];
