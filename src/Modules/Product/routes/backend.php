@@ -27,5 +27,10 @@ Route::prefix('product')->group(function() {
 
 	Route::prefix('producer')->group(function() {
 		Route::get('/', 'ProducerController@index')->name('backend.product.producer');
+        Route::get('/create', 'ProducerController@create')->name('backend.product.producer.create');
+		Route::post('/create', 'ProducerController@store')->name('backend.product.producer.store');
+		Route::get('/{producer}', 'ProducerController@update')->name('backend.product.producer.update');
+		Route::put('/{producer}', 'ProducerController@restore')->name('backend.product.producer.restore');
+		Route::delete('/{producer}', 'ProducerController@delete')->name('backend.product.producer.delete');
 	});
 });

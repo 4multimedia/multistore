@@ -42,12 +42,26 @@
             ];
         }
 
+        public function action_icon($id, $icon) {
+            if ($id === 'edit') {
+                return 'edit2';
+            } else if ($id === 'delete') {
+                return 'trash';
+            } else if ($icon) {
+                return $icon;
+            } else {
+                return null;
+            }
+        }
+
         public function action($id, $label, $route = null, $options = []) {
             return [
                 'id' => Str::slug($id),
                 'label' => $label,
                 'route' => $route ? $route : 'javascript;;',
-                'icon' => 'edit'
+                'icon' => $this->action_icon($id, isset($options["icon"]) ? $options["icon"] : null),
+                'method' => isset($options["method"]) ? $options["method"] : null,
+                'class' => isset($options["class"]) ? $options["class"] : null,
             ];
         }
 
@@ -77,10 +91,41 @@
             return strtr($template, $strtr);
         }
 
+        public function template_actions($item) {
+            $array = [];
+            $i = 0;
+            foreach($this->actions as $key => $action) {
+
+                if ($action["id"] === 'delete') {
+                    $action["class"] = 'text-red-600';
+                }
+
+                if ($action["method"]) {
+                    $key = time().rand(1000,9999);
+                    $template = '<form class="hidden" method="POST" action="'.$action["route"].'" id="submit-route-'.$key.'">'.csrf_field().' '.method_field($action["method"]).'</form><a href="javascript:;" onclick="event.preventDefault(); document.getElementById(\'submit-route-'.$key.'\').submit();" class="dropdown-item '.$action["class"].'"><i data-lucide="'.$action["icon"].'" class="w-4 h-4 mr-2"></i> Usuń</a>';
+                } else {
+                    $template = '<a href="'.$action["route"].'" class="dropdown-item '.$action["class"].'"><i data-lucide="'.$action["icon"].'" class="w-4 h-4 mr-2"></i> '.$action["label"].' </a>';
+                }
+
+                if ($action["id"] === 'delete') {
+                    $array[$i]["template"] = '<hr class="dropdown-divider" />';
+                    $i++;
+                }
+
+                $array[$i] = $action;
+                $array[$i]["template"] = $this->template($template, $item);
+
+                $i++;
+            }
+            return $array;
+        }
+
         public function item($item) {
             $array = [];
             foreach($this->fields as $field) {
-                $array[$field["id"]] = $field["template"] === null ? $item->{$field["id"]} : $this->template($field["template"], $item);
+                $id = $field["id"];
+                $array[$id]["value"] = $field["template"] === null ? $item->{$id} : $this->template($field["template"], $item);
+                $array[$id]["actions"] = $this->template_actions($item);
             }
             return $array;
         }

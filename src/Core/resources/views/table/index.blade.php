@@ -15,7 +15,7 @@
             @foreach($values as $value)
             <tr class="intro-x">
                 @foreach($fields as $field)
-                    <td>{!! $value[$field["id"]] !!}</td>
+                    <td>{!! $value[$field["id"]]["value"] !!}</td>
                 @endforeach
                 @if(count($actions) > 0)
                     <td class="w-16 text-right">
@@ -25,12 +25,9 @@
                             </button>
                             <div class="dropdown-menu w-40">
                                 <ul class="dropdown-content">
-                                    @foreach($actions as $action)
+                                    @foreach($value[$field["id"]]["actions"] as $action)
                                         <li>
-                                            <a href="{{ $action["route"] }}" class="dropdown-item">
-                                                <i data-lucide="edit2" class="w-4 h-4 mr-2"></i>
-                                                {{ $action["label"] }}
-                                            </a>
+                                            {!! $action["template"] !!}
                                         </li>
                                     @endforeach
                                 </ul>
