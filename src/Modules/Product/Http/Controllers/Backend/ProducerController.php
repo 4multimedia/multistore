@@ -14,6 +14,7 @@
 			]);
 
             $table->set_header('ID', ['id' => 'id', 'headerClass' => 'w-16']);
+            $table->set_header('Logo', ['id' => 'image']);
             $table->set_header('Nazwa', ['id' => 'name', 'template' => '<a href="'.route('backend.product.producer.update', ['producer' => '$hash']).'" class="underline decoration-dotted whitespace-nowrap">$name</a>']);
             $table->set_action('edit', 'Edycja', route('backend.product.producer.update', ['producer' => '$hash']));
             $table->set_action('delete', 'Usuń', route('backend.product.producer.delete', ['producer' => '$hash']), ['method' => 'delete']);

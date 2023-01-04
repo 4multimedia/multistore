@@ -28,6 +28,10 @@
 		return app('backend');
 	}
 
+	function media() {
+		return app('media');
+	}
+
 	function register_css_path($path) {
 		hook()->register_css_path($path);
 	}

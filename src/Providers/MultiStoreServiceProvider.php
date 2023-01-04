@@ -32,7 +32,7 @@
 
         public function loadModuleServiceProvider() {
             if (is_dir(app_path('Modules'))) {
-                $dirs = array_diff(scandir(app_path('Modules')), array('..', '.'));
+                $dirs = array_diff(scandir(app_path('Modules')), array('..', '.', '.DS_Store'));
                 foreach($dirs as $dir) {
                     $providers = array_diff(scandir(app_path('Modules/'.$dir.'/Providers')), array('..', '.'));
 
