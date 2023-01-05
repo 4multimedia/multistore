@@ -9,7 +9,8 @@ return [
 		'media' => true,
 		'translate' => true,
 		'setting' => [
-			'cookie' => true
+			'cookie' => true,
+			'thumbnails' => true
 		],
 		'content' => [
 			'popup' => true,

@@ -3,6 +3,7 @@
         <link rel="stylesheet" href="{{ mix('css/backend.css') }}" />
         <title>{{ get_meta_title('4Mutli.Store - Panel administracyjny') }}</title>
 		{{ get_assets_backend_js('before') }}
+		<meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body class="main">
         <!-- BEGIN: Mobile Menu -->

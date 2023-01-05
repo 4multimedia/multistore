@@ -21,6 +21,7 @@ return new class extends Migration
 			$table->string('name');
             $table->string('type');
             $table->string('extension');
+            $table->integer('size');
 			$table->json('params')->nullable();
 
             $table->foreign('id_media_directory')->references('id_media_directory')->on('media_directory')->cascadeOnUpdate()->cascadeOnDelete();

@@ -51,6 +51,9 @@ class FunctionServiceProvider extends ServiceProvider {
 		if (config('multimedia.modules.blog')) {
 			add_to_submenu('setting', 'backend::blog.title', 'backend.user', 20);
 		}
+		if (config('multimedia.modules.media') && config('multimedia.modules.setting.thumbnails')) {
+			add_to_submenu('setting', 'backend::thumbnails.title', 'backend.user', 25);
+		}
 		add_to_submenu('setting', 'backend::cookie.title', 'backend.user', 40);
 		add_to_submenu('setting', 'backend::seo.title', 'backend.user', 30);
 		add_to_submenu('setting', 'backend::redirect.title', 'backend.user', 31);

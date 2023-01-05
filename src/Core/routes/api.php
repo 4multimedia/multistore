@@ -24,4 +24,13 @@ Route::prefix('media')->namespace('Media')->group(function() {
 		Route::put('/{mediaDirectory}', 'DirectoryController@restore');
 		Route::delete('/{mediaDirectory}', 'DirectoryController@delete');
 	});
+
+	Route::prefix('all')->group(function() {
+		Route::get('/trash', 'AllController@trash');
+		Route::get('/{mediaDirectory?}', 'AllController@index');
+		Route::get('/view/{mediaDirectory}', 'AllController@view');
+		Route::post('/{mediaDirectory?}', 'AllController@store');
+		Route::put('/{mediaDirectory}', 'AllController@restore');
+		Route::delete('/{mediaDirectory}', 'AllController@delete');
+	});
 });

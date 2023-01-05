@@ -5,14 +5,21 @@ const {
 } = require("@left4code/tw-starter/dist/js/tailwind-config-helper");
 
 module.exports = {
-    mode: "jit",
     content: [
 		"./Core/**/*.{php,html,js,jsx,ts,tsx,vue}",
         "./src/**/*.{php,html,js,jsx,ts,tsx,vue}",
         "./resources/**/*.{php,html,js,jsx,ts,tsx,vue}",
         "./node_modules/@left4code/tw-starter/**/*.js",
         ".//*.html",
+		"Core/resources/**/*.blade.php",
+		"./Core/resources/views/**/*.blade.php",
+		'./**/*.{blade.php,php,vue.js}',
     ],
+	safelist: [
+		{
+			pattern: /./,
+		},
+	],
     darkMode: "class",
     theme: {
         extend: {

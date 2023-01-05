@@ -37,6 +37,7 @@ Route::prefix('user')->namespace('User')->group(function() {
 
 Route::prefix('media')->namespace('Media')->group(function() {
 	Route::get('/{hash?}', 'MediaController@index')->name('backend.media');
+	Route::post('/upload', 'UploadController@index');
 });
 
 Route::namespace('Content')->group(function() {

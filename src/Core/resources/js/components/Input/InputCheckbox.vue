@@ -1,6 +1,6 @@
 <template>
 	<div class="flex items-center mr-auto">
-		<PrimeCheckbox v-model="checked" :binary="binary" />
+		<PrimeCheckbox v-model="checked" :binary="binary" @input="onChecked" />
 		<label class="cursor-pointer select-none ml-2">{{ label }}</label>
 	</div>
 </template>
@@ -17,6 +17,18 @@ export default {
 		binary: {
 			type: Boolean,
 			default: true
+		},
+		value: {
+			type: Boolean,
+			default: false
+		}
+	},
+	mounted() {
+		this.checked = this.value;
+	},
+	methods: {
+		onChecked(value) {
+			this.$emit('update:value', value)
 		}
 	},
 	data() {

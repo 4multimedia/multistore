@@ -23,6 +23,14 @@ trait useHash {
 		return Hashids::connection($this->model)->encode($id);
 	}
 
+	public function scopeByHash(Builder $query, string $hash): Builder {
+        return $query->where($this->getTable().'.'.$this->getKeyName(), self::hashToId($hash, $this->model));
+    }
+
+	public static function byHash($hash): ?self {
+        return self::query()->byHash($hash)->first();
+    }
+
 	public static function hashToId(string $hash, string $model = null): ?int {
         Hashids::setDefaultConnection($model);
         return isset(Hashids::decode($hash)[0]) ? Hashids::decode($hash)[0] : null;
