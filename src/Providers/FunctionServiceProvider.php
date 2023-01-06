@@ -30,6 +30,9 @@ class FunctionServiceProvider extends ServiceProvider {
 		}
 		if (config('multimedia.modules.content.popup') || config('multimedia.modules.content.slider')) {
 			add_to_menu('content', 'backend::content.title', null, 63, ['icon' => 'layout-template']);
+            if (config('multimedia.modules.content.navigation')) {
+				add_to_submenu('content', 'backend::content.navigation', 'backend.user', 5);
+			}
 			if (config('multimedia.modules.content.popup')) {
 				add_to_submenu('content', 'backend::content.popup', 'backend.user', 10);
 			}
@@ -54,6 +57,9 @@ class FunctionServiceProvider extends ServiceProvider {
 		if (config('multimedia.modules.media') && config('multimedia.modules.setting.thumbnails')) {
 			add_to_submenu('setting', 'backend::thumbnails.title', 'backend.user', 25);
 		}
+        if (config('multimedia.modules.translate')) {
+		    add_to_submenu('setting', 'backend::language.title', 'backend.user', 30);
+        }
 		add_to_submenu('setting', 'backend::cookie.title', 'backend.user', 40);
 		add_to_submenu('setting', 'backend::seo.title', 'backend.user', 30);
 		add_to_submenu('setting', 'backend::redirect.title', 'backend.user', 31);

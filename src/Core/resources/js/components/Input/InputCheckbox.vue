@@ -14,6 +14,7 @@ export default {
 	},
 	props: {
 		label: String,
+        name: String,
 		binary: {
 			type: Boolean,
 			default: true
@@ -21,13 +22,17 @@ export default {
 		value: {
 			type: Boolean,
 			default: false
-		}
+		},
+        callback: Function
 	},
 	mounted() {
 		this.checked = this.value;
 	},
 	methods: {
 		onChecked(value) {
+            if (this.callback !== undefined) {
+                this.callback(value, this.name);
+            }
 			this.$emit('update:value', value)
 		}
 	},

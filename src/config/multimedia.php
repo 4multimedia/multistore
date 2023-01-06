@@ -15,6 +15,7 @@ return [
 		'content' => [
 			'popup' => true,
 			'slider' => true,
+			'navigation' => true,
 		]
 	]
 ];

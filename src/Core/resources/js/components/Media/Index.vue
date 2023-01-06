@@ -2,12 +2,11 @@
 	<div>
         <div class="intro-y flex items-center mt-8  justify-between">
 			<h2 class="text-lg font-medium mr-auto">{{ translation('media') }}</h2>
-            <FileUpload name="files[]" mode="basic" url="/admin/media/upload" class="ml-2" buttonClass="shadow-md w-32" chooseIcon="pi pi-times" uploadIcon="pi pi-times" chooseLabel="Wgraj pliki" multiple="true" :auto="true" @before-send="beforeSendMedia" @upload="uploadMedia" />
+            <FileUpload name="files[]" mode="basic" url="/admin/media/upload" class="ml-2" buttonClass="shadow-md w-32" chooseIcon="pi pi-times" uploadIcon="pi pi-times" chooseLabel="Wgraj pliki" :multiple="true" :auto="true" @before-send="beforeSendMedia" @upload="uploadMedia" />
             <Button @click="onHandleOpenDialog('directory')" class="btn btn-primary shadow-md w-32 ml-2" label="Dodaj folder"></Button>
 		</div>
         <div class="grid grid-cols-12 gap-6 mt-8">
             <div class="col-span-12 lg:col-span-3 2xl:col-span-2">
-				{{ show }}
                 <media-search class="intro-y"></media-search>
                 <div class="intro-y box p-5 mt-5">
                     <div class="mt-1">
@@ -18,8 +17,8 @@
                         <span @click="onHandleGetType('trash')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'trash'}"><Trash2 class="w-4 h-4 mr-2" /> {{ translation('Trashed') }} </span>
                     </div>
 					<div class="border-t border-slate-200 dark:border-darkmode-400 mt-4 pt-4">
-                        <input-checkbox label="Pokaż foldery" v-model="show.directories" />
-						<input-checkbox label="Pokaż pliki" class="mt-2" v-model="show.files" />
+                        <input-checkbox label="Pokaż foldery" class="ml-2" v-model="show.directories" name="directories" :callback="onChange" />
+						<input-checkbox label="Pokaż pliki" class="ml-2 mt-2" v-model="show.files" name="files" :callback="onChange" />
                     </div>
                     <div class="border-t border-slate-200 dark:border-darkmode-400 mt-4 pt-4">
                         <span class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md"><Plus class="w-4 h-4 mr-2" /> {{ translation('Add tag') }} </span>
@@ -29,6 +28,8 @@
                 <ui-tip class="mt-5 intro-y"></ui-tip>
             </div>
             <div class="col-span-12 lg:col-span-9 2xl:col-span-10">
+                {{ blockedPanel }}
+                <BlockUI :blocked="blockedPanel">
                 <div class="mb-5 flex">
                     <ChevronLeft v-if="item && item.path && item.path.length > 0" class="w-4 h-4 cursor-pointer text-slate-500 mr-2 mt-1" @click="onHandleGetItems(back, 'directory')" />
                     <div>
@@ -48,24 +49,11 @@
 
                 <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6" v-if="items.length > 0">
                     <div v-for="item, index in items" :key="index" class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
-                        <div class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in" @click="onHandleGetItems(item.hash, item.type)">
+                        <div v-if="item.type == 'directory' && show.directories" class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in" @click="onHandleGetItems(item.hash, item.type)">
                             <div class="absolute left-0 top-0 mt-3 ml-3">
-                                <input class="form-check-input border border-slate-500" type="checkbox">
+                                <input-checkbox />
                             </div>
-                            <span v-if="item.type == 'directory'" :class="`w-3/5 file__icon file__icon--${item.count_subdirectory == 0 && item.count_files == 0 ? 'empty-' : ''}directory mx-auto`"></span>
-							<div v-if="item.type == 'file' && !images.includes(item.extension) && !previews.includes(item.extension)" class="w-3/5 file__icon file__icon--file mx-auto">
-								<div class="file__icon__file-name">{{ item.extension }}</div>
-							</div>
-							<div v-if="item.type == 'file' && images.includes(item.extension)" class="w-3/5 file__icon file__icon--image mx-auto">
-								<div class="file__icon--image__preview image-fit">
-									<img :src="`${item.paths.thumb}`" />
-								</div>
-							</div>
-							<div v-if="item.type == 'file' && previews.includes(item.extension)" class="w-3/5 file__icon file__icon--image mx-auto">
-								<div class="file__icon--image__preview image-fit">
-									<img :src="`${item.paths.full}`" />
-								</div>
-							</div>
+                            <span :class="`w-3/5 file__icon file__icon--${item.count_subdirectory == 0 && item.count_files == 0 ? 'empty-' : ''}directory mx-auto`"></span>
 
                             <span class="block font-medium mt-4 text-center truncate">{{ item.name }}</span>
                             <div v-if="item.type == 'directory'" class="text-slate-500 text-xs text-center mt-0.5">
@@ -73,7 +61,30 @@
 								<span v-if="item.count_subdirectory > 0 && item.count_files > 0"> | </span>
 								<span v-if="item.count_files > 0">{{ item.count_files }} plików</span></div>
 								<span v-if="item.count_subdirectory == 0 && item.count_files == 0"> &nbsp; </span>
-							<div v-if="item.type == 'file'" class="text-slate-500 text-xs text-center mt-0.5"><span>{{ item.human_size }}</span></div>
+                            <div class="absolute top-0 right-0 mr-2 mt-3 dropdown ml-auto">
+                            </div>
+                        </div>
+
+                        <div v-if="item.type == 'file' && show.files" class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
+                            <div class="absolute left-0 top-0 mt-3 ml-3">
+                                <input-checkbox />
+                            </div>
+							<div v-if="!images.includes(item.extension) && !previews.includes(item.extension)" class="w-3/5 file__icon file__icon--file mx-auto">
+								<div class="file__icon__file-name">{{ item.extension }}</div>
+							</div>
+							<div v-if="images.includes(item.extension)" class="w-3/5 file__icon file__icon--image mx-auto">
+								<div class="file__icon--image__preview image-fit">
+									<img :src="`${item.paths.thumb}`" />
+								</div>
+							</div>
+							<div v-if="previews.includes(item.extension)" class="w-3/5 file__icon file__icon--image mx-auto">
+								<div class="file__icon--image__preview image-fit">
+									<img :src="`${item.paths.full}`" />
+								</div>
+							</div>
+
+                            <span class="block font-medium mt-4 text-center truncate">{{ item.name }}</span>
+							<div class="text-slate-500 text-xs text-center mt-0.5"><span>{{ item.human_size }}</span></div>
                             <div class="absolute top-0 right-0 mr-2 mt-3 dropdown ml-auto">
                             </div>
                         </div>
@@ -86,6 +97,8 @@
                     <button @click="onHandleOpenDialog('directory')" class="btn bg-white shadow-md w-32 my-5">Dodaj folder</button>
                     <p class="text-xs text-slate-500 font-medium">Potrzebujesz wsparcia? Zajrzyj do <a href="" class="text-blue-500 underline">Centrum Pomocy</a></p>
                 </div>
+
+                </BlockUI>
             </div>
         </div>
 
@@ -109,14 +122,15 @@ import axios from 'axios';
 import MediaSearch from './Search.vue';
 import { Files, FileImage, FileText, FileArchive, Trash2, Plus, ChevronLeft, ChevronRight } from 'lucide-vue';
 import FileUpload from 'primevue/fileupload';
+import BlockUI from 'primevue/blockui';
 import pl from './../../../lang/pl.json';
-import InputCheckbox from '../Input/InputCheckbox.vue';
 
 export default {
 	props: {
 		root: String
 	},
     components: {
+        BlockUI,
         Files,
         FileImage,
         FileText,
@@ -126,8 +140,7 @@ export default {
         ChevronLeft,
         ChevronRight,
         MediaSearch,
-        FileUpload,
-        InputCheckbox
+        FileUpload
     },
 	data() {
 		return {
@@ -163,7 +176,8 @@ export default {
 			show: {
 				files: true,
 				directories: true
-			}
+			},
+            blockedPanel: false
 		}
 	},
 	methods: {
@@ -176,6 +190,7 @@ export default {
 			window.history.pushState({}, null, `/admin/media/${this.id_parent}`);
 		},
 		async getItems() {
+            this.blockedPanel = true;
 			let url = `/admin/api/media/all/${this.id_parent}`;
 			const request = await axios.get(url);
 			const { data } = request;
@@ -188,6 +203,7 @@ export default {
             } else {
                 this.item = {};
             }
+            this.blockedPanel = false;
 		},
         async onHandleSaveDirectory() {
             try {
@@ -219,7 +235,10 @@ export default {
 		},
 		async uploadMedia() {
 			await this.getItems();
-		}
+		},
+        onChange(value, name) {
+            this.show[name] = value;
+        }
 	},
     computed: {
         back() {

@@ -8,7 +8,7 @@
     class MediaController extends Controller
     {
         public function index(Request $request) {
-			set_meta_title(__('media'));
+			set_meta_title(__('backend::media.title'));
 			return view('backend::media.index', ['hash' => $request->hash]);
         }
     }

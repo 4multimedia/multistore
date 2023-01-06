@@ -34,3 +34,5 @@ Route::prefix('media')->namespace('Media')->group(function() {
 		Route::delete('/{mediaDirectory}', 'AllController@delete');
 	});
 });
+
+Route::get('lang/{lang}', 'LangController@index');

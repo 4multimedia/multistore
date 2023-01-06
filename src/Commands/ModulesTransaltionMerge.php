@@ -4,6 +4,7 @@ namespace Multimedia\Multistore\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 use Multimedia\Multistore\Support\Stub;
 
 class ModulesTransaltionMerge extends Command
@@ -34,27 +35,27 @@ class ModulesTransaltionMerge extends Command
         $json_language_file = array_diff(scandir($dir_language_base), array('..', '.'));
         $languages = ['pl', 'en', 'de'];
 
-        if (!is_dir($dir_language_base)) {
-            mkdir($dir_language_base);
-            $this->info('Created directory:');
-            $this->line($dir_language_base);
-            $this->newLine();
-        }
-
-        // language list
         foreach($languages as $language) {
-            $file_language = $dir_language_base.'/'.$language.'.json';
-            if (file_exists($file_language)) {
+            //$a = File::getRequire(__DIR__ . '/../Core/resources/lang/pl/validation.php');
+            //print_r($a); die;
+            $array = [];
+            $dir = __DIR__ . '/../Core/resources/lang/'.$language;
+            if (File::exists($dir)) {
+                $files = File::files($dir);
+                foreach($files as $file) {
+                    $key = $file->getFilenameWithoutExtension();
+                    $fileName = $file->getFilename();
 
-            } else {
-                $this->info('Created file:');
-                $this->line($file_language);
-                $this->newLine();
+                    $array[$key] = File::getRequire($dir.'/'.$fileName);
+                }
 
-                file_put_contents($file_language, null);
+                $json = json_encode($array, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
             }
 
-
+            @mkdir(__DIR__ . '/../data');
+            @mkdir(__DIR__ . '/../data/json');
+            @mkdir(__DIR__ . '/../data/json/lang');
+            file_put_contents(__DIR__ . '/../data/json/lang/'.$language.'.json', $json);
         }
     }
 }

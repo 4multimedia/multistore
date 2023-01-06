@@ -2,6 +2,7 @@
 
 namespace Multimedia\Multistore\Providers;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class ConfigServiceProvider extends ServiceProvider {
@@ -17,8 +18,11 @@ class ConfigServiceProvider extends ServiceProvider {
 			$this->publishes([__DIR__ . '/../Core/resources/lang/pl/validation.php' => base_path('lang/pl/validation.php')], 'multimedia');
 		}
 
-		$config_file = config_path('multimedia.php');
-
+        $configuration = config('multimedia');
+        $configuration = json_encode($configuration, JSON_PRETTY_PRINT);
+        @mkdir(__DIR__ . '/../data');
+        @mkdir(__DIR__ . '/../data/json');
+        file_put_contents(__DIR__ . '/../data/json/config.json', $configuration);
 	}
 }
 
