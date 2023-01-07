@@ -108,4 +108,8 @@
 		public function checkbox($label, $name, $params = []) {
 			return $this->field('input-checkbox', $label, $name, $params);
 		}
+
+        public function gallery($label, $name, $params = []) {
+			return $this->field('input-gallery', $label, $name, $params);
+		}
     }

@@ -26,6 +26,7 @@ import "./dropzone";
 import "./validation";
 import "./zoom";
 import "./notification";
+import "./location";
 
 
 /*
@@ -55,6 +56,7 @@ import InputPassword from './components/Input/InputPassword.vue';
 import Dropdown from './components/Input/Dropdown.vue';
 import InputCheckbox from './components/Input/InputCheckbox.vue';
 import VisualBuilder from './components/VisualBuilder/Index.vue';
+import InputGallery from './components/Input/Gallery.vue';
 
 import Paragraph from './components/VisualBuilder/Elements/Paragraph';
 import Container from './components/VisualBuilder/Elements/Container';
@@ -75,6 +77,7 @@ import Dialog from 'primevue/dialog';
 import Media from './components/Media/Index.vue';
 import DataTable from './components/Data/Index.vue';
 import DataTree from './components/Data/Tree/Index.vue';
+import DialogMedia from './components/Media/Dialog.vue';
 import Message from 'primevue/message';
 
 Vue.use(PrimeVue);
@@ -101,6 +104,8 @@ Vue.component('DataTree', DataTree);
 Vue.component('Dropdown', Dropdown);
 Vue.component('InputCheckbox', InputCheckbox);
 Vue.component('Message', Message);
+Vue.component('InputGallery', InputGallery);
+Vue.component('DialogMedia', DialogMedia);
 
 new Vue({
     el: '#app',

@@ -1,0 +1,12 @@
+.media-dialog {
+    position: fixed;
+    top:2rem !important;
+    left:2rem;
+    height: calc(100vh - 4rem);
+    min-width: calc(100vw - 4rem) !important;
+    width: calc(100vw - 4rem) !important;
+}
+
+.media-dialog.p-dialog .p-dialog-header {
+    display: none;
+}

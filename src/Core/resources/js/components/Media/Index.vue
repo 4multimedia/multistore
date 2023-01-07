@@ -28,7 +28,6 @@
                 <ui-tip class="mt-5 intro-y"></ui-tip>
             </div>
             <div class="col-span-12 lg:col-span-9 2xl:col-span-10">
-                {{ blockedPanel }}
                 <BlockUI :blocked="blockedPanel">
                 <div class="mb-5 flex">
                     <ChevronLeft v-if="item && item.path && item.path.length > 0" class="w-4 h-4 cursor-pointer text-slate-500 mr-2 mt-1" @click="onHandleGetItems(back, 'directory')" />
@@ -65,7 +64,7 @@
                             </div>
                         </div>
 
-                        <div v-if="item.type == 'file' && show.files" class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
+                        <div v-if="item.type == 'file' && show.files" class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in" @click="onHandleGetItems(item, item.type)" >
                             <div class="absolute left-0 top-0 mt-3 ml-3">
                                 <input-checkbox />
                             </div>
@@ -127,7 +126,16 @@ import pl from './../../../lang/pl.json';
 
 export default {
 	props: {
-		root: String
+		root: String,
+        selected: [],
+        allow: {
+            type: Array,
+            default: () => []
+        },
+        mode: {
+            type: String,
+            default: 'page' // dialog, page
+        }
 	},
     components: {
         BlockUI,
@@ -181,13 +189,18 @@ export default {
 		}
 	},
 	methods: {
-		async onHandleGetItems(hash, type) {
+		async onHandleGetItems(item, type) {
 			if (type == 'file') {
-				return false;
+                if (this.mode === 'dialog') {
+                    this.$emit('onSelect', item);
+                }
+                return false;
 			}
-			this.id_parent = hash;
+			this.id_parent = item;
 			await this.getItems();
-			window.history.pushState({}, null, `/admin/media/${this.id_parent}`);
+            if (this.mode === 'page') {
+			    window.history.pushState({}, null, `/admin/media/${this.id_parent}`);
+            }
 		},
 		async getItems() {
             this.blockedPanel = true;
@@ -254,12 +267,14 @@ export default {
 		this.getItems();
 
 		var self = this;
-		window.addEventListener('popstate', function() {
-			let path = window.location.pathname.split("/");
-			path = path[3] === undefined ? '' : path[3];
-			self.id_parent = path;
-			self.getItems();
-		}, false);
+        if (this.mode === 'page') {
+            window.addEventListener('popstate', function() {
+                let path = window.location.pathname.split("/");
+                path = path[3] === undefined ? '' : path[3];
+                self.id_parent = path;
+                self.getItems();
+            }, false);
+        }
 	},
 }
 </script>
