@@ -5,6 +5,7 @@
                     <div class="col">
                          <PanelElements />
                          <PanelSettings />
+						 <PanelBreakpoints />
                     </div>
                     <div class="col-10">
                          <PanelRules>
@@ -25,6 +26,7 @@ import Editor from './Core/Editor.vue';
 import PanelSettings from './Panels/Settings.vue';
 import PanelElements from './Panels/Elements.vue';
 import PanelRules from './Panels/Rules.vue';
+import PanelBreakpoints from './Panels/Breakpoints.vue';
 
 import Container from './Elements/Container.vue';
 import Column from './Elements/Column/Index.vue';
@@ -34,13 +36,14 @@ import Row from './Elements/Row/Index.vue';
 
 export default {
      components: {
-          Canvas,
-          Editor,
-          Frame,
-          Headline,
-          PanelElements,
-          PanelRules,
-          PanelSettings
+        Canvas,
+        Editor,
+        Frame,
+        Headline,
+        PanelElements,
+        PanelRules,
+        PanelSettings,
+		PanelBreakpoints
      },
      data() {
           return {

@@ -2,13 +2,13 @@ import cloneDeep from 'lodash/cloneDeep';
 import { v4 as uuidv4 } from 'uuid';
 
 class Node {
-	constructor(componentName, props = {}, parent = null, children = [], rules = {}, addition = {}) {
+	constructor(componentName, props = {}, parent = null, children = [], rules = {}, parameters = {}) {
     	this.componentName = componentName;
     	this.props = props;
     	this.parent = parent;
     	this.children = children;
     	this.rules = rules;
-    	this.addition = addition;
+    	this.parameters = parameters;
     	this.uuid = uuidv4();
 	}
 
@@ -178,7 +178,7 @@ class Node {
       componentName: this.componentName,
       props: this.props,
       children: this.children.map((node) => node.serialize()),
-      addition: this.addition,
+      parameters: this.parameters,
       uuid: this.uuid,
     };
   }
@@ -190,7 +190,7 @@ class Node {
       null,
       this.children.map((node) => node.duplicate()),
       this.rules,
-      cloneDeep(this.addition),
+      cloneDeep(this.parameters),
     );
   }
 }

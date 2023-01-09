@@ -18,6 +18,7 @@ return new class extends Migration
 			$table->unsignedBigInteger('id_media_files')->nullable();
 			$table->timestamps();
 			$table->unsignedBigInteger('id_record');
+			$table->string('name', 64);
 			$table->string('table', 64);
 			$table->integer('position')->default(0);
 			$table->integer('active')->default(1);

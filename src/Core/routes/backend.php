@@ -45,4 +45,10 @@ Route::namespace('Content')->group(function() {
 		Route::get('/', 'PageController@index')->name('backend.page');
 		Route::get('/create', 'PageController@create')->name('backend.page.create');
 	});
+
+	Route::prefix('layout')->group(function() {
+		Route::get('/', 'LayoutController@index')->name('backend.layout');
+		Route::get('/create', 'LayoutController@create')->name('backend.layout.create');
+		Route::post('/store', 'LayoutController@store')->name('backend.layout.store');
+	});
 });

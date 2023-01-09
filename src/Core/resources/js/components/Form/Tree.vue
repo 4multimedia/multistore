@@ -11,7 +11,7 @@
         </div>
         <div class="col-span-12 2xl:col-span-9">
             <div class="mt-6">
-                <form-body>
+                <form-body title="Edytuj kategorię" language>
                     <slot />
 
                     <template #buttons>

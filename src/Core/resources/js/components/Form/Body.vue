@@ -1,11 +1,11 @@
 <template>
 	<form method="post">
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">Edytuj kategorię</h2>
-        <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <div class="dropdown mr-2">
-                <button class="dropdown-toggle btn box flex items-center" aria-expanded="false" data-tw-toggle="dropdown">
-                    English <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="chevron-down" class="lucide lucide-chevron-down w-4 h-4 ml-2" data-lucide="chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        	<h2 class="text-lg font-medium mr-auto" v-if="title">{{ title }}</h2>
+        	<div class="w-full sm:w-auto flex mt-4 sm:mt-0" v-if="language">
+            	<div class="dropdown mr-2">
+                	<button class="dropdown-toggle btn box flex items-center" aria-expanded="false" data-tw-toggle="dropdown">
+                    	English <ChevronDown />
                 </button>
                 <div class="dropdown-menu w-40">
                     <ul class="dropdown-content">
@@ -13,12 +13,6 @@
                             <a href="" class="dropdown-item">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="activity" data-lucide="activity" class="lucide lucide-activity w-4 h-4 mr-2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                                 <span class="truncate">English</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="dropdown-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="activity" data-lucide="activity" class="lucide lucide-activity w-4 h-4 mr-2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                                <span class="truncate">Indonesian</span>
                             </a>
                         </li>
                     </ul>
@@ -62,3 +56,20 @@
 		</slot>
 	</form>
 </template>
+
+<script>
+import { ChevronDown } from 'lucide-vue';
+
+export default {
+	props: {
+		language: {
+			type: Boolean,
+			default: false
+		},
+		title: String
+	},
+	components: {
+		ChevronDown
+	}
+}
+</script>

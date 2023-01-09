@@ -5,7 +5,7 @@ function getElementConfig(componentName, props, editor) {
 	const config = {
 		defaultProps: {},
 		rules: {},
-		addition: {},
+		parameters: {},
 	};
 
 	let resolver;
@@ -40,10 +40,10 @@ function createNodeFromVNode(editor, vnode, parentNode = null) {
     props = { ...props, ...vnode.data.attrs };
   }
 
-  const { rules, addition, defaultProps } = getElementConfig(componentName, props, editor);
+  const { rules, parameters, defaultProps } = getElementConfig(componentName, props, editor);
   const nodeProps = { ...defaultProps, ...props };
 
-  const node = new Node(componentName, nodeProps, parentNode, [], rules, addition);
+  const node = new Node(componentName, nodeProps, parentNode, [], rules, parameters);
 
   const vnodeChildren = vnode.componentOptions.children;
   const children = vnodeChildren
