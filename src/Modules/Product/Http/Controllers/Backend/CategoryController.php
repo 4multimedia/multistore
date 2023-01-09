@@ -2,18 +2,10 @@
 
     namespace App\Modules\Product\Http\Controllers\Backend;
 
-    use App\Http\Controllers\Controller;
+    use Multimedia\Multistore\Core\Http\Controllers\Data\TreeViewController;
 
-    class CategoryController extends Controller {
+    class CategoryController extends TreeViewController {
         public function index() {
-			set_title(__('module.product::core.Categories'));
-			add_action_header(__('module.product::core.Create a category'));
-			return view('module.product.backend::category.index');
-        }
-
-        public function update() {
-            set_title(__('module.product::core.Categories'));
-			add_action_header(__('module.product::core.Create a category'));
-			return view('module.product.backend::category.index');
+            return view('module.product.backend::category.index');
         }
     }

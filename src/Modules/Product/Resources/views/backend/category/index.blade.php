@@ -1,5 +1,4 @@
-@extends('backend::layout.app')
-
-@section('content')
+@extends('backend::data.treeview')
+@section('form')
 
 @endsection

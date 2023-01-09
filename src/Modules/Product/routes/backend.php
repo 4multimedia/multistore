@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('product')->group(function() {
 	Route::get('/', 'ProductController@index')->name('backend.product');
 
+	category_routes('CategoryController', 'backend.product.category');
+
 	Route::prefix('producer')->group(function() {
 		Route::get('/', 'ProducerController@index')->name('backend.product.producer');
         Route::get('/create', 'ProducerController@create')->name('backend.product.producer.create');
