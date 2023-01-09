@@ -1,4 +1,5 @@
 import "./bootstrap";
+import "./location";
 import "@left4code/tw-starter/dist/js/svg-loader";
 import "@left4code/tw-starter/dist/js/accordion";
 import "@left4code/tw-starter/dist/js/alert";
@@ -26,7 +27,6 @@ import "./dropzone";
 import "./validation";
 import "./zoom";
 import "./notification";
-import "./location";
 
 
 /*
@@ -70,6 +70,7 @@ import UiTip from './components/Ui/Tip/Index';
 import FormBody from './components/Form/Body.vue';
 import FormModule from './components/Form/Module.vue';
 import FormSection from './components/Form/Section.vue';
+import FormTree from './components/Form/Tree.vue';
 
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
@@ -80,6 +81,14 @@ import DataTree from './components/Data/Tree/Index.vue';
 import DialogMedia from './components/Media/Dialog.vue';
 import Message from 'primevue/message';
 
+import pl from './../../../data/json/lang/pl.json';
+import en from './../../../data/json/lang/en.json';
+
+const translate = {
+    pl,
+    en
+}
+
 Vue.use(PrimeVue);
 
 Vue.component('InputText', InputText);
@@ -87,6 +96,7 @@ Vue.component('InputPassword', InputPassword);
 Vue.component('FormBody', FormBody);
 Vue.component('FormModule', FormModule);
 Vue.component('FormSection', FormSection);
+Vue.component('FormTree', FormTree);
 Vue.component('VisualBuilder', VisualBuilder);
 Vue.component('Paragraph', Paragraph);
 Vue.component('Container', Container);
@@ -107,7 +117,21 @@ Vue.component('Message', Message);
 Vue.component('InputGallery', InputGallery);
 Vue.component('DialogMedia', DialogMedia);
 
+const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+const lang = document.querySelector('meta[name="language"]').content;
+
+const __t = (value) => {
+    const [ group, key ] = value.split(".");
+    return (translate[lang][group] !== undefined && translate[lang][group][key]) ? translate[lang][group][key] : key;
+};
+
 new Vue({
+    provide: {
+        __t,
+        csrfToken,
+        lang,
+        translate,
+    },
     el: '#app',
 });
 

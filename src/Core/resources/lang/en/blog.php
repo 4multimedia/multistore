@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'title' => 'Blog',
+	'title' => 'Artykuły',
 	'list' => 'Lista wpisów',
 	'categories' => 'Kategorie wpisów',
 	'tags' => 'Tagi',

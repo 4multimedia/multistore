@@ -88,41 +88,10 @@
                 structure: []
             }
         },
-        mounted() {
-            window.addEventListener('popstate', function() {
-    alert(route);
-    console.log(window.globalConfig);
-});
-
-window.addEventListener('locationchange', function(){
-    alert(2);
-    console.log(window.globalConfig);
-});
-
-window.addEventListener('replaceState', function(){
-    alert(3);
-    console.log(window.globalConfig);
-});
-
-window.addEventListener('pushstate', function(){
-    alert(4);
-    console.log(window.globalConfig);
-});
-
-window.addEventListener('onpushstate', function(){
-    alert(5);
-    console.log(window.globalConfig);
-});
-
-window.onpopstate = (event) => {
-    console.log(`location: ${document.location}, state: ${JSON.stringify(event.state)}`);
-};
-
-        },
         methods: {
             item() {
                 const id = this.structure.length;
-                const hash = null;
+                const hash = `${id}sdasdasdas342dvcbvc`;
                 const data = {id, name: this.form.name};
 
                 return {
@@ -135,7 +104,7 @@ window.onpopstate = (event) => {
             },
             itemClick (node) {
                 this.current = node;
-                history.pushState({}, null, `/${window.globalConfig.backend}/product/category/${node.model.id}`);
+                window.history.replaceState({}, "", `/${window.globalConfig.backend}/product/category/${node.model.hash}`);
             },
             onHandleOpenDialog() {
                 this.dialog = true;

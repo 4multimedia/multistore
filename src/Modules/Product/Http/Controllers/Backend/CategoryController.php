@@ -10,4 +10,10 @@
 			add_action_header(__('module.product::core.Create a category'));
 			return view('module.product.backend::category.index');
         }
+
+        public function update() {
+            set_title(__('module.product::core.Categories'));
+			add_action_header(__('module.product::core.Create a category'));
+			return view('module.product.backend::category.index');
+        }
     }

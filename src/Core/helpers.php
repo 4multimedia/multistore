@@ -1,5 +1,7 @@
 <?php
 
+    use Illuminate\Support\Facades\Route;
+
 	function hook() {
         return app('hooks');
     }
@@ -169,5 +171,16 @@
 	function get_backend_language() {
 		return backend()->get_language();
 	}
+
+    function category_routes($controller, $name) {
+        Route::prefix('category')->group(function() use ($controller, $name) {
+            Route::get('/', $controller.'@index')->name($name);
+            Route::get('/create', $controller.'@create')->name($name.'.create');
+            Route::post('/create', $controller.'@store')->name($name.'.store');
+            Route::get('/{category}', $controller.'@update')->name($name.'.update');
+            Route::put('/{category}', $controller.'@restore')->name($name.'.restore');
+            Route::delete('/{category}', $controller.'@delete')->name($name.'.delete');
+        });
+    }
 
 ?>

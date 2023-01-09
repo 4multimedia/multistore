@@ -1,28 +1,24 @@
 @extends('backend::layout.app')
 
 @section('content')
-<div class="grid grid-cols-12 gap-6">
-    <div class="col-span-12 2xl:col-span-3">
-        <div class="2xl:border-r -mb-10 pb-10">
-            <div class="2xl:pr-6 grid grid-cols-12 gap-x-6 2xl:gap-x-0 gap-y-6">
-                <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
-                    <data-tree url="" root=""></data-tree>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-span-12 2xl:col-span-9">
-        <div class="mt-6">
-            {!! form()->text(null, 'name', ['placeholder' => 'Nazwa kategorii']) !!}
-            {!! form()->gallery(null, 'a') !!}
-            {{ do_action('category__after__name') }}
+<form-tree url="" root="">
+    {{ do_action('category_before') }}
 
-            <x-backend-meta></x-backend-meta>
-        </div>
-    </div>
-</div>
+    {{ do_action('category_name_before') }}
+    {!! form()->text(null, 'name', ['placeholder' => 'Nazwa kategorii', 'class' => 'text-lg']) !!}
+    {{ do_action('category_name_after') }}
 
-<script>
-    const route = 'route';
-</script>
+    <ui-box header="Podstawowe informacje">
+        {!! form()->gallery(null, 'a') !!}
+        {!! form()->text('Krótki opis', 'name', ['placeholder' => 'Nazwa kategorii', ':column' => true]) !!}
+        {!! form()->text('Opis kategorii', 'name', ['placeholder' => 'Nazwa kategorii', ':column' => true]) !!}
+    </ui-box>
+
+    {{ do_action('category_form_before') }}
+    @yield('form')
+    {{ do_action('category_form_after') }}
+
+    <x-backend-meta></x-backend-meta>
+    {{ do_action('category_after') }}
+</form-tree>
 @endsection

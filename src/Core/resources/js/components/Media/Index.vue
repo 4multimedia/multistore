@@ -1,7 +1,7 @@
 <template>
 	<div>
         <div class="intro-y flex items-center mt-8  justify-between">
-			<h2 class="text-lg font-medium mr-auto">{{ translation('media') }}</h2>
+			<h2 class="text-lg font-medium mr-auto">{{ __t('media.Media') }}</h2>
             <FileUpload name="files[]" mode="basic" url="/admin/media/upload" class="ml-2" buttonClass="shadow-md w-32" chooseIcon="pi pi-times" uploadIcon="pi pi-times" chooseLabel="Wgraj pliki" :multiple="true" :auto="true" @before-send="beforeSendMedia" @upload="uploadMedia" />
             <Button @click="onHandleOpenDialog('directory')" class="btn btn-primary shadow-md w-32 ml-2" label="Dodaj folder"></Button>
 		</div>
@@ -10,34 +10,34 @@
                 <media-search class="intro-y"></media-search>
                 <div class="intro-y box p-5 mt-5">
                     <div class="mt-1">
-                        <span @click="onHandleGetType('all')" class="cursor-pointer flex items-center px-3 py-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'all'}"><Files class="w-4 h-4 mr-2" /> {{ translation('All files') }} </span>
-                        <span @click="onHandleGetType('images')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'images'}"><FileImage class="w-4 h-4 mr-2" /> {{ translation('Images') }} </span>
-                        <span @click="onHandleGetType('docs')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'docs'}"><FileText class="w-4 h-4 mr-2" /> {{ translation('Documents') }} </span>
-                        <span @click="onHandleGetType('archive')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'archive'}"><FileArchive class="w-4 h-4 mr-2" /> {{ translation('Archived') }} </span>
-                        <span @click="onHandleGetType('trash')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'trash'}"><Trash2 class="w-4 h-4 mr-2" /> {{ translation('Trashed') }} </span>
+                        <span @click="onHandleGetType('all')" class="cursor-pointer flex items-center px-3 py-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'all'}"><Files class="w-4 h-4 mr-2" /> {{ __t('media.All files') }} </span>
+                        <span @click="onHandleGetType('images')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'images'}"><FileImage class="w-4 h-4 mr-2" /> {{ __t('media.Images') }} </span>
+                        <span @click="onHandleGetType('docs')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'docs'}"><FileText class="w-4 h-4 mr-2" /> {{ __t('media.Documents') }} </span>
+                        <span @click="onHandleGetType('archive')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'archive'}"><FileArchive class="w-4 h-4 mr-2" /> {{ __t('media.Archived') }} </span>
+                        <span @click="onHandleGetType('trash')" class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md" :class="{'bg-primary text-white font-medium' : type == 'trash'}"><Trash2 class="w-4 h-4 mr-2" /> {{ __t('media.Trashed') }} </span>
                     </div>
 					<div class="border-t border-slate-200 dark:border-darkmode-400 mt-4 pt-4">
-                        <input-checkbox label="Pokaż foldery" class="ml-2" v-model="show.directories" name="directories" :callback="onChange" />
-						<input-checkbox label="Pokaż pliki" class="ml-2 mt-2" v-model="show.files" name="files" :callback="onChange" />
+                        <input-checkbox :label="__t('media.Show catalogs')" class="ml-2" v-model="show.directories" name="directories" :callback="onChange" />
+						<input-checkbox :label="__t('media.Show files')" class="ml-2 mt-2" v-model="show.files" name="files" :callback="onChange" />
                     </div>
                     <div class="border-t border-slate-200 dark:border-darkmode-400 mt-4 pt-4">
-                        <span class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md"><Plus class="w-4 h-4 mr-2" /> {{ translation('Add tag') }} </span>
+                        <span class="cursor-pointer flex items-center px-3 py-2 mt-2 rounded-md"><Plus class="w-4 h-4 mr-2" /> {{ __t('media.Add tag') }} </span>
                     </div>
                 </div>
 
                 <ui-tip class="mt-5 intro-y"></ui-tip>
             </div>
             <div class="col-span-12 lg:col-span-9 2xl:col-span-10">
-                <BlockUI :blocked="blockedPanel">
+                <div :blocked="blockedPanel">
                 <div class="mb-5 flex">
                     <ChevronLeft v-if="item && item.path && item.path.length > 0" class="w-4 h-4 cursor-pointer text-slate-500 mr-2 mt-1" @click="onHandleGetItems(back, 'directory')" />
                     <div>
                         <div class="text-base font-medium flex items-center">
                             <span v-if="item.name">{{ item.name }}</span>
-                            <span v-else>Media</span>
+                            <span v-else>{{ __t('media.Media') }}</span>
                         </div>
                         <div class="text-xs text-slate-600 flex items-center">
-                            <span class="cursor-pointer" @click="onHandleGetItems('', 'directory')">Media</span>
+                            <span class="cursor-pointer" @click="onHandleGetItems('', 'directory')">{{ __t('media.Media') }}</span>
                             <div class="flex items-center" v-for="path, index in item.path" :key="index">
                                 <ChevronRight class="mx-1 text-slate-500 w-3 h-3" />
                                 <span  @click="onHandleGetItems(path.hash, 'directory')" class="cursor-pointer">{{ path.name }}</span>
@@ -94,10 +94,10 @@
                     <div class="text-lg font-medium">Nie masz jeszcze żadnych folderów ani plików</div>
                     <p class="text-md mt-5 w-96 text-center">Dodawaj i zarządzaj plikami.<br /> Twórz foldery aby zorgainizować i uprządkować pliki.</p>
                     <button @click="onHandleOpenDialog('directory')" class="btn bg-white shadow-md w-32 my-5">Dodaj folder</button>
-                    <p class="text-xs text-slate-500 font-medium">Potrzebujesz wsparcia? Zajrzyj do <a href="" class="text-blue-500 underline">Centrum Pomocy</a></p>
+                    <p class="text-xs text-slate-500 font-medium">Potrzebujesz wsparcia? Zajrzyj do <a href="https://help.4multi.store" target="_blank" class="text-blue-500 underline">Centrum Pomocy</a></p>
                 </div>
 
-                </BlockUI>
+                </div>
             </div>
         </div>
 
@@ -122,7 +122,6 @@ import MediaSearch from './Search.vue';
 import { Files, FileImage, FileText, FileArchive, Trash2, Plus, ChevronLeft, ChevronRight } from 'lucide-vue';
 import FileUpload from 'primevue/fileupload';
 import BlockUI from 'primevue/blockui';
-import pl from './../../../lang/pl.json';
 
 export default {
 	props: {
@@ -150,6 +149,7 @@ export default {
         MediaSearch,
         FileUpload
     },
+    inject: ['translate', '__t'],
 	data() {
 		return {
 			token: '',
@@ -171,9 +171,6 @@ export default {
                 directory: {
                     name: ''
                 }
-            },
-            lang: {
-                pl
             },
 			images: [
 				'jpg', 'jpeg', 'png', 'gif'
@@ -238,9 +235,6 @@ export default {
         },
         onHandleHideDialog(type) {
             this.dialog[type] = false;
-        },
-        translation(key) {
-            return this.lang['pl'][key] === undefined ? key : this.lang['pl'][key];
         },
 		beforeSendMedia(request) {
 			request.formData.append('_token', this.token);

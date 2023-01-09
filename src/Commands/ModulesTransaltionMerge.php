@@ -47,9 +47,11 @@ class ModulesTransaltionMerge extends Command
                     $fileName = $file->getFilename();
 
                     $array[$key] = File::getRequire($dir.'/'.$fileName);
+                    $this->info("Generate: $language - $key");
                 }
 
                 $json = json_encode($array, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+
             }
 
             @mkdir(__DIR__ . '/../data');

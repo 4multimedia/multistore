@@ -41,7 +41,7 @@ class FunctionServiceProvider extends ServiceProvider {
 			}
 		}
 		if (config('multimedia.modules.media')) {
-			add_to_menu('media', 'backend::media.title', 'backend.media', 70, ['icon' => 'image']);
+			add_to_menu('media', 'backend::media.Media', 'backend.media', 70, ['icon' => 'image']);
 		}
 
 		add_devider_menu(79);

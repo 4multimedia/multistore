@@ -44,10 +44,10 @@
                 }
             },
             onSelectFile(hash) {
-                alert('1234 ' +hash);
+                this.$emit('update:display', false);
             },
             onHandleHideDialog() {
-                this.display = false;
+                this.$emit('update:display', false);
                 this.selected = [];
             }
         },

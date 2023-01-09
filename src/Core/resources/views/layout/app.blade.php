@@ -4,6 +4,7 @@
         <title>{{ get_meta_title('4Mutli.Store - Panel administracyjny') }}</title>
 		{{ get_assets_backend_js('before') }}
 		<meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="language" content="{{ app()->getLocale() }}">
     </head>
     <body class="main">
         <!-- BEGIN: Mobile Menu -->

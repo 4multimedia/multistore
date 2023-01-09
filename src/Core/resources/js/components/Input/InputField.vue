@@ -1,5 +1,5 @@
 <template>
-	<div class="items-start mt-3 pt-3 first:mt-0 first:pt-0" :class="{'form-inline flex-col xl:flex-row' : !column, 'has-error' : error.length > 0}">
+	<div class="intro-y items-start mt-3 pt-3 first:mt-0 first:pt-0" :class="{'form-inline flex-col xl:flex-row' : !column, 'has-error' : error.length > 0}">
 		<div class="form-label xl:w-64 xl:!mr-10" :class="{'mb-2': column}" v-if="label">
             <div class="text-left">
                 <div class="flex items-center" :class="{'mt-2': !column}">

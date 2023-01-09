@@ -35,4 +35,4 @@ Route::prefix('media')->namespace('Media')->group(function() {
 	});
 });
 
-Route::get('lang/{lang}', 'LangController@index');
+Route::get('lang/{lang}', 'Content\LangController@index');

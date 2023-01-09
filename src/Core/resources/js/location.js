@@ -1,5 +1,5 @@
 window.addEventListener('popstate', function() {
-    alert(route);
+    alert(1);
     console.log(window.globalConfig);
 });
 
@@ -24,5 +24,11 @@ window.addEventListener('onpushstate', function(){
 });
 
 window.onpopstate = (event) => {
+    alert(6);
     console.log(`location: ${document.location}, state: ${JSON.stringify(event.state)}`);
 };
+
+window.addEventListener('changestate', function (e) {
+    alert(7);
+    console.log(window.globalConfig);
+});
