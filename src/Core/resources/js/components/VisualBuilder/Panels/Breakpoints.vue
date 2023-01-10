@@ -1,19 +1,26 @@
 <template>
-	<button v-for="item in items" :key="item.name">{{ item.name }}</button>
+	<div>
+		<button
+			v-for="item in breakpoints"
+			:key="item.name"
+			@click="onHandleChangeBreakpoint(item.id)"
+			class="btn btn-outline-dark"
+		>
+			{{ item.name }}
+		</button>
+	</div>
 </template>
 
 <script>
 	export default {
-		data() {
-			return {
-				items: [
-					{name: 'XXL', size: '1400', full: true},
-					{name: 'XL', size: '1200', full: true},
-					{name: 'LG', size: '992', full: true},
-					{name: 'MD', size: '768', full: true},
-					{name: 'SM', size: '576', full: true},
-					{name: 'XS', size: '576', full: true},
-				]
+		props: {
+			breakpoint: Object,
+			breakpoints: Array
+		},
+		methods: {
+			onHandleChangeBreakpoint(id) {
+				const item = this.breakpoints.find(e => e.id === id);
+				this.$emit("update:breakpoint", item);
 			}
 		}
 	}

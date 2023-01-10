@@ -1,22 +1,22 @@
 <template>
-     <Editor component='div' :resolverMap="resolverMap">
-          <div class="container-fluis">
-               <div class="d-flex">
-                    <div class="col">
-                         <PanelElements />
-                         <PanelSettings />
-						 <PanelBreakpoints />
-                    </div>
-                    <div class="col-10">
-                         <PanelRules>
-                              <Frame component="div" class="preview-panel">
-                                   <Canvas component="Container"></Canvas>
-                              </Frame>
-                         </PanelRules>
-                    </div>
-               </div>
-          </div>
-     </Editor>
+	<Editor component='div' :resolverMap="resolverMap">
+		<div class="container-fluis">
+			<div class="d-flex">
+				<div class="col">
+					<PanelElements />
+					<PanelSettings />
+					<PanelBreakpoints :breakpoint.sync="breakpoint" :breakpoints="breakpoints" @onSelectBreakpoint="onSelectBreakpoint" />
+				</div>
+				<div class="col-10">
+					<PanelRules :breakpoint="breakpoint">
+						<Frame component="div" class="visualbuilder-preview">
+							<Canvas component="Container"></Canvas>
+						</Frame>
+					</PanelRules>
+				</div>
+			</div>
+		</div>
+	</Editor>
 </template>
 
 <script>
@@ -35,27 +35,49 @@ import Paragraph from './Elements/Paragraph.vue';
 import Row from './Elements/Row/Index.vue';
 
 export default {
-     components: {
-        Canvas,
-        Editor,
-        Frame,
-        Headline,
-        PanelElements,
-        PanelRules,
-        PanelSettings,
+	components: {
+		Canvas,
+		Editor,
+		Frame,
+		Headline,
+		PanelElements,
+		PanelRules,
+		PanelSettings,
 		PanelBreakpoints
-     },
-     data() {
-          return {
-               resolverMap: {
-                    Canvas,
-                    Column,
-                    Row,
-                    Paragraph,
-                    Headline,
-                    Container
-               }
-          }
-     }
+	},
+	mounted() {
+		this.onSelectBreakpoint('xxl');
+	},
+	methods: {
+		onSelectBreakpoint(id) {
+			const item = this.breakpoints.find(e => e.id === id);
+			if(item) {
+				this.breakpoint = item;
+			}
+		}
+	},
+	data() {
+		  return {
+			breakpoint: {
+
+			},
+			breakpoints: [
+				{id: 'xxl', name: 'XXL', size: '1400', full: true},
+				{id: 'xl', name: 'XL', size: '1200', full: true},
+				{id: 'lg', name: 'LG', size: '992', full: true},
+				{id: 'md', name: 'MD', size: '768', full: false},
+				{id: 'sm', name: 'SM', size: '576', full: false},
+				{id: 'xs', name: 'XS', size: '576', full: false},
+			],
+			resolverMap: {
+				Canvas,
+				Column,
+				Row,
+				Paragraph,
+				Headline,
+				Container
+			}
+		}
+	}
 }
 </script>
