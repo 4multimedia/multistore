@@ -50,6 +50,10 @@
 		hook()->get_assets_backend_js($position);
 	}
 
+	function get_assets_frontend_js($position = 'after') {
+		hook()->get_assets_frontend_js($position);
+	}
+
 	function get_css() {
 		return hook()->get_css();
 	}

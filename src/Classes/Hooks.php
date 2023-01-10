@@ -78,6 +78,12 @@
 			}
 		}
 
+		public function get_assets_frontend_js($position = 'after') {
+			foreach($this->assets_js[$position] as $path) {
+				echo "\n\t\t<script src=\"".asset($path)."\" referrerpolicy=\"origin\"></script>";
+			}
+		}
+
 		/* HOOKS Title */
 		public function set_title($title) {
 			$this->title = $title;
