@@ -81,6 +81,8 @@ import DataTree from './components/Data/Tree/Index.vue';
 import DialogMedia from './components/Media/Dialog.vue';
 import Message from 'primevue/message';
 
+import ViewsLayoutColors from './components/Views/Layout/Colors.vue'
+
 import pl from './../../../data/json/lang/pl.json';
 import en from './../../../data/json/lang/en.json';
 
@@ -116,6 +118,7 @@ Vue.component('InputCheckbox', InputCheckbox);
 Vue.component('Message', Message);
 Vue.component('InputGallery', InputGallery);
 Vue.component('DialogMedia', DialogMedia);
+Vue.component('ViewsLayoutColors', ViewsLayoutColors);
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 const lang = document.querySelector('meta[name="language"]').content;

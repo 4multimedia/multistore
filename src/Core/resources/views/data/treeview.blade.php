@@ -1,4 +1,4 @@
-@extends('backend::layout.app')
+@extends('backend::layouts.app')
 
 @section('content')
 <form-tree url="" root="">

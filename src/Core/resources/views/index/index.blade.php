@@ -1,4 +1,4 @@
-@extends('backend::layout.app')
+@extends('backend::layouts.app')
 
 @section('content')
     <div class="grid grid-cols-12 gap-6">

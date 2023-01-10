@@ -1,5 +1,5 @@
 <template>
-    <div class="intro-y box mt-5">
+    <div class="intro-y box mt-5 first:mt-0">
         <div class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
             <div class="flex justify-between w-full">
                 <h2 class="font-medium text-base mr-auto">{{ header }}</h2>

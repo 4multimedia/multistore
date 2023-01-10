@@ -5,10 +5,10 @@
                 <div class="flex items-center" :class="{'mt-2': !column}">
                     <div class="font-medium">{{ label }}</div> <span class="ml-2 text-red-700">*</span>
                 </div>
-                <div v-if="help" class="leading-relaxed text-slate-500 text-xs mt-3">{{ help }}</div>
+                <div v-if="help" class="leading-relaxed text-slate-500 text-xs mt-2">{{ help }}</div>
             </div>
         </div>
-		<div class="w-full mt-3 xl:mt-0 flex-1">
+		<div class="w-full mt-2 xl:mt-0 flex-1">
 			<slot />
 			<div v-if="max" class="form-help text-right">{{ count }}/{{ max }}</div>
             <InputError :error="error" />

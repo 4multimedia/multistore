@@ -1,4 +1,4 @@
-@extends('backend::layout.app')
+@extends('backend::layouts.app')
 
 @section('content')
 	<x-backend-editor></x-backend-editor>
