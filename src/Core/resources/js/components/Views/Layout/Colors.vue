@@ -5,7 +5,7 @@
 		</div>
 
 		<div class="flex justify-end">
-			<button class="btn w-32 mt-5" @click="onHandleAddColor">Dodaj kolor</button>
+			<button class="btn w-32 mt-5" type="button" @click="onHandleAddColor">Dodaj kolor</button>
 		</div>
 	</div>
 </template>

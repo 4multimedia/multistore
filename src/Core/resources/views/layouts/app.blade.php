@@ -905,6 +905,13 @@
 					@endif
 
 					<div id="app">
+						@if(session('success'))
+							<div class="absolute z-50 right-0 top-0 p-5 w-full">
+								<div class="container sm:px-10">
+									<message severity="success" :sticky="false" :life="8000">{{session('success')}}</message>
+								</div>
+							</div>
+						@endif
 						@yield('content')
 					</div>
                 </div>

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id_option');
             $table->timestamps();
 			$table->json('key');
-            $table->json('values');
+            $table->json('value');
 			$table->json('id_record')->nullable();
 			$table->string('module', 64)->nullable();
             $table->boolean('autoload')->default(0);

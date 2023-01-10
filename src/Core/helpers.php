@@ -1,6 +1,7 @@
 <?php
 
     use Illuminate\Support\Facades\Route;
+use Multimedia\Multistore\Core\Models\Option;
 
 	function hook() {
         return app('hooks');
@@ -72,6 +73,13 @@
 
 	function get_name() {
 		return '4Multi.Store';
+	}
+
+	function set_option($key, $value) {
+		if (is_array($value)) {
+			$value = json_encode($value, JSON_NUMERIC_CHECK|JSON_UNESCAPED_UNICODE);
+		}
+		Option::updateOrCreate(['key' => $key], ['value' => $value]);
 	}
 
 	function get_host() {
