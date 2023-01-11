@@ -1,0 +1,8 @@
+.domains {
+
+}
+.domains-content {
+	.domains-content__box {
+        @apply p-5;
+    }
+}

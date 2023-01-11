@@ -664,6 +664,35 @@
                     </ol>
                 </nav>
                 <!-- END: Breadcrumb -->
+
+
+				<div class="intro-x dropdown mr-4 sm:mr-6">
+					@if (domain()->count() == 1)
+						<div class="flex text-white items-center">{{ domain()->current()->domain }}</div>
+					@endif
+					@if (domain()->count() > 1)
+					<div class="dropdown-toggle domains domains--items cursor-pointer" role="button" aria-expanded="false" data-tw-toggle="dropdown">
+						<div class="flex text-white items-center">
+							<span>{{ domain()->current()->domain }}</span>
+							<i class="w-4 h-4 ml-2" data-lucide="chevron-down"></i>
+						</div>
+					</div>
+					<div class="domains-content pt-2 dropdown-menu">
+						<div class="domains-content__box dropdown-content">
+							<ul>
+								@foreach(domain()->get_list() as $key => $domain)
+									<li class="@if ($key > 0) mt-3 @endif">
+										<a href="?domain={{ $domain["id"] }}">
+											<span>{{ $domain["domain"] }}</span>
+										</a>
+									</li>
+								@endforeach
+							</ul>
+						</div>
+					</div>
+					@endif
+				</div>
+
                 <!-- BEGIN: Search -->
                 <div class="intro-x relative mr-3 sm:mr-6">
                     <div class="search hidden sm:block">

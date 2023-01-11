@@ -31,13 +31,13 @@ class FunctionServiceProvider extends ServiceProvider {
 		if (config('multimedia.modules.content.popup') || config('multimedia.modules.content.slider')) {
 			add_to_menu('content', 'backend::content.title', null, 63, ['icon' => 'layout-template']);
             if (config('multimedia.modules.content.navigation')) {
-				add_to_submenu('content', 'backend::content.navigation', 'backend.user', 5);
+				add_to_submenu('content', 'backend::content.Navigation', 'backend.user', 5);
 			}
 			if (config('multimedia.modules.content.popup')) {
-				add_to_submenu('content', 'backend::content.popup', 'backend.user', 10);
+				add_to_submenu('content', 'backend::content.Popup', 'backend.user', 10);
 			}
 			if (config('multimedia.modules.content.slider')) {
-				add_to_submenu('content', 'backend::content.slider', 'backend.user', 20);
+				add_to_submenu('content', 'backend::content.Slider', 'backend.user', 20);
 			}
 		}
 		if (config('multimedia.modules.media')) {
@@ -55,15 +55,17 @@ class FunctionServiceProvider extends ServiceProvider {
 			add_to_submenu('setting', 'backend::blog.title', 'backend.user', 20);
 		}
 		if (config('multimedia.modules.media') && config('multimedia.modules.setting.thumbnails')) {
-			add_to_submenu('setting', 'backend::thumbnails.title', 'backend.user', 25);
+			add_to_submenu('setting', 'backend::thumbnails.Thumbnails', 'backend.user', 25);
 		}
         if (config('multimedia.modules.translate')) {
-		    add_to_submenu('setting', 'backend::language.title', 'backend.user', 30);
+		    add_to_submenu('setting', 'backend::language.Language versions', 'backend.user', 30);
         }
-		add_to_submenu('setting', 'backend::cookie.title', 'backend.user', 40);
-		add_to_submenu('setting', 'backend::seo.title', 'backend.user', 30);
-		add_to_submenu('setting', 'backend::redirect.title', 'backend.user', 31);
-		add_to_submenu('setting', 'backend::task.title', 'backend.user', 50);
+		add_to_submenu('setting', 'backend::layout.Layout', 'backend.layout.setting.index', 35);
+		add_to_submenu('setting', 'backend::setting.Domains', 'backend.setting.domain', 35);
+		add_to_submenu('setting', 'backend::cookie.Cookies', 'backend.user', 40);
+		add_to_submenu('setting', 'backend::seo.SEO', 'backend.user', 30);
+		add_to_submenu('setting', 'backend::redirect.Redirects', 'backend.user', 31);
+		add_to_submenu('setting', 'backend::task.Tasks', 'backend.user', 50);
     }
 }
 

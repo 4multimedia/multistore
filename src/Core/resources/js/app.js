@@ -53,10 +53,12 @@ import Vue from 'vue';
 import PrimeVue from 'primevue/config';
 import InputText from './components/Input/InputText.vue';
 import InputPassword from './components/Input/InputPassword.vue';
+import InputSwitch from './components/Input/InputSwitch.vue';
 import Dropdown from './components/Input/Dropdown.vue';
 import InputCheckbox from './components/Input/InputCheckbox.vue';
 import VisualBuilder from './components/VisualBuilder/Index.vue';
 import InputGallery from './components/Input/Gallery.vue';
+import InputImage from './components/Input/InputImage.vue'
 
 import Paragraph from './components/VisualBuilder/Elements/Paragraph';
 import Container from './components/VisualBuilder/Elements/Container';
@@ -95,6 +97,8 @@ Vue.use(PrimeVue);
 
 Vue.component('InputText', InputText);
 Vue.component('InputPassword', InputPassword);
+Vue.component('InputSwitch', InputSwitch);
+Vue.component('InputImage', InputImage);
 Vue.component('FormBody', FormBody);
 Vue.component('FormModule', FormModule);
 Vue.component('FormSection', FormSection);

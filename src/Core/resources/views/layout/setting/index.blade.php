@@ -1,8 +1,6 @@
 @extends('backend::layouts.app')
 
 @section('content')
-<form method="post">
-	@csrf
 	<form-module>
 		<form-section header="Typografia">
 			<ui-box header="Ustawienia globalne">
@@ -15,8 +13,14 @@
 			</ui-box>
 		</form-section>
 		<form-section header="Kolorystyka">
-			<ui-box header="Ustawienia globalne">
-				<views-layout-colors></views-layout-colors>
+			<ui-box header="Kolory podstawowe">
+				<views-layout-colors name="color[general]" :colors="{!! strtr(json_encode($colors["general"]), ['"' => "'"]) !!}"></views-layout-colors>
+			</ui-box>
+			<ui-box header="Linki">
+				<views-layout-colors name="color[link]" :colors="{!! strtr(json_encode($colors["link"]), ['"' => "'"]) !!}"></views-layout-colors>
+			</ui-box>
+			<ui-box header="Kolory dodatkowe">
+				<views-layout-colors name="color[additional]" :colors="{!! strtr(json_encode($colors["additional"]), ['"' => "'"]) !!}" add></views-layout-colors>
 			</ui-box>
 		</form-section>
 		<form-section header="Rozmiary responsywne">
@@ -26,10 +30,5 @@
 				<input type="text" name="breakpoint[][full]" />
 			</ui-box>
 		</form-section>
-
-		<div class="flex mt-5 justify-end">
-			<button class="btn btn-primary w-48" type="submit">Zapisz zmiany</button>
-		</div>
 	</form-module>
-</form>
 @endsection

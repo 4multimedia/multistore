@@ -1,22 +1,25 @@
 <template>
-	<InputField :label="label" :required="required" :help="help" :error="error" :max="max" :modelValue="modelValue" :column="column">
-		<PrimeInputText class="form-control" :help="help" :name="name" v-model="modelValue" :placeholder="getplaceholder" :maxlength="max" @input="onChange($event)" />
+	<InputField :label="label" :help="help" :error="error" :required="required" :max="max" :modelValue="modelValue" :column="column">
+		<PrimeInputSwitch :name="name" v-model="modelValue" @input="onChange($event)" />
 	</InputField>
 </template>
 
 <script>
 import InputField from './InputField.vue';
-import PrimeInputText from 'primevue/inputtext';
+import PrimeInputSwitch from 'primevue/inputswitch';
 
 export default {
     components: {
         InputField,
-        PrimeInputText,
+        PrimeInputSwitch,
     },
     props: {
         label: String,
 		placeholder: String,
-        value: String,
+        value: {
+			type: Boolean,
+			default: false
+		},
 		help: String,
         name: String,
         error: Array,

@@ -57,3 +57,14 @@ Route::namespace('Layout')->prefix('layout')->group(function() {
 		Route::post('/', 'SettingController@store')->name('backend.layout.setting.store');
 	});
 });
+
+Route::namespace('Setting')->prefix('setting')->group(function() {
+	Route::prefix('domains')->group(function() {
+		Route::get('/', 'DomainController@index')->name('backend.setting.domain');
+		Route::get('/create', 'DomainController@create')->name('backend.setting.domain.create');
+		Route::post('/create', 'DomainController@store')->name('backend.setting.domain.store');
+		Route::get('/{optionDomain}', 'DomainController@update')->name('backend.setting.domain.update');
+		Route::post('/{optionDomain}', 'DomainController@restore')->name('backend.setting.domain.restore');
+		Route::delete('/{optionDomain}', 'DomainController@delete')->name('backend.setting.domain.delete');
+	});
+});

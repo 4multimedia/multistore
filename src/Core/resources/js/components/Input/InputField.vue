@@ -3,7 +3,7 @@
 		<div class="form-label xl:w-64 xl:!mr-10" :class="{'mb-2': column}" v-if="label">
             <div class="text-left">
                 <div class="flex items-center" :class="{'mt-2': !column}">
-                    <div class="font-medium">{{ label }}</div> <span class="ml-2 text-red-700">*</span>
+                    <div class="font-medium">{{ label }}</div> <span v-if="required" class="ml-2 text-red-700">*</span>
                 </div>
                 <div v-if="help" class="leading-relaxed text-slate-500 text-xs mt-2">{{ help }}</div>
             </div>
@@ -40,7 +40,11 @@
             column: {
                 type: Boolean,
                 default: false
-            }
+            },
+			required: {
+				type: Boolean,
+				default: false
+			}
         }
     }
 </script>

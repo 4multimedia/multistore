@@ -39,6 +39,8 @@
                 'filter' => isset($options["filter"]) ? $options["filter"] : [],
                 'template' => isset($options["template"]) ? $options["template"] : null,
                 'headerClass' => isset($options["headerClass"]) ? $options["headerClass"] : null,
+				'bodyClass' => isset($options["bodyClass"]) ? $options["bodyClass"] : null,
+                'type' => isset($options["type"]) ? $options["type"] : 'string',
             ];
         }
 
@@ -125,6 +127,13 @@
             foreach($this->fields as $field) {
                 $id = $field["id"];
                 $array[$id]["value"] = $field["template"] === null ? $item->{$id} : $this->template($field["template"], $item);
+				if (isset($field["type"]) && $field["type"] === 'boolean') {
+					if ($array[$id]["value"] == 1 || $array[$id]["value"] == true) {
+						$array[$id]["value"] = '<span class="text-green-600"><i data-lucide="check" class="w-4 h-4"></i></span>';
+					} else if ($array[$id]["value"] == 0 || $array[$id]["value"] == false) {
+						$array[$id]["value"] = '<span class="text-red-600"><i data-lucide="x" class="w-4 h-4"></i></span>';
+					}
+				}
                 $array[$id]["actions"] = $this->template_actions($item);
             }
             return $array;

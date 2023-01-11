@@ -15,7 +15,7 @@
             @foreach($values as $value)
             <tr class="intro-x">
                 @foreach($fields as $field)
-                    <td>{!! $value[$field["id"]]["value"] !!}</td>
+                    <td class="@if($field["bodyClass"]) {{ $field["bodyClass"] }} @endif">{!! $value[$field["id"]]["value"] !!}</td>
                 @endforeach
                 @if(count($actions) > 0)
                     <td class="w-16 text-right">

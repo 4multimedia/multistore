@@ -1,7 +1,8 @@
 <?php
 
-    use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route;
 use Multimedia\Multistore\Core\Models\Option;
+use Multimedia\Multistore\Core\Http\Classes\Tables;
 
 	function hook() {
         return app('hooks');
@@ -33,6 +34,14 @@ use Multimedia\Multistore\Core\Models\Option;
 
 	function media() {
 		return app('media');
+	}
+
+	function table() {
+		return app('table');
+	}
+
+	function domain() {
+		return app('domain');
 	}
 
 	function register_css_path($path) {
@@ -80,6 +89,16 @@ use Multimedia\Multistore\Core\Models\Option;
 			$value = json_encode($value, JSON_NUMERIC_CHECK|JSON_UNESCAPED_UNICODE);
 		}
 		Option::updateOrCreate(['key' => $key], ['value' => $value]);
+	}
+
+	function get_option($key, $default) {
+		$option = Option::where('key', $key)->first();
+		if ($option) {
+			$data = $option->value;
+			$data = json_decode($data, true);
+			return $data;
+		}
+		return $default;
 	}
 
 	function get_host() {
@@ -194,5 +213,15 @@ use Multimedia\Multistore\Core\Models\Option;
             Route::delete('/{category}', $controller.'@delete')->name($name.'.delete');
         });
     }
+
+	// table
+
+	function create_table($id, $options) {
+		table()->create($id, $options);
+	}
+
+	function get_table($id) {
+		return table()->render($id);
+	}
 
 ?>

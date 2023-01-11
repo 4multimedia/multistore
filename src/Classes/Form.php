@@ -34,7 +34,11 @@
 			foreach($params as $param_key => $param_value) {
 				$array[$param_key] = $param_value;
 			}
-			$array["value"] = old($name);
+			$array["value"] = old($name) !== null ? old($name) : (isset($params["value"]) ? $params["value"] : '');
+			if ($array["value"] == "true" || $array["value"] == "false") {
+				$array[":value"] = $array["value"];
+				unset($array["value"]);
+			}
 			$array[":error"] = $error;
 
             return "<$component ".$this->attr($array)."></$component>";
@@ -65,7 +69,7 @@
 			foreach($params as $param_key => $param_value) {
 				$array[$param_key] = $param_value;
 			}
-			$array["value"] = old($name);
+			$array["value"] = old($name) !== null ? old($name) : (isset($params["value"]) ? $params["value"] : '');
 			$array[":error"] = $error;
 
             return "<input-text ".$this->attr($array)."></input-text>";
@@ -109,7 +113,15 @@
 			return $this->field('input-checkbox', $label, $name, $params);
 		}
 
+		public function switch($label, $name, $params = []) {
+			return $this->field('input-switch', $label, $name, $params);
+		}
+
         public function gallery($label, $name, $params = []) {
 			return $this->field('input-gallery', $label, $name, $params);
+		}
+
+		public function image($label, $name, $params = []) {
+			return $this->field('input-image', $label, $name, $params);
 		}
     }

@@ -1,5 +1,8 @@
 <?php
 
 return [
-	'title' => 'Zawartość'
+	'title' => 'Zawartość',
+	'Navigation' => 'Nawigacja',
+	'Popup' => 'Popup',
+	'Slider' => 'Slider'
 ];

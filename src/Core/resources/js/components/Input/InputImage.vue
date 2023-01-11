@@ -1,17 +1,15 @@
 <template>
-	<InputField :label="label" :required="required" :help="help" :error="error" :max="max" :modelValue="modelValue" :column="column">
-		<PrimeInputText class="form-control" :help="help" :name="name" v-model="modelValue" :placeholder="getplaceholder" :maxlength="max" @input="onChange($event)" />
+	<InputField :label="label" :help="help" :error="error" :required="required" :max="max" :modelValue="modelValue" :column="column">
+		wybierz zdjęcie
 	</InputField>
 </template>
 
 <script>
 import InputField from './InputField.vue';
-import PrimeInputText from 'primevue/inputtext';
 
 export default {
     components: {
-        InputField,
-        PrimeInputText,
+        InputField
     },
     props: {
         label: String,
@@ -44,11 +42,6 @@ export default {
 			}
 		}
 	},
-    methods: {
-        onChange(value) {
-            this.$emit('update:value', value)
-        }
-    },
     watch: {
         value() {
             this.modelValue = this.value;

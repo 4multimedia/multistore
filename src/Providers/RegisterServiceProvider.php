@@ -10,6 +10,8 @@ use Multimedia\Multistore\Classes\Plugins;
 use Multimedia\Multistore\Classes\Form;
 use Multimedia\Multistore\Classes\Menu;
 use Multimedia\Multistore\Classes\UserLog;
+use Multimedia\Multistore\Classes\Tables;
+use Multimedia\Multistore\Classes\Domain;
 
 class RegisterServiceProvider extends ServiceProvider {
 
@@ -40,6 +42,14 @@ class RegisterServiceProvider extends ServiceProvider {
 
 		$this->app->singleton('media', function($app) {
 			return new Media();
+		});
+
+		$this->app->singleton('table', function($app) {
+			return new Tables();
+		});
+
+		$this->app->singleton('domain', function($app) {
+			return new Domain();
 		});
 	}
 

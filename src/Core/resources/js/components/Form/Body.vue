@@ -1,11 +1,11 @@
 <template>
 	<form method="post">
-        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-        	<h2 class="text-lg font-medium mr-auto" v-if="title">{{ title }}</h2>
+		<input type="hidden" name="_token" v-model="token" />
+        <div v-if="title || language" class="intro-y flex flex-col sm:flex-row items-center justify-between mt-8">
+        	<h2 class="text-lg font-medium mr-auto" v-if="title">{{ title }}</h2><div v-else></div>
         	<div class="w-full sm:w-auto flex mt-4 sm:mt-0" v-if="language">
             	<div class="dropdown mr-2">
-                	<button class="dropdown-toggle btn box flex items-center" aria-expanded="false" data-tw-toggle="dropdown">
-                    	English <ChevronDown />
+                	<button class="dropdown-toggle btn box flex items-center" aria-expanded="false" type="button" data-tw-toggle="dropdown"> English <ChevronDown class="w-4 h-4 ml-2" />
                 </button>
                 <div class="dropdown-menu w-40">
                     <ul class="dropdown-content">
@@ -19,8 +19,8 @@
                 </div>
             </div>
             <div class="dropdown" style="position: relative;">
-                <button class="dropdown-toggle btn btn-primary shadow-md flex items-center" aria-expanded="false" data-tw-toggle="dropdown">
-                    Zapisz i wróć do listy <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="chevron-down" class="lucide lucide-chevron-down w-4 h-4 ml-2" data-lucide="chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <button class="dropdown-toggle btn btn-primary shadow-md flex items-center" type="button" aria-expanded="false" data-tw-toggle="dropdown">
+                    Zapisz i wróć do listy <ChevronDown class="w-4 h-4 ml-2" />
                 </button>
                 <div class="dropdown-menu w-40" id="_o877v7wuw">
                     <ul class="dropdown-content">
@@ -67,6 +67,14 @@ export default {
 			default: false
 		},
 		title: String
+	},
+	data() {
+		return {
+			token: ''
+		}
+	},
+	mounted() {
+		this.token = document.querySelector('meta[name="csrf-token"]').content;
 	},
 	components: {
 		ChevronDown

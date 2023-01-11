@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('option', function (Blueprint $table) {
-            $table->id('id_option');
+        Schema::create('translation', function (Blueprint $table) {
+            $table->id('id_translation');
             $table->timestamps();
-			$table->json('key');
-            $table->json('value');
-			$table->json('id_record')->nullable();
-			$table->string('module', 64)->nullable();
-            $table->boolean('autoload')->default(0);
+			$table->softDeletes();
+			$table->json('values');
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('option');
+        Schema::dropIfExists('option_domain');
     }
 };
