@@ -19,6 +19,9 @@
 			<ui-box header="Linki">
 				<views-layout-colors name="color[link]" :colors="{!! strtr(json_encode($colors["link"]), ['"' => "'"]) !!}"></views-layout-colors>
 			</ui-box>
+            <ui-box header="Przyciski, alerty">
+				<views-layout-colors name="color[buttons]" :colors="{!! strtr(json_encode($colors["buttons"]), ['"' => "'"]) !!}"></views-layout-colors>
+			</ui-box>
 			<ui-box header="Kolory dodatkowe">
 				<views-layout-colors name="color[additional]" :colors="{!! strtr(json_encode($colors["additional"]), ['"' => "'"]) !!}" add></views-layout-colors>
 			</ui-box>

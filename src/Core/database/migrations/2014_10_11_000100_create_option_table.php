@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->unsignedBigInteger('id_option_domain')->nullable();
             $table->timestamps();
 			$table->json('key');
-            $table->json('value');
+            $table->json('values');
 			$table->json('id_record')->nullable();
 			$table->string('module', 64)->nullable();
             $table->boolean('autoload')->default(0);

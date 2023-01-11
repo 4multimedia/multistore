@@ -88,13 +88,13 @@ use Multimedia\Multistore\Core\Http\Classes\Tables;
 		if (is_array($value)) {
 			$value = json_encode($value, JSON_NUMERIC_CHECK|JSON_UNESCAPED_UNICODE);
 		}
-		Option::updateOrCreate(['key' => $key], ['value' => $value]);
+		Option::updateOrCreate(['key' => $key], ['values' => $value]);
 	}
 
 	function get_option($key, $default) {
 		$option = Option::where('key', $key)->first();
 		if ($option) {
-			$data = $option->value;
+			$data = $option->values;
 			$data = json_decode($data, true);
 			return $data;
 		}
