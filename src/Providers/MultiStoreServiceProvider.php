@@ -3,14 +3,17 @@
     namespace Multimedia\Multistore\Providers;
 
 	use Illuminate\Support\ServiceProvider;
+	use Illuminate\Support\Facades\Blade;
 
     class MultiStoreServiceProvider extends ServiceProvider {
 
         public function boot() {
             $this->loadViewsFrom(dirname(__FILE__).'/../core/resources/views', 'backend');
             $this->loadViewsFrom(dirname(__FILE__).'/../core/resources/components', 'components');
-			$this->loadViewsFrom(dirname(__FILE__).'/../core/resources/views', 'frontend');
+			$this->loadViewsFrom(dirname(__FILE__).'/../core/resources/views/frontend', 'frontend');
 			$this->loadTranslationsFrom(dirname(__FILE__).'/../core/resources/lang', 'backend');
+
+			Blade::componentNamespace('Multimedia\\Multistore\\Core\\Http\\Components\\Layouts', 'layout');
         }
 
         public function register()

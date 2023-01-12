@@ -2,14 +2,12 @@
 
 namespace Multimedia\Multistore\Core\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Multimedia\Multistore\Core\Http\Traits\useHash;
-use Multimedia\Multistore\Core\Http\Traits\usePath;
 
 class Layout extends Model
 {
-	use SoftDeletes;
+	use SoftDeletes, useHash;
 
 	public $table = "layout";
 	public $primaryKey = "id_layout";
@@ -24,4 +22,8 @@ class Layout extends Model
         'name',
 		'params'
     ];
+
+	protected $casts = [
+		'content' => 'array'
+	];
 }

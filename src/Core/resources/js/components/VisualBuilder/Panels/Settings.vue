@@ -11,7 +11,7 @@
 
        <button class="btn btn-danger mt-3" v-if="selectedNode" @click="removeElement">Delete</button>
 
-	   <button @click="onHandleExportObject">Eksportuj</button>
+	   <button @click="onHandleExportObject">Eksportuj</button> {{ d }}
      </div>
    </template>
 
@@ -20,6 +20,11 @@
 		inject: [
 			'editor',
 		],
+		data() {
+			return {
+				d: '',
+			}
+		},
      computed: {
        selectedNode() {
          return this.editor.selectedNode;
@@ -35,6 +40,7 @@
      methods: {
 		onHandleExportObject() {
 			console.log(JSON.parse(this.editor.export()));
+			this.d = JSON.parse(this.editor.export());
 		},
     removeElement() {
       return this.editor.removeNode(this.selectedNode);

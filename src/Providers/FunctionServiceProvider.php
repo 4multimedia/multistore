@@ -50,6 +50,8 @@ class FunctionServiceProvider extends ServiceProvider {
         add_to_submenu('user', 'backend::user.create', 'backend.user.create');
         add_to_submenu('user', 'backend::user.group', 'backend.user.group');
 
+		add_to_menu('stat', 'backend::stat.Stats', null, 90, ['icon' => 'bar-chart-3']);
+
 		add_to_menu('setting', 'backend::setting.title', null, 90, ['icon' => 'settings']);
 		if (config('multimedia.modules.blog')) {
 			add_to_submenu('setting', 'backend::blog.title', 'backend.user', 20);

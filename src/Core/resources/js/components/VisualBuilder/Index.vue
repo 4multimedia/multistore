@@ -10,7 +10,7 @@
 				<div class="col-10">
 					<PanelRules :breakpoint="breakpoint">
 						<Frame component="div" class="visualbuilder-preview">
-							<Canvas component="Container"></Canvas>
+							<Canvas component="Section"></Canvas>
 						</Frame>
 					</PanelRules>
 				</div>
@@ -33,6 +33,7 @@ import Column from './Elements/Column/Index.vue';
 import Headline from './Elements/Headline/Index.vue';
 import Paragraph from './Elements/Paragraph.vue';
 import Row from './Elements/Row/Index.vue';
+import Section from './Elements/Section/Index.vue';
 
 export default {
 	components: {
@@ -75,7 +76,8 @@ export default {
 				Row,
 				Paragraph,
 				Headline,
-				Container
+				Container,
+				Section
 			}
 		}
 	}

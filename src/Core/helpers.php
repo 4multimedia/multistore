@@ -44,6 +44,10 @@ use Multimedia\Multistore\Core\Http\Classes\Tables;
 		return app('domain');
 	}
 
+	function layout() {
+		return app('layout');
+	}
+
 	function register_css_path($path) {
 		hook()->register_css_path($path);
 	}
