@@ -1,4 +1,4 @@
-@extends('backend::layouts.app')
+@extends('backend::layouts.visual')
 
 @section('content')
 	<visual-builder></visual-builder>

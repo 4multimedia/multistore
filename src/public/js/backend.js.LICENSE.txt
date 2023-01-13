@@ -48,6 +48,13 @@
 /*! sifter.js | https://github.com/orchidjs/sifter.js | Apache License (v2) */
 
 /**!
+ * Sortable 1.10.2
+ * @author	RubaXa   <trash@rubaxa.org>
+ * @author	owenm    <owen23355@gmail.com>
+ * @license MIT
+ */
+
+/**!
 * tippy.js v6.3.7
 * (c) 2017-2021 atomiks
 * MIT License

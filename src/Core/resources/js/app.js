@@ -60,11 +60,14 @@ import VisualBuilder from './components/VisualBuilder/Index.vue';
 import InputGallery from './components/Input/Gallery.vue';
 import InputImage from './components/Input/InputImage.vue'
 
-import Paragraph from './components/VisualBuilder/Elements/Paragraph';
-import Container from './components/VisualBuilder/Elements/Container';
-import Column from './components/VisualBuilder/Elements/Column/Index';
-import Headline from './components/VisualBuilder/Elements/Headline/Index';
-import Row from './components/VisualBuilder/Elements/Row/Index';
+import VisualParagraph from './components/VisualBuilder/Components/Paragraph';
+import VisualBlock from './components/VisualBuilder/Components/Block';
+//import Container from './components/VisualBuilder/Elements/Container';
+//import Column from './components/VisualBuilder/Elements/Column/Index';
+//import Headline from './components/VisualBuilder/Elements/Headline/Index';
+//import Row from './components/VisualBuilder/Elements/Row/Index';
+
+import VisualNested from './components/VisualBuilder/Components/Nested.vue';
 import UiSidebar from './components/Ui/Sidebar/Index';
 import UiBox from './components/Ui/Box/Index';
 import UiTip from './components/Ui/Tip/Index';
@@ -104,11 +107,11 @@ Vue.component('FormModule', FormModule);
 Vue.component('FormSection', FormSection);
 Vue.component('FormTree', FormTree);
 Vue.component('VisualBuilder', VisualBuilder);
-Vue.component('Paragraph', Paragraph);
-Vue.component('Container', Container);
-Vue.component('Column', Column);
-Vue.component('Headline', Headline);
-Vue.component('Row', Row);
+//Vue.component('Paragraph', Paragraph);
+//Vue.component('Container', Container);
+//Vue.component('Column', Column);
+//Vue.component('Headline', Headline);
+//Vue.component('Row', Row);
 Vue.component('UiSidebar', UiSidebar);
 Vue.component('UiBox', UiBox);
 Vue.component('Media', Media);
@@ -123,6 +126,9 @@ Vue.component('Message', Message);
 Vue.component('InputGallery', InputGallery);
 Vue.component('DialogMedia', DialogMedia);
 Vue.component('ViewsLayoutColors', ViewsLayoutColors);
+Vue.component('VisualNested', VisualNested);
+Vue.component('VisualParagraph', VisualParagraph);
+Vue.component('VisualBlock', VisualBlock);
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 const lang = document.querySelector('meta[name="language"]').content;
@@ -132,12 +138,23 @@ const __t = (value) => {
     return (translate[lang][group] !== undefined && translate[lang][group][key]) ? translate[lang][group][key] : key;
 };
 
+const components = {
+	basic: {
+		name: 'Podstawowe',
+		elements: [
+			{name: 'Element blokowy', component: 'visual-block', tasks: [], nested: true},
+			{name: 'Paragraf', component: 'visual-paragraph', tasks: [], nested: false}
+		]
+	}
+};
+
 new Vue({
     provide: {
         __t,
         csrfToken,
         lang,
         translate,
+		components
     },
     el: '#app',
 });
