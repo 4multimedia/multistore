@@ -62,15 +62,18 @@ import InputImage from './components/Input/InputImage.vue'
 
 import VisualParagraph from './components/VisualBuilder/Components/Paragraph';
 import VisualBlock from './components/VisualBuilder/Components/Block';
+import VisualComponent from './components/VisualBuilder/Components/Component';
 //import Container from './components/VisualBuilder/Elements/Container';
 //import Column from './components/VisualBuilder/Elements/Column/Index';
 //import Headline from './components/VisualBuilder/Elements/Headline/Index';
 //import Row from './components/VisualBuilder/Elements/Row/Index';
 
-import VisualNested from './components/VisualBuilder/Components/Nested.vue';
+import VisualNested from './components/VisualBuilder/Components/Nested2.vue';
 import UiSidebar from './components/Ui/Sidebar/Index';
 import UiBox from './components/Ui/Box/Index';
 import UiTip from './components/Ui/Tip/Index';
+
+import store from './store';
 
 import FormBody from './components/Form/Body.vue';
 import FormModule from './components/Form/Module.vue';
@@ -87,6 +90,8 @@ import DialogMedia from './components/Media/Dialog.vue';
 import Message from 'primevue/message';
 
 import ViewsLayoutColors from './components/Views/Layout/Colors.vue'
+
+import components from "./visual";
 
 import pl from './../../../data/json/lang/pl.json';
 import en from './../../../data/json/lang/en.json';
@@ -129,6 +134,7 @@ Vue.component('ViewsLayoutColors', ViewsLayoutColors);
 Vue.component('VisualNested', VisualNested);
 Vue.component('VisualParagraph', VisualParagraph);
 Vue.component('VisualBlock', VisualBlock);
+Vue.component('VisualComponent', VisualComponent);
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 const lang = document.querySelector('meta[name="language"]').content;
@@ -136,16 +142,6 @@ const lang = document.querySelector('meta[name="language"]').content;
 const __t = (value) => {
     const [ group, key ] = value.split(".");
     return (translate[lang][group] !== undefined && translate[lang][group][key]) ? translate[lang][group][key] : key;
-};
-
-const components = {
-	basic: {
-		name: 'Podstawowe',
-		elements: [
-			{name: 'Element blokowy', component: 'visual-block', tasks: [], nested: true},
-			{name: 'Paragraf', component: 'visual-paragraph', tasks: [], nested: false}
-		]
-	}
 };
 
 new Vue({
@@ -157,6 +153,7 @@ new Vue({
 		components
     },
     el: '#app',
+    store,
 });
 
 /*app.$mount('#app')

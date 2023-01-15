@@ -3,7 +3,7 @@
 		<div>
 			<draggable tag="section" :list="content">
 				<div v-for="el, index in content" :key="index">
-					<component :is="el.component" :content="el.tasks"></component>
+					<component :is="el.component" :content="el.children" @click="selectElement"></component>
 				</div>
 			</draggable>
 		</div>

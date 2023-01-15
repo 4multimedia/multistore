@@ -46,6 +46,7 @@ export default {
 	},
     methods: {
         onChange(value) {
+            this.$emit('onChangeValue', value);
             this.$emit('update:value', value)
         }
     },

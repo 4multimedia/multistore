@@ -1,7 +1,9 @@
 <template>
-    <visual-component :element="element">
-	    <component :is="tag">{{ text }}</component>
-    </visual-component>
+    <nav>
+        <ul>
+            <li>Menu</li>
+        </ul>
+    </nav>
 </template>
 
 <script>
@@ -16,8 +18,7 @@ export default {
             {
                 'Podstawowe': {
                     'Podstawowe informacje': [
-                        { id: 'text', name: 'Tekst', field: 'input-text' },
-                        { id: 'tag', name: 'Tag HTML', field: 'dropdown', options: ['p', 'span', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }
+                        { id: 'id_menu', name: 'Wybierz menu', field: 'dropdown' },
                     ]
                 },
             },
@@ -32,10 +33,7 @@ export default {
                 'Zaawansowane': {}
             }
         ],
-        default: {
-            text: 'Wpisz tekst',
-            tag: 'p'
-        }
+        default: {}
     },
     methods: {
         getSetting(key) {
@@ -46,12 +44,7 @@ export default {
         }
     },
     computed: {
-        text() {
-            return this.getSetting('text');
-        },
-        tag() {
-            return this.getSetting('tag');
-        }
+
     },
     data() {
         return {

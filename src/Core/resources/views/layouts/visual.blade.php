@@ -6,7 +6,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="language" content="{{ app()->getLocale() }}">
     </head>
-	<body>
+	<body class="visual">
 		<div id="app">
 			@yield('content')
 		</div>

@@ -30,6 +30,7 @@
         "dayjs": "^1.11.7",
         "dropzone": "^6.0.0-beta.2",
         "flag-icons": "^6.6.6",
+        "fs": "^0.0.1-security",
         "highlight.js": "^11.7.0",
         "js-beautify": "^1.14.7",
         "litepicker": "^2.0.12",
@@ -53,6 +54,7 @@
         "vue-loader": "^15.9.6",
         "vue-template-compiler": "^2.6.14",
         "vuedraggable": "^2.24.3",
+        "vuex": "^3.0.0",
         "xlsx": "^0.18.5",
         "zoom-vanilla.js": "^2.0.6"
     }

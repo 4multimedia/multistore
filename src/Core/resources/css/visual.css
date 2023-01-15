@@ -1,3 +1,142 @@
-BODY {
-	margin:0
+/*
+ |--------------------------------------------------------------------------
+ | TailwindCSS Directives
+ |--------------------------------------------------------------------------
+ |
+ | Import TailwindCSS directives and swipe out at build-time with all of
+ | the styles it generates based on your configured design system.
+ |
+ | Please check this link for more details:
+ | https://tailwindcss.com/docs/installation#include-tailwind-in-your-css
+ |
+ */
+ @import "./_tailwind.css";
+
+ /*
+   |--------------------------------------------------------------------------
+   | Colors
+   |--------------------------------------------------------------------------
+   |
+   | Import all fonts used in the template, the font configuration can be
+   | seen in "tailwind.config.js".
+   |
+   | Please check this link for more details:
+   | https://tailwindcss.com/docs/theme
+   |
+   */
+ @import "./_colors.css";
+
+ /*
+  |--------------------------------------------------------------------------
+  | VuePrime
+  |--------------------------------------------------------------------------
+  |
+  | Import PrimeVue CSS files.
+  |
+  */
+
+@import "./components/_primevue.css";
+
+.visual {
+    @apply m-0 p-5 bg-primary;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    color: rgb(var(--color-slate-800)/var(--tw-text-opacity));
+}
+.visual-ghost {
+    height: 5px !important;
+    background-color: #f00 !important;
+    margin:1px 0;
+    width: 100%;
+}
+
+.visual-component-list {
+	flex:0 0 320px;
+    @apply p-4;
+}
+.visual-component-list section {
+    margin:0;
+    padding:0;
+    list-style:none;
+    @apply grid grid-cols-2 gap-2;
+}
+.visual-component-list section div {
+    @apply flex justify-center flex-col items-center border border-solid border-slate-200 p-3 rounded text-center cursor-move text-slate-500 bg-white hover:shadow-md transition-all;
+}
+.visual-component-list section div p {
+    @apply font-semibold text-xs m-0;
+}
+.visual-main {
+	flex:1;
+	height: calc(100vh - 2.5rem);
+}
+.visual-configurator {
+	flex:0 0 300px;
+    @apply p-5;
+}
+.visual-main-form {
+	min-height: calc(100vh - 2.5rem);
+}
+.visual-area {
+    border-radius: 1.3rem;
+    @apply bg-white;
+}
+.visual-element {
+    padding: 5px;
+    position: relative;
+    display: block;
+    min-height: 24px;
+    margin: 2px;
+    @apply border border-dashed border-slate-400 bg-white;
+}
+.visual-element.first {
+    height: calc(100% - 2px);
+}
+.visual-select-element {
+    @apply outline outline-blue-400 outline-1;
+}
+.visual-select-element.visual-element {
+    @apply border-blue-500 border-solid bg-blue-50;
+    border-style: solid;
+    z-index:10;
+}
+.visual-select-element.visual-element > .handle,
+.visual-select-element.visual-element > .actions {
+    @apply flex;
+}
+.visual-element > .actions,
+.visual-element > .handle {
+    @apply h-6 bg-blue-400 text-white hidden items-center justify-center absolute z-10;
+    top:-2px;
+}
+.visual-element .handle {
+    @apply w-6;
+    left:-2px;
+}
+.visual-element .actions {
+    @apply w-12;
+    right: -2px;
+}
+.visual-element .actions span {
+    @apply flex w-6 items-center justify-center;
+}
+
+.p-tabview-nav-content {
+    @apply bg-gray-100;
+}
+.p-accordion .p-accordion-content {
+    padding:1.25rem 0;
+    border:none;
+}
+.p-accordion .p-accordion-header .p-accordion-header-link {
+    padding:0;
+    background: none !important;
+    border:none !important;
+    justify-content: space-between;
+}
+.p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+    order:1 !important;
+}
+.p-accordion-header-text {
+    @apply font-medium text-slate-500;
 }

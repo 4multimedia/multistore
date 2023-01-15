@@ -1,21 +1,15 @@
 <template>
-	<div class="visual-component-element">
-		<VisualNested :content="content" />
-	</div>
+    <visual-component :element="element">
+        <div class="block">
+            <VisualNested :children="element.children" />
+        </div>
+    </visual-component>
 </template>
 
 <script>
 export default {
 	props: {
-		content: Array
-	}
+		element: Object,
+	},
 }
 </script>
-
-<style scoped>
-.visual-component-element {
-	padding:12px;
-	margin:3px;
-	border: 1px dashed hsla(0,0%,66.7%,.7);
-}
-</style>

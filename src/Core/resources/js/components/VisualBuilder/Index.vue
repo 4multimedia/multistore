@@ -1,53 +1,62 @@
 <template>
-	<div class="flex">
+	<div class="visual-area flex">
 		<aside class="visual-component-list">
-			<div v-for="component, index in components" :key="index">
-				<h4>{{ component.name }}</h4>
-				<draggable
-					tag="ul"
-					:list="component.elements"
-					:clone="onCloneItem"
-					v-bind="{group:{ name: 'visualComponents', pull: true, put: false }, sort:false, ghostClass: 'ghost'}"
-				>
-					<li v-for="element, index in component.elements" :key="index">
-						{{ element.component }}
-					</li>
-				</draggable>
-			</div>
+            <Accordion>
+                <AccordionTab v-for="component, index in components" :header="component.name" :key="index">
+                    <draggable
+                        tag="section"
+                        :list="component.elements"
+                        :clone="onCloneItem"
+                        :options="{ group:{ name:'visualComponents',  pull:'clone', put: false }, sort:false, ghostClass: 'ghost' }"
+                    >
+                        <div v-for="element, element_index in component.elements" :key="element_index" :id="`${index}.${element.component}`">
+                            <Pilcrow size="28" class="mb-3 text-slate-300" />
+                            <p>{{ element.name }}</p>
+                        </div>
+                    </draggable>
+                </AccordionTab>
+            </Accordion>
 		</aside>
 		<div class="visual-main">
-			<VisualNested :tasks="content" />
+			<VisualNested :children="content" class="visual-element first" root />
 		</div>
 		<aside class="visual-configurator">
-			<pre>{{ content }}</pre>
+            <VisualConfigurator />
+            <pre>{{ content }}</pre>
+            <Tree :value="tree" label="name" key="uuid"></Tree>
 		</aside>
 	</div>
 </template>
 
 <script>
+import Accordion from 'primevue/accordion';
+import AccordionTab from 'primevue/accordiontab';
 import Draggable from "vuedraggable";
+import Tree from 'primevue/tree';
+import VisualConfigurator from './Panel/Configurator.vue';
+import { Pilcrow } from 'lucide-vue';
 
 export default {
 	components: {
-		Draggable
+        Pilcrow,
+        Accordion,
+        AccordionTab,
+		Draggable,
+        Tree,
+        VisualConfigurator
 	},
-	data() {
-		return {
-			components: {
-				basic: {
-					name: 'Podstawowe',
-					elements: [
-						{name: 'Element blokowy', component: 'visual-block', tasks: [], nested: true},
-						{name: 'Element blokowy', component: 'visual-block', tasks: [], nested: true},
-						{name: 'Element blokowy', component: 'visual-block', tasks: [], nested: true},
-						{name: 'Element blokowy', component: 'visual-block', tasks: [], nested: true},
-						{name: 'Paragraf', component: 'visual-paragraph', tasks: [], nested: false}
-					]
-				}
-			},
-			content: []
-		}
-	},
+    inject: ['components'],
+    computed: {
+        content() {
+            return this.$store.state.layout.content;
+        },
+        tree() {
+            return this.$store.state.layout.content;
+        }
+    },
+    mounted() {
+
+    },
 	methods: {
 		onHandleMoveEnd(event) {
 
@@ -62,36 +71,8 @@ export default {
 			console.log(item);
 		},
 		onCloneItem(item) {
-			const el = JSON.parse(JSON.stringify(item));
-			el.uuid = 1;
-			console.log(el);
 
-			this.content.push(el);
 		}
 	}
 }
 </script>
-
-<style scoped>
-.flex {
-	display: flex;
-}
-.visual-component-list {
-	flex:0 0 300px;
-}
-.visual-main {
-	flex:1;
-	min-height: 100vh;
-	border:1px solid #f00;
-}
-.visual-configurator {
-	flex:0 0 300px;
-}
-.visual-main-form {
-	min-height: 100vh;
-}
-.dragArea {
-	min-height: 50px;
-	outline: 1px dashed;
-}
-</style>
