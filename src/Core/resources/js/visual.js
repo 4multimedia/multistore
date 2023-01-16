@@ -1,9 +1,20 @@
+import Vue from 'vue';
+
 import VisualParagraph from './components/VisualBuilder/Components/Paragraph';
 import VisualBlock from './components/VisualBuilder/Components/Block';
+import VisualGrid from './components/VisualBuilder/Components/Grid';
+import VisualNavigation from './components/VisualBuilder/Components/Navigation';
 
 const elements = [];
 elements['visual-paragraph'] = VisualParagraph.element;
 elements['visual-block'] = VisualBlock.element;
+elements['visual-grid'] = VisualGrid.element;
+elements['visual-navigation'] = VisualNavigation.element;
+
+Vue.component('VisualGrid', VisualGrid);
+Vue.component('VisualParagraph', VisualParagraph);
+Vue.component('VisualBlock', VisualBlock);
+Vue.component('VisualNavigation', VisualNavigation);
 
 function getConfiguration (key) {
     const configuration = elements[key];
@@ -20,8 +31,34 @@ const components = {
 	basic: {
 		name: 'Podstawowe',
 		elements: [
-			{name: 'Element blokowy', component: 'visual-block', children: [], nested: true, configuration: getConfiguration('visual-block')},
-			{name: 'Paragraf', component: 'visual-paragraph', children: [], nested: false, configuration: getConfiguration('visual-paragraph')}
+			{
+				name: 'Grid',
+				component: 'visual-grid',
+				children: [],
+				nested: true,
+				configuration: getConfiguration('visual-grid')
+			},
+			{
+				name: 'Element blokowy',
+				component: 'visual-block',
+				children: [],
+				nested: true,
+				configuration: getConfiguration('visual-block')
+			},
+			{
+				name: 'Nawigacja',
+				component: 'visual-navigation',
+				children: [],
+				nested: false,
+				configuration: getConfiguration('visual-navigation')
+			},
+			{
+				name: 'Paragraf',
+				component: 'visual-paragraph',
+				children: [],
+				nested: false,
+				configuration: getConfiguration('visual-paragraph')
+			}
 		]
 	}
 };

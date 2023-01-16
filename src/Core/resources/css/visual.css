@@ -140,3 +140,11 @@
 .p-accordion-header-text {
     @apply font-medium text-slate-500;
 }
+.visual-setting-class-flex {
+	display: flex;
+}
+.visual-setting-class-flex > p,
+.visual-setting-class-flex > div {
+	flex:1;
+	height: 100%;
+}

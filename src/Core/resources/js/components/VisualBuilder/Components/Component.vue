@@ -1,9 +1,9 @@
 <template>
     <div @click="onHandleSelectElement($event)" class="visual-element" :class="{'visual-select-element': selectElement === element.uuid}">
-        <span class="handle"><Move size="14" /></span>
+        <span class="handle"><Move :size="14" /></span>
         <div class="actions">
-            <span class="duplicate"><Files size="14" /></span>
-            <span class="remove"><Trash2 size="14" /></span>
+            <span class="duplicate" @click="cloneElement"><Files :size="14" /></span>
+            <span class="remove"><Trash2 :size="14" /></span>
         </div>
         <slot />
     </div>
@@ -25,7 +25,6 @@ export default {
 },
     computed: {
         selectElement() {
-            console.log
             if (this.$store.state.layout.current && this.$store.state.layout.current.uuid !== undefined) {
                 return this.$store.state.layout.current.uuid;
             }
@@ -33,6 +32,51 @@ export default {
         }
     },
     methods: {
+		findPath(ob, key, value) {
+			const path = [];
+			const keyExists = (obj) => {
+				if (!obj || (typeof obj !== "object" && !Array.isArray(obj))) {
+					return false;
+				}
+				else if (obj.hasOwnProperty(key) && obj[key] === value) {
+					return true;
+				}
+				else if (Array.isArray(obj)) {
+					let parentKey = path.length ? path.pop() : "";
+					for (let i = 0; i < obj.length; i++) {
+						path.push(`${parentKey}[${i}]`);
+						const result = keyExists(obj[i], key);
+						if (result) {
+							return result;
+						}
+						path.pop();
+					}
+				} else {
+					for (const k in obj) {
+ 						path.push(k);
+						const result = keyExists(obj[k], key);
+						if (result) {
+							return result;
+						}
+						path.pop();
+					}
+				}
+				return false;
+			};
+
+			keyExists(ob);
+			return path.join(".");
+		},
+		cloneElement() {
+			let element = this.$store.state.layout.current;
+			let layout = this.$store.state.layout.content;
+			const uuid = element.uuid;
+
+			console.log(uuid);
+			console.log(this.findPath(layout, "uuid", uuid));
+
+			element = JSON.parse(JSON.stringify(element));
+		},
         onHandleSelectElement(event) {
             this.$store.commit('setElement', this.element);
             event.preventDefault();

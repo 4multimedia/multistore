@@ -60,9 +60,8 @@ import VisualBuilder from './components/VisualBuilder/Index.vue';
 import InputGallery from './components/Input/Gallery.vue';
 import InputImage from './components/Input/InputImage.vue'
 
-import VisualParagraph from './components/VisualBuilder/Components/Paragraph';
-import VisualBlock from './components/VisualBuilder/Components/Block';
 import VisualComponent from './components/VisualBuilder/Components/Component';
+
 //import Container from './components/VisualBuilder/Elements/Container';
 //import Column from './components/VisualBuilder/Elements/Column/Index';
 //import Headline from './components/VisualBuilder/Elements/Headline/Index';
@@ -132,8 +131,6 @@ Vue.component('InputGallery', InputGallery);
 Vue.component('DialogMedia', DialogMedia);
 Vue.component('ViewsLayoutColors', ViewsLayoutColors);
 Vue.component('VisualNested', VisualNested);
-Vue.component('VisualParagraph', VisualParagraph);
-Vue.component('VisualBlock', VisualBlock);
 Vue.component('VisualComponent', VisualComponent);
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').content;

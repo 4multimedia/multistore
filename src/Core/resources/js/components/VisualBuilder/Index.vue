@@ -10,7 +10,7 @@
                         :options="{ group:{ name:'visualComponents',  pull:'clone', put: false }, sort:false, ghostClass: 'ghost' }"
                     >
                         <div v-for="element, element_index in component.elements" :key="element_index" :id="`${index}.${element.component}`">
-                            <Pilcrow size="28" class="mb-3 text-slate-300" />
+                            <Pilcrow :size="28" class="mb-3 text-slate-300" />
                             <p>{{ element.name }}</p>
                         </div>
                     </draggable>

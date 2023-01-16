@@ -8,6 +8,7 @@ return [
 		'blog' => true,
 		'media' => true,
 		'translate' => true,
+		'layout' => true,
 		'setting' => [
 			'cookie' => true,
 			'thumbnails' => true

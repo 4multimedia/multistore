@@ -2,15 +2,13 @@
 	<draggable
         tag="section"
         :list="children"
-        group="visualComponents"
-        :options="{ group:{ name:'visualComponents',  pull:'clone', put: false }, ghostClass: 'visual-ghost' }"
+		:group="group"
+        :options="{ group: { pull: 'clone', put: false }, ghostClass: 'visual-ghost' }"
         @add="onAdd"
         handle=".handle"
     >
 		<div v-for="el, index in children" :key="index" :id="el.uuid" class="visual-node">
-			<component :is="el.component" :element="el">
-                <span class="handle">handle</span>
-            </component>
+			<component :is="el.component" :makeid="makeid" :element="el"></component>
 		</div>
 	</draggable>
 </template>
@@ -27,7 +25,19 @@ export default {
 			required: true,
       		type: Array
 		},
-        onAddItem: Function
+        onAddItem: Function,
+		clone: {
+			type: [Boolean, Function, String],
+			default: 'clone'
+		},
+		put: {
+			type: [Boolean, Function, String],
+			default: false
+		},
+		group: {
+			type: String,
+			default: 'visualComponents',
+		}
 	},
     root: {
         type: Boolean,
@@ -45,10 +55,12 @@ export default {
             return result;
         },
         onAdd(item) {
-            const path = item.path;
+			const index = item.newIndex;
+            var path = item.originalEvent.path || (item.originalEvent.composedPath && item.originalEvent.composedPath());
+
             let tree = [];
             path.forEach(e => {
-                if (e && e.className !== undefined && e.className.search("visual-node") > -1) {
+                if (e && e.className !== undefined && typeof(e.className) === 'string' && e.className.search("visual-node") > -1) {
                     const id = e.id;
                     tree.push(id);
                 }
@@ -67,8 +79,13 @@ export default {
                 component: element.component,
                 children: element.children,
                 uuid: this.makeid(8),
+				nested: element.nested,
                 setting: setting
             };
+
+			this.addToTree(tree, cloneElement, index);
+        },
+		addToTree(tree, cloneElement, index) {
 
             const layout = this.$store.state.layout.content;
             if (tree.length === 0) {
@@ -76,16 +93,22 @@ export default {
             } else {
                 let node = layout;
                 for(let a = 0; a < tree.length; a++) {
-                    node = node.find(e => e.uuid == tree[a]);
-                    node = node.children;
+                    const cloneNode = node.find(e => e.uuid == tree[a]);
+                    node = cloneNode.children;
                     if (a == tree.length - 1) {
-                        node.push(cloneElement);
+						if (cloneNode.nested) {
+							node.splice(index, 0, cloneElement);
+						}
+						else {
+							tree.pop();
+							this.addToTree(tree, cloneElement, index);
+						}
                     }
                 }
             }
 
             this.$store.commit('setLayout', layout);
-        }
+		}
     },
 }
 </script>

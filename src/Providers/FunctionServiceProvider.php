@@ -44,6 +44,12 @@ class FunctionServiceProvider extends ServiceProvider {
 			add_to_menu('media', 'backend::media.Media', 'backend.media', 70, ['icon' => 'image']);
 		}
 
+		if (config('multimedia.modules.layout')) {
+			add_to_menu('layout', 'backend::layout.Layout', null, 75, ['icon' => 'layout']);
+			add_to_submenu('layout', 'backend::layout.All', 'backend.layout', 20);
+			add_to_submenu('layout', 'backend::layout.Header', 'backend.layout', 20);
+		}
+
 		add_devider_menu(79);
 		add_to_menu('user', 'backend::user.title', null, 80, ['icon' => 'users']);
         add_to_submenu('user', 'backend::user.list', 'backend.user');

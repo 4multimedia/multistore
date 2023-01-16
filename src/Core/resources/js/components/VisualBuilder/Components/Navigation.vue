@@ -1,9 +1,11 @@
 <template>
-    <nav>
-        <ul>
-            <li>Menu</li>
-        </ul>
-    </nav>
+	<visual-component :element="element">
+		<nav>
+			<ul>
+				<li>Menu</li>
+			</ul>
+		</nav>
+	</visual-component>
 </template>
 
 <script>

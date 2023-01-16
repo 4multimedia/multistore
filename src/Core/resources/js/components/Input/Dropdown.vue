@@ -1,6 +1,6 @@
 <template>
-    <InputField :label="label" :help="help" :error="error" :max="max" :modelValue="modelValue" :column="column">
-        <PrimeDropdown :options="options" v-model="modelValue" :value="modelValue" @input="onChange($event)" />
+    <InputField :label="label" :help="help" :error="error" :modelValue="modelValue" :column="column">
+        <PrimeDropdown :options="options" v-model="modelValue" :value="modelValue" @input="onChange($event)" optionValue="id" optionLabel="name" />
     </InputField>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     },
     props: {
         label: String,
-        value: String,
+        value: [Number, String],
 		help: String,
         name: String,
         error: Array,
