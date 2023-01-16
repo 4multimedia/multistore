@@ -8,6 +8,8 @@
 
 <script>
 import Component from './Component.vue';
+import { background, height } from './../helpers/Style';
+
 export default {
   components: { Component },
 	props: {
@@ -44,7 +46,10 @@ export default {
                 },
             },
             {
-                'Style': {},
+                'Style': {
+                    background,
+                    height
+                },
             },
             {
                 'Zaawansowane': {}
@@ -72,7 +77,8 @@ export default {
 					"children": [],
 					"uuid": this.makeid(8),
 					"setting": [],
-					"nested": true,
+                    "nested": true,
+					"accepted": ['*'],
 				});
 			}
 		}

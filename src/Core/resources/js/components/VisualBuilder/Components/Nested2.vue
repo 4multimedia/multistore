@@ -80,13 +80,13 @@ export default {
                 children: element.children,
                 uuid: this.makeid(8),
 				nested: element.nested,
+                accepted: element.accepted,
                 setting: setting
             };
 
 			this.addToTree(tree, cloneElement, index);
         },
 		addToTree(tree, cloneElement, index) {
-
             const layout = this.$store.state.layout.content;
             if (tree.length === 0) {
                 layout.push(cloneElement);

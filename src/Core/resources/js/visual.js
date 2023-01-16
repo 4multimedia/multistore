@@ -35,28 +35,28 @@ const components = {
 				name: 'Grid',
 				component: 'visual-grid',
 				children: [],
-				nested: true,
+                accepted: ['visual-col'],
 				configuration: getConfiguration('visual-grid')
 			},
 			{
 				name: 'Element blokowy',
 				component: 'visual-block',
 				children: [],
-				nested: true,
+                accepted: ['*'],
 				configuration: getConfiguration('visual-block')
 			},
 			{
 				name: 'Nawigacja',
 				component: 'visual-navigation',
 				children: [],
-				nested: false,
+                accepted: [],
 				configuration: getConfiguration('visual-navigation')
 			},
 			{
 				name: 'Paragraf',
 				component: 'visual-paragraph',
 				children: [],
-				nested: false,
+				nested: [],
 				configuration: getConfiguration('visual-paragraph')
 			}
 		]
