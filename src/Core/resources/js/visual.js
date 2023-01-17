@@ -28,28 +28,44 @@ function getConfiguration (key) {
 }
 
 const components = {
-	basic: {
-		name: 'Podstawowe',
+	layout: {
+		name: 'Elementy blokowe',
 		elements: [
 			{
-				name: 'Grid',
+				name: 'Układ kolumnowy',
+				component: 'visual-flex',
+				children: [],
+                accepted: ['visual-col'],
+				icon: 'Columns',
+				configuration: getConfiguration('visual-flex')
+			},
+			{
+				name: 'Układ siatkowy',
 				component: 'visual-grid',
 				children: [],
                 accepted: ['visual-col'],
+				icon: 'Grid',
 				configuration: getConfiguration('visual-grid')
 			},
 			{
-				name: 'Element blokowy',
+				name: 'Blok',
 				component: 'visual-block',
 				children: [],
                 accepted: ['*'],
+				icon: 'LayoutTemplate',
 				configuration: getConfiguration('visual-block')
-			},
+			}
+		]
+	},
+	basic: {
+		name: 'Podstawowe',
+		elements: [
 			{
 				name: 'Nawigacja',
 				component: 'visual-navigation',
 				children: [],
                 accepted: [],
+				icon: 'Menu',
 				configuration: getConfiguration('visual-navigation')
 			},
 			{
@@ -57,10 +73,21 @@ const components = {
 				component: 'visual-paragraph',
 				children: [],
 				nested: [],
+				icon: 'Baseline',
+				configuration: getConfiguration('visual-paragraph')
+			},
+			{
+				name: 'Ikona',
+				component: 'visual-paragraph',
+				children: [],
+				nested: [],
+				icon: 'Star',
 				configuration: getConfiguration('visual-paragraph')
 			}
 		]
 	}
 };
+
+console.log(components);
 
 export default components;

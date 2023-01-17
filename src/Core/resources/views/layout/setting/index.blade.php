@@ -4,12 +4,14 @@
 	<form-module>
 		<form-section header="Typografia">
 			<ui-box header="Ustawienia globalne">
-				{!! form()->dropdown('Czcionka globalna', 'global.font', ['help' => 'Podstawowa czcionka w witrynie']) !!}
-				{!! form()->dropdown('Nagłówki', 'global.font', ['help' => 'Podstawowa czcionka w witrynie']) !!}
-				{!! form()->dropdown('Nagłówek H1', 'global.font') !!}
-				{!! form()->dropdown('Nagłówek H2', 'global.font') !!}
-				{!! form()->dropdown('Nagłówek H3', 'global.font') !!}
-				{!! form()->dropdown('Nagłówek H4', 'global.font') !!}
+				{!! form()->dropdown('Czcionka globalna', 'global.font', ['help' => 'Podstawowa czcionka w witrynie', ':options' => [['id' => 'Roboto', 'name' => 'Roboto']]]) !!}
+				{!! form()->dropdown('Nagłówki', 'global.font.headline', ['help' => 'Podstawowa czcionka nagłówków witrynie']) !!}
+				{!! form()->dropdown('Nagłówek H1', 'global.font.headline1') !!}
+				{!! form()->dropdown('Nagłówek H2', 'global.font.headline2') !!}
+				{!! form()->dropdown('Nagłówek H3', 'global.font.headline3') !!}
+				{!! form()->dropdown('Nagłówek H4', 'global.font.headline4') !!}
+				{!! form()->dropdown('Nagłówek H5', 'global.font.headline5') !!}
+				{!! form()->dropdown('Nagłówek H6', 'global.font.headline6') !!}
 			</ui-box>
 		</form-section>
 		<form-section header="Kolorystyka">
@@ -28,9 +30,9 @@
 		</form-section>
 		<form-section header="Rozmiary responsywne">
 			<ui-box header="Rozmiary">
-				<input type="text" name="breakpoint[][name]" />
-				<input type="text" name="breakpoint[][size]" />
-				<input type="text" name="breakpoint[][full]" />
+				<input type="text" name="breakpoint[0][name]" />
+				<input type="text" name="breakpoint[0][size]" />
+				<input type="text" name="breakpoint[0][full]" />
 			</ui-box>
 		</form-section>
 	</form-module>

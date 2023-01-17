@@ -9,8 +9,8 @@
                         :clone="onCloneItem"
                         :options="{ group:{ name:'visualComponents',  pull:'clone', put: false }, sort:false, ghostClass: 'ghost' }"
                     >
-                        <div v-for="element, element_index in component.elements" :key="element_index" :id="`${index}.${element.component}`">
-                            <Pilcrow :size="28" class="mb-3 text-slate-300" />
+                        <div v-for="element, element_index in component.elements" :key="element_index" :id="`${index}.${element.component}`" class="py-2">
+							<component :is="icon(element.icon)" :size="24" class="mb-3" />
                             <p>{{ element.name }}</p>
                         </div>
                     </draggable>
@@ -34,11 +34,10 @@ import AccordionTab from 'primevue/accordiontab';
 import Draggable from "vuedraggable";
 import Tree from 'primevue/tree';
 import VisualConfigurator from './Panel/Configurator.vue';
-import { Pilcrow } from 'lucide-vue';
+import * as icons from 'lucide-vue';
 
 export default {
 	components: {
-        Pilcrow,
         Accordion,
         AccordionTab,
 		Draggable,
@@ -58,6 +57,9 @@ export default {
 
     },
 	methods: {
+		icon(icon) {
+			return icons[icon];
+		},
 		onHandleMoveEnd(event) {
 
 		},

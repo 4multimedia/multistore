@@ -4,6 +4,7 @@ namespace Multimedia\Multistore\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Multimedia\Multistore\Classes\Hooks;
+use Str;
 
 class AssetsServiceProvider extends ServiceProvider {
 
@@ -14,7 +15,7 @@ class AssetsServiceProvider extends ServiceProvider {
 	}
 
 	public function boot() {
-
+		generate_css_variables();
 	}
 }
 

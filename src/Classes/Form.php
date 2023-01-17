@@ -54,6 +54,9 @@
 						$html[] = "$key=\"false\"";
 					}
 				} else {
+					if (is_array($value)) {
+						$value = strtr(json_encode($value), ["\"" => "'"]);
+					}
 					$html[] = "$key=\"$value\"";
 				}
 			}
