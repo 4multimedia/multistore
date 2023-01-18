@@ -13,5 +13,6 @@ class MiddlewareServiceProvider extends ServiceProvider {
 
     public function boot() {
         app('router')->aliasMiddleware('multimedia.backend', \Multimedia\Multistore\Core\Http\Middleware\Backend::class);
+		app('router')->aliasMiddleware('multimedia.web', \Multimedia\Multistore\Core\Http\Middleware\Frontend::class);
     }
 }
