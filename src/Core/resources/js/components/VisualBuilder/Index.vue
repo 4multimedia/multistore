@@ -50,7 +50,7 @@
 			</div>
 		</header>
 		<section class="visual-area-main flex h-full">
-			<aside class="w-16 h-full visual-area-col-components py-8 flex-col justify-between flex">
+			<aside class="w-16 h-full visual-area-col-components py-8 flex-col justify-between flex z-50">
 				<div class="bg-white rounded-full ml-4 shadow-md p-2 w-14">
 					<VisualPanelElement iconName="BoxSelect" type="layout" />
 					<VisualPanelElement class="mt-4" iconName="Baseline" type="basic" />
@@ -92,6 +92,7 @@
 
 			<aside class="w-80 bg-white h-full border-l border-slate-300 visual-area-col-components">
 				<VisualConfigurator />
+                <Tree :value="content" label="name"></Tree>
 			</aside>
 		</section>
 	</div>

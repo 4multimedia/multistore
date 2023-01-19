@@ -44,7 +44,6 @@ export default {
     },
     methods: {
         onChangeValue(value, id) {
-			console.log(id, value);
             this.$store.state.layout.current.setting[id] = value;
         }
     },

@@ -20,9 +20,8 @@ export default {
 		makeid: Function
 	},
     element: {
-        setting: [
+        setting:
             {
-                'Podstawowe': {
                     'Podstawowe informacje': [
                         {
 							id: 'rows',
@@ -47,14 +46,6 @@ export default {
 						},
                     ]
                 },
-            },
-            {
-                'Style': { Background, Constrait }
-            },
-            {
-                'Zaawansowane': {}
-            }
-        ],
         default: {
             rows: 0,
         }

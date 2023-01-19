@@ -1,5 +1,14 @@
 <template>
-    <div @click="onHandleSelectElement($event)" class="visual-element" :class="{'visual-select-element': selectElement === element.uuid}">
+    <div
+        @click="onHandleSelectElement($event)"
+        @mouseenter="onHandleHoverElement($event)"
+        @mouseleave="onHandleHoverReset($event)"
+        class="visual-element"
+        :class="{
+            'visual-hover-element': hoverElement === element.uuid,
+            'visual-select-element': selectElement === element.uuid,
+        }
+    ">
         <span class="handle"><Move :size="14" /></span>
         <div class="actions">
             <span class="duplicate" @click="cloneElement"><Files :size="14" /></span>
@@ -19,14 +28,20 @@ export default {
         }
     },
     components: {
-    Move,
-    Files,
-    Trash2
-},
+        Move,
+        Files,
+        Trash2
+    },
     computed: {
         selectElement() {
             if (this.$store.state.layout.current && this.$store.state.layout.current.uuid !== undefined) {
                 return this.$store.state.layout.current.uuid;
+            }
+            return null;
+        },
+        hoverElement() {
+            if (this.$store.state.layout.hover && this.$store.state.layout.hover.uuid !== undefined) {
+                return this.$store.state.layout.hover.uuid;
             }
             return null;
         }
@@ -79,6 +94,16 @@ export default {
 		},
         onHandleSelectElement(event) {
             this.$store.commit('setElement', this.element);
+            event.preventDefault();
+            event.stopPropagation();
+        },
+        onHandleHoverElement(event) {
+            this.$store.commit('hoverElement', this.element);
+            event.preventDefault();
+            event.stopPropagation();
+        },
+        onHandleHoverReset(event) {
+            this.$store.commit('hoverElement', {});
             event.preventDefault();
             event.stopPropagation();
         }

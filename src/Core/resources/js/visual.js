@@ -37,6 +37,7 @@ const components = {
 				children: [],
                 accepted: ['visual-col'],
 				icon: 'Columns',
+                nested: true,
 				configuration: getConfiguration('visual-flex')
 			},
 			{
@@ -45,6 +46,7 @@ const components = {
 				children: [],
                 accepted: ['visual-col'],
 				icon: 'Grid',
+                nested: true,
 				configuration: getConfiguration('visual-grid')
 			},
 			{
@@ -52,6 +54,7 @@ const components = {
 				component: 'visual-block',
 				children: [],
                 accepted: ['*'],
+                nested: true,
 				icon: 'LayoutTemplate',
 				configuration: getConfiguration('visual-block')
 			},
@@ -60,6 +63,7 @@ const components = {
 				component: 'visual-block',
 				children: [],
                 accepted: ['*'],
+                nested: true,
 				icon: 'ChevronsRightLeft',
 				configuration: getConfiguration('visual-block')
 			}
@@ -74,13 +78,14 @@ const components = {
 				children: [],
                 accepted: [],
 				icon: 'Menu',
+                nested: false,
 				configuration: getConfiguration('visual-navigation')
 			},
 			{
 				name: 'Paragraf',
 				component: 'visual-paragraph',
 				children: [],
-				nested: [],
+				nested: false,
 				icon: 'Baseline',
 				configuration: getConfiguration('visual-paragraph')
 			},
@@ -88,7 +93,7 @@ const components = {
 				name: 'Pole HTML',
 				component: 'visual-paragraph',
 				children: [],
-				nested: [],
+				nested: false,
 				icon: 'Code2',
 				configuration: getConfiguration('visual-paragraph')
 			},
@@ -96,7 +101,7 @@ const components = {
 				name: 'Ikona',
 				component: 'visual-paragraph',
 				children: [],
-				nested: [],
+				nested: false,
 				icon: 'Star',
 				configuration: getConfiguration('visual-paragraph')
 			}

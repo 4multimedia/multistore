@@ -46,6 +46,9 @@ export default {
 		icon(icon) {
 			return icons[icon];
 		},
+        onCloneItem(item) {
+
+        }
 	}
 }
 </script>

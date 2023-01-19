@@ -7,7 +7,8 @@ const store = new Vuex.Store({
     state: {
         layout: {
             content: [],
-            current: {}
+            current: {},
+            hover: {}
         },
     },
     mutations: {
@@ -16,6 +17,9 @@ const store = new Vuex.Store({
         },
         setElement(state, element) {
             state.layout.current = element;
+        },
+        hoverElement(state, element) {
+            state.layout.hover = element;
         }
     }
 });

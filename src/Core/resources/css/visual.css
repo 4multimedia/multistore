@@ -87,3 +87,93 @@ BODY {
 	font-weight: 500 !important;
 	@apply text-slate-600 !important;
 }
+
+.visual-ghost {
+    height: 10px !important;
+    margin:1px 0;
+    width: calc(100% - 6px) !important;
+    display: flex;
+    align-items: center;
+    @apply border border-dashed border-sky-400 bg-sky-100;
+    margin:3px;
+}
+.visual-ghost svg,
+.visual-ghost p {
+    display: none;
+}
+
+.visual-component-list {
+	flex:0 0 320px;
+    @apply p-4;
+}
+.visual-component-list section {
+    margin:0;
+    padding:0;
+    list-style:none;
+    @apply grid grid-cols-2 gap-2;
+}
+.visual-component-list section div {
+    @apply flex justify-center flex-col items-center border border-solid border-slate-300 px-2 py-5 rounded text-center cursor-move text-slate-800 bg-white hover:shadow-md transition-all;
+}
+.visual-component-list section div p {
+    @apply font-medium text-xs m-0;
+}
+.visual-main {
+	flex:1;
+	height: calc(100vh - 2.5rem);
+}
+.visual-main-form {
+	min-height: calc(100vh - 2.5rem);
+}
+.visual-element {
+    position: relative;
+    display: block;
+}
+.visual-element.first {
+    height: calc(100% - 2px);
+}
+.visual-hover-element {
+    @apply outline outline-amber-500 outline-1 outline-dashed;
+}
+.visual-select-element {
+    @apply outline outline-blue-400 outline-1 outline-dashed;
+}
+
+.visual-select-element.visual-element {
+    z-index:10;
+}
+.visual-select-element.visual-element > .handle,
+.visual-select-element.visual-element > .actions {
+    @apply flex;
+}
+.visual-element > .actions,
+.visual-element > .handle {
+    @apply h-6 bg-blue-400 text-white hidden items-center justify-center absolute z-10;
+    top:-24px;
+}
+.visual-setting-class-flex,
+.visual-area-builder .block {
+    min-height: 24px;
+    @apply outline-gray-200 outline-1 outline-dashed;
+}
+.visual-element .handle {
+    @apply w-6;
+    left:-2px;
+}
+.visual-element .actions {
+    @apply w-12;
+    right: -2px;
+}
+.visual-element .actions span {
+    @apply flex w-6 items-center justify-center;
+}
+
+
+.visual-setting-class-flex {
+	display: flex;
+}
+.visual-setting-class-flex > p,
+.visual-setting-class-flex > div {
+	flex:1;
+	height: 100%;
+}

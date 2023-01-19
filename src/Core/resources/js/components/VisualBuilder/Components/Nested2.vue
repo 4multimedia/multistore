@@ -3,8 +3,9 @@
         tag="section"
         :list="children"
 		:group="group"
-        :options="{ group: { pull: 'clone', put: false }, ghostClass: 'visual-ghost' }"
+        :options="{ group: { pull: false, put: true }, ghostClass: 'visual-ghost' }"
         @add="onAdd"
+        @click="onClickSection"
         handle=".handle"
     >
 		<div v-for="el, index in children" :key="index" :id="el.uuid" class="visual-node">
@@ -28,16 +29,20 @@ export default {
         onAddItem: Function,
 		clone: {
 			type: [Boolean, Function, String],
-			default: 'clone'
+			default: true
 		},
 		put: {
 			type: [Boolean, Function, String],
-			default: false
+			default: true
 		},
 		group: {
 			type: String,
 			default: 'visualComponents',
-		}
+		},
+        root: {
+            type: Boolean,
+            default: false
+        }
 	},
     root: {
         type: Boolean,
@@ -53,6 +58,9 @@ export default {
                 result += characters.charAt(Math.floor(Math.random() * charactersLength));
             }
             return result;
+        },
+        onClickSection() {
+            alert('1');
         },
         onAdd(item) {
 			const index = item.newIndex;
@@ -97,9 +105,13 @@ export default {
                     node = cloneNode.children;
                     if (a == tree.length - 1) {
 						if (cloneNode.nested) {
+                            console.log('dodaj');
 							node.splice(index, 0, cloneElement);
+                            break;
+                            return;
 						}
 						else {
+                            console.log('wstecz');
 							tree.pop();
 							this.addToTree(tree, cloneElement, index);
 						}

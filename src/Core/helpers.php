@@ -77,16 +77,18 @@ use Multimedia\Multistore\Core\Http\Classes\Tables;
 	function generate_css_variables() {
 		$data = get_option('layout_setting', []);
 		$variables = [];
-		$variables[] = "\t--primary: ".(isset($data["color"]["general"][0]["color"]) ? $data["color"]["general"][0]["color"] : "#cccccc").";";
-		$variables[] = "\t--secondary: ".(isset($data["color"]["general"][1]["color"]) ? $data["color"]["general"][1]["color"] : "#cccccc").";";
-		$variables[] = "\t--text: ".(isset($data["color"]["general"][2]["color"]) ? $data["color"]["general"][2]["color"] : "#cccccc").";";
-		$variables[] = "\t--accent: ".(isset($data["color"]["general"][3]["color"]) ? $data["color"]["general"][3]["color"] : "#cccccc").";";
-		$variables[] = "\t--link: ".(isset($data["color"]["general"][0]["link"]) ? $data["link"]["general"][0]["color"] : "#cccccc").";";
-		$variables[] = "\t--link-hover: ".(isset($data["color"]["general"][1]["link"]) ? $data["link"]["general"][1]["color"] : "#cccccc").";";
+        if (isset($data["color"])) {
+            $variables[] = "\t--primary: ".(isset($data["color"]["general"][0]["color"]) ? $data["color"]["general"][0]["color"] : "#cccccc").";";
+            $variables[] = "\t--secondary: ".(isset($data["color"]["general"][1]["color"]) ? $data["color"]["general"][1]["color"] : "#cccccc").";";
+            $variables[] = "\t--text: ".(isset($data["color"]["general"][2]["color"]) ? $data["color"]["general"][2]["color"] : "#cccccc").";";
+            $variables[] = "\t--accent: ".(isset($data["color"]["general"][3]["color"]) ? $data["color"]["general"][3]["color"] : "#cccccc").";";
+            $variables[] = "\t--link: ".(isset($data["color"]["general"][0]["link"]) ? $data["link"]["general"][0]["color"] : "#cccccc").";";
+            $variables[] = "\t--link-hover: ".(isset($data["color"]["general"][1]["link"]) ? $data["link"]["general"][1]["color"] : "#cccccc").";";
 
-		foreach($data["color"]["additional"] as $color) {
-			$variables[] = "\t--".Str::slug($color["name"]).": ".$color["color"].";";
-		}
+            foreach($data["color"]["additional"] as $color) {
+                $variables[] = "\t--".Str::slug($color["name"]).": ".$color["color"].";";
+            }
+        }
 
 		$content = ":root { \n ".implode("\n", $variables)."\n }";
 

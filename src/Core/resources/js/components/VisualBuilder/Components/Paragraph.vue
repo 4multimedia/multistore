@@ -6,13 +6,15 @@
 
 <script>
 import Component from './Component.vue';
+import { typography, constraints } from './../Configuration/index';
+
 export default {
   components: { Component },
 	props: {
 		element: Object,
 	},
     element: {
-        setting: {
+        setting: Object.assign({
 			'Podstawowe informacje': [
                 { id: 'text', name: 'Tekst', field: 'input-text' },
                 { id: 'tag', name: 'Tag HTML', field: 'dropdown', options: [
@@ -21,11 +23,7 @@ export default {
 					{'id': 'div', 'name' : 'Blok - <div></div>'},
 					{'id': 'h1', 'name' : 'Nagłówek H1 - <h1></h1>'}
 				]}
-            ],
-			'Typografia': [
-                { id: 'font.family', name: 'Czcionka', field: 'input-text' },
-            ]
-        },
+            ]}, typography, constraints),
         default: {
             text: 'Wpisz tekst',
             tag: 'p'
