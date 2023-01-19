@@ -4,16 +4,19 @@ import VisualParagraph from './components/VisualBuilder/Components/Paragraph';
 import VisualBlock from './components/VisualBuilder/Components/Block';
 import VisualGrid from './components/VisualBuilder/Components/Grid';
 import VisualNavigation from './components/VisualBuilder/Components/Navigation';
+import VisualContainer from './components/VisualBuilder/Components/Container';
 
 const elements = [];
 elements['visual-paragraph'] = VisualParagraph.element;
 elements['visual-block'] = VisualBlock.element;
+elements['visual-container'] = VisualContainer.element;
 elements['visual-grid'] = VisualGrid.element;
 elements['visual-navigation'] = VisualNavigation.element;
 
 Vue.component('VisualGrid', VisualGrid);
 Vue.component('VisualParagraph', VisualParagraph);
 Vue.component('VisualBlock', VisualBlock);
+Vue.component('VisualContainer', VisualContainer);
 Vue.component('VisualNavigation', VisualNavigation);
 
 function getConfiguration (key) {
@@ -60,12 +63,12 @@ const components = {
 			},
 			{
 				name: 'Kontener',
-				component: 'visual-block',
+				component: 'visual-container',
 				children: [],
                 accepted: ['*'],
                 nested: true,
 				icon: 'ChevronsRightLeft',
-				configuration: getConfiguration('visual-block')
+				configuration: getConfiguration('visual-container')
 			}
 		]
 	},

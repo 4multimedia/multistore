@@ -92,7 +92,7 @@
 
 			<aside class="w-80 bg-white h-full border-l border-slate-300 visual-area-col-components">
 				<VisualConfigurator />
-                <Tree :value="content" label="name"></Tree>
+                <Tree :value="content" label="name" key="uuid"></Tree>
 			</aside>
 		</section>
 	</div>

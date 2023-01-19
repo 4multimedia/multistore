@@ -1,4 +1,7 @@
 {
+    "/public/js/backend.js": "/public/js/backend.js",
+    "/public/css/backend.visual.css": "/public/css/backend.visual.css",
+    "/public/css/backend.css": "/public/css/backend.css",
     "/public/js/tinymce/CHANGELOG.md": "/public/js/tinymce/CHANGELOG.md",
     "/public/js/tinymce/README.md": "/public/js/tinymce/README.md",
     "/public/js/tinymce/bower.json": "/public/js/tinymce/bower.json",

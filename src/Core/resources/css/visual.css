@@ -151,10 +151,16 @@ BODY {
     @apply h-6 bg-blue-400 text-white hidden items-center justify-center absolute z-10;
     top:-24px;
 }
+.visual-area-builder .container,
 .visual-setting-class-flex,
 .visual-area-builder .block {
     min-height: 24px;
     @apply outline-gray-200 outline-1 outline-dashed;
+}
+.visual-area-builder .container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
 }
 .visual-element .handle {
     @apply w-6;
