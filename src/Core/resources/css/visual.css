@@ -37,114 +37,53 @@
 
 @import "./components/_primevue.css";
 
-.visual {
-    @apply m-0 p-5 bg-primary;
-    font-size: .875rem;
-    line-height: 1.25rem;
-    color: rgb(var(--color-slate-800)/var(--tw-text-opacity));
-}
-.visual-ghost {
-    height: 5px !important;
-    background-color: #f00 !important;
-    margin:1px 0;
-    width: 100%;
+BODY {
+	@apply bg-slate-100;
+	font-size:14px;
+	font-family: Roboto;
 }
 
-.visual-component-list {
-	flex:0 0 320px;
-    @apply p-4;
+.visual-elements-item:hover .visual-elements-menu {
+	display: block;
 }
-.visual-component-list section {
-    margin:0;
-    padding:0;
-    list-style:none;
-    @apply grid grid-cols-2 gap-2;
+.visual-elements-item:hover button {
+	@apply bg-blue-500 text-white;
 }
-.visual-component-list section div {
-    @apply flex justify-center flex-col items-center border border-solid border-slate-300 px-2 py-5 rounded text-center cursor-move text-slate-800 bg-white hover:shadow-md transition-all;
+.visual-area-col-components .p-tabview .p-tabview-panels {
+	padding: 0;
 }
-.visual-component-list section div p {
-    @apply font-medium text-xs m-0;
+.visual-area-col-components .p-accordion .p-accordion-header .p-accordion-header-link {
+	background: none !important;
+	border-left:none;
+	border-right: none;
+	padding: 1rem 1rem !important;
+	border-radius: 0 !important;
+	@apply border-slate-200 flex content-between justify-between !important;
 }
-.visual-main {
-	flex:1;
-	height: calc(100vh - 2.5rem);
+.visual-area-col-components .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+	box-shadow: none !important;
 }
-.visual-configurator {
-	flex:0 0 300px;
-    @apply p-5;
+.visual-area-col-components .p-accordion .p-accordion-content {
+	border-top:none !important;
+	border-left:none !important;
+	border-right:none !important;
+	padding:1rem !important;
+	border-radius: 0 !important;
+	@apply border-b border-slate-200 !important;
 }
-.visual-main-form {
-	min-height: calc(100vh - 2.5rem);
+.visual-area-col-components .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+	order:1;
+	margin-right: 0 !important;
+	@apply text-slate-300 !important;
+	font-size: 14px !important;
 }
-.visual-area {
-    border-radius: 1.3rem;
-    @apply bg-white;
+.visual-area-col-components .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon.pi-chevron-right {
+	transform: rotate(90deg);
 }
-.visual-element {
-    padding: 5px;
-    position: relative;
-    display: block;
-    min-height: 24px;
-    margin: 2px;
-    @apply border border-dashed border-slate-400 bg-white;
+.visual-area-col-components .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon.pi-chevron-down {
+	transform: rotate(180deg);
 }
-.visual-element.first {
-    height: calc(100% - 2px);
-}
-.visual-select-element {
-    @apply outline outline-blue-400 outline-1;
-}
-.visual-select-element.visual-element {
-    @apply border-blue-500 border-solid bg-blue-50;
-    border-style: solid;
-    z-index:10;
-}
-.visual-select-element.visual-element > .handle,
-.visual-select-element.visual-element > .actions {
-    @apply flex;
-}
-.visual-element > .actions,
-.visual-element > .handle {
-    @apply h-6 bg-blue-400 text-white hidden items-center justify-center absolute z-10;
-    top:-2px;
-}
-.visual-element .handle {
-    @apply w-6;
-    left:-2px;
-}
-.visual-element .actions {
-    @apply w-12;
-    right: -2px;
-}
-.visual-element .actions span {
-    @apply flex w-6 items-center justify-center;
-}
-
-.p-tabview-nav-content {
-    @apply bg-gray-100;
-}
-.p-accordion .p-accordion-content {
-    padding:1.25rem 0;
-    border:none;
-}
-.p-accordion .p-accordion-header .p-accordion-header-link {
-    padding:0;
-    background: none !important;
-    border:none !important;
-    justify-content: space-between;
-}
-.p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
-    order:1 !important;
-}
-.p-accordion-header-text {
-    @apply font-medium text-slate-500;
-}
-.visual-setting-class-flex {
-	display: flex;
-}
-.visual-setting-class-flex > p,
-.visual-setting-class-flex > div {
-	flex:1;
-	height: 100%;
+.visual-area-col-components .p-accordion-header-text {
+	font-weight: 500 !important;
+	@apply text-slate-600 !important;
 }

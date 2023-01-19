@@ -47,12 +47,6 @@
 
 /*! sifter.js | https://github.com/orchidjs/sifter.js | Apache License (v2) */
 
-/**
- * vuex v3.0.0
- * (c) 2017 Evan You
- * @license MIT
- */
-
 /**!
  * Sortable 1.10.2
  * @author	RubaXa   <trash@rubaxa.org>

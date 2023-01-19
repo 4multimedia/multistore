@@ -71,6 +71,7 @@ import VisualNested from './components/VisualBuilder/Components/Nested2.vue';
 import UiSidebar from './components/Ui/Sidebar/Index';
 import UiBox from './components/Ui/Box/Index';
 import UiTip from './components/Ui/Tip/Index';
+import Tooltip from 'primevue/tooltip';
 
 import store from './store';
 
@@ -132,6 +133,7 @@ Vue.component('DialogMedia', DialogMedia);
 Vue.component('ViewsLayoutColors', ViewsLayoutColors);
 Vue.component('VisualNested', VisualNested);
 Vue.component('VisualComponent', VisualComponent);
+Vue.directive('tooltip', Tooltip);
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 const lang = document.querySelector('meta[name="language"]').content;

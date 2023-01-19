@@ -1,25 +1,25 @@
 <template>
     <div v-if="component">
-        <TabView>
-            <TabPanel v-for="tab, index in tabs" :key="index" :header="tab.name">
-                <Accordion>
-                    <AccordionTab v-for="setting, index_tab in tab.configuration" :key="index_tab" :header="index_tab">
-                        <div v-for="field, index in setting" :key="index">
-                            <component
-                                :is="field.field"
-                                v-bind="{
-                                    label: field.name,
-                                    options: field.options,
-                                    value: form[field.id]
-                                }"
-                                v-model="form[field.id]"
-                                @onChangeValue="onChangeValue($event, field.id)"
-                            />
-                        </div>
-                    </AccordionTab>
-                </Accordion>
-            </TabPanel>
-        </TabView>
+		<div class="h-10 flex items-center px-3 text-xs">
+			<span class="text-slate-600 inline-flex items-center mx-1 px-2 h-5 rounded bg-slate-200">p</span>
+			<span class="text-slate-600 inline-flex items-center mx-1 px-2 h-5 rounded bg-slate-200">span.text</span>
+		</div>
+        <Accordion>
+            <AccordionTab v-for="setting, index_tab in tabs" :key="index_tab" :header="setting.name">
+                <div v-for="field, index in setting.configuration" :key="index">
+                    <component
+                        :is="field.field"
+                        v-bind="{
+                            label: field.name,
+                            options: field.options,
+                            value: form[field.id]
+                        }"
+                        v-model="form[field.id]"
+                        @onChangeValue="onChangeValue($event, field.id)"
+                    />
+                </div>
+            </AccordionTab>
+        </Accordion>
     </div>
 </template>
 
@@ -44,7 +44,8 @@ export default {
     },
     methods: {
         onChangeValue(value, id) {
-            this.form[id] = value;
+			console.log(id, value);
+            this.$store.state.layout.current.setting[id] = value;
         }
     },
     computed: {
@@ -70,19 +71,16 @@ export default {
             const array = [];
             const setting = this.configuration.setting;
             this.form = this.$store.state.layout.current.setting;
-            for (const [index, tabs] of Object.entries(setting)) {
-                for (const [tab, fields] of Object.entries(tabs)) {
-                    for (const [index, field] of Object.entries(fields)) {
-                        for (const [key, value] of Object.entries(field)) {
-                            if (value.id === undefined) {
-                                this.form = {...this.form, ...{[value.id]: ''}};
-                            }
-                        }
 
-                    }
-                    array.push({name: tab, configuration: fields});
-                }
-            }
+			for (const [index_1, elements] of Object.entries(setting)) {
+				for (const [index_2, field] of Object.entries(elements)) {
+					if (this.form[field.id] === undefined) {
+						this.form = {...this.form, ...{[field.id]: ''}};
+					}
+				}
+				array.push({name: index_1, configuration: elements});
+			}
+
             return array;
         },
     }

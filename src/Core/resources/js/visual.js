@@ -48,11 +48,19 @@ const components = {
 				configuration: getConfiguration('visual-grid')
 			},
 			{
-				name: 'Blok',
+				name: 'Element blokowy',
 				component: 'visual-block',
 				children: [],
                 accepted: ['*'],
 				icon: 'LayoutTemplate',
+				configuration: getConfiguration('visual-block')
+			},
+			{
+				name: 'Kontener',
+				component: 'visual-block',
+				children: [],
+                accepted: ['*'],
+				icon: 'ChevronsRightLeft',
 				configuration: getConfiguration('visual-block')
 			}
 		]
@@ -74,6 +82,14 @@ const components = {
 				children: [],
 				nested: [],
 				icon: 'Baseline',
+				configuration: getConfiguration('visual-paragraph')
+			},
+			{
+				name: 'Pole HTML',
+				component: 'visual-paragraph',
+				children: [],
+				nested: [],
+				icon: 'Code2',
 				configuration: getConfiguration('visual-paragraph')
 			},
 			{
