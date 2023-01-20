@@ -1,5 +1,5 @@
 <template>
-    <div
+    <component :is="tag"
         @click="onHandleSelectElement($event)"
         @mouseenter="onHandleHoverElement($event)"
         @mouseleave="onHandleHoverReset($event)"
@@ -8,14 +8,14 @@
             'visual-hover-element': hoverElement === element.uuid,
             'visual-select-element': selectElement === element.uuid,
         }
-    ">
+        ">
         <span class="handle"><Move :size="14" /></span>
         <div class="actions">
             <span class="duplicate" @click="cloneElement"><Files :size="14" /></span>
             <span class="remove"><Trash2 :size="14" /></span>
         </div>
         <slot />
-    </div>
+    </component>
 </template>
 
 <script>
@@ -33,6 +33,12 @@ export default {
         Trash2
     },
     computed: {
+        tag() {
+            if (this.element && this.element.setting && this.element.setting.tag) {
+                return this.element.setting.tag;
+            }
+            return 'div';
+        },
         selectElement() {
             if (this.$store.state.layout.current && this.$store.state.layout.current.uuid !== undefined) {
                 return this.$store.state.layout.current.uuid;

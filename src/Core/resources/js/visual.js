@@ -100,6 +100,14 @@ const components = {
 				icon: 'Link',
 				configuration: getConfiguration('visual-paragraph')
 			},
+            {
+				name: 'Przycisk',
+				component: 'visual-paragraph',
+				children: [],
+				nested: false,
+				icon: 'MousePointerClick',
+				configuration: getConfiguration('visual-paragraph')
+			},
 			{
 				name: 'Pole HTML',
 				component: 'visual-paragraph',

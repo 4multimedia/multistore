@@ -1,5 +1,5 @@
 <template>
-    <visual-component :element="element">
+    <visual-component :element="element" :style="styles">
 	    <component :is="tag">{{ text }}</component>
     </visual-component>
 </template>
@@ -7,9 +7,11 @@
 <script>
 import Component from './Component.vue';
 import { typography, constraints } from './../Configuration/index';
+import { styleMixin } from './../mixins/styleMixin';
 
 export default {
-  components: { Component },
+    components: { Component },
+    mixins:[styleMixin],
 	props: {
 		element: Object,
 	},
@@ -27,14 +29,6 @@ export default {
         default: {
             text: 'Wpisz tekst',
             tag: 'p'
-        }
-    },
-    methods: {
-        getSetting(key) {
-            if (this.element && this.element.setting && this.element.setting[key]) {
-                return this.element.setting[key];
-            }
-            return '';
         }
     },
     computed: {

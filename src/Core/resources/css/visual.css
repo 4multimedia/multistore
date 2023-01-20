@@ -127,7 +127,6 @@ BODY {
 }
 .visual-element {
     position: relative;
-    display: block;
 }
 .visual-element.first {
     height: calc(100% - 2px);

@@ -7,9 +7,15 @@
         @add="onAdd"
         handle=".handle"
     >
-		<div v-for="el, index in children" :key="index" :id="el.uuid" class="visual-node">
-			<component :is="el.component" :makeid="makeid" :element="el"></component>
-		</div>
+		<component
+            v-for="el, index in children"
+            :key="index"
+            :id="el.uuid"
+            class="visual-node"
+            :is="el.component"
+            :makeid="makeid"
+            :element="el">
+        </component>
 	</draggable>
 </template>
 
