@@ -92,6 +92,7 @@
 
 			<aside class="w-80 bg-white h-full border-l border-slate-300 visual-area-col-components">
 				<VisualConfigurator />
+				{{ content }}
                 <Tree :value="content" label="name" key="uuid"></Tree>
 			</aside>
 		</section>

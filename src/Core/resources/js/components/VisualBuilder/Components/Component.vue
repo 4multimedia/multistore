@@ -87,9 +87,6 @@ export default {
 			let layout = this.$store.state.layout.content;
 			const uuid = element.uuid;
 
-			console.log(uuid);
-			console.log(this.findPath(layout, "uuid", uuid));
-
 			element = JSON.parse(JSON.stringify(element));
 		},
         onHandleSelectElement(event) {

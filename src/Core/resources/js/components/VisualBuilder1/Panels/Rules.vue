@@ -35,7 +35,6 @@ export default {
     },
 	methods: {
 		onHandleCrosshair(e) {
-			console.log(e);
 			this.x = e.layerX - 1;
 			this.y = e.layerY - 1;
 		}

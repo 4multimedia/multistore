@@ -58,7 +58,8 @@ import Dropdown from './components/Input/Dropdown.vue';
 import InputCheckbox from './components/Input/InputCheckbox.vue';
 import VisualBuilder from './components/VisualBuilder/Index.vue';
 import InputGallery from './components/Input/Gallery.vue';
-import InputImage from './components/Input/InputImage.vue'
+import InputImage from './components/Input/InputImage.vue';
+import SelectButton from './components/Input/SelectButton.vue';
 
 import VisualComponent from './components/VisualBuilder/Components/Component';
 
@@ -107,6 +108,7 @@ Vue.component('InputText', InputText);
 Vue.component('InputPassword', InputPassword);
 Vue.component('InputSwitch', InputSwitch);
 Vue.component('InputImage', InputImage);
+Vue.component('SelectButton', SelectButton);
 Vue.component('FormBody', FormBody);
 Vue.component('FormModule', FormModule);
 Vue.component('FormSection', FormSection);

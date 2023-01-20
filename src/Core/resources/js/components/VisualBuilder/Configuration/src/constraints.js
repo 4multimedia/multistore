@@ -1,5 +1,5 @@
 export default {
     'Wymiary': [
-        { id: 'size', name: 'Czcionka', field: 'visual-constraints' },
+        { id: 'constraints', name: 'Czcionka', field: 'visual-constraints', type: 'object' },
     ]
 }

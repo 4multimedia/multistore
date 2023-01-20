@@ -93,6 +93,14 @@ const components = {
 				configuration: getConfiguration('visual-paragraph')
 			},
 			{
+				name: 'Link',
+				component: 'visual-paragraph',
+				children: [],
+				nested: false,
+				icon: 'Link',
+				configuration: getConfiguration('visual-paragraph')
+			},
+			{
 				name: 'Pole HTML',
 				component: 'visual-paragraph',
 				children: [],
@@ -112,6 +120,6 @@ const components = {
 	}
 };
 
-console.log(components);
+//console.log(components);
 
 export default components;

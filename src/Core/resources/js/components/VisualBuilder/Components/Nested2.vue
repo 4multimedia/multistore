@@ -5,7 +5,6 @@
 		:group="group"
         :options="{ group: { pull: false, put: true }, ghostClass: 'visual-ghost' }"
         @add="onAdd"
-        @click="onClickSection"
         handle=".handle"
     >
 		<div v-for="el, index in children" :key="index" :id="el.uuid" class="visual-node">
@@ -19,7 +18,7 @@ import Draggable from "vuedraggable";
 
 export default {
 	components: {
-		Draggable
+		Draggable,
 	},
 	props: {
 		children: {
@@ -59,9 +58,6 @@ export default {
             }
             return result;
         },
-        onClickSection() {
-            alert('1');
-        },
         onAdd(item) {
 			const index = item.newIndex;
             var path = item.originalEvent.path || (item.originalEvent.composedPath && item.originalEvent.composedPath());
@@ -80,6 +76,7 @@ export default {
             let element = this.components[data[0]].elements.find(e => e.component === data[1]);
             element = JSON.parse(JSON.stringify(element));
 
+			const elements = element.configuration;
             const setting = element.configuration.default;
 
             const cloneElement = {
@@ -105,13 +102,11 @@ export default {
                     node = cloneNode.children;
                     if (a == tree.length - 1) {
 						if (cloneNode.nested) {
-                            console.log('dodaj');
 							node.splice(index, 0, cloneElement);
                             break;
                             return;
 						}
 						else {
-                            console.log('wstecz');
 							tree.pop();
 							this.addToTree(tree, cloneElement, index);
 						}

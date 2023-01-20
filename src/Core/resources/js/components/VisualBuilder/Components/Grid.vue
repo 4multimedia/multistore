@@ -8,13 +8,9 @@
 
 <script>
 import Component from './Component.vue';
-import { background, height } from './../helpers/Style';
-import styleConfig from './../mixins/Style';
-import { Background, Constrait } from './../mixins/Background';
 
 export default {
 	components: { Component },
-	mixins: [styleConfig],
 	props: {
 		element: Object,
 		makeid: Function

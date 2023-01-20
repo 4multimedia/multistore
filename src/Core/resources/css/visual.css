@@ -133,10 +133,10 @@ BODY {
     height: calc(100% - 2px);
 }
 .visual-hover-element {
-    @apply outline outline-amber-500 outline-1 outline-dashed;
+    @apply outline outline-amber-500 outline-1 outline-dashed !important;
 }
 .visual-select-element {
-    @apply outline outline-blue-400 outline-1 outline-dashed;
+    @apply outline outline-blue-400 outline-1 outline-dashed !important;
 }
 
 .visual-select-element.visual-element {

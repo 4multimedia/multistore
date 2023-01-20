@@ -20,6 +20,7 @@
                 </div>
             </AccordionTab>
         </Accordion>
+		<pre>{{ form }}</pre>
     </div>
 </template>
 
@@ -28,13 +29,15 @@ import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
+import VisualConstraints from './../Block/Constraints.vue';
 
 export default {
     components: {
         Accordion,
         AccordionTab,
         TabView,
-        TabPanel
+        TabPanel,
+		VisualConstraints
     },
     inject: ['components'],
     data() {
@@ -44,9 +47,17 @@ export default {
     },
     methods: {
         onChangeValue(value, id) {
-            this.$store.state.layout.current.setting[id] = value;
+			this.form[id] = value;
         }
     },
+	watch: {
+		'form': {
+			handler(value) {
+				this.$store.state.layout.current.setting = value;
+			},
+			deep: true
+		}
+	},
     computed: {
         element() {
             return this.$store.state.layout.current;
@@ -74,7 +85,11 @@ export default {
 			for (const [index_1, elements] of Object.entries(setting)) {
 				for (const [index_2, field] of Object.entries(elements)) {
 					if (this.form[field.id] === undefined) {
-						this.form = {...this.form, ...{[field.id]: ''}};
+						let value = '';
+						if (field.type === 'object') {
+							value = {};
+						}
+						this.form = {...this.form, ...{[field.id]: value}};
 					}
 				}
 				array.push({name: index_1, configuration: elements});

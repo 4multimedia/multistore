@@ -39,7 +39,6 @@
      },
      methods: {
 		onHandleExportObject() {
-			console.log(JSON.parse(this.editor.export()));
 			this.d = JSON.parse(this.editor.export());
 		},
     removeElement() {

@@ -11,6 +11,11 @@ const store = new Vuex.Store({
             hover: {}
         },
     },
+	actions: {
+		updateValue({ commit }) {
+			console.log(commit);
+		}
+	},
     mutations: {
         setLayout(state, layout) {
             state.layout.content = layout;
@@ -20,7 +25,15 @@ const store = new Vuex.Store({
         },
         hoverElement(state, element) {
             state.layout.hover = element;
-        }
+        },
+		updateValueElement(state, item) {
+			alert('commit');
+			const element = state.layout.current;
+			const setting = element.setting;
+			setting[item.id] = item.value;
+			element.setting = setting;
+			state.layout.current = element;
+		}
     }
 });
 
