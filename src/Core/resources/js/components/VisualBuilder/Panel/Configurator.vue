@@ -20,7 +20,6 @@
                 </div>
             </AccordionTab>
         </Accordion>
-		<pre>{{ form }}</pre>
     </div>
 </template>
 

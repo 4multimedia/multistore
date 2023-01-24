@@ -1,6 +1,7 @@
 @foreach($elements as $element)
 	@php
-		$component = $element["props"]["component"];
+		$component = $element["component"];
+		$component = strtr($component, ['visual-' => '']);
 		$componentName = "layout::".$component;
 		$elements = $element["children"];
 		$uuid = $element["uuid"];

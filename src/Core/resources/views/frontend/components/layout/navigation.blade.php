@@ -1,3 +1,5 @@
-<div class="row">
-	{!! $slot !!}
-</div>
+<nav class="{{ $className }}">
+	<ul>
+		<li>aaa</li>
+	</ul>
+</nav>

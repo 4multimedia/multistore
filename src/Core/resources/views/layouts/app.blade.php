@@ -1,6 +1,6 @@
 <html lang="en" class="light">
     <head>
-        <link rel="stylesheet" href="{{ mix('css/backend.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/backend.css') }}" />
         <title>{{ get_meta_title('4Mutli.Store - Panel administracyjny') }}</title>
 		{{ get_assets_backend_js('before') }}
 		<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -948,7 +948,7 @@
             </div>
         </div>
 
-        <script src="{{ mix('js/backend.js') }}"></script>
+        <script src="{{ asset('js/backend.js') }}"></script>
 		{{ get_assets_backend_js('after') }}
     </body>
 </html>

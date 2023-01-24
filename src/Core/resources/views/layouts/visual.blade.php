@@ -11,7 +11,7 @@
 			@yield('content')
 		</div>
 
-		<script src="{{ mix('js/backend.js') }}"></script>
+		<script src="{{ asset('js/backend.js') }}"></script>
 		{{ get_assets_backend_js('after') }}
 	</body>
 </html>

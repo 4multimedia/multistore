@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Multimedia\Multistore\Core\Models\Option;
 use Multimedia\Multistore\Core\Http\Classes\Tables;
+use Multimedia\Multistore\Core\Models\Layout;
 
 	function hook() {
         return app('hooks');
@@ -94,6 +95,11 @@ use Multimedia\Multistore\Core\Http\Classes\Tables;
 
 		$path = public_path('css');
 		return file_put_contents($path."/_variables.css", $content);
+	}
+
+	function generate_css_from_layout() {
+		$groups = Layout::get()->toArray();
+		layout()->extract_css($groups)->save();
 	}
 
 	function get_modules() {

@@ -182,3 +182,98 @@ BODY {
 	flex:1;
 	height: 100%;
 }
+
+.visual-constraints {
+	@apply border border-dashed border-slate-200 relative p-10 rounded-md;
+}
+.visual-constraints span.visual-constraints-label {
+	@apply absolute uppercase text-xs font-semibold text-slate-400;
+}
+.visual-constraints-boxpadding {
+	@apply border border-blue-500 py-8 h-24 rounded-md relative;
+}
+.visual-constraints span.visual-constraints-label.margin {
+	@apply top-3 left-3;
+}
+.visual-constraints span.visual-constraints-label.padding {
+	@apply bottom-3 right-3;
+}
+.visual-constraints input {
+	width:40px;
+	padding:0;
+	font-weight: 500;
+	position: absolute;
+	outline: none;
+	border:none;
+}
+.visual-constraints input:focus {
+	outline: none;
+	box-shadow: none;
+}
+.visual-constraints input.pt,
+.visual-constraints input.pb,
+.visual-constraints input.mt,
+.visual-constraints input.mb {
+	text-align: center;
+	left:50%;
+	transform: translateX(-50%);
+}
+.visual-constraints input.pt,
+.visual-constraints input.mt {
+	top:8px;
+}
+.visual-constraints input.pb,
+.visual-constraints input.mb {
+	bottom:7px;
+}
+.visual-constraints input.pl,
+.visual-constraints input.pr,
+.visual-constraints input.ml,
+.visual-constraints input.mr {
+	top:50%;
+	transform: translateY(-50%);
+	width:30px;
+}
+.visual-constraints input.pl,
+.visual-constraints input.ml {
+	left:10px;
+}
+.visual-constraints input.pr,
+.visual-constraints input.mr {
+	right:8px;
+}
+.visual-constraints input.ml,
+.visual-constraints input.pr {
+	text-align: right;
+}
+.visual-constraints input.ml,
+.visual-constraints input.mr {
+	width:24px;
+}
+.visual-constraints-point {
+	@apply block border border-2 border-blue-500 rounded-full bg-white absolute;
+	width:12px;
+	height:12px;
+}
+.visual-constraints-point.top,
+.visual-constraints-point.bottom {
+	left:50%;
+	transform: translateX(-50%);
+}
+.visual-constraints-point.left,
+.visual-constraints-point.right {
+	top:50%;
+	transform: translateY(-50%);
+}
+.visual-constraints-point.top {
+	top:-5.5px;
+}
+.visual-constraints-point.bottom {
+	bottom:-5.5px;
+}
+.visual-constraints-point.left {
+	left:-5.5px;
+}
+.visual-constraints-point.right {
+	right:-5.5px;
+}

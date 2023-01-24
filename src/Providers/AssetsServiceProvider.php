@@ -16,6 +16,7 @@ class AssetsServiceProvider extends ServiceProvider {
 
 	public function boot() {
 		generate_css_variables();
+		generate_css_from_layout();
 	}
 }
 
