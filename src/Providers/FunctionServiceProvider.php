@@ -31,7 +31,7 @@ class FunctionServiceProvider extends ServiceProvider {
 		if (config('multimedia.modules.content.popup') || config('multimedia.modules.content.slider')) {
 			add_to_menu('content', 'backend::content.title', null, 63, ['icon' => 'layout-template']);
             if (config('multimedia.modules.content.navigation')) {
-				add_to_submenu('content', 'backend::content.Navigation', 'backend.user', 5);
+				add_to_submenu('content', 'backend::content.Navigation', 'backend.navigation', 5);
 			}
 			if (config('multimedia.modules.content.popup')) {
 				add_to_submenu('content', 'backend::content.Popup', 'backend.user', 10);

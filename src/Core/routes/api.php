@@ -36,3 +36,10 @@ Route::prefix('media')->namespace('Media')->group(function() {
 });
 
 Route::get('lang/{lang}', 'Content\LangController@index');
+
+Route::prefix('content')->namespace('Content')->group(function() {
+	Route::prefix('navigation')->group(function() {
+		Route::get('/', 'NavigationController@index');
+		Route::post('/', 'NavigationController@store');
+	});
+});

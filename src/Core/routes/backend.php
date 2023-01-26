@@ -45,6 +45,11 @@ Route::namespace('Content')->group(function() {
 		Route::get('/', 'PageController@index')->name('backend.page');
 		Route::get('/create', 'PageController@create')->name('backend.page.create');
 	});
+
+	Route::prefix('navigation')->group(function() {
+		Route::get('/', 'NavigationController@index')->name('backend.navigation');
+		Route::get('/create', 'NavigationController@create')->name('backend.navigation.create');
+	});
 });
 
 Route::namespace('Layout')->prefix('layout')->group(function() {

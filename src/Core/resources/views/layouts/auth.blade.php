@@ -68,6 +68,6 @@
             </div>
         </div>
 
-		<script src="{{ mix('js/backend.js') }}"></script>
+		<script src="{{ asset('js/backend.js') }}"></script>
     </body>
 </html>

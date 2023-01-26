@@ -62,6 +62,7 @@ import InputImage from './components/Input/InputImage.vue';
 import SelectButton from './components/Input/SelectButton.vue';
 
 import VisualComponent from './components/VisualBuilder/Components/Component';
+import NavigationBuilder from './components/NavigationBuilder/Index.vue';
 
 //import Container from './components/VisualBuilder/Elements/Container';
 //import Column from './components/VisualBuilder/Elements/Column/Index';
@@ -90,9 +91,11 @@ import DataTree from './components/Data/Tree/Index.vue';
 import DialogMedia from './components/Media/Dialog.vue';
 import Message from 'primevue/message';
 
-import ViewsLayoutColors from './components/Views/Layout/Colors.vue'
+import ViewsLayoutColors from './components/Views/Layout/Colors.vue';
 
 import components from "./visual";
+
+import Draggable from "vuedraggable";
 
 import pl from './../../../data/json/lang/pl.json';
 import en from './../../../data/json/lang/en.json';
@@ -135,6 +138,8 @@ Vue.component('DialogMedia', DialogMedia);
 Vue.component('ViewsLayoutColors', ViewsLayoutColors);
 Vue.component('VisualNested', VisualNested);
 Vue.component('VisualComponent', VisualComponent);
+Vue.component('NavigationBuilder', NavigationBuilder);
+Vue.component('Draggable', Draggable);
 Vue.directive('tooltip', Tooltip);
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
