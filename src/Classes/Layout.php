@@ -114,8 +114,10 @@
 
 		public function save() {
 			$path = public_path('css');
+			@mkdir($path);
 			file_put_contents($path."/_elements.css", implode("\n", $this->css));
 			$path = resource_path('css');
+			@mkdir($path);
 			file_put_contents($path."/_elements.css", implode("\n", $this->css));
 		}
 	}
