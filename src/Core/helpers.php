@@ -126,7 +126,7 @@ use Illuminate\Support\Facades\Schema;
 	}
 
 	function get_option($key, $default) {
-		if (!Schema::hasTable('option')) {
+		if (Schema::hasTable('option')) {
 			$option = Option::where('key', $key)->first();
 			if ($option) {
 				$data = $option->values;
