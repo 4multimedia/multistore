@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Multimedia\Multistore\Core\Models\Option;
-use Multimedia\Multistore\Core\Http\Classes\Tables;
 use Multimedia\Multistore\Core\Models\Layout;
+use Illuminate\Support\Facades\Schema;
 
 	function hook() {
         return app('hooks');
@@ -126,13 +126,15 @@ use Multimedia\Multistore\Core\Models\Layout;
 	}
 
 	function get_option($key, $default) {
-		$option = Option::where('key', $key)->first();
-		if ($option) {
-			$data = $option->values;
-			$data = json_decode($data, true);
-			return $data;
+		if (!Schema::hasTable('option')) {
+			$option = Option::where('key', $key)->first();
+			if ($option) {
+				$data = $option->values;
+				$data = json_decode($data, true);
+				return $data;
+			}
+			return $default;
 		}
-		return $default;
 	}
 
 	function get_host() {
