@@ -127,6 +127,10 @@ use Illuminate\Support\Facades\Schema;
 		Option::updateOrCreate(['key' => $key], ['values' => $value]);
 	}
 
+	function get_navigation($id_navigation) {
+
+	}
+
 	function get_option($key, $default) {
 		if (Schema::hasTable('option')) {
 			$option = Option::where('key', $key)->first();

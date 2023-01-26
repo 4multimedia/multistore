@@ -16,6 +16,7 @@
 		private $hasHeader = true;
 		private $lang = '';
 		private $update = [];
+		private $separator = ",";
 
 		public function __construct($fields, $update, $lang, $hasHeader) {
 			$this->fields = $fields;
@@ -62,13 +63,14 @@
 			$lines = count($this->data);
 			$data = [];
 			foreach ($this->prepare_fields as $table => $fields) {
-				$array = [];
+				$values = [];
+				$update = [];
 				for($a = 0; $a < $lines; $a++) {
 					foreach ($fields as $field => $info) {
 						$value = $this->data[$a][$info["line"]];
-						$array[$field] = $value;
+						$values[$field] = $value;
 					}
-					$this->prepare($table, $array);
+					$this->prepare($table, $values);
 				}
 			}
 		}
@@ -87,7 +89,12 @@
 					}
 				}
 			}
-			DB::table($table)->insert($prepare);
+			if ($this->update) {
+				DB::table($table)->update($prepare, $this->update);
+			} else {
+				DB::table($table)->insert($prepare);
+			}
+
 		}
 
 		public function openCsv() {

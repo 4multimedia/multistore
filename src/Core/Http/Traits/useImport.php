@@ -12,6 +12,7 @@ trait useImport {
 
 	public function runImport() {
 		$fields = [];
+		$update = [];
 		$update[0] = 'product.code';
 		$fields[1] = 'product.name';
 		$fields[2] = 'product.options.unit';
