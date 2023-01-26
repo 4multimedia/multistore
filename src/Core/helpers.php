@@ -98,8 +98,10 @@ use Illuminate\Support\Facades\Schema;
 	}
 
 	function generate_css_from_layout() {
-		$groups = Layout::get()->toArray();
-		layout()->extract_css($groups)->save();
+		if (Schema::hasTable('layout')) {
+			$groups = Layout::get()->toArray();
+			layout()->extract_css($groups)->save();
+		}
 	}
 
 	function get_modules() {
