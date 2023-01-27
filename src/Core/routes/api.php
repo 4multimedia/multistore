@@ -43,5 +43,6 @@ Route::prefix('content')->namespace('Content')->group(function() {
 		Route::post('/', 'NavigationController@store');
 		Route::put('/position', 'NavigationController@position');
 		Route::put('/move', 'NavigationController@move');
+        Route::delete('/{id}', 'NavigationController@delete');
 	});
 });

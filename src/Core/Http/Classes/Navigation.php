@@ -14,11 +14,17 @@
 		}
 
 		public function storeNode($node) {
+            $position = $node["position"];
 			$navigation = NavigationModel::create([
 				'id_navigation_parent' => $node["id_navigation_parent"],
-				'route' => $node["name"],
-				'position' => $node["position"]
+				'label' => $node["label"],
+                'module' => $node["module"],
+                'route' => $node["route"],
+                'id_record' => $node["id_record"],
+				'position' => $position
 			]);
+
+            $this->position($navigation->id_navigation, $position);
 		}
 
 		public function store(Request $request) {
@@ -56,4 +62,11 @@
 			$primary->update(['id_navigation_parent' => $new_node]);
 			$this->position($id_navigation, $position);
 		}
+
+        public function delete($id_navigation) {
+            $navigation = NavigationModel::find($id_navigation);
+            if ($navigation) {
+                $navigation->delete();
+            }
+        }
 	}

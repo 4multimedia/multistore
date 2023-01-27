@@ -30,4 +30,8 @@
 		public function move(Request $request) {
 			$this->navigation->move($request->item["id"], $request->item["id_navigation_parent"], $request->item["position"]);
 		}
+
+        public function delete(Request $request) {
+            $this->navigation->delete($request->id);
+        }
     }

@@ -1,12 +1,12 @@
 <template>
 	<div class="flex">
-		<div class="w-64">
+		<div class="w-[300px]">
 			<Accordion>
-				<AccordionTab header="Strony">
+				<AccordionTab v-for="group, index in groups" :key="index" :header="group.label">
 					<input type="text" placeholder="Wyszukaj..." />
-					<draggable class="dragArea list-group" :list="list1" tag="ul" :group="{ name: 'people', pull: 'clone', put: false }">
-						<li class="list-group-item">
-							<div class="navigation-item navigation-item-node" v-for="element in list1" :key="element.name">
+					<draggable class="dragArea list-group" :list="group.items" tag="ul" :group="{ name: 'people', pull: 'clone', put: false }">
+						<li class="list-group-item" v-for="element in group.items" :key="element.name">
+							<div class="navigation-item navigation-item-node">
 								<p>{{ element.name }}</p>
 							</div>
 						</li>
@@ -18,6 +18,7 @@
 			<nested-draggable id="item-1" :items="items" :onLoad="onLoad" />
 			<pre>{{ items }}</pre>
 		</div>
+        <ConfirmDialog></ConfirmDialog>
 	</div>
 </template>
 
@@ -26,9 +27,11 @@ import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import axios from 'axios';
 import NestedDraggable from './Nested.vue';
+import ConfirmDialog from 'primevue/confirmdialog';
 
 export default {
 	components: {
+        ConfirmDialog,
 		Accordion,
 		AccordionTab,
 		NestedDraggable
@@ -45,8 +48,24 @@ export default {
 	},
 	data() {
 		return {
-			list1: [
-				{ name: "John", id: null, items: [] },
+			groups: [
+                {
+                    label: 'Strony tekstowe',
+                    items: [
+                        {
+                            id_record: 1,
+                            name: 'Regulamin strony',
+                            module: 'Multimedia\\Multistore\\Core\\Models\\Page',
+                            route: null,
+                        },
+                        {
+                            id_record: 2,
+                            name: 'Polityka prywatności',
+                            module: 'Multimedia\\Multistore\\Core\\Models\\Page',
+                            route: null
+                        }
+                    ]
+                },
 			],
 			items: []
 		}

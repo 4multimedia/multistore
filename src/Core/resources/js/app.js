@@ -64,6 +64,8 @@ import SelectButton from './components/Input/SelectButton.vue';
 import VisualComponent from './components/VisualBuilder/Components/Component';
 import NavigationBuilder from './components/NavigationBuilder/Index.vue';
 
+import ConfirmationService from 'primevue/confirmationservice';
+
 //import Container from './components/VisualBuilder/Elements/Container';
 //import Column from './components/VisualBuilder/Elements/Column/Index';
 //import Headline from './components/VisualBuilder/Elements/Headline/Index';
@@ -106,6 +108,7 @@ const translate = {
 }
 
 Vue.use(PrimeVue);
+Vue.use(ConfirmationService);
 
 Vue.component('InputText', InputText);
 Vue.component('InputPassword', InputPassword);

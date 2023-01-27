@@ -13,19 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('navigation', function (Blueprint $table) {
-			$table->id('id_navigation');
-			$table->unsignedBigInteger('id_navigation_parent')->nullable();
+        Schema::create('page', function (Blueprint $table) {
+			$table->id('id_page');
+			$table->unsignedBigInteger('id_page_parent')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 			$table->dateTime('published_at')->nullable();
 			$table->integer('position')->default(0);
-			$table->string('label')->nullable();
-			$table->string('route', 128)->nullable();
-			$table->string('module', 255)->nullable();
-			$table->unsignedBigInteger('id_record')->nullable();
+			$table->json('name');
+			$table->json('slug');
+			$table->json('excrept')->nullable();
+			$table->json('description')->nullable();
 
-			$table->foreign('id_navigation_parent')->references('id_navigation')->on('navigation')->cascadeOnUpdate()->cascadeOnDelete();
+			$table->foreign('id_page_parent')->references('id_page')->on('page')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('navigation');
+        Schema::dropIfExists('page');
     }
 };
