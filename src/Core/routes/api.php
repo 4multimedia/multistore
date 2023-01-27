@@ -41,5 +41,7 @@ Route::prefix('content')->namespace('Content')->group(function() {
 	Route::prefix('navigation')->group(function() {
 		Route::get('/', 'NavigationController@index');
 		Route::post('/', 'NavigationController@store');
+		Route::put('/position', 'NavigationController@position');
+		Route::put('/move', 'NavigationController@move');
 	});
 });

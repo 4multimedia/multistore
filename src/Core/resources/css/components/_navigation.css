@@ -1,0 +1,19 @@
+.navigation-item {
+	@apply mb-2 border border-solid border-slate-300 bg-white p-3;
+}
+.navigation-item.sortable-chosen {
+	@apply border-blue-500;
+}
+li.sortable-chosen .navigation-item {
+	background: none !important;
+	@apply border-slate-300 border-dashed;
+}
+li.sortable-chosen .navigation-item .navigation-item-content {
+	visibility: hidden;
+}
+.navigation-add {
+	@apply mb-2 border border-dashed border-slate-300 p-3 text-slate-500;
+}
+li.sortable-chosen .navigation-item.navigation-item-node {
+	@apply border-blue-400 bg-blue-50 !important;
+}

@@ -1,52 +1,54 @@
 <template>
 	<div class="flex">
 		<div class="w-64">
-			<draggable class="dragArea list-group" :list="list1" :group="{ name: 'people', pull: 'clone', put: false }">
-				<div class="list-group-item" v-for="element in list1" :key="element.name">
-					{{ element.name }}
-				</div>
-			</draggable>
+			<Accordion>
+				<AccordionTab header="Strony">
+					<input type="text" placeholder="Wyszukaj..." />
+					<draggable class="dragArea list-group" :list="list1" tag="ul" :group="{ name: 'people', pull: 'clone', put: false }">
+						<li class="list-group-item">
+							<div class="navigation-item navigation-item-node" v-for="element in list1" :key="element.name">
+								<p>{{ element.name }}</p>
+							</div>
+						</li>
+					</draggable>
+				</AccordionTab>
+			</Accordion>
 		</div>
-		<div class="flex-auto">
-			{{ wait }}
-			<nested-draggable :items="items" />
-
+		<div class="flex-auto pl-3">
+			<nested-draggable id="item-1" :items="items" :onLoad="onLoad" />
 			<pre>{{ items }}</pre>
 		</div>
 	</div>
 </template>
 
 <script>
+import Accordion from 'primevue/accordion';
+import AccordionTab from 'primevue/accordiontab';
 import axios from 'axios';
 import NestedDraggable from './Nested.vue';
 
 export default {
 	components: {
+		Accordion,
+		AccordionTab,
 		NestedDraggable
 	},
-	watch: {
-		async items() {
-			if (this.wait === false) {
-				this.wait = true;
-				try {
-					const request = await axios.post('/admin/api/content/navigation', { items: this.items });
-					this.items = JSON.parse(JSON.stringify(this.items));
-					setTimeout(() => { this.wait = false; }, 100);
-				} catch(e) {
-					setTimeout(() => { this.wait = false; }, 100);
-				}
-			}
+	methods: {
+		async onLoad() {
+			const request = await axios.get('/admin/api/content/navigation');
+			const { data } = request;
+			this.items = data;
 		}
+	},
+	async mounted() {
+		await this.onLoad();
 	},
 	data() {
 		return {
-			wait: false,
 			list1: [
-				{ name: "John", id: 1, items: [] },
+				{ name: "John", id: null, items: [] },
 			],
-			items: [
-				{ name: "John", id: 1, items: [] },
-			]
+			items: []
 		}
 	}
 }

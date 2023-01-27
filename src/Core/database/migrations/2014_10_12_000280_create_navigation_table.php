@@ -18,6 +18,8 @@ return new class extends Migration
 			$table->unsignedBigInteger('id_navigation_parent')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+			$table->dateTime('published_at')->nullable();
+			$table->integer('position')->default(0);
 			$table->string('label')->nullable();
 			$table->string('route', 128)->nullable();
 			$table->string('module', 32)->nullable();

@@ -14,7 +14,20 @@
 			$this->navigation = new Navigation();
 		}
 
+		public function index() {
+			$item = new Navigation(1);
+			return $item->render();
+		}
+
 		public function store(Request $request) {
-			return $this->navigation->store($request);
+			$this->navigation->store($request);
+		}
+
+		public function position(Request $request) {
+			$this->navigation->position($request->item["id"], $request->item["position"]);
+		}
+
+		public function move(Request $request) {
+			$this->navigation->move($request->item["id"], $request->item["id_navigation_parent"], $request->item["position"]);
 		}
     }
