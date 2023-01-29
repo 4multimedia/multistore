@@ -3,8 +3,8 @@
 	namespace Multimedia\Multistore\Core\Http\Classes;
 
 	class Page {
-		public function pageList() {
-
+		public function list() {
+            return ['a' => 'a'];
 		}
 	}
 

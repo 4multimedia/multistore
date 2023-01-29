@@ -29,6 +29,7 @@
             $this->app->register(FunctionServiceProvider::class);
             $this->app->register(ComponentServiceProvider::class);
 			$this->app->register(ConfigServiceProvider::class);
+            $this->app->register(ModuleFunctionServiceProvider::class);
 
             $this->loadModuleServiceProvider();
         }

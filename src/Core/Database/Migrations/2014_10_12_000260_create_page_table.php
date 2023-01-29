@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->unsignedBigInteger('id_page_parent')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
-			$table->dateTime('published_at')->nullable();
+			$table->timestamp('published_at')->nullable();
 			$table->integer('position')->default(0);
 			$table->json('name');
 			$table->json('slug');
