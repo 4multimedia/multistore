@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Multimedia\Multistore\Core\Models\Option;
 use Multimedia\Multistore\Core\Models\Layout;
 use Illuminate\Support\Facades\Schema;
+use Multimedia\Multistore\Core\Models\Navigation;
 
 	function hook() {
         return app('hooks');
@@ -128,7 +129,10 @@ use Illuminate\Support\Facades\Schema;
 	}
 
 	function get_navigation($id_navigation) {
-
+		$navigation = Navigation::find($id_navigation);
+		if ($navigation) {
+			return $navigation->items;
+		}
 	}
 
 	function get_option($key, $default) {

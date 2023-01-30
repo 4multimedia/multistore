@@ -9,6 +9,7 @@ use Illuminate\Routing\Router;
 class RouteServiceProvider extends ServiceProvider {
 
     public $namespace = "Multimedia\Multistore\Core\Http\Controllers";
+    public $namespace_frontend = "Multimedia\Multistore\Core\Http\Controllers\Frontend";
 	public $namespace_api = "Multimedia\Multistore\Core\Http\Controllers\Api";
 
     public function register() {
@@ -25,5 +26,9 @@ class RouteServiceProvider extends ServiceProvider {
         ->prefix(config('multimedia.backend').'/api')
 		->middleware(['api'])
         ->group(dirname(__FILE__).'/../Core/routes/api.php');
+
+		Route::namespace($this->namespace_frontend)
+        ->middleware(['web'])
+        ->group(dirname(__FILE__).'/../Core/routes/frontend.php');
     }
 }
