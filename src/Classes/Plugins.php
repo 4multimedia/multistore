@@ -5,4 +5,5 @@
 	use Illuminate\Support\Facades\File;
 
 	class Plugins {
+
 	}

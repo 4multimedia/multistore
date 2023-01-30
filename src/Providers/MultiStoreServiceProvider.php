@@ -30,6 +30,7 @@
             $this->app->register(ComponentServiceProvider::class);
 			$this->app->register(ConfigServiceProvider::class);
             $this->app->register(ModuleFunctionServiceProvider::class);
+            $this->app->register(PluginServiceProvider::class);
 
             $this->loadModuleServiceProvider();
         }

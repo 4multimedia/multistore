@@ -5,6 +5,7 @@
 		$componentName = "layout::".$component;
 		$elements = $element["children"];
 		$uuid = $element["uuid"];
+		$setting = $element["setting"];
 	@endphp
-	<x-dynamic-component :component="$componentName" :elements="$elements" :uuid="$uuid" />
+	<x-dynamic-component :component="$componentName" :elements="$elements" :uuid="$uuid" :setting="$setting" />
 @endforeach

@@ -29,10 +29,19 @@ class Navigation extends Model
 		return Navigation::where('id_navigation_parent', $this->id_navigation)->orderBy('position', 'ASC')->get();
 	}
 
+	public function getNameAttribute() {
+		if ($this->label) {
+			return $this->label;
+		} else {
+			return $this->route;
+		}
+	}
+
 	public function jsonSerialize(): mixed
 	{
 		return [
 			'id' => $this->id,
+			'name' => $this->name,
 			'items' => $this->items,
 			'label' => $this->label,
 			'route' => $this->route
