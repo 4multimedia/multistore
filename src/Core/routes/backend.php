@@ -44,6 +44,10 @@ Route::namespace('Content')->group(function() {
 	Route::prefix('page')->group(function() {
 		Route::get('/', 'PageController@index')->name('backend.page');
 		Route::get('/create', 'PageController@create')->name('backend.page.create');
+		Route::post('/create', 'PageController@store')->name('backend.page.store');
+		Route::get('/{hash}', 'PageController@update')->name('backend.page.update');
+		Route::post('/{hash}', 'PageController@restore')->name('backend.page.restore');
+		Route::delete('/{hash}', 'PageController@delete')->name('backend.page.delete');
 	});
 
 	Route::prefix('navigation')->group(function() {

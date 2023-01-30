@@ -3,6 +3,7 @@
 return [
 	'name' => '4Multi.Store',
     'backend' => 'admin',
+	'auth' => 'profil',
 	'modules' => [
 		'page' => true,
 		'blog' => true,

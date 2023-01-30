@@ -88,7 +88,10 @@
             preg_match_all('/(\$[a-z0-9_-]+)/', $template, $variables);
             $strtr = [];
             foreach($variables[0] as $variable) {
-                $strtr["{$variable}"] = $item->{strtr($variable, ['$' => ''])};
+				$value = $item->{strtr($variable, ['$' => ''])};
+				$value = is_array($value) ? $value["pl"] : $value;
+
+                $strtr["{$variable}"] = $value;
             }
             return strtr($template, $strtr);
         }
