@@ -20,7 +20,6 @@
         {
 			$this->app->register(AssetsServiceProvider::class);
             $this->app->register(ConsoleServiceProvider::class);
-            $this->app->register(RouteServiceProvider::class);
             $this->app->register(MiddlewareServiceProvider::class);
             $this->app->register(DirectiveServiceProvider::class);
 			$this->app->register(RegisterServiceProvider::class);
@@ -32,7 +31,9 @@
             $this->app->register(ModuleFunctionServiceProvider::class);
             $this->app->register(PluginServiceProvider::class);
 
-            $this->loadModuleServiceProvider();
+			$this->loadModuleServiceProvider();
+
+			$this->app->register(RouteServiceProvider::class);
         }
 
         public function loadModuleServiceProvider() {
