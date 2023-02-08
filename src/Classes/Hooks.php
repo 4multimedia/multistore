@@ -27,31 +27,64 @@
 			$this->assets_js = ['before' => [], 'after' => []];
 		}
 
+		public function calling_function_name($level) {
+			$ex = new \Exception();
+			$trace = $ex->getTrace();
+			return $trace[$level];
+		}
+
+		public function set_asset_path($dir) {
+			$trace = $this->calling_function_name(3);
+			$file = $trace["file"];
+			preg_match('/(.*)\/Modules\/([A-Za-z]+)\/(.*)/', $file, $output_array);
+			$path = $output_array[1]."/Modules/".$output_array[2]."/Resources/assets/".$dir."/";
+			$this->assetsPath = $path;
+		}
+
+		/* HOOKS Header */
+		public function get_header() {
+			echo '<head>
+		<title>'.get_meta_title().'</title>'.get_meta_all_tags().'
+		'.get_css().'
+	</head>';
+		}
+
 		/* HOOKS StyleSheets */
-		public function register_css($path, $place) {
+		public function register_css($path) {
+			$this->set_asset_path('css');
 			$this->css[] = $this->assetsPath.$path.".css";
 		}
 
 		public function register_css_path($path) {
-			$this->assetsPath = $path;
+			$this->css[] = $path;
 		}
 
-		public function get_css() {
+		public function get_css($params = []) {
+			$external = [];
 			$cssWebLocation = public_path('assets/css/web.css');
 			$cssWebPut = false;
 			$cssWebFileDate = 0;
 
+			$tabs = 2;
+			if (isset($params["tabs"])) { $tabs = $params["tabs"]; }
+
 			if (file_exists($cssWebLocation)) {
 				$cssWebFileDate = filemtime($cssWebLocation);
+			} else {
+				file_put_contents(public_path('assets/css/web.css'), '');
 			}
 
 			$cssContent = '';
 			foreach($this->css as $file) {
-				if(file_exists($file)) {
-					$cssContent .= File::get($file);
-					$cssFileDate = filemtime($file);
-					if ($cssFileDate > $cssWebFileDate) {
-						$cssWebPut = true;
+				if (substr($file, 0, 4) === 'http') {
+					$external[] = $file;
+				} else {
+					if(file_exists($file)) {
+						$cssContent .= File::get($file);
+						$cssFileDate = filemtime($file);
+						if ($cssFileDate > $cssWebFileDate) {
+							$cssWebPut = true; echo 'up';
+						}
 					}
 				}
 			}
@@ -62,7 +95,15 @@
 				file_put_contents(public_path('assets/css/web.css'), $cssContent);
 			}
 
-			echo '<link rel="stylesheet" href="/assets/css/web.css">';
+			$response = "<link rel=\"stylesheet\" href=\"/assets/css/web.css\">";
+			if ($external) {
+				foreach($external as $file) {
+					$response .= "\n";
+					$response .= str_repeat("\t", $tabs);
+					$response .= "<link rel=\"stylesheet\" href=\"$file\">";
+				}
+			}
+			return $response;
 		}
 
 		/* HOOKS JavaScript */
@@ -153,6 +194,8 @@
 
                     return $obj_idx;
                 }
+			} else if (is_string($function[0]) AND !isset($function[1])) {
+                return $function[0];
             } else if (is_string($function[0])) {
                 return $function[0].$function[1];
             }
@@ -182,7 +225,28 @@
             return $this->add_filter($tag, $callback, $priority, $accepted_args);
         }
 
-        public function do_action($tag, $arg = '') {
+		public function do_action($tag, $arg) {
+			$callback = [];
+			if (isset($this->actions[$tag])) {
+				$type = $this->actions[$tag]["type"];
+				unset($this->actions[$tag]["type"]);
+				ksort($this->actions[$tag]);
+				foreach($this->actions[$tag] as $key => $values) {
+					foreach ($values as $subkey => $value) {
+						if ($type === "string") {
+							$function_name = $value["callable"];
+							$args = $value["args"];
+							$callback[] = call_user_func_array($function_name, $args);
+						}
+					}
+				}
+				$this->actions[$tag]["type"] = $type;
+				return $callback;
+			}
+			return ;
+		}
+
+        public function do_action_($tag, $arg = '') {
             if (!isset($this->actions)) {
                 $this->actions = array();
             }
@@ -231,6 +295,7 @@
             do {
                 foreach ( (array) current($this->filters[$tag]) as $the_ ) {
                     if ( !is_null($the_['function'])) {
+						print_r($the_);
                         call_user_func_array($the_['function'], array_slice($args, 0, (int) $the_['accepted_args']));
                     }
                 }
@@ -238,4 +303,51 @@
 
             array_pop($this->current_filter);
         }
+
+		function getHookCallback($callback) {
+			if (is_string($callback) && strpos($callback, '@')) {
+				$callback = explode('@', $callback);
+				return [app('\\'.$callback[0]), $callback[1]];
+			}
+
+			if (is_string($callback) && function_exists($callback)) {
+				return $callback;
+			}
+
+			if (is_string($callback)) {
+				return [app('\\'.$callback), 'handle'];
+			}
+
+			if (is_callable($callback)) {
+				return $callback;
+			}
+
+			if (is_array($callback)) {
+				return $callback;
+			}
+
+			throw new \Exception($callback . ' is not a Callable', 1);
+		}
+
+
+		public function _add_action($action, $callable, $priority = 10, $accepted_args = []) {
+			if ($priority === null) {
+				$priority = 10;
+			}
+ 			if (isset($this->actions[$action])) {
+				$current_type = gettype($callable);
+				$action_type = $this->actions[$action]["type"];
+				if ($action_type !== $current_type) {
+					throw new \Exception("Action \"{$action}\" must by type {$action_type}", 500);
+				}
+			} else {
+				$this->actions[$action]["type"] = gettype($callable);
+			}
+
+			$this->actions[$action][$priority][] = [
+				"type" => gettype($callable),
+				"callable" => $callable,
+				"args" => $accepted_args
+			];
+		}
 	}

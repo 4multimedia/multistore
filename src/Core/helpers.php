@@ -50,6 +50,38 @@ use Multimedia\Multistore\Core\Models\Navigation;
 		return app('layout');
 	}
 
+	//
+
+	function isHTML($string){
+		return $string != strip_tags($string) ? true:false;
+	}
+
+	function get_header() {
+		return hook()->get_header();
+	}
+
+	function get_meta_all_tags() {
+		$tags = [];
+		foreach(do_action('set_meta_tag') as $tag) {
+			$tags[] = $tag;
+		}
+		return implode(" ", $tags);
+	}
+
+	function register_meta_tags($params) {
+		if (gettype($params) === 'string') {
+			if (isHTML($params)) {
+				return "\n\t\t".$params;
+			}
+		} else {
+			$values = [];
+			foreach($params as $key => $value) {
+				$values[] = "$key=\"$value\"";
+			}
+			return "\n\t\t<meta ".implode(" ", $values).">";
+		}
+	}
+
 	// CSS
 
 	function register_css_path($path) {
@@ -152,7 +184,6 @@ use Multimedia\Multistore\Core\Models\Navigation;
 		if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
 			$protocol = 'https://';
 		}
-
 		return $protocol.$_SERVER['SERVER_NAME'];
 	}
 
@@ -177,11 +208,11 @@ use Multimedia\Multistore\Core\Models\Navigation;
     }
 
     function do_action($tag, $arg = '') {
-        hook()->do_action($tag, $arg);
+        return hook()->do_action($tag, $arg);
     }
 
-    function add_action($tag, $callback, $priority = 10, $accepted_args = 1) {
-        return hook()->add_action($tag, getHookCallback($callback), $priority, $accepted_args);
+    function add_action_($tag, $callback, $priority = 10, $accepted_args = 1) {
+        return hook()->add_action($tag, hook()->getHookCallback($callback), $priority, $accepted_args);
     }
 
 	function add_to_menu($id, $title, $route = null, $priority = 10, $params = []) {
@@ -212,33 +243,12 @@ use Multimedia\Multistore\Core\Models\Navigation;
 		return user_log()->register($module, $id_record, $params);
 	}
 
-    function getHookCallback($callback) {
-        if (is_string($callback) && strpos($callback, '@')) {
-            $callback = explode('@', $callback);
-            return [app('\\'.$callback[0]), $callback[1]];
-        }
-
-        if (is_string($callback)) {
-            return [app('\\'.$callback), 'handle'];
-        }
-
-        if (is_callable($callback)) {
-            return $callback;
-        }
-
-        if (is_array($callback)) {
-            return $callback;
-        }
-
-        throw new \Exception($callback . ' is not a Callable', 1);
-    }
-
     function apply_filters($tag, $value) {
         return hook()->apply_filters($tag, $value);
     }
 
     function add_filter($tag, $callback, $priority = 10, $accepted_args = 1) {
-        return hook()->add_filter($tag, getHookCallback($callback), $priority, $accepted_args);
+        return hook()->add_filter($tag, hook()->getHookCallback($callback), $priority, $accepted_args);
     }
 
 	function get_backend_languages() {
@@ -268,6 +278,15 @@ use Multimedia\Multistore\Core\Models\Navigation;
 
 	function get_table($id) {
 		return table()->render($id);
+	}
+
+
+
+
+
+	// ACTIONS
+	function add_action($tag, $arg, $priority = 10, $accepted_args = []) {
+		hook()->_add_action($tag, $arg, $priority, $accepted_args);
 	}
 
 ?>

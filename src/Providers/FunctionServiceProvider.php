@@ -11,6 +11,7 @@ class FunctionServiceProvider extends ServiceProvider {
     }
 
     public function boot() {
+		register_css_path('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css');
         add_to_menu('dashboard', 'backend::dashboard.title', 'backend.dashboard', 0, ['icon' => 'home']);
 
 		add_devider_menu(59);
