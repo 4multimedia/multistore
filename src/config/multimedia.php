@@ -3,7 +3,11 @@
 return [
 	'name' => '4Multi.Store',
     'backend' => 'admin',
-	'auth' => 'profil',
+	'auth' => [
+		'route' => 'profil',
+		'register' => true,
+		'login' => true,
+	],
 	'assets' => [
 		'bootstrap' => true
 	],

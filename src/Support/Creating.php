@@ -37,6 +37,12 @@
                             'Request',
                             'Models'
                         ],
+						'View' => [
+							'Components' => [
+								'Frontend',
+                                'Backend',
+							]
+						],
                         'Providers',
                         'Resources' => [
                             'assets',
@@ -94,6 +100,7 @@
             $returned['assets'] = (new Stub('providers/assets', 'Providers', array_merge($array, ['class' => 'AssetsService'])))->save();
             $returned['migration'] = (new Stub('providers/migration', 'Providers', array_merge($array, ['class' => 'MigrationService'])))->save();
             $returned['function'] = (new Stub('providers/function', 'Providers', array_merge($array, ['class' => 'FunctionService'])))->save();
+            $returned['component'] = (new Stub('providers/component', 'Providers', array_merge($array, ['class' => 'ComponentService'])))->save();
 
             $returned['module'] = (new Stub('providers/module', 'Providers', array_merge($array, ['extended' => true, 'class' => $this->module.'Service'])))->save();
             $returned['command'] = (new Stub('providers/command', 'Providers', array_merge($array, ['extended' => true, 'class' => 'CommandsService'])))->save();
@@ -101,6 +108,7 @@
 			$returned['assets'] = (new Stub('providers/assets', 'Providers', array_merge($array, ['extended' => true, 'class' => 'AssetsService'])))->save();
 			$returned['migration'] = (new Stub('providers/migration', 'Providers', array_merge($array, ['extended' => true, 'class' => 'MigrationService'])))->save();
 			$returned['function'] = (new Stub('providers/function', 'Providers', array_merge($array, ['extended' => true, 'class' => 'FunctionService'])))->save();
+			$returned['function'] = (new Stub('providers/component', 'Providers', array_merge($array, ['extended' => true, 'class' => 'ComponentService'])))->save();
 
             (new Stub('routes/web', null, $array))->copy('routes/web');
             (new Stub('routes/api', null, $array))->copy('routes/api');
