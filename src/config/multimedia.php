@@ -4,6 +4,9 @@ return [
 	'name' => '4Multi.Store',
     'backend' => 'admin',
 	'auth' => 'profil',
+	'assets' => [
+		'bootstrap' => true
+	],
 	'modules' => [
 		'page' => true,
 		'blog' => true,
