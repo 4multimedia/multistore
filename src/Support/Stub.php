@@ -8,6 +8,7 @@
 
         protected $className;
 		protected $component;
+		protected $place;
         protected $fileLocation;
         protected $inputs;
         protected $module;
@@ -39,6 +40,9 @@
             }
 			if (isset($this->inputs['component'])) {
                 $this->component = $this->inputs['component'];
+            }
+            if (isset($this->inputs['place'])) {
+                $this->place = $this->inputs['place'];
             }
 
             $this->stubLocation = dirname(__FILE__)."/../Commands/stubs/".$path.".stub";
@@ -83,6 +87,8 @@
             $array['{{Module}}'] = $this->module;
 			$array['{{component}}'] = Str::lower($this->component);
             $array['{{Component}}'] = $this->component;
+            $array['{{place}}'] = Str::lower($this->place);
+            $array['{{Place}}'] = $this->place;
 
             $array['{{Table}}'] = $this->table;
             $array['{{primaryKey}}'] = $this->primaryKey;

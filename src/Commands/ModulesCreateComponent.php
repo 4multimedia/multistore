@@ -43,20 +43,24 @@ class ModulesCreateComponent extends Command
 
             $array["extended"] = $this->confirm('Added to extended module?', false);
 
-			$place = $this->choice('Place', [0 => 'Frontend', 1 => 'Backend']);
+            $array['place'] = $this->choice('Place', [0 => 'Frontend', 1 => 'Backend']);
 
-			@mkdir(app_path('Modules/'.$array["module"].'/Resources/views/'.strtolower($place).'/components'));
+			@mkdir(app_path('Modules/'.$array["module"].'/Resources/views/'.strtolower($array["place"]).'/components'));
 
-			$array['fileLocation'] = "View/Components/".$array['component'].".php";
+            $array['namespace'] = "App\Modules\\".$array["module"]."\View\Components";
+			$array['fileLocation'] = "View/Components/".$array['component'].ucfirst(strtolower($array["place"])).".php";
             (new Stub('component', 'View\Components', $array))->save();
-			(new Stub('component/component', null, $array))->copy('component/component', 'Resources/views/'.strtolower($place).'/components/'.strtolower($array['component']).'.blade');
+			(new Stub('component/component', null, $array))->copy('component/component', 'Resources/views/'.strtolower($array["place"]).'/components/'.strtolower($array['component']).'.blade');
 			$this->info('Create Component');
 			$this->line('App/Modules/'.$array["module"].'/'.$array['fileLocation']);
 			$this->newLine();
 			$path = app_path('Modules/'.$array["module"].'/Providers/ComponentServiceProvider.php');
 			(new File($path))
-			->findText('#COMPONENT')->writeText("use App\Modules\\".$array["module"]."\View\Components\\".$array['component'].";")
-			->findText('#'.strtoupper($place).' COMPONENTS')->writeText("\t\t\t".$array['component']."::class,");
+			->findText('#USE COMPONENT')
+            ->writeText("use App\Modules\\".$array["module"]."\View\Components\\".$array['component'].ucfirst(strtolower($array["place"])).";")
+
+			->findText('#BIND COMPONENTS')
+            ->writeText("\t\t\t".$array['component'].ucfirst(strtolower($array["place"]))."::class,");
         }
     }
 }

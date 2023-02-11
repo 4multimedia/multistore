@@ -38,10 +38,7 @@
                             'Models'
                         ],
 						'View' => [
-							'Components' => [
-								'Frontend',
-                                'Backend',
-							]
+							'Components'
 						],
                         'Providers',
                         'Resources' => [

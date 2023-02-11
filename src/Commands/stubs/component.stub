@@ -4,10 +4,10 @@
 
 	use Illuminate\View\Component;
 
-	class {{Component}} extends Component
+	class {{Component}}{{Place}} extends Component
 	{
 		public function render() {
-			return view('module.{{module}}.frontend::components.{{component}}');
+			return view('module.{{module}}.{{place}}::components.{{component}}');
 		}
 	}
 

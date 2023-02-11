@@ -3,19 +3,12 @@
     namespace {{NAMESPACE}};
 
 	use Illuminate\Support\ServiceProvider;
-	#COMPONENTS
+	#USE COMPONENTS
 
 	class ComponentServiceProvider extends ServiceProvider {
 		public function boot() {
-			$this->loadViewsFrom(dirname(__FILE__).'/../Core/resources/backend/components', 'backend.{{module}}');
-			$this->loadViewsFrom(dirname(__FILE__).'/../Core/resources/backend/components', 'frontend.{{module}}');
-
-			$this->loadViewComponentsAs('backend.{{module}}', [
-				#BACKEND COMPONENTS
-			]);
-
-			$this->loadViewComponentsAs('frontend.{{module}}', [
-				#FRONTEND COMPONENTS
+			$this->loadViewComponentsAs('{{module}}', [
+				#BIND COMPONENTS
 			]);
 		}
 	}

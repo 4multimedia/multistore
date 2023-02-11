@@ -13,7 +13,6 @@
 
 		public function findText($text) {
 			$this->findText = $text;
-			echo $this->findText;
 			return $this;
 		}
 
