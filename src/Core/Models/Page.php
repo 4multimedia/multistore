@@ -13,6 +13,8 @@ class Page extends Model
 	public $table = "page";
 	public $primaryKey = "id_page";
 
+    public $appends = ['id', 'hash'];
+
 	public $fillable = [
 		'id_page_parent',
 		'published_at',

@@ -53,6 +53,10 @@ Route::namespace('Content')->group(function() {
 	Route::prefix('navigation')->group(function() {
 		Route::get('/', 'NavigationController@index')->name('backend.navigation');
 		Route::get('/create', 'NavigationController@create')->name('backend.navigation.create');
+		Route::post('/create', 'NavigationController@store')->name('backend.navigation.store');
+        Route::get('/{hash}', 'NavigationController@update')->name('backend.navigation.update');
+        Route::get('/items/{hash}', 'NavigationController@items')->name('backend.navigation.items');
+        Route::delete('/{hash}', 'NavigationController@delete')->name('backend.navigation.delete');
 	});
 });
 

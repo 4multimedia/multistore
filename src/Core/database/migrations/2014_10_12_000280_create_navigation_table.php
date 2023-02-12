@@ -24,6 +24,7 @@ return new class extends Migration
 			$table->string('route', 128)->nullable();
 			$table->string('module', 255)->nullable();
 			$table->unsignedBigInteger('id_record')->nullable();
+            $table->json('params')->nullable();
 
 			$table->foreign('id_navigation_parent')->references('id_navigation')->on('navigation')->cascadeOnUpdate()->cascadeOnDelete();
         });

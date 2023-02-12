@@ -18,16 +18,41 @@ class FunctionServiceProvider extends ServiceProvider {
 
 		add_devider_menu(59);
 
+        // uzytkownicy
+        add_action('add_to_backend_navigation', [
+            'label' => 'Profil',
+            'items' => [
+                ['id_record' => null, 'name' => 'Logowanie', 'module' => null, 'route' => 'profil.auth.login'],
+                ['id_record' => null, 'name' => 'Rejestracja', 'module' => null, 'route' => 'profil.auth.register'],
+                ['id_record' => null, 'name' => 'Odzyskaj hasło', 'module' => null, 'route' => 'profil.auth.reset'],
+            ]
+        ], 40);
+
 		if (config('multimedia.modules.page')) {
 			add_to_menu('page', 'backend::page.title', 'backend.page', 60, ['icon' => 'file-text']);
+
+            add_action('add_to_backend_navigation', [
+                'label' => 'Strony tekstowe',
+                'items' => set_navigation_items(page()->items(), 'Multimedia\Multistore\Core\Models\Page')
+            ], 70);
 		}
+
+        /** BLOG */
 		if (config('multimedia.modules.blog')) {
 			add_to_menu('blog', 'backend::blog.title', null, 61, ['icon' => 'layout-list']);
 			add_to_submenu('blog', 'backend::blog.list', 'backend.user');
 			add_to_submenu('blog', 'backend::blog.categories', 'backend.user');
 			add_to_submenu('blog', 'backend::blog.tags', 'backend.user');
 			add_to_submenu('blog', 'backend::blog.comments', 'backend.user');
+
+            add_action('add_to_backend_navigation', [
+                'label' => 'Artykuły',
+                'items' => [
+                    ['id_record' => null, 'name' => 'Wszystkie artykuły', 'label' => 'Artykuły', 'module' => null, 'route' => 'blog'],
+                ]
+            ], 80);
 		}
+
 		if (config('multimedia.modules.translate')) {
 			add_to_menu('translate', 'backend::translate.title', null, 62, ['icon' => 'languages']);
 		}
@@ -77,6 +102,16 @@ class FunctionServiceProvider extends ServiceProvider {
 		add_to_submenu('setting', 'backend::seo.SEO', 'backend.user', 30);
 		add_to_submenu('setting', 'backend::redirect.Redirects', 'backend.user', 31);
 		add_to_submenu('setting', 'backend::task.Tasks', 'backend.user', 50);
+
+        // MENU
+        add_action('add_to_backend_navigation', [
+            'label' => 'Pozostałe opcje',
+            'items' => [
+                ['id_record' => null, 'name' => 'Własny link', 'label' => 'Artykuły', 'module' => null, 'route' => null, 'component' => ''],
+                ['id_record' => null, 'name' => 'Separator (devider)', 'label' => 'Separator (devider)', 'module' => null, 'route' => null, 'component' => ''],
+                ['id_record' => null, 'name' => 'Tekst', 'label' => 'Separator (devider)', 'module' => null, 'route' => null, 'component' => ''],
+            ]
+        ], 80);
     }
 }
 

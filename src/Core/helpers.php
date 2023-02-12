@@ -50,6 +50,10 @@ use Multimedia\Multistore\Core\Models\Navigation;
 		return app('layout');
 	}
 
+    function page() {
+		return app('page');
+	}
+
 	//
 
 	function isHTML($string){
@@ -166,6 +170,19 @@ use Multimedia\Multistore\Core\Models\Navigation;
 			return $navigation->items;
 		}
 	}
+
+    function set_navigation_items($array = [], $module = null) {
+        $menu = [];
+        foreach($array as $item) {
+            $menu[] = [
+                'id_record' => $item["id"],
+                'name' => $item["name"]["pl"],
+                'module' => $module,
+                'route' => null
+            ];
+        }
+        return $menu;
+    }
 
 	function get_option($key, $default) {
 		if (Schema::hasTable('option')) {

@@ -237,7 +237,10 @@
 							$function_name = $value["callable"];
 							$args = $value["args"];
 							$callback[] = call_user_func_array($function_name, $args);
-						}
+						} else if ($type === 'array') {
+                            $arrays_value = $value["callable"];
+                            $callback[] = $arrays_value;
+                        }
 					}
 				}
 				$this->actions[$tag]["type"] = $type;

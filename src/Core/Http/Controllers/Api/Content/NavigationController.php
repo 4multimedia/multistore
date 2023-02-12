@@ -5,6 +5,7 @@
 	use Illuminate\Http\Request;
 	use Multimedia\Multistore\Core\Http\Classes\Navigation;
 	use Multimedia\Multistore\Core\Http\Controllers\Controller;
+use Multimedia\Multistore\Core\Models\Navigation as ModelsNavigation;
 
     class NavigationController extends Controller
     {
@@ -14,8 +15,8 @@
 			$this->navigation = new Navigation();
 		}
 
-		public function index() {
-			$item = new Navigation(1);
+		public function index(ModelsNavigation $navigation) {
+			$item = new Navigation($navigation->id_navigation);
 			return $item->render();
 		}
 

@@ -13,6 +13,7 @@ use Multimedia\Multistore\Classes\UserLog;
 use Multimedia\Multistore\Classes\Tables;
 use Multimedia\Multistore\Classes\Domain;
 use Multimedia\Multistore\Classes\Layout;
+use Multimedia\Multistore\Classes\Page;
 
 class RegisterServiceProvider extends ServiceProvider {
 
@@ -55,6 +56,10 @@ class RegisterServiceProvider extends ServiceProvider {
 
 		$this->app->singleton('layout', function($app) {
 			return new Layout();
+		});
+
+        $this->app->singleton('page', function($app) {
+			return new Page();
 		});
 	}
 

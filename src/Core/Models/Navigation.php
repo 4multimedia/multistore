@@ -22,7 +22,14 @@ class Navigation extends Model
 		'id_record',
 		'module',
 		'position',
-		'published_at'
+		'published_at',
+        'params',
+        'label'
+    ];
+
+    protected $casts = [
+        'label' => 'array',
+        'params' => 'array'
     ];
 
 	public function getItemsAttribute() {

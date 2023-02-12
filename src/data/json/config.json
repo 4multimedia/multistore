@@ -1,6 +1,14 @@
 {
     "name": "4Multi.Store",
     "backend": "admin",
+    "auth": {
+        "route": "profil",
+        "register": true,
+        "login": true
+    },
+    "assets": {
+        "bootstrap": true
+    },
     "modules": {
         "page": true,
         "blog": true,

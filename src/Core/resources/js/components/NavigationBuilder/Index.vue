@@ -15,8 +15,7 @@
 			</Accordion>
 		</div>
 		<div class="flex-auto pl-3">
-			<nested-draggable id="item-1" :items="items" :onLoad="onLoad" />
-			<pre>{{ items }}</pre>
+			<nested-draggable :id="`item-${id}`" :items="items" :onLoad="onLoad" />
 		</div>
         <ConfirmDialog></ConfirmDialog>
 	</div>
@@ -38,7 +37,7 @@ export default {
 	},
 	methods: {
 		async onLoad() {
-			const request = await axios.get('/admin/api/content/navigation');
+			const request = await axios.get(`/admin/api/content/navigation/${this.hash}`);
 			const { data } = request;
 			this.items = data;
 		}
@@ -46,27 +45,13 @@ export default {
 	async mounted() {
 		await this.onLoad();
 	},
+    props: {
+        groups: Array,
+        hash: String,
+        id: Number,
+    },
 	data() {
 		return {
-			groups: [
-                {
-                    label: 'Strony tekstowe',
-                    items: [
-                        {
-                            id_record: 1,
-                            name: 'Regulamin strony',
-                            module: 'Multimedia\\Multistore\\Core\\Models\\Page',
-                            route: null,
-                        },
-                        {
-                            id_record: 2,
-                            name: 'Polityka prywatności',
-                            module: 'Multimedia\\Multistore\\Core\\Models\\Page',
-                            route: null
-                        }
-                    ]
-                },
-			],
 			items: []
 		}
 	}
