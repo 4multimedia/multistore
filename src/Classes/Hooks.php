@@ -76,17 +76,19 @@
 
 			$cssContent = '';
 			foreach($this->css as $file) {
-				if (substr($file, 0, 4) === 'http') {
-					$external[] = $file;
-				} else {
-					if(file_exists($file)) {
-						$cssContent .= File::get($file);
-						$cssFileDate = filemtime($file);
-						if ($cssFileDate > $cssWebFileDate) {
-							$cssWebPut = true; echo 'up';
-						}
-					}
-				}
+                if (is_file($file)) {
+                    if (substr($file, 0, 4) === 'http') {
+                        $external[] = $file;
+                    } else {
+                        if(file_exists($file)) {
+                            $cssContent .= File::get($file);
+                            $cssFileDate = filemtime($file);
+                            if ($cssFileDate > $cssWebFileDate) {
+                                $cssWebPut = true; echo 'up';
+                            }
+                        }
+                    }
+                }
 			}
 
 			if ($cssWebPut) {
