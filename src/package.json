@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@left4code/tw-starter": "^3.1.39",
+        "@riophae/vue-treeselect": "^0.4.0",
         "@tailwindcss/forms": "^0.5.3",
         "chart.js": "^4.1.1",
         "concurrently": "^7.6.0",

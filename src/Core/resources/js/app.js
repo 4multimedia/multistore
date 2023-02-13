@@ -59,6 +59,7 @@ import InputCheckbox from './components/Input/InputCheckbox.vue';
 import VisualBuilder from './components/VisualBuilder/Index.vue';
 import InputGallery from './components/Input/Gallery.vue';
 import InputImage from './components/Input/InputImage.vue';
+import InputTreeSelect from './components/Input/Treeselect.vue';
 import SelectButton from './components/Input/SelectButton.vue';
 
 import VisualComponent from './components/VisualBuilder/Components/Component';
@@ -137,6 +138,7 @@ Vue.component('Dropdown', Dropdown);
 Vue.component('InputCheckbox', InputCheckbox);
 Vue.component('Message', Message);
 Vue.component('InputGallery', InputGallery);
+Vue.component('InputTreeSelect', InputTreeSelect);
 Vue.component('DialogMedia', DialogMedia);
 Vue.component('ViewsLayoutColors', ViewsLayoutColors);
 Vue.component('VisualNested', VisualNested);

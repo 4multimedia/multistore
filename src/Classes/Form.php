@@ -127,4 +127,8 @@
 		public function image($label, $name, $params = []) {
 			return $this->field('input-image', $label, $name, $params);
 		}
+
+		public function treeselect($label, $name, $params = []) {
+			return $this->field('input-tree-select', $label, $name, $params);
+		}
     }
