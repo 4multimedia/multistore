@@ -30,8 +30,12 @@ class ModulesInstall extends Command
     public function handle()
     {
 		// instalacja
-		$this->info('Install database table:');
-		Artisan::call('migrate:fresh');
-		$this->info('Copy vendor:');
+		$this->info('Install database table');
+		$this->call('migrate:fresh');
+		$this->info('Run seeder');
+		$this->call("db:seed --class=\"Multimedia\Multistore\Core\Database\Seeders\UserRoleSeeder\"");
+		$this->call("db:seed --class=\"Multimedia\Multistore\Core\Database\Seeders\UserStatusSeeder\"");
+		$this->info('Copy vendor');
+		$this->call("vendor:publish --tag=multimedia --force");
     }
 }
