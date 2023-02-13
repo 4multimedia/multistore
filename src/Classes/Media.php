@@ -5,6 +5,7 @@
 	use Illuminate\Support\Facades\Storage;
 	use Multimedia\Multistore\Core\Models\MediaDirectory;
 	use Multimedia\Multistore\Core\Models\MediaFiles;
+	use Multimedia\Multistore\Core\Models\MediaRelative;
 	use Image;
 
     class Media {
@@ -31,7 +32,11 @@
 		}
 
 		public function get_images($table, $id_record, $limit = null) {
-
+			if ($limit === 1) {
+				return MediaRelative::where('table', $table)->where('id_record', $id_record)->first();
+			} else {
+				return MediaRelative::where('table', $table)->where('id_record', $id_record)->get();
+			}
 		}
 
 		public function get_resize_name($path, $key) {
