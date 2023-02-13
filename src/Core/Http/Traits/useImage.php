@@ -4,10 +4,8 @@ namespace Multimedia\Multistore\Core\Http\Traits;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait useImage {
-	public function image(): Attribute {
-		return Attribute::make(
-			get: fn () => media()->get_images($this->table, $this->id, 1)
-		);
+	public function getImageAttribute() {
+        return media()->get_images($this->table, $this->id, 1);
 	}
 
 	public function images(): Attribute {
