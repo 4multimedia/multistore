@@ -20,6 +20,7 @@
 			];
 
 			if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
+				$request->session()->regenerate();
                 register_user_log('Login');
 				auth()->user()->createToken('app')->plainTextToken;
 				return redirect()->route('backend.dashboard')->with('success', __('backend::auth.You have been successfully logged into the administration panel'));

@@ -2,7 +2,8 @@
 
     namespace Multimedia\Multistore\Providers;
 
-    use Illuminate\Support\ServiceProvider;
+	use Illuminate\Console\Command;
+	use Illuminate\Support\ServiceProvider;
     use Multimedia\Multistore\Commands;
 
     class ConsoleServiceProvider extends ServiceProvider {
@@ -17,7 +18,8 @@
             Commands\ModulesTransaltionMerge::class,
 			Commands\ModulesCreateComponent::class,
 			Commands\PluginCreateCommand::class,
-			Commands\ModulesInstall::class
+			Commands\ModulesInstall::class,
+			Commands\ModulesAddHasing::class,
         ];
 
         public function boot() {

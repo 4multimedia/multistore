@@ -91,7 +91,8 @@ class ModulesCreateUser extends Command
                 'name' => $name,
                 'email' => $email,
                 'password' => Hash::make($password),
-                'id_user_status' => 2
+                'id_user_status' => 2,
+				'email_verified_at' => date('Y-m-d H:i:s')
             ]);
 
             UserToRole::create(['id_user' => $user->id_user, 'id_user_role' => $userRole->id_user_role]);
