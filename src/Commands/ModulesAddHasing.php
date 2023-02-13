@@ -29,6 +29,11 @@ class ModulesAddHasing extends Command
      */
     public function handle()
     {
+		$hashids_path = config_path('hashids.php');
+		if (!file_exists($hashids_path)) {
+			$this->call("vendor:publish --provider=Vinkla\Hashids\HashidsServiceProvider");
+		}
+
 		$model = $this->ask('Model name:');
 		$length = 64;
 		$line = "\t'$model' => [
@@ -37,6 +42,6 @@ class ModulesAddHasing extends Command
 			'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
 		],";
 
-		(new File(config_path('hashids.php')))->findText("'connections' => [")->writeText($line);
+		(new File($hashids_path))->findText("'connections' => [")->writeText($line);
     }
 }

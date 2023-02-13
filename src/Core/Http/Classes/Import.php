@@ -89,8 +89,10 @@
 					}
 				}
 			}
+
 			if ($this->update) {
-				DB::table($table)->update($prepare, $this->update);
+				$update["code"] = $prepare["code"];
+				DB::table($table)->where($update)->update($prepare);
 			} else {
 				DB::table($table)->insert($prepare);
 			}

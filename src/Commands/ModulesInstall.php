@@ -33,9 +33,10 @@ class ModulesInstall extends Command
 		$this->info('Install database table');
 		$this->call('migrate:fresh');
 		$this->info('Run seeder');
-		$this->call('db:seed --class="Multimedia\Multistore\Core\Database\Seeders\UserRoleSeeder"');
-		$this->call('db:seed --class="Multimedia\Multistore\Core\Database\Seeders\UserStatusSeeder"');
+		$this->call('db:seed', ['--class' => 'Multimedia\Multistore\Core\Database\Seeders\UserRoleSeeder']);
+		$this->call('db:seed', ['--class' => 'Multimedia\Multistore\Core\Database\Seeders\UserStatusSeeder']);
 		$this->info('Copy vendor');
 		$this->call("vendor:publish --tag=multimedia --force");
+		$this->call("vendor:publish --provider=Vinkla\Hashids\HashidsServiceProvider");
     }
 }

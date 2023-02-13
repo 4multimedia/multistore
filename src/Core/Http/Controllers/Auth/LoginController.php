@@ -2,9 +2,7 @@
 
     namespace Multimedia\Multistore\Core\Http\Controllers\Auth;
 
-	use Multimedia\Multistore\Core\Models\User;
 	use Multimedia\Multistore\Core\Http\Controllers\Controller;
-	use Illuminate\Support\Facades\Auth;
     use Multimedia\Multistore\Core\Http\Requests\Auth\LoginRequest;
 
     class LoginController extends Controller
@@ -19,7 +17,7 @@
 				'password' => $request->password,
 			];
 
-			if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
+			if (auth()->attempt($credentials)) {
 				$request->session()->regenerate();
                 register_user_log('Login');
 				auth()->user()->createToken('app')->plainTextToken;
