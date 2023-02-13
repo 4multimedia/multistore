@@ -84,7 +84,7 @@
                             $cssContent .= File::get($file);
                             $cssFileDate = filemtime($file);
                             if ($cssFileDate > $cssWebFileDate) {
-                                $cssWebPut = true; echo 'up';
+                                $cssWebPut = true;
                             }
                         }
                     }
