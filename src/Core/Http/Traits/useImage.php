@@ -5,7 +5,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait useImage {
 	public function getImageAttribute() {
-        return media()->get_images($this->table, $this->id, 1);
+		$image = media()->get_images($this->table, $this->id, 1);
+        return $image ? $image->file->paths["full"] : null;
+	}
+
+	public function getThumbAttribute() {
+		$image = media()->get_images($this->table, $this->id, 1);
+        return $image ? $image->file->paths["thumb"] : null;
 	}
 
 	public function images(): Attribute {
