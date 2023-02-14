@@ -14,6 +14,11 @@ trait useImage {
         return $image ? $image->file->paths["thumb"] : null;
 	}
 
+	public function getThumbsAttribute() {
+		$image = media()->get_images($this->table, $this->id);
+        return $image ? $image->file->paths["thumb"] : null;
+	}
+
 	public function images(): Attribute {
 		$id = $this->{$this->primaryKey};
 		$table = $this->getTable();
