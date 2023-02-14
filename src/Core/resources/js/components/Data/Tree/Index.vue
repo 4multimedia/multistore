@@ -89,6 +89,13 @@ import axios from 'axios';
                 structure: []
             }
         },
+        async mounted() {
+            const path = `/${window.globalConfig.backend}/api/content/category`;
+            const request = await axios.get(path);
+            const { data } = request;
+
+            this.structure = data;
+        },
         methods: {
             async item() {
 				const path = `/${window.globalConfig.backend}/api/content/category`;

@@ -47,6 +47,7 @@ Route::prefix('content')->namespace('Content')->group(function() {
 	});
 
 	Route::prefix('category')->group(function() {
+        Route::get('/', 'CategoryController@index');
 		Route::post('/', 'CategoryController@store');
 	});
 });

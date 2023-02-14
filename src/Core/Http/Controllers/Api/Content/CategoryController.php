@@ -9,8 +9,11 @@
 
     class CategoryController extends Controller
     {
-		public function store(Request $request) {
+        public function index(Request $request) {
+            return Category::whereNull('id_product_category_parent')->get()->toTree();
+        }
 
+		public function store(Request $request) {
 			return Category::create([
 				'id_product_category_parent' => $request->id_parent,
 				'name' => ['pl' => $request->name],
