@@ -15,8 +15,7 @@ trait useImage {
 	}
 
 	public function getThumbsAttribute() {
-		$image = media()->get_images($this->table, $this->id);
-        return $image ? $image->file->paths["thumb"] : null;
+		return media()->get_images($this->table, $this->id);
 	}
 
 	public function images(): Attribute {
