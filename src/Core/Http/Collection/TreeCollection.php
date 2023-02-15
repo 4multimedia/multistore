@@ -20,7 +20,7 @@
 
                 if ($showChildren) {
                     $node["children"] = [];
-                } else if (count($model->subcategories->toTree()) > 0) {
+                } else {
                     $node["children"] = null;
                 }
 

@@ -8,7 +8,8 @@ use Multimedia\Multistore\Core\Http\Collection\TreeCollection;
 
 trait useCategory {
 	public function category_main() {
-		return $this->hasOne(ProductToCategory::class, 'id_product', 'id_product')->where('main', 1);
+        if (!$this->tableCategory) { throw new \Exception('No public variable $modelCategoryRelative [Err 232]', 500); }
+		return $this->hasOne($this->modelCategoryRelative, 'id_product', 'id_product')->where('main', 1);
 	}
 
 	public function getIdCategoryMainAttribute() {
@@ -22,8 +23,8 @@ trait useCategory {
         $array = [];
         $key = 0;
         foreach($items as $key => $item) {
-            $array[$key] = $item->name;
-            $array[$key]->hash = $this->getHash($item->{$primaryKey});
+            $name = json_decode($item->name);
+            $array[$key] = $name->pl;
         }
 
         $key++;
@@ -39,6 +40,13 @@ trait useCategory {
     }
 
 	public function getPathCategoryStringAttribute() {
-		return '';
+        if (!$this->tableCategory) { throw new \Exception('No public variable $tableCategory [Err 230]', 500); }
+        if (!$this->tablePrimaryKey) { throw new \Exception('No public variable $tablePrimaryKey [Err 231]', 500); }
+
+        if ($this->id_category_main) {
+		    $categories = $this->path_category($this->tableCategory, $this->tablePrimaryKey, $this->id_category_main);
+            return implode(" / ", $categories);
+        }
+        return null;
 	}
 }

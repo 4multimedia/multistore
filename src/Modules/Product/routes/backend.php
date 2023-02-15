@@ -26,4 +26,6 @@ Route::prefix('product')->group(function() {
 		Route::put('/{producer}', 'ProducerController@restore')->name('backend.product.producer.restore');
 		Route::delete('/{producer}', 'ProducerController@delete')->name('backend.product.producer.delete');
 	});
+
+
 });
