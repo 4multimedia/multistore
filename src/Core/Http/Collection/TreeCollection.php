@@ -6,15 +6,23 @@
 
     class TreeCollection extends Collection {
 
-        public function toTree() {
-            return $this->map(function ($post) {
-                return [
+        public function toTree($showChildren = true) {
+            if (request('empty')) {
+                $showChildren = request('empty') === "false" ? false : true;
+            }
+            return $this->map(function ($post) use ($showChildren) {
+                $node = [
                     'id' => $post->id,
                     'hash' => $post->hash,
                     'text' => $post->name,
                     'opened' => false,
-                    'children' => $post->subcategories->toTree()
                 ];
+
+                if ($showChildren || count($post->subcategories->toTree()) > 0) {
+                    $node["children"] = $post->subcategories->toTree();
+                }
+
+                return $node;
             });
         }
     }
