@@ -10,16 +10,16 @@
             if (request('empty')) {
                 $showChildren = request('empty') === "false" ? false : true;
             }
-            return $this->map(function ($post) use ($showChildren) {
+            return $this->map(function ($model) use ($showChildren) {
                 $node = [
-                    'id' => $post->id,
-                    'hash' => $post->hash,
-                    'text' => $post->name,
+                    'id' => $model->id,
+                    'hash' => $model->hash,
+                    'text' => $model->name,
                     'opened' => false,
                 ];
 
-                if ($showChildren || count($post->subcategories->toTree()) > 0) {
-                    $node["children"] = $post->subcategories->toTree();
+                if ($showChildren || count($model->subcategories->toTree()) > 0) {
+                    $node["children"] = $model->subcategories->toTree();
                 }
 
                 return $node;

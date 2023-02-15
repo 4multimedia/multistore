@@ -4,6 +4,7 @@ namespace Multimedia\Multistore\Core\Http\Traits;
 
 use App\Modules\Product\Http\Models\ProductToCategory;
 use Illuminate\Support\Facades\DB;
+use Multimedia\Multistore\Core\Http\Collection\TreeCollection;
 
 trait useCategory {
 	public function category_main() {
@@ -32,6 +33,10 @@ trait useCategory {
 	public function getPathCategoryMainAttribute() {
 		return $this->path_category('product_category', 'id_product_category', $this->id_category_main);
 	}
+
+    public function newCollection(array $models = []) {
+        return new TreeCollection($models);
+    }
 
 	public function getPathCategoryStringAttribute() {
 		return '';
