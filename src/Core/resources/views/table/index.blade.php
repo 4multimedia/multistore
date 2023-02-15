@@ -1,4 +1,5 @@
 <div>
+    {!! $pagination !!}
     <table class="table table-report">
         <thead>
             <tr>

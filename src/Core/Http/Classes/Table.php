@@ -11,6 +11,7 @@
 		public $items = [];
         public $actions = [];
         public $visible = [];
+        public $pagination;
 
 		public function __construct($id, $params = []) {
 			if (isset($params["perPageOptions"])) {
@@ -24,6 +25,7 @@
 
 			if (isset($params["query"])) {
 				$this->items($params["query"]);
+                $this->pagination = $params["query"]->links();
 			}
 
 			if (isset($params["items"])) {
@@ -158,7 +160,8 @@
                 'fields' => $this->fields,
                 'values' => $this->values(),
                 'actions' => $this->actions,
-                'visible' => $this->visible
+                'visible' => $this->visible,
+                'pagination' => $this->pagination
             ];
 			return view('backend::table.index', $data);
 		}
