@@ -49,11 +49,21 @@
                     this.id = node.id;
                 }
             },
-            async loadOptions() {
-                const request = await axios.get(this.url);
+            async loadOptions({action, parentNode, callback }) {
+
+                let id_parent = null;
+                if (parentNode !== undefined) {
+                    id_parent = parentNode.id;
+                }
+
+                const request = await axios.get(`${this.url}&id_parent=${id_parent}`);
                 const { data } = request;
 
-                this.options = data;
+                if (parentNode === undefined) {
+                    this.options = data;
+                } else {
+                    parentNode.children = data;
+                }
             }
         },
         data() {

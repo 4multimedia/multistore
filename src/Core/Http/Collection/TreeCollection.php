@@ -18,8 +18,10 @@
                     'opened' => false,
                 ];
 
-                if ($showChildren || count($model->subcategories->toTree()) > 0) {
-                    $node["children"] = $model->subcategories->toTree();
+                if ($showChildren) {
+                    $node["children"] = [];
+                } else if (count($model->subcategories->toTree()) > 0) {
+                    $node["children"] = null;
                 }
 
                 return $node;

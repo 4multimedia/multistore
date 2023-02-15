@@ -10,7 +10,7 @@
     class CategoryController extends Controller
     {
         public function index(Request $request) {
-            return Category::whereNull('id_product_category_parent')->get()->toTree();
+            return Category::where('id_product_category_parent', $request->id_parent == 'null' ? NULL : $request->id_parent)->get()->toTree();
         }
 
 		public function store(Request $request) {
