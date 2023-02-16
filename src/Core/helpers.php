@@ -112,6 +112,10 @@ use Multimedia\Multistore\Core\Models\Navigation;
 		return hook()->get_css();
 	}
 
+	function set_breadcrumbs() {
+
+	}
+
 	function generate_css_variables() {
 		$data = get_option('layout_setting', []);
 		$variables = [];

@@ -44,7 +44,9 @@
 		/* HOOKS Header */
 		public function get_header() {
 			echo '<head>
-		<title>'.get_meta_title().'</title>'.get_meta_all_tags().'
+		<title>'.get_meta_title().'</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">'.get_meta_all_tags().'
 		'.get_css().'
 	</head>';
 		}
