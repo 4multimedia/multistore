@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_dictionary');
             $table->unsignedBigInteger('id_record');
             $table->string('table');
-			$table->integer('position');
+			$table->integer('position')->default(0);
 
 			$table->primary(['id_dictionary', 'id_record', 'table'], 'id_dictionary_to_id_record_table');
 			$table->foreign('id_dictionary')->references('id_dictionary')->on('dictionary')->cascadeOnUpdate()->cascadeOnDelete();
