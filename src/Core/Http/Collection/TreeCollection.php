@@ -16,10 +16,18 @@
                     'hash' => $model->hash,
                     'text' => $model->name,
                     'opened' => false,
+                    'isLeaf' => false,
+                    'loading' => false
                 ];
 
                 if ($showChildren) {
-                    $node["children"] = [];
+                    if (count($model->subcategories) > 0) {
+                        $node["children"] = [
+                            ['id' => null, 'text' => 'Wczytywanie...', 'value' => 'Wczytywanie...']
+                        ];
+                    } else {
+                        $node["children"] = [];
+                    }
                 } else {
                     $node["children"] = null;
                 }

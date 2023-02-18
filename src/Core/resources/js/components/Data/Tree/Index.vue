@@ -24,7 +24,15 @@
                 </div>
             </div>
         </div>
-        <v-jstree :data="structure" allow-batch whole-row @item-click="itemClick">
+        <v-jstree
+            :data="structure"
+            allow-batch
+            whole-row
+            draggable
+            loading-text="Wczytuje..."
+            @item-click="itemClick"
+            @item-toggle="itemToogle"
+        >
             <template scope="_">
                 <div class="flex justify-between w-full">
                     <span>{{_.model.text}}</span>
@@ -39,7 +47,7 @@
 									<li> <a href="javascript:;" class="dropdown-item"><ArrowUpDown class="w-4 h-4 mr-2" /> Przenieś</a> </li>
 									<li> <a href="javascript:;" class="dropdown-item"><Copy class="w-4 h-4 mr-2" /> Duplikuj</a> </li>
 									<li> <hr class="dropdown-divider"> </li>
-									<li> <a href="javascript:;" class="dropdown-item text-red-600"><Trash class="w-4 h-4 mr-2" /> Usuń</a> </li>
+									<li> <a href="javascript:;" @click="onDeleteItem(_)" class="dropdown-item text-red-600"><Trash class="w-4 h-4 mr-2" /> Usuń</a> </li>
 								</ul>
 							</div>
 						</div>
@@ -50,6 +58,7 @@
         <Dialog header="Dodaj kategorię" :visible.sync="dialog" :modal="true">
             <div style="width:600px; max-width: 100%;" class="intro-y box p-5">
                 <input-text :value.sync="form.name" label="Nazwa kategorii" :column="true" />
+                <input-checkbox /> wprowadź wiele nazwa
                 <dropdown :options="[]" v-model="form.id_parent" label="Kategoria nadrzędna" :column="true" />
             </div>
             <template #footer>
@@ -63,9 +72,9 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import VJstree from 'vue-jstree';
     import { Edit2, Copy, Trash, FolderPlus, ArrowUpDown, Settings, Plus } from 'lucide-vue';
-import axios from 'axios';
 
     export default {
         components: {
@@ -118,6 +127,22 @@ import axios from 'axios';
                 this.current = node;
                 window.history.replaceState({}, "", `/${window.globalConfig.backend}/product/category/${node.model.hash}`);
             },
+            async itemToogle (node) {
+                if (!node.model.loading && node.model.opened) {
+                    node.model.loading = true;
+                    const id = node.model.id;
+
+                    if (node.model.children.length === 1) {
+                        alert(node.model.children[0].id);
+                    }
+
+                    const path = `/${window.globalConfig.backend}/api/content/category?id_parent=${id}`;
+                    const request = await axios.get(path);
+                    const { data } = request;
+                    node.model.children = data;
+                    node.model.loading = false;
+                }
+            },
             onHandleOpenDialog(item = null) {
 				this.form.id_parent = null;
 				if (item.model !== undefined) {
@@ -137,6 +162,9 @@ import axios from 'axios';
             },
             onHideDialog() {
                 this.dialog = false;
+            },
+            onDeleteItem() {
+
             }
         },
     }
