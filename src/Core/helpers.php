@@ -227,9 +227,11 @@ use Multimedia\Multistore\Core\Models\Navigation;
         ->get();
 
         if ($flat) {
-            $items = $query->pluck('name.'.$lang, 'id_dictionary');
+            $items = $query->pluck('name.'.$lang, 'id');
         } else {
-            $items = $query->map->only('id_dictionary', 'name');
+            $items = $query->map(function ($item) use ($lang) {
+                return ['id' => $item->id, 'name' => $item->name[$lang]];
+            });
         }
 
         return $items->toArray();
@@ -271,7 +273,9 @@ use Multimedia\Multistore\Core\Models\Navigation;
         if ($flat) {
             $items = $query->pluck('name.'.$lang, 'id_dictionary');
         } else {
-            $items = $query->map->only('id', 'name.pl')->toArray();
+            $items = $query->map(function ($item) use ($lang) {
+                return ['id' => $item->id, 'name' => $item->name[$lang]];
+            });
         }
 
         return $items->toArray();
