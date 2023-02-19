@@ -202,7 +202,7 @@ use Multimedia\Multistore\Core\Models\Navigation;
 		}
 	}
 
-	function get_dictionary_values($id_dictionary_parent, $id_record, $table, $sort_col = null, $sort_by = null) {
+	function get_dictionary_values($id_dictionary_parent, $id_record, $table, $sort_col = null, $sort_by = null, $flat = true) {
         $lang = app()->getLocale();
 
         if (!$sort_col || !$sort_by) {
@@ -218,15 +218,21 @@ use Multimedia\Multistore\Core\Models\Navigation;
 
         if ($sort_col === 'name') { $sort_col = 'name->'.$lang; }
 
-		return Dictionary::select('dictionary.id_dictionary', 'name')
+		$query = Dictionary::select('dictionary.id_dictionary', 'name')
         ->leftJoin('dictionary_relative', 'dictionary.id_dictionary', '=', 'dictionary_relative.id_dictionary')
 		->where('id_record', $id_record)
 		->where('table', $table)
 		->where('id_dictionary_parent', $id_dictionary_parent)
         ->orderBy($sort_col, $sort_by)
-		->get()
-        ->pluck('name.'.$lang, 'id_dictionary')
-        ->toArray();
+        ->get();
+
+        if ($flat) {
+            $items = $query->pluck('name.'.$lang, 'id_dictionary');
+        } else {
+            $items = $query->map->only('id_dictionary', 'name');
+        }
+
+        return $items->toArray();
 	}
 
 	function get_dictionary_value($id_dictionary) {
@@ -241,7 +247,7 @@ use Multimedia\Multistore\Core\Models\Navigation;
         }
 	}
 
-    function get_dictionary($id_dictionary_parent, $sort_col = null, $sort_by = null) {
+    function get_dictionary($id_dictionary_parent, $sort_col = null, $sort_by = null, $flat = true) {
         $lang = app()->getLocale();
 
         if (!$sort_col || !$sort_by) {
@@ -257,12 +263,18 @@ use Multimedia\Multistore\Core\Models\Navigation;
 
         if ($sort_col === 'name') { $sort_col = 'name->'.$lang; }
 
-		return Dictionary::select('dictionary.id_dictionary', 'name')
+	    $query = Dictionary::select('dictionary.id_dictionary', 'name')
 		->where('id_dictionary_parent', $id_dictionary_parent)
         ->orderBy($sort_col, $sort_by)
-        ->get()
-        ->pluck('name.'.$lang, 'id_dictionary')
-        ->toArray();
+        ->get();
+
+        if ($flat) {
+            $items = $query->pluck('name.'.$lang, 'id_dictionary');
+        } else {
+            $items = $query->map->only('id', 'name.pl')->toArray();
+        }
+
+        return $items->toArray();
 	}
 
 	function get_host() {
