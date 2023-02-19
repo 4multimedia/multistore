@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Multimedia\Multistore\Core\Models\Option;
 use Multimedia\Multistore\Core\Models\Layout;
 use Illuminate\Support\Facades\Schema;
+use Multimedia\Multistore\Core\Models\Dictionary;
+use Multimedia\Multistore\Core\Models\DictionaryRelative;
 use Multimedia\Multistore\Core\Models\Navigation;
 
 	function hook() {
@@ -198,6 +200,69 @@ use Multimedia\Multistore\Core\Models\Navigation;
 			}
 			return $default;
 		}
+	}
+
+	function get_dictionary_values($id_dictionary_parent, $id_record, $table, $sort_col = null, $sort_by = null) {
+        $lang = app()->getLocale();
+
+        if (!$sort_col || !$sort_by) {
+            $dictionary = Dictionary::where('id_dictionary', $id_dictionary_parent)->first();
+            if ($dictionary) {
+                if ($dictionary->options["sort_by"]) { $sort_by = $dictionary->options["sort_by"]; }
+                if ($dictionary->options["sort_col"]) { $sort_col = $dictionary->options["sort_col"]; }
+            }
+        }
+
+        if (!$sort_by) { $sort_by = 'asc'; }
+        if (!$sort_col) { $sort_col = 'position'; }
+
+        if ($sort_col === 'name') { $sort_col = 'name->'.$lang; }
+
+		return Dictionary::select('dictionary.id_dictionary', 'name')
+        ->leftJoin('dictionary_relative', 'dictionary.id_dictionary', '=', 'dictionary_relative.id_dictionary')
+		->where('id_record', $id_record)
+		->where('table', $table)
+		->where('id_dictionary_parent', $id_dictionary_parent)
+        ->orderBy($sort_col, $sort_by)
+		->get()
+        ->pluck('name.'.$lang, 'id_dictionary')
+        ->toArray();
+	}
+
+	function get_dictionary_value($id_dictionary) {
+        $lang = app()->getLocale();
+
+		$item = Dictionary::select('dictionary.id_dictionary', 'name')
+		->where('id_dictionary', $id_dictionary)
+		->first();
+
+        if ($item && $item->name[$lang]) {
+            return $item->name[$lang];
+        }
+	}
+
+    function get_dictionary($id_dictionary_parent, $sort_col = null, $sort_by = null) {
+        $lang = app()->getLocale();
+
+        if (!$sort_col || !$sort_by) {
+            $dictionary = Dictionary::where('id_dictionary', $id_dictionary_parent)->first();
+            if ($dictionary) {
+                if ($dictionary->options["sort_by"]) { $sort_by = $dictionary->options["sort_by"]; }
+                if ($dictionary->options["sort_col"]) { $sort_col = $dictionary->options["sort_col"]; }
+            }
+        }
+
+        if (!$sort_by) { $sort_by = 'asc'; }
+        if (!$sort_col) { $sort_col = 'position'; }
+
+        if ($sort_col === 'name') { $sort_col = 'name->'.$lang; }
+
+		return Dictionary::select('dictionary.id_dictionary', 'name')
+		->where('id_dictionary_parent', $id_dictionary_parent)
+        ->orderBy($sort_col, $sort_by)
+        ->get()
+        ->pluck('name.'.$lang, 'id_dictionary')
+        ->toArray();
 	}
 
 	function get_host() {
