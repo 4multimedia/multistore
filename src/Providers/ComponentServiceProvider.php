@@ -7,6 +7,7 @@ use Multimedia\Multistore\Core\Http\Components\Editor;
 use Multimedia\Multistore\Core\Http\Components\Layout;
 use Multimedia\Multistore\Core\Http\Components\Meta;
 use Multimedia\Multistore\Core\Http\Components\Publish;
+use Multimedia\Multistore\Core\Http\Components\Dictionary\DictionaryCheckbox;
 
 class ComponentServiceProvider extends ServiceProvider {
 
@@ -18,7 +19,8 @@ class ComponentServiceProvider extends ServiceProvider {
 		$this->loadViewComponentsAs('backend', [
 			Editor::class,
             Meta::class,
-            Publish::class
+            Publish::class,
+            DictionaryCheckbox::class
 		]);
 
 		$this->loadViewComponentsAs('frontend', [

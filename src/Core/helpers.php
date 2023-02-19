@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use Multimedia\Multistore\Core\Models\Dictionary;
 use Multimedia\Multistore\Core\Models\DictionaryRelative;
 use Multimedia\Multistore\Core\Models\Navigation;
+use Illuminate\Support\Facades\Request;
 
 	function hook() {
         return app('hooks');
@@ -57,6 +58,15 @@ use Multimedia\Multistore\Core\Models\Navigation;
 	}
 
 	//
+
+    /** Funkcja zwracająca widok lub obiekt JSON */
+    function render_view($view, $data = []) {
+        if(Request::wantsJson()) {
+            return response()->json($data);
+        } else {
+            return view($view, $data);
+        }
+    }
 
 	function isHTML($string){
 		return $string != strip_tags($string) ? true:false;
@@ -202,14 +212,25 @@ use Multimedia\Multistore\Core\Models\Navigation;
 		}
 	}
 
+    function get_dictionary_only_values($id_dictionary_parent, $id_record, $table) {
+        return Dictionary::select('dictionary.id_dictionary', 'name')
+        ->leftJoin('dictionary_relative', 'dictionary.id_dictionary', '=', 'dictionary_relative.id_dictionary')
+		->where('id_record', $id_record)
+		->where('table', $table)
+		->where('id_dictionary_parent', $id_dictionary_parent)
+        ->get()
+        ->pluck('id')
+        ->toArray();
+    }
+
 	function get_dictionary_values($id_dictionary_parent, $id_record, $table, $sort_col = null, $sort_by = null, $flat = true) {
         $lang = app()->getLocale();
 
         if (!$sort_col || !$sort_by) {
             $dictionary = Dictionary::where('id_dictionary', $id_dictionary_parent)->first();
             if ($dictionary) {
-                if ($dictionary->options["sort_by"]) { $sort_by = $dictionary->options["sort_by"]; }
-                if ($dictionary->options["sort_col"]) { $sort_col = $dictionary->options["sort_col"]; }
+                if (isset($dictionary->options["sort_by"])) { $sort_by = $dictionary->options["sort_by"]; }
+                if (isset($dictionary->options["sort_col"])) { $sort_col = $dictionary->options["sort_col"]; }
             }
         }
 
@@ -237,6 +258,16 @@ use Multimedia\Multistore\Core\Models\Navigation;
         return $items->toArray();
 	}
 
+    function save_dictionary($request, $id_record, $table) {
+        DictionaryRelative::where('id_record', $id_record)->where('table', $table)->delete();
+
+        if ($request) {
+            foreach($request as $id_dictionary) {
+                DictionaryRelative::updateOrCreate(['id_dictionary' => $id_dictionary, 'id_record' => $id_record, 'table' => $table]);
+            }
+        }
+    }
+
 	function get_dictionary_value($id_dictionary) {
         $lang = app()->getLocale();
 
@@ -255,8 +286,8 @@ use Multimedia\Multistore\Core\Models\Navigation;
         if (!$sort_col || !$sort_by) {
             $dictionary = Dictionary::where('id_dictionary', $id_dictionary_parent)->first();
             if ($dictionary) {
-                if ($dictionary->options["sort_by"]) { $sort_by = $dictionary->options["sort_by"]; }
-                if ($dictionary->options["sort_col"]) { $sort_col = $dictionary->options["sort_col"]; }
+                if (isset($dictionary->options["sort_by"])) { $sort_by = $dictionary->options["sort_by"]; }
+                if (isset($dictionary->options["sort_col"])) { $sort_col = $dictionary->options["sort_col"]; }
             }
         }
 

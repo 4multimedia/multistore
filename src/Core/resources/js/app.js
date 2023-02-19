@@ -52,6 +52,7 @@ import './side-menu';
 import Vue from 'vue';
 import PrimeVue from 'primevue/config';
 import InputText from './components/Input/InputText.vue';
+import InputTextarea from './components/Input/InputTextarea.vue';
 import InputPassword from './components/Input/InputPassword.vue';
 import InputSwitch from './components/Input/InputSwitch.vue';
 import Dropdown from './components/Input/Dropdown.vue';
@@ -112,6 +113,7 @@ Vue.use(PrimeVue);
 Vue.use(ConfirmationService);
 
 Vue.component('InputText', InputText);
+Vue.component('InputTextarea', InputTextarea);
 Vue.component('InputPassword', InputPassword);
 Vue.component('InputSwitch', InputSwitch);
 Vue.component('InputImage', InputImage);

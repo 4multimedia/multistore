@@ -5,14 +5,17 @@
         	<h2 class="text-lg font-medium mr-auto" v-if="title">{{ title }}</h2><div v-else></div>
         	<div class="w-full sm:w-auto flex mt-4 sm:mt-0" v-if="language">
             	<div class="dropdown mr-2">
-                	<button class="dropdown-toggle btn box flex items-center" aria-expanded="false" type="button" data-tw-toggle="dropdown"> English <ChevronDown class="w-4 h-4 ml-2" />
+                	<button class="dropdown-toggle btn box flex items-center" aria-expanded="false" type="button" data-tw-toggle="dropdown">
+                        <span class="fi fi-pl mr-2"></span>
+                        <span>Polski</span>
+                        <ChevronDown class="w-4 h-4 ml-2" />
                 </button>
                 <div class="dropdown-menu w-40">
                     <ul class="dropdown-content">
                         <li>
                             <a href="" class="dropdown-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="activity" data-lucide="activity" class="lucide lucide-activity w-4 h-4 mr-2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                                <span class="truncate">English</span>
+                                <span class="fi fi-pl mr-2"></span>
+                                <span class="truncate">Polski</span>
                             </a>
                         </li>
                     </ul>

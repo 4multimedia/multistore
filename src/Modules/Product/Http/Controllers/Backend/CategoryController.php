@@ -8,4 +8,6 @@
         public function index() {
             return view('module.product.backend::category.index');
         }
+
+
     }

@@ -696,7 +696,7 @@
                 <!-- BEGIN: Search -->
                 <div class="intro-x relative mr-3 sm:mr-6">
                     <div class="search hidden sm:block">
-                        <input type="text" class="search__input form-control border-transparent" placeholder="Search....">
+                        <input type="text" class="search__input form-control border-transparent" placeholder="Szukaj....">
                         <i data-lucide="search" class="search__icon dark:text-slate-500"></i>
                     </div>
                     <a class="notification notification--light sm:hidden" href=""> <i data-lucide="search" class="notification__icon dark:text-slate-500"></i> </a>

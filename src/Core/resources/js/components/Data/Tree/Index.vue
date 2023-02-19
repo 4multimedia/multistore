@@ -37,9 +37,9 @@
                 <div class="flex justify-between w-full">
                     <span>{{_.model.text}}</span>
                     <div class="dropdown">
-							<button class="dropdown-toggle text-slate-300 hover:text-slate-500" aria-expanded="false" data-tw-toggle="dropdown">
-								<Settings />
-							</button>
+						<button class="dropdown-toggle text-slate-300 hover:text-slate-500" aria-expanded="false" data-tw-toggle="dropdown">
+							<Settings />
+						</button>
 							<div class="dropdown-menu w-64">
 								<ul class="dropdown-content">
 									<li> <a href="javascript:;" @click="onHandleOpenDialog(_)" class="dropdown-item"><FolderPlus class="w-4 h-4 mr-2" /> Dodaj podkategorię</a> </li>
@@ -57,8 +57,8 @@
 
         <Dialog header="Dodaj kategorię" :visible.sync="dialog" :modal="true">
             <div style="width:600px; max-width: 100%;" class="intro-y box p-5">
-                <input-text :value.sync="form.name" label="Nazwa kategorii" :column="true" />
-                <input-checkbox /> wprowadź wiele nazwa
+                <compoinent :is="fillComponent" :value.sync="form.name" label="Nazwa kategorii" :column="true" />
+                <input-checkbox @input="onChangeFillComponent" label="wprowadź wiele nazwa" />
                 <dropdown :options="[]" v-model="form.id_parent" label="Kategoria nadrzędna" :column="true" />
             </div>
             <template #footer>
@@ -89,6 +89,7 @@
         },
         data() {
             return {
+                fillComponent: 'input-text',
                 dialog:false,
                 form: {
                     id_parent: null,
@@ -123,24 +124,24 @@
                     children : []
                 };
             },
-            itemClick (node) {
+            async itemClick (node) {
                 this.current = node;
                 window.history.replaceState({}, "", `/${window.globalConfig.backend}/product/category/${node.model.hash}`);
+                const request = await axios.get(`/${window.globalConfig.backend}/product/category/${node.model.hash}`);
+                this.$emit("updateForm", request.data);
             },
             async itemToogle (node) {
                 if (!node.model.loading && node.model.opened) {
-                    node.model.loading = true;
-                    const id = node.model.id;
+                    if (node.model.children.length === 1 && node.model.children[0].id === null) {
+                        node.model.loading = true;
+                        const id = node.model.id;
 
-                    if (node.model.children.length === 1) {
-                        alert(node.model.children[0].id);
+                        const path = `/${window.globalConfig.backend}/api/content/category?id_parent=${id}`;
+                        const request = await axios.get(path);
+                        const { data } = request;
+                        node.model.children = data;
+                        node.model.loading = false;
                     }
-
-                    const path = `/${window.globalConfig.backend}/api/content/category?id_parent=${id}`;
-                    const request = await axios.get(path);
-                    const { data } = request;
-                    node.model.children = data;
-                    node.model.loading = false;
                 }
             },
             onHandleOpenDialog(item = null) {
@@ -162,6 +163,9 @@
             },
             onHideDialog() {
                 this.dialog = false;
+            },
+            onChangeFillComponent(e) {
+                alert(e)
             },
             onDeleteItem() {
 

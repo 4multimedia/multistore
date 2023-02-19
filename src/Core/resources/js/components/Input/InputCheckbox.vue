@@ -1,6 +1,6 @@
 <template>
 	<div class="flex items-center mr-auto">
-		<PrimeCheckbox v-model="checked" :binary="binary" @input="onChecked" />
+		<PrimeCheckbox v-bind="$attrs" :name="name" v-model="checked" :binary="binary" @input="onChecked($event)"/>
 		<label class="cursor-pointer select-none ml-2">{{ label }}</label>
 	</div>
 </template>
@@ -36,6 +36,11 @@ export default {
 			this.$emit('update:value', value)
 		}
 	},
+    watch: {
+        value() {
+            this.checked = this.value;
+        }
+    },
 	data() {
 		return {
 			checked: false
