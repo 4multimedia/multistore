@@ -131,4 +131,8 @@
 		public function treeselect($label, $name, $params = []) {
 			return $this->field('input-tree-select', $label, $name, $params);
 		}
+
+        public function textarea($label, $name, $params = []) {
+			return $this->field('input-textarea', $label, $name, $params);
+		}
     }
