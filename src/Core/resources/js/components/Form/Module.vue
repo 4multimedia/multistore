@@ -6,7 +6,7 @@
             </div>
         </template>
 		<div class="flex mt-5 pb-5">
-			<div class="intro-y flex-initial w-80">
+			<div class="intro-y flex-initial" style="flex:0 0 300px">
 				<div class="sticky mt-5 top-0">
 					<ul class="text-slate-500 relative before:content-[''] before:w-[2px] before:bg-slate-200 before:dark:bg-darkmode-600 before:h-full before:absolute before:right-0 before:z-[-1]">
 						<li
