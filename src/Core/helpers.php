@@ -200,12 +200,12 @@ use Illuminate\Support\Facades\Request;
         return $menu;
     }
 
-	function get_option($key, $default) {
+	function get_option($key, $default = null) {
 		if (Schema::hasTable('option')) {
 			$option = Option::where('key', $key)->first();
 			if ($option) {
 				$data = $option->values;
-				$data = json_decode($data, true);
+				//$data = json_decode($data, true);
 				return $data;
 			}
 			return $default;
@@ -311,6 +311,13 @@ use Illuminate\Support\Facades\Request;
 
         return $items->toArray();
 	}
+
+    // save option
+    function save_option($key, $value, $single = true) {
+        if ($single) {
+            Option::updateOrCreate(['key' => $key], ['values' => $value]);
+        }
+    }
 
 	function get_host() {
 		$protocol = 'http://';
