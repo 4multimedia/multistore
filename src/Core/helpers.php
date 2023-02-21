@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Multimedia\Multistore\Core\Models\Option;
 use Multimedia\Multistore\Core\Models\Layout;
@@ -64,6 +65,7 @@ use Illuminate\Support\Facades\Request;
         if(Request::wantsJson()) {
             return response()->json($data);
         } else {
+			// czy istnije plik w katalogu glownym
             return view($view, $data);
         }
     }
@@ -200,9 +202,13 @@ use Illuminate\Support\Facades\Request;
         return $menu;
     }
 
-	function get_option($key, $default = null) {
+	function get_option($key, $default = null, $domain = false) {
 		if (Schema::hasTable('option')) {
-			$option = Option::where('key', $key)->first();
+			$query = Option::where('key', $key);
+			if ($domain) {
+				$query->where('id_option_domain', domain()->current()->id);
+			}
+			$option = $query->first();
 			if ($option) {
 				$data = $option->values;
 				//$data = json_decode($data, true);
@@ -210,6 +216,10 @@ use Illuminate\Support\Facades\Request;
 			}
 			return $default;
 		}
+	}
+
+	function get_domain($domain) {
+		return domain()->get_domain($domain);
 	}
 
     function get_dictionary_only_values($id_dictionary_parent, $id_record, $table) {
@@ -313,9 +323,15 @@ use Illuminate\Support\Facades\Request;
 	}
 
     // save option
-    function save_option($key, $value, $single = true) {
+    function save_option($key, $value, $single = true, $domain = false) {
         if ($single) {
-            Option::updateOrCreate(['key' => $key], ['values' => $value]);
+			if ($domain) {
+				if ($value) {
+					Option::updateOrCreate(['key' => $key, 'id_option_domain' => domain()->current()->id], ['values' => $value]);
+				}
+			} else {
+            	Option::updateOrCreate(['key' => $key], ['values' => $value]);
+			}
         }
     }
 
@@ -420,7 +436,14 @@ use Illuminate\Support\Facades\Request;
 		return table()->render($id);
 	}
 
-
+	// db
+	function get_primary_key_from_table($table) {
+		$item = DB::select(DB::raw("show columns from `$table` where `Key` = \"PRI\";"));
+		if ($item && $item[0] && $item[0]->Field) {
+			return $item[0]->Field;
+		}
+		return null;
+	}
 
 
 

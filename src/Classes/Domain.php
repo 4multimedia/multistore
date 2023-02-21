@@ -26,4 +26,12 @@
 		public function set_id_option_domain($id_option_domain) {
 			$this->id_option_domain = $id_option_domain;
 		}
+
+		public function get_domain($domain) {
+			$find = OptionDomain::where('domain', $domain)->first();
+			if ($find) {
+				return $find;
+			}
+			return null;
+		}
 	}
