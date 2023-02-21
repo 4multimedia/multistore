@@ -8,8 +8,9 @@
 
         public $errors;
         public $messages = [];
+        public $type = 'vue';
 
-        public function __construct()
+        public function __construct($type = 'vue')
         {
             $this->errors = Session::get('errors');
             if ($this->errors) {
@@ -17,10 +18,18 @@
             }
         }
 
+        public function setType($type) {
+            $this->type = $type;
+            return $this;
+        }
+
         public function error($name) {
             $error = [];
             if (isset($this->messages[$name])) {
                 $error = $this->messages[$name];
+            }
+            if ($this->type === 'html') {
+                return $error;
             }
             return strtr(json_encode($error), ["\"" => "'"]);
         }
@@ -41,7 +50,29 @@
 			}
 			$array[":error"] = $error;
 
-            return "<$component ".$this->attr($array)."></$component>";
+            if ($this->type === 'vue') {
+                return "<$component ".$this->attr($array)."></$component>";
+            } else {
+                return $this->html_field($component, $array);
+            }
+        }
+
+        public function html_field($component, $array) {
+            $label = $array["label"];
+            $errors = $this->error($array["name"]);
+
+            unset($array["label"]);
+            unset($array[":error"]);
+            unset($array["error"]);
+
+            $html = "<div> ".$label." <".$component." ".$this->attr($array)." />";
+            if ($errors) {
+                foreach($errors as $error) {
+                    $html .= $error;
+                }
+            }
+            $html .= "</div>";
+            return $html;
         }
 
 		public function attr($array) {
@@ -64,19 +95,13 @@
 		}
 
         public function text($label, $name, $params = []) {
-            $error = $this->error($name);
-
-			$array = [];
-			$array["label"] = $label;
-			$array["name"] = $name;
-			foreach($params as $param_key => $param_value) {
-				$array[$param_key] = $param_value;
-			}
-			$array["value"] = old($name) !== null ? old($name) : (isset($params["value"]) ? $params["value"] : '');
-			$array[":error"] = $error;
-
-            return "<input-text ".$this->attr($array)."></input-text>";
-        }
+            $component = 'input-text';
+            if ($this->type === 'html') {
+                $component = 'input';
+                $params["type"] = "text";
+            }
+			return $this->field($component, $label, $name, $params);
+		}
 
         public function password($label, $name, $params = []) {
             $error = $this->error($name);

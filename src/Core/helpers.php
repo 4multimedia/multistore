@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Request;
         return app('hooks');
     }
 
-    function form() {
-        return app('form');
+    function form($type = 'vue') {
+        return app('form')->setType($type);
     }
 
 	function plugins() {
