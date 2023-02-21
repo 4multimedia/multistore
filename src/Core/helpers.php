@@ -445,8 +445,6 @@ use Illuminate\Support\Facades\Request;
 		return null;
 	}
 
-
-
 	// ACTIONS
 	function add_action($tag, $arg, $priority = 10, $accepted_args = []) {
 		hook()->_add_action($tag, $arg, $priority, $accepted_args);

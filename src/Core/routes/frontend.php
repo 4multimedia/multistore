@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::namespace('Content')->group(function() {
-	Route::get('/{page}', 'PageController@view');
+	Route::get('/{page}', 'PageController@view')->whereIn('page', ['regulamin']);
 });
