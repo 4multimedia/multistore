@@ -3,6 +3,7 @@
 namespace Multimedia\Multistore\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Multimedia\Multistore\Classes\Hooks;
 use Multimedia\Multistore\Classes\Backend;
 use Multimedia\Multistore\Classes\Media;
 use Multimedia\Multistore\Classes\Modules;
@@ -18,6 +19,10 @@ use Multimedia\Multistore\Classes\Page;
 class RegisterServiceProvider extends ServiceProvider {
 
 	public function register() {
+		$this->app->singleton('hooks', function($app) {
+			return new Hooks();
+		});
+
 		$this->app->singleton('modules', function($app) {
 			return new Modules();
 		});

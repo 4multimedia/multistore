@@ -449,6 +449,16 @@ use Illuminate\Support\Facades\Request;
 		return null;
 	}
 
+	function get_model_namespace_from_table($model) {
+		$models = do_action('register_table_model');
+		foreach($models as $item) {
+			if (isset($item[$model])) {
+				return $item[$model];
+			}
+		}
+		return null;
+	}
+
 	// ACTIONS
 	function add_action($tag, $arg, $priority = 10, $accepted_args = []) {
 		hook()->_add_action($tag, $arg, $priority, $accepted_args);
