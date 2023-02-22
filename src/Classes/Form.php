@@ -61,11 +61,18 @@
             $label = $array["label"];
             $errors = $this->error($array["name"]);
 
+            $array["class"] = "form-control";
+
             unset($array["label"]);
             unset($array[":error"]);
             unset($array["error"]);
 
-            $html = "<div> ".$label." <".$component." ".$this->attr($array)." />";
+            $html = "<div class=\"form-field\"> <label class=\"form-label\">".$label."</label>";
+            if ($component === 'textarea') {
+                $html .= "<".$component." ".$this->attr($array)."></".$component.">";
+            } else {
+                $html .= "<".$component." ".$this->attr($array)." />";
+            }
             if ($errors) {
                 foreach($errors as $error) {
                     $html .= $error;
@@ -158,6 +165,10 @@
 		}
 
         public function textarea($label, $name, $params = []) {
+            $component = 'input-textarea';
+            if ($this->type === 'html') {
+                $component = 'textarea';
+            }
 			return $this->field('input-textarea', $label, $name, $params);
 		}
     }

@@ -80,7 +80,11 @@
 				$file_name = $file_name[count($file_name)-1];
 				$to = public_path('css/'.$file_name);
 				copy($path, $to);
-				register_css('/css/'.$file_name, 'all', $merge);
+                if ($merge) {
+                    register_css(public_path('/css/'.$file_name), 'all', $merge);
+                } else {
+				    register_css('/css/'.$file_name, 'all', $merge);
+                }
 			}
 		}
 
@@ -89,6 +93,9 @@
 			$cssWebLocation = public_path('assets/css/web.css');
 			$cssWebPut = false;
 			$cssWebFileDate = 0;
+
+            @mkdir(public_path('assets'));
+            @mkdir(public_path('assets/css'));
 
 			$tabs = 2;
 			if (isset($params["tabs"])) { $tabs = $params["tabs"]; }
