@@ -52,13 +52,36 @@
 		}
 
 		/* HOOKS StyleSheets */
-		public function register_css($path) {
-			$this->set_asset_path('css');
-			$this->css[] = $this->assetsPath.$path.".css";
+		public function register_css($path, $place, $merge) {
+			if (strpos($path, "/") === false) {
+				$this->set_asset_path('css');
+			}
+			if (substr($path, strlen($path) - 4, strlen($path)) !== ".css") {
+				$path = $path.".css";
+			}
+			$this->css[] = [
+				'path' => $this->assetsPath.$path,
+				'place' => $place,
+				'merge' => $merge
+			];
 		}
 
 		public function register_css_path($path) {
-			$this->css[] = $path;
+			$this->css[] = [
+				'path' => $path,
+				'place' => 'all',
+				'merge' => false
+			];
+		}
+
+		public function register_asset_style($path, $merge = false) {
+			if (file_exists($path)) {
+				$file_name = explode("/", $path);
+				$file_name = $file_name[count($file_name)-1];
+				$to = public_path('css/'.$file_name);
+				copy($path, $to);
+				register_css('/css/'.$file_name, 'all', $merge);
+			}
 		}
 
 		public function get_css($params = []) {
@@ -77,17 +100,16 @@
 			}
 
 			$cssContent = '';
-			foreach($this->css as $file) {
-                if (is_file($file)) {
-                    if (substr($file, 0, 4) === 'http') {
-                        $external[] = $file;
-                    } else {
-                        if(file_exists($file)) {
-                            $cssContent .= File::get($file);
-                            $cssFileDate = filemtime($file);
-                            if ($cssFileDate > $cssWebFileDate) {
-                                $cssWebPut = true;
-                            }
+			foreach($this->css as $item) {
+				$file = $item["path"];
+                if (substr($file, 0, 4) === 'http' || $item["merge"] === false) {
+                    $external[] = $file;
+                } else {
+                    if(is_file($file) && file_exists($file)) {
+                        $cssContent .= File::get($file);
+                        $cssFileDate = filemtime($file);
+                        if ($cssFileDate > $cssWebFileDate) {
+                            $cssWebPut = true;
                         }
                     }
                 }

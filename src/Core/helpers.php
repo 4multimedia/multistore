@@ -106,8 +106,8 @@ use Illuminate\Support\Facades\Request;
 		hook()->register_css_path($path);
 	}
 
-	function register_css($path, $place = 'all') {
-		return hook()->register_css($path, $place);
+	function register_css($path, $place = 'all', $merge = true) {
+		return hook()->register_css($path, $place, $merge);
 	}
 
 	function register_assets_js($path, $position = 'after') {
@@ -124,6 +124,10 @@ use Illuminate\Support\Facades\Request;
 
 	function get_css() {
 		return hook()->get_css();
+	}
+
+	function register_asset_style($path, $merge = false) {
+		hook()->register_asset_style($path, $merge);
 	}
 
 	function set_breadcrumbs() {
