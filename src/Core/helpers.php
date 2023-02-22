@@ -193,6 +193,10 @@ use Illuminate\Support\Facades\Request;
 		}
 	}
 
+	function price($price) {
+		return number_format($price, 2, ',', ' '). ' zł';
+	}
+
     function set_navigation_items($array = [], $module = null) {
         $menu = [];
         foreach($array as $item) {
