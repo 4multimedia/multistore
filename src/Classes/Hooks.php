@@ -138,7 +138,7 @@
                 }
 			}
 
-			$external[] = 'assets/css/web.css';
+			$external[] = asset('assets/css/web.css');
 
 			if ($cssWebPut) {
 				// $cssContent = preg_replace(array('/\s*(\w)\s*{\s*/','/\s*(\S*:)(\s*)([^;]*)(\s|\n)*;(\n|\s)*/','/\n/','/\s*}\s*/'), array('$1{ ','$1$3;',"",'} '), $cssContent);
