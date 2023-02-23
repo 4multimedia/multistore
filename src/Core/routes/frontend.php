@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Multimedia\Multistore\Core\Models\Page;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::namespace('Content')->group(function() {
-	Route::get('/{page}', 'PageController@view')->whereIn('page', ['regulamin']);
+$pages = Page::get()->pluck('slug.pl')->toArray();
+
+Route::namespace('Content')->group(function() use ($pages) {
+	Route::get('/{page}', 'PageController@view')->whereIn('page', $pages);
 });

@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <html lang="en" class="light">
     <head>
         <link rel="stylesheet" href="{{ asset('css/backend.css') }}" />

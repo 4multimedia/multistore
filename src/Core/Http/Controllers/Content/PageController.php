@@ -3,8 +3,10 @@
     namespace Multimedia\Multistore\Core\Http\Controllers\Content;
 
     use App\Http\Controllers\Controller;
+	use Illuminate\Http\Request;
 	use Multimedia\Multistore\Core\Http\Classes\Table;
 	use Multimedia\Multistore\Core\Models\Page;
+	use Illuminate\Support\Str;
 
     class PageController extends Controller
     {
@@ -32,21 +34,23 @@
             return view('backend::content.page.create');
         }
 
-		public function store() {
+		public function store(Request $request) {
 			Page::create([
-				'name' => ['pl' => 'test'],
-				'slug' => ['pl' => 'test']
+				'name' => ['pl' => $request->name],
+				'description' => ['pl' => $request->description],
+				'slug' => ['pl' => Str::slug($request->name)]
 			]);
 			return redirect()->route('backend.page');
 		}
 
 		public function update(Page $hash) {
 			set_title(__('backend::page.update'));
-			return view('backend::content.page.create');
+			$data["page"] = $hash;
+			return view('backend::content.page.create', $data);
 		}
 
-		public function restore(Page $hash) {
-			$hash->update(['name' => ['pl' => 'name'.time()]]);
+		public function restore(Page $hash, Request $request) {
+			$hash->update(['name' => ['pl' => $request->name], 'description' => ['pl' => $request->description]]);
 			return redirect()->route('backend.page');
 		}
 

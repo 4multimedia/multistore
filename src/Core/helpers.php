@@ -122,6 +122,10 @@ use Illuminate\Support\Facades\Request;
 		hook()->get_assets_frontend_js($position);
 	}
 
+	function register_assets_code($code) {
+		hook()->register_assets_code($code);
+	}
+
 	function get_css() {
 		return hook()->get_css();
 	}
@@ -202,7 +206,7 @@ use Illuminate\Support\Facades\Request;
         foreach($array as $item) {
             $menu[] = [
                 'id_record' => $item["id"],
-                'name' => $item["name"]["pl"],
+                'name' => $item["name"],
                 'module' => $module,
                 'route' => null
             ];

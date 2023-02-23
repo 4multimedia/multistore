@@ -12,7 +12,9 @@
 			$slug = $request->page;
 			$page = Page::where('slug->'.$this->lang, $slug)->first();
 			if ($page) {
-				return view('frontend::content.page');
+				set_title($page->name);
+				$data["page"] = $page;
+				return view('frontend::content.page', $data);
 			} else {
 				abort(404);
 			}

@@ -5,6 +5,7 @@ namespace Multimedia\Multistore\Core\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Multimedia\Multistore\Core\Http\Traits\useHash;
 use Multimedia\Multistore\Core\Http\Traits\useLog;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Page extends Model
 {
@@ -31,5 +32,17 @@ class Page extends Model
 		'excrept' => 'array',
 		'description' => 'array'
 	];
+
+	protected function name(): Attribute {
+		return Attribute::make(
+			get: fn ($value) => $this->get_language_value($value),
+		);
+	}
+
+	protected function description(): Attribute {
+		return Attribute::make(
+			get: fn ($value) => $this->get_language_value($value),
+		);
+	}
 
 }

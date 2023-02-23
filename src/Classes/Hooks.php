@@ -141,6 +141,7 @@
 			$external[] = 'assets/css/web.css';
 
 			if ($cssWebPut) {
+				$cssContent = preg_replace(array('/\s*(\w)\s*{\s*/','/\s*(\S*:)(\s*)([^;]*)(\s|\n)*;(\n|\s)*/','/\n/','/\s*}\s*/'), array('$1{ ','$1$3;',"",'} '), $cssContent);
 				file_put_contents(public_path('assets/css/web.css'), $cssContent);
 			}
 
@@ -160,6 +161,10 @@
 			if (!in_array($path, $this->assets_js[$position])) {
 				$this->assets_js[$position][] = $path;
 			}
+		}
+
+		public function register_assets_code() {
+
 		}
 
 		public function get_assets_backend_js($position = 'after') {
