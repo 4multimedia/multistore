@@ -52,14 +52,14 @@
 		}
 
 		/* HOOKS StyleSheets */
-		public function register_css($path, $place, $merge) {
+		public function register_css($path, $place, $merge, $priority = 50) {
 			if (strpos($path, "/") === false) {
 				$this->set_asset_path('css');
 			}
 			if (substr($path, strlen($path) - 4, strlen($path)) !== ".css") {
 				$path = $path.".css";
 			}
-			$this->css[] = [
+			$this->css[$priority][] = [
 				'path' => $this->assetsPath.$path,
 				'place' => $place,
 				'merge' => $merge
@@ -67,7 +67,7 @@
 		}
 
 		public function register_css_path($path) {
-			$this->css[] = [
+			$this->css[50][] = [
 				'path' => $path,
 				'place' => 'all',
 				'merge' => false
@@ -99,8 +99,24 @@
 				file_put_contents(public_path('assets/css/web.css'), '');
 			}
 
+
+
+			$css = [];
+			ksort($this->css);
+			foreach($this->css as $css_item) {
+				foreach($css_item as $item) {
+					$css[] = $item;
+				}
+			}
+
+			if (!file_exists(public_path('assets/css/web.css'))) {
+				@mkdir(public_path('assets'));
+				@mkdir(public_path('assets/css'));
+				file_put_contents(public_path('assets/css/web.css'), '');
+			}
+
 			$cssContent = '';
-			foreach($this->css as $item) {
+			foreach($css as $item) {
 				$file = $item["path"];
                 if (substr($file, 0, 4) === 'http' || $item["merge"] === false) {
                     $external[] = $file;
@@ -115,13 +131,13 @@
                 }
 			}
 
+			$external[] = 'assets/css/web.css';
+
 			if ($cssWebPut) {
-				@mkdir(public_path('assets'));
-				@mkdir(public_path('assets/css'));
 				file_put_contents(public_path('assets/css/web.css'), $cssContent);
 			}
 
-			$response = "<link rel=\"stylesheet\" href=\"/assets/css/web.css\">";
+			$response = "";
 			if ($external) {
 				foreach($external as $file) {
 					$response .= "\n";

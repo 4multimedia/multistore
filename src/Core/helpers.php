@@ -106,8 +106,8 @@ use Illuminate\Support\Facades\Request;
 		hook()->register_css_path($path);
 	}
 
-	function register_css($path, $place = 'all', $merge = true) {
-		return hook()->register_css($path, $place, $merge);
+	function register_css($path, $place = 'all', $merge = true, $priority = 50) {
+		return hook()->register_css($path, $place, $merge, $priority);
 	}
 
 	function register_assets_js($path, $position = 'after') {
@@ -455,9 +455,11 @@ use Illuminate\Support\Facades\Request;
 
 	function get_model_namespace_from_table($model) {
 		$models = do_action('register_table_model');
-		foreach($models as $item) {
-			if (isset($item[$model])) {
-				return $item[$model];
+		if (is_array($models)) {
+			foreach($models as $item) {
+				if (isset($item[$model])) {
+					return $item[$model];
+				}
 			}
 		}
 		return null;

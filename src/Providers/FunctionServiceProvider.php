@@ -12,7 +12,7 @@ class FunctionServiceProvider extends ServiceProvider {
 
     public function boot() {
 		if (config('multimedia.assets.bootstrap')) {
-			register_css_path('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css');
+			register_css('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css', null, false, 20);
 		}
         add_to_menu('dashboard', 'backend::dashboard.title', 'backend.dashboard', 0, ['icon' => 'home']);
 
