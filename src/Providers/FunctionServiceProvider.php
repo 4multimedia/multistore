@@ -11,6 +11,8 @@ class FunctionServiceProvider extends ServiceProvider {
     }
 
     public function boot() {
+        register_asset_style(__DIR__."/../Core/resources/css/form.css", true);
+
 		if (config('multimedia.assets.bootstrap')) {
 			register_css('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css', null, false, 20);
 		}
