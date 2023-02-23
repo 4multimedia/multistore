@@ -4,6 +4,7 @@
 
 	use Illuminate\Support\ServiceProvider;
 	use Illuminate\Support\Facades\Blade;
+    use Illuminate\Pagination\Paginator;
 
     class MultiStoreServiceProvider extends ServiceProvider {
 
@@ -13,6 +14,7 @@
 			$this->loadViewsFrom(dirname(__FILE__).'/../Core/resources/views/frontend', 'frontend');
 			$this->loadTranslationsFrom(dirname(__FILE__).'/../Core/resources/lang', 'backend');
 
+            Paginator::defaultView('frontend::vendor.pagination');
 			Blade::componentNamespace('Multimedia\\Multistore\\Core\\Http\\Components\\Layouts', 'layout');
         }
 

@@ -388,10 +388,6 @@ use Illuminate\Support\Facades\Request;
 		return $protocol.$_SERVER['SERVER_NAME'];
 	}
 
-	function has_module($module) {
-		return modules()->has_module($module);
-	}
-
 	function set_title($title) {
 		hook()->set_title($title);
 	}
@@ -501,6 +497,16 @@ use Illuminate\Support\Facades\Request;
 		}
 		return null;
 	}
+
+    function has_module($module) {
+        $modules = do_action('register_module');
+        foreach($modules as $module_key) {
+            if ($module_key[0] === $module) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 	// ACTIONS
 	function add_action($tag, $arg, $priority = 10, $accepted_args = []) {
