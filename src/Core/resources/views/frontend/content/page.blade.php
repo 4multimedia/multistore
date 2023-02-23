@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	{!! $page->description !!}
+	<div class="container">
+		{!! $page->description !!}
+	</div>
 @endsection
