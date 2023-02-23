@@ -111,18 +111,12 @@
 		}
 
         public function password($label, $name, $params = []) {
-            $error = $this->error($name);
-
-			$array = [];
-			$array["label"] = $label;
-			$array["name"] = $name;
-			foreach($params as $param_key => $param_value) {
-				$array[$param_key] = $param_value;
-			}
-			$array["value"] = old($name);
-			$array[":error"] = $error;
-
-            return "<input-password ".$this->attr($array)."></input-password>";
+			$component = 'input-password';
+            if ($this->type === 'html') {
+                $component = 'input';
+				$params["type"] = "password";
+            }
+			return $this->field($component, $label, $name, $params);
         }
 
         public function button($label, $type = 'submit') {

@@ -106,8 +106,6 @@
 				file_put_contents(public_path('assets/css/web.css'), '');
 			}
 
-
-
 			$css = [];
 			ksort($this->css);
 			foreach($this->css as $css_item) {

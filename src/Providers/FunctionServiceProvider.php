@@ -12,6 +12,9 @@ class FunctionServiceProvider extends ServiceProvider {
 
     public function boot() {
         register_asset_style(__DIR__."/../Core/resources/css/form.css", true);
+		register_asset_style(__DIR__."/../Core/resources/css/breadcrumbs.css", true);
+
+		add_action('set_breadcrumbs', ['label' => 'Strona główna', 'route' => '/']);
 
 		if (config('multimedia.assets.bootstrap')) {
 			register_css('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css', null, false, 20);

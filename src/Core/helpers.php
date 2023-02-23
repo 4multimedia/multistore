@@ -201,6 +201,39 @@ use Illuminate\Support\Facades\Request;
 		return number_format($price, 2, ',', ' '). ' zł';
 	}
 
+	function get_breadcrumbs($options = []) {
+		$separator = null;
+		$class = 'breadcrumbs';
+		if (isset($options["separator"])) { $separator = $options["separator"]; }
+		if (isset($options["class"])) { $class = $options["class"]; }
+
+		$breadcrumbs = do_action('set_breadcrumbs');
+		$length = count($breadcrumbs);
+		if ($breadcrumbs && $length > 1 && (is_array($breadcrumbs) || is_object($breadcrumbs))) {
+
+			$html = '<ul class="'.$class.'">';
+			foreach($breadcrumbs as $key => $breadcrumb) {
+				if (isset($breadcrumb["label"])) {
+					$label = $breadcrumb["label"];
+					$route = null;
+
+					if (isset($breadcrumb["route"])) { $route = $breadcrumb["route"]; }
+
+					$html .= '<li>';
+					if (isset($route)) { $html .= '<a href="'.$route.'">'; }
+					$html .= $label;
+					if (isset($route)) { $html .= '</a>'; }
+					$html .= '</li>';
+
+					if ($separator && $key < $length-1) { $html .= '<li class="breadcrumbs-separator">'.$separator.'</li>'; }
+				}
+			}
+			$html .= '</ul>';
+			return $html;
+		}
+		return null;
+	}
+
     function set_navigation_items($array = [], $module = null) {
         $menu = [];
         foreach($array as $item) {
