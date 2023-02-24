@@ -84,9 +84,12 @@ use Illuminate\Support\Facades\Request;
 
 	function get_meta_all_tags() {
 		$tags = [];
-		foreach(do_action('set_meta_tag') as $tag) {
-			$tags[] = $tag;
-		}
+        $meta_tags = do_action('set_meta_tag');
+        if ($meta_tags && is_array($meta_tags)) {
+            foreach($meta_tags as $tag) {
+                $tags[] = $tag;
+            }
+        }
 		return implode(" ", $tags);
 	}
 
