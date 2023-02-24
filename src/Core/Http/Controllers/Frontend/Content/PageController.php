@@ -8,6 +8,10 @@
 
     class PageController extends Controller
     {
+        public function index() {
+            return render_view('frontend::content.index');
+        }
+
 		public function view(Request $request) {
 			$slug = $request->page;
 			$page = Page::where('slug->'.$this->lang, $slug)->first();

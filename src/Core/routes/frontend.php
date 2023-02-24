@@ -20,6 +20,7 @@ if (Schema::hasTable('page')) {
 }
 
 Route::namespace('Content')->group(function() use ($pages) {
+    Route::get('/', 'PageController@index')->name('home');
     if (count($pages)) {
 	    Route::get('/{page}', 'PageController@view')->whereIn('page', $pages);
     }

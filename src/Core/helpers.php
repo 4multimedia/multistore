@@ -65,8 +65,12 @@ use Illuminate\Support\Facades\Request;
         if(Request::wantsJson()) {
             return response()->json($data);
         } else {
-			// czy istnije plik w katalogu glownym
-            return view($view, $data);
+            $view_replaced = str_replace('::', '.', $view);
+            if (view()->exists($view_replaced)) {
+                return view($view_replaced, $data);
+            } else {
+                return view($view, $data);
+            }
         }
     }
 
