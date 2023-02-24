@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Multimedia\Multistore\Core\Models\Page;
+use Illuminate\Support\Facades\Schema;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,10 @@ use Multimedia\Multistore\Core\Models\Page;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-$pages = Page::get()->pluck('slug.pl')->toArray();
+$pages = [];
+if (Schema::hasTable('page')) {
+    $pages = Page::get()->pluck('slug.pl')->toArray();
+}
 
 Route::namespace('Content')->group(function() use ($pages) {
 	Route::get('/{page}', 'PageController@view')->whereIn('page', $pages);
