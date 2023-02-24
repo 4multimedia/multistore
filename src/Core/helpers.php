@@ -157,6 +157,7 @@ use Illuminate\Support\Facades\Request;
 		$content = ":root { \n ".implode("\n", $variables)."\n }";
 
 		$path = public_path('css');
+        @mkdir(public_path('css'));
 		return file_put_contents($path."/_variables.css", $content);
 	}
 
