@@ -3,6 +3,7 @@
 namespace Multimedia\Multistore\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class FunctionServiceProvider extends ServiceProvider {
 
@@ -36,10 +37,12 @@ class FunctionServiceProvider extends ServiceProvider {
 		if (config('multimedia.modules.page')) {
 			add_to_menu('page', 'backend::page.title', 'backend.page', 60, ['icon' => 'file-text']);
 
-            add_action('add_to_backend_navigation', [
-                'label' => 'Strony tekstowe',
-                'items' => set_navigation_items(page()->items(), 'Multimedia\Multistore\Core\Models\Page')
-            ], 70);
+            if (Schema::hasTable('page')) {
+                add_action('add_to_backend_navigation', [
+                    'label' => 'Strony tekstowe',
+                    'items' => set_navigation_items(page()->items(), 'Multimedia\Multistore\Core\Models\Page')
+                ], 70);
+            }
 		}
 
         /** BLOG */
