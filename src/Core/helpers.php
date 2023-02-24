@@ -204,12 +204,18 @@ use Illuminate\Support\Facades\Request;
 	function get_breadcrumbs($options = []) {
 		$separator = null;
 		$class = 'breadcrumbs';
+		$except = [];
+		$only = [];
 		if (isset($options["separator"])) { $separator = $options["separator"]; }
 		if (isset($options["class"])) { $class = $options["class"]; }
+		if (isset($options["except"])) { $except = $options["except"]; }
+		if (isset($options["only"])) { $only = $options["only"]; }
 
 		$breadcrumbs = do_action('set_breadcrumbs');
 		$length = count($breadcrumbs);
 		if ($breadcrumbs && $length > 1 && (is_array($breadcrumbs) || is_object($breadcrumbs))) {
+
+			$current_route = Route::currentRouteName();
 
 			$html = '<ul class="'.$class.'">';
 			foreach($breadcrumbs as $key => $breadcrumb) {
@@ -229,7 +235,13 @@ use Illuminate\Support\Facades\Request;
 				}
 			}
 			$html .= '</ul>';
-			return $html;
+
+
+			if (count($except) === 0) {
+				return $html;
+			} else if(!in_array($current_route, $except)) {
+				return $html;
+			}
 		}
 		return null;
 	}

@@ -13,6 +13,7 @@
 			$page = Page::where('slug->'.$this->lang, $slug)->first();
 			if ($page) {
 				set_title($page->name);
+				add_action('set_breadcrumbs', ['label' => $page->name]);
 				$data["page"] = $page;
 				return view('frontend::content.page', $data);
 			} else {
