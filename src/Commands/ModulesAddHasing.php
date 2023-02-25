@@ -3,8 +3,6 @@
 namespace Multimedia\Multistore\Commands;
 
 use Illuminate\Console\Command;
-use Multimedia\Multistore\Support\File;
-use Illuminate\Support\Str;
 
 class ModulesAddHasing extends Command
 {
@@ -36,12 +34,6 @@ class ModulesAddHasing extends Command
 
 		$model = $this->ask('Model name:');
 		$length = 64;
-		$line = "\t'$model' => [
-			'salt' => '".Str::random(64)."',
-			'length' => $length,
-			'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-		],";
 
-		(new File($hashids_path))->findText("'connections' => [")->writeText($line);
     }
 }

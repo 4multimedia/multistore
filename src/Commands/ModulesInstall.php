@@ -41,5 +41,9 @@ class ModulesInstall extends Command
         $domain = $this->ask('Enter domain');
         add_domain($domain);
         save_option('meta.title', $domain, true, true);
+
+        add_hashids(['OptionDomain', 'Seo', 'Dictionary', 'DictionaryRelative']);
+
+        $this->info('Install complete!');
     }
 }

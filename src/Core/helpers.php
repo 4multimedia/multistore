@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Multimedia\Multistore\Core\Models\Option;
 use Multimedia\Multistore\Core\Models\Layout;
 use Illuminate\Support\Facades\Schema;
@@ -9,6 +10,7 @@ use Multimedia\Multistore\Core\Models\Dictionary;
 use Multimedia\Multistore\Core\Models\DictionaryRelative;
 use Multimedia\Multistore\Core\Models\Navigation;
 use Illuminate\Support\Facades\Request;
+use Multimedia\Multistore\Support\File;
 
 	function hook() {
         return app('hooks');
@@ -414,6 +416,23 @@ use Illuminate\Support\Facades\Request;
 			return $default;
 		}
 	}
+
+    function add_hashids($models, $length = 64) {
+        if (is_string($models)) {
+            $models[] = $models;
+        }
+        $hashids_path = config_path('hashids.php');
+
+        foreach($models as $model) {
+            $line = "\t'$model' => [
+                'salt' => '".Str::random(64)."',
+                'length' => $length,
+                'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+            ],";
+
+            (new File($hashids_path))->findText("'connections' => [")->writeText($line);
+        }
+    }
 
 	function get_host() {
 		$protocol = 'http://';
