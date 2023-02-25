@@ -418,19 +418,23 @@ use Multimedia\Multistore\Support\File;
 	}
 
     function add_hashids($models, $length = 64) {
-        if (is_string($models)) {
-            $models[] = $models;
-        }
-        $hashids_path = config_path('hashids.php');
+        if ($models) {
+            if (is_string($models)) {
+                $models[] = $models;
+            }
+            $hashids_path = config_path('hashids.php');
 
-        foreach($models as $model) {
-            $line = "\t'$model' => [
-                'salt' => '".Str::random(64)."',
-                'length' => $length,
-                'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+            foreach($models as $model) {
+                if (config('hashids.connections.',$model)) {
+                    $line = "\t'$model' => [
+                    'salt' => '".Str::random(64)."',
+                    'length' => $length,
+                    'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
             ],";
 
-            (new File($hashids_path))->findText("'connections' => [")->writeText($line);
+                    (new File($hashids_path))->findText("'connections' => [")->writeText($line);
+                }
+            }
         }
     }
 
