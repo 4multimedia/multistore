@@ -11,7 +11,7 @@ class ModulesAddHasing extends Command
      *
      * @var string
      */
-    protected $signature = 'modules:add.hasing';
+    protected $signature = 'modules:hashids.add';
 
     /**
      * The console command description.

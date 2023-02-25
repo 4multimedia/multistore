@@ -9,10 +9,6 @@
     class PageController extends Controller
     {
         public function index() {
-            if (config('hashids.connections.Cart')) {
-                echo 'jest';
-            }
-            die;
             return render_view('frontend::content.index');
         }
 
