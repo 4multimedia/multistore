@@ -385,10 +385,10 @@ use Illuminate\Support\Facades\Request;
 
                 if ($domain) {
                     if ($value) {
-                        Option::updateOrCreate(['grpup' => $group, 'key' => $key, 'id_option_domain' => domain()->current()->id], ['values' => $value]);
+                        Option::updateOrCreate(['group' => $group, 'key' => $key, 'id_option_domain' => domain()->current()->id], ['values' => $value]);
                     }
                 } else {
-                    Option::updateOrCreate(['grpup' => $group, 'key' => $key], ['values' => $value]);
+                    Option::updateOrCreate(['group' => $group, 'key' => $key], ['values' => $value]);
                 }
             }
         }
