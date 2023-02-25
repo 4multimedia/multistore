@@ -44,7 +44,7 @@
 		/* HOOKS Header */
 		public function get_header() {
 			echo '<head>
-		<title>'.get_meta_title().'</title>
+		<title>'.get_meta_title(get_option('meta.title', null, true)).'</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">'.get_meta_all_tags().'
 		'.get_css().'
@@ -207,12 +207,12 @@
 			$this->meta_title = $title;
 		}
 
-		public function get_meta_title($title = '') {
+		public function get_meta_title($title = '', $merge = ' | ') {
 			$array = [];
 			if ($this->meta_title) { $array[] = $this->meta_title; }
 			if (!$this->meta_title && $this->title) { $array[] = $this->title; }
 			if ($title) { $array[] = $title; }
-			return implode(" | ", $array);
+			return implode($merge, $array);
 		}
 
         /* General */

@@ -146,7 +146,7 @@ use Illuminate\Support\Facades\Request;
 	}
 
 	function generate_css_variables() {
-		$data = get_option('layout_setting', []);
+		$data = get_option('layout.setting', []);
 		$variables = [];
         if (isset($data["color"])) {
             $variables[] = "\t--primary: ".(isset($data["color"]["general"][0]["color"]) ? $data["color"]["general"][0]["color"] : "#cccccc").";";
@@ -267,22 +267,6 @@ use Illuminate\Support\Facades\Request;
         return $menu;
     }
 
-	function get_option($key, $default = null, $domain = false) {
-		if (Schema::hasTable('option')) {
-			$query = Option::where('key', $key);
-			if ($domain) {
-				$query->where('id_option_domain', domain()->current()->id);
-			}
-			$option = $query->first();
-			if ($option) {
-				$data = $option->values;
-				//$data = json_decode($data, true);
-				return $data;
-			}
-			return $default;
-		}
-	}
-
 	function get_domain($domain) {
 		return domain()->get_domain($domain);
 	}
@@ -394,15 +378,42 @@ use Illuminate\Support\Facades\Request;
     // save option
     function save_option($key, $value, $single = true, $domain = false) {
         if ($single) {
-			if ($domain) {
-				if ($value) {
-					Option::updateOrCreate(['key' => $key, 'id_option_domain' => domain()->current()->id], ['values' => $value]);
-				}
-			} else {
-            	Option::updateOrCreate(['key' => $key], ['values' => $value]);
-			}
+            $params = explode('.', $key);
+            if (count($params) === 2) {
+                $group = $params[0];
+                $key = $params[1];
+
+                if ($domain) {
+                    if ($value) {
+                        Option::updateOrCreate(['grpup' => $group, 'key' => $key, 'id_option_domain' => domain()->current()->id], ['values' => $value]);
+                    }
+                } else {
+                    Option::updateOrCreate(['grpup' => $group, 'key' => $key], ['values' => $value]);
+                }
+            }
         }
     }
+
+    function get_option($key, $default = null, $domain = false) {
+		if (Schema::hasTable('option')) {
+            $params = explode('.', $key);
+
+            $group = $params[0];
+            $key = $params[1];
+
+			$query = Option::where('group', $group)->where('key', $key);
+			if ($domain) {
+				$query->where('id_option_domain', domain()->current()->id);
+			}
+			$option = $query->first();
+			if ($option) {
+				$data = $option->values;
+				//$data = json_decode($data, true);
+				return $data;
+			}
+			return $default;
+		}
+	}
 
 	function get_host() {
 		$protocol = 'http://';

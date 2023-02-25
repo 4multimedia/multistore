@@ -40,6 +40,6 @@ class ModulesInstall extends Command
 		$this->call("vendor:publish", ["--provider" => 'Vinkla\Hashids\HashidsServiceProvider']);
         $domain = $this->ask('Enter domain');
         add_domain($domain);
-        save_option('meta_title', $domain, true, true);
+        save_option('meta.title', $domain, true, true);
     }
 }

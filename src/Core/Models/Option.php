@@ -14,6 +14,7 @@ class Option extends Model
      */
     protected $fillable = [
 		'id_option_domain',
+        'group',
 		'key',
         'values',
 		'id_record',
