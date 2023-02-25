@@ -287,6 +287,10 @@ use Illuminate\Support\Facades\Request;
 		return domain()->get_domain($domain);
 	}
 
+    function add_domain($domain) {
+        return domain()->add_domain($domain);
+    }
+
     function get_dictionary_only_values($id_dictionary_parent, $id_record, $table) {
         return Dictionary::select('dictionary.id_dictionary', 'name')
         ->leftJoin('dictionary_relative', 'dictionary.id_dictionary', '=', 'dictionary_relative.id_dictionary')

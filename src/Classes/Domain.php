@@ -23,6 +23,18 @@
 			return OptionDomain::first();
 		}
 
+        public function is_valid_domain($domain) {
+            return (preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i", $domain) //valid chars check
+            && preg_match("/^.{1,253}$/", $domain) //overall length check
+            && preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $domain)); //length of each label
+        }
+
+        public function add_domain($domain) {
+            if ($this->is_valid_domain($domain)) {
+                OptionDomain::create(['domain' => $domain]);
+            }
+        }
+
 		public function set_id_option_domain($id_option_domain) {
 			$this->id_option_domain = $id_option_domain;
 		}
