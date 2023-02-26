@@ -47,7 +47,7 @@
 									<li> <a href="javascript:;" class="dropdown-item"><ArrowUpDown class="w-4 h-4 mr-2" /> Przenieś</a> </li>
 									<li> <a href="javascript:;" class="dropdown-item"><Copy class="w-4 h-4 mr-2" /> Duplikuj</a> </li>
 									<li> <hr class="dropdown-divider"> </li>
-									<li> <a href="javascript:;" @click="onDeleteItem(_)" class="dropdown-item text-red-600"><Trash class="w-4 h-4 mr-2" /> Usuń</a> </li>
+									<li> <a href="javascript:;" @click.prevent="onDeleteItem(_)" class="dropdown-item text-red-600"><Trash class="w-4 h-4 mr-2" /> Usuń</a> </li>
 								</ul>
 							</div>
 						</div>
@@ -68,6 +68,7 @@
                 </div>
             </template>
         </Dialog>
+        <ConfirmDialog></ConfirmDialog>
     </div>
 </template>
 
@@ -87,6 +88,10 @@
             Settings,
             VJstree
         },
+        props: {
+            url: String,
+            update: String
+        },
         data() {
             return {
                 fillComponent: 'input-text',
@@ -100,7 +105,7 @@
             }
         },
         async mounted() {
-            const path = `/${window.globalConfig.backend}/api/content/category`;
+            const path = `/${window.globalConfig.backend}/${this.url}`;
             const request = await axios.get(path);
             const { data } = request;
 
@@ -108,7 +113,7 @@
         },
         methods: {
             async item() {
-				const path = `/${window.globalConfig.backend}/api/content/category`;
+				const path = `/${window.globalConfig.backend}/${this.url}`;
 				const request = await axios.post(path, this.form);
 				const { data } = request;
 
@@ -126,8 +131,8 @@
             },
             async itemClick (node) {
                 this.current = node;
-                window.history.replaceState({}, "", `/${window.globalConfig.backend}/product/category/${node.model.hash}`);
-                const request = await axios.get(`/${window.globalConfig.backend}/product/category/${node.model.hash}`);
+                window.history.replaceState({}, "", `/${window.globalConfig.backend}/${this.update}/${node.model.hash}`);
+                const request = await axios.get(`/${window.globalConfig.backend}/${this.update}/${node.model.hash}`);
                 this.$emit("updateForm", request.data);
             },
             async itemToogle (node) {
@@ -136,7 +141,7 @@
                         node.model.loading = true;
                         const id = node.model.id;
 
-                        const path = `/${window.globalConfig.backend}/api/content/category?id_parent=${id}`;
+                        const path = `/${window.globalConfig.backend}/${this.url}?id_parent=${id}`;
                         const request = await axios.get(path);
                         const { data } = request;
                         node.model.children = data;
@@ -167,8 +172,17 @@
             onChangeFillComponent(e) {
                 alert(e)
             },
-            onDeleteItem() {
-
+            onDeleteItem(node) {
+                this.$confirm.require({
+                    message: 'Czy napewno chcesz usunąć kategorię?',
+                    header: 'Potwierdź usunięcie',
+                    acceptLabel: 'Tak',
+                    rejectLabel: 'Nie',
+                    icon: 'pi pi-exclamation-triangle',
+                    accept: async () => {
+                        await axios.delete(`/${window.globalConfig.backend}/${this.update}/${node.model.hash}`);
+                    }
+                });
             }
         },
     }

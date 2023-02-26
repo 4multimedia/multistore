@@ -51,7 +51,7 @@ export default {
 			}
 			if (e.moved !== undefined) {
 				this.node = e.moved.element;
-				await axios.put('/admin/api/content/navigation/position', {
+				await axios.put(`/${window.globalConfig.backend}/api/content/navigation/position`, {
 					item: {
 						id: e.moved.element.id,
 						position: e.moved.newIndex
@@ -64,7 +64,7 @@ export default {
 			this.clone = e;
 			if (e.pullMode === 'clone') {
 				try {
-					await axios.post('/admin/api/content/navigation', {
+					await axios.post(`/${window.globalConfig.backend}/api/content/navigation`, {
 						item: {
 							id_navigation_parent: e.to.id.replace("item-", ""),
 							label: '',
@@ -88,14 +88,14 @@ export default {
                 rejectLabel: 'Nie',
                 icon: 'pi pi-exclamation-triangle',
                 accept: async () => {
-                    await axios.delete(`/admin/api/content/navigation/${id}`);
+                    await axios.delete(`/${window.globalConfig.backend}/api/content/navigation/${id}`);
                     await this.onLoad();
                 }
             });
         },
 		async onMove(e) {
 			const item = document.querySelector(`#clone-${this.node.id}`);
-			await axios.put('/admin/api/content/navigation/move', {
+			await axios.put(`/${window.globalConfig.backend}/api/content/navigation/move`, {
 				item: {
 					id: this.node.id,
 					id_navigation_parent: parseInt(item.parentNode.parentNode.id.replace("item-", "")),

@@ -60,6 +60,10 @@ use Multimedia\Multistore\Support\File;
 		return app('page');
 	}
 
+    function slug() {
+		return app('slug');
+	}
+
 	//
 
     /** Funkcja zwracająca widok lub obiekt JSON */
@@ -74,6 +78,10 @@ use Multimedia\Multistore\Support\File;
                 return view($view, $data);
             }
         }
+    }
+
+    function register_slug_model($model) {
+        slug()->register_model($model);
     }
 
 	function isHTML($string){
@@ -420,7 +428,9 @@ use Multimedia\Multistore\Support\File;
     function add_hashids($models, $length = 64) {
         if ($models) {
             if (is_string($models)) {
-                $models[] = $models;
+                $model = $models;
+                $models = (array)[];
+                $models[] = $model;
             }
             $hashids_path = config_path('hashids.php');
 
@@ -517,6 +527,8 @@ use Multimedia\Multistore\Support\File;
     function category_routes($controller, $name) {
         Route::prefix('category')->group(function() use ($controller, $name) {
             Route::get('/', $controller.'@index')->name($name);
+            Route::get('/tree', 'Tree'.$controller.'@index')->name($name.'.tree');
+            Route::post('/tree', 'Tree'.$controller.'@store')->name($name.'.tree.store');
             Route::get('/create', $controller.'@create')->name($name.'.create');
             Route::post('/create', $controller.'@store')->name($name.'.store');
             Route::get('/{category}', $controller.'@update')->name($name.'.update');

@@ -34,6 +34,6 @@ class ModulesAddHasing extends Command
 
 		$model = $this->ask('Model name:');
 		$length = 64;
-
+        add_hashids($model, $length);
     }
 }

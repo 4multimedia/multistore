@@ -15,6 +15,7 @@ use Multimedia\Multistore\Classes\Tables;
 use Multimedia\Multistore\Classes\Domain;
 use Multimedia\Multistore\Classes\Layout;
 use Multimedia\Multistore\Classes\Page;
+use Multimedia\Multistore\Classes\Slug;
 
 class RegisterServiceProvider extends ServiceProvider {
 
@@ -65,6 +66,10 @@ class RegisterServiceProvider extends ServiceProvider {
 
         $this->app->singleton('page', function($app) {
 			return new Page();
+		});
+
+        $this->app->singleton('slug', function($app) {
+			return new Slug();
 		});
 	}
 

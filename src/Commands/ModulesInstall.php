@@ -42,7 +42,7 @@ class ModulesInstall extends Command
         add_domain($domain);
         save_option('meta.title', $domain, true, true);
 
-        add_hashids(['Dictionary', 'DictionaryRelative', 'Layout', 'MediaDirectory', 'MediaFiles', 'Navigation', 'OptionDomain', 'Page', 'Seo', 'User', 'UserRole']);
+        add_hashids(['Article', 'ArticleCategory', 'Dictionary', 'DictionaryRelative', 'Layout', 'MediaDirectory', 'MediaFiles', 'Navigation', 'OptionDomain', 'Page', 'Seo', 'User', 'UserRole']);
 
         $this->info('Install complete!');
     }

@@ -58,6 +58,12 @@ Route::namespace('Content')->group(function() {
         Route::get('/items/{hash}', 'NavigationController@items')->name('backend.navigation.items');
         Route::delete('/{hash}', 'NavigationController@delete')->name('backend.navigation.delete');
 	});
+
+    Route::prefix('article')->namespace('Article')->group(function() {
+        Route::get('/', 'ItemController@index')->name('backend.article');
+
+        category_routes('CategoryController', 'backend.article.category');
+    });
 });
 
 Route::namespace('Layout')->prefix('layout')->group(function() {

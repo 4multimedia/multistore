@@ -4,14 +4,14 @@
             <div class="2xl:border-r -mb-10 pb-10">
                 <div class="2xl:pr-6 grid grid-cols-12 gap-x-6 2xl:gap-x-0 gap-y-6">
                     <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
-                        <data-tree url="" root="" @updateForm="updateForm"></data-tree>
+                        <data-tree :url="url" :update="update" root="" @updateForm="updateForm"></data-tree>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-span-12 2xl:col-span-9">
             <div class="mt-6">
-                <form-body title="Edytuj kategorię" language>
+                <form-body title="Edytuj kategorię"  language>
                     {{ form }}
                     <slot />
 
@@ -33,6 +33,10 @@
     export default {
         mounted() {
             this.findFormElements(this.$children);
+        },
+        props: {
+            url: String,
+            update: String
         },
         methods: {
             updateForm(form) {

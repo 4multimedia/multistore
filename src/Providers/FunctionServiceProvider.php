@@ -24,6 +24,11 @@ class FunctionServiceProvider extends ServiceProvider {
 
 		add_devider_menu(59);
 
+        register_slug_model('Multimedia\Multistore\Core\Models\Page');
+        register_slug_model('Multimedia\Multistore\Core\Models\Article');
+        register_slug_model('Multimedia\Multistore\Core\Models\ArticleCategory');
+        register_slug_model('Multimedia\Multistore\Core\Models\ArticleCategory');
+
         // uzytkownicy
         add_action('add_to_backend_navigation', [
             'label' => 'Profil',
@@ -49,7 +54,7 @@ class FunctionServiceProvider extends ServiceProvider {
 		if (config('multimedia.modules.blog')) {
 			add_to_menu('blog', 'backend::blog.title', null, 61, ['icon' => 'layout-list']);
 			add_to_submenu('blog', 'backend::blog.list', 'backend.user');
-			add_to_submenu('blog', 'backend::blog.categories', 'backend.user');
+			add_to_submenu('blog', 'backend::blog.categories', 'backend.article.category');
 			add_to_submenu('blog', 'backend::blog.tags', 'backend.user');
 			add_to_submenu('blog', 'backend::blog.comments', 'backend.user');
 

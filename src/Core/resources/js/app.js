@@ -67,6 +67,7 @@ import VisualComponent from './components/VisualBuilder/Components/Component';
 import NavigationBuilder from './components/NavigationBuilder/Index.vue';
 
 import ConfirmationService from 'primevue/confirmationservice';
+import ConfirmDialog from 'primevue/confirmdialog';
 
 //import Container from './components/VisualBuilder/Elements/Container';
 //import Column from './components/VisualBuilder/Elements/Column/Index';
@@ -148,6 +149,7 @@ Vue.component('VisualComponent', VisualComponent);
 Vue.component('NavigationBuilder', NavigationBuilder);
 Vue.component('Draggable', Draggable);
 Vue.directive('tooltip', Tooltip);
+Vue.component('ConfirmDialog', ConfirmDialog);
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 const lang = document.querySelector('meta[name="language"]').content;
