@@ -10,6 +10,7 @@
             :load-options="loadOptions"
             :auto-load-root-options="false"
             @select="onSelect"
+            placeholder="Wybierz"
         />
     </InputField>
   </template>

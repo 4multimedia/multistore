@@ -44,6 +44,7 @@ Route::namespace('Content')->group(function() {
 	Route::prefix('page')->group(function() {
 		Route::get('/', 'PageController@index')->name('backend.page');
 		Route::get('/create', 'PageController@create')->name('backend.page.create');
+        Route::get('/tree', 'PageController@tree')->name('backend.page.tree');
 		Route::post('/create', 'PageController@store')->name('backend.page.store');
 		Route::get('/{hash}', 'PageController@update')->name('backend.page.update');
 		Route::post('/{hash}', 'PageController@restore')->name('backend.page.restore');

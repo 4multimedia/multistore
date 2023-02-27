@@ -3,9 +3,10 @@
 namespace Multimedia\Multistore\Core\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Multimedia\Multistore\Core\Http\Traits\useHash;
 use Multimedia\Multistore\Core\Http\Traits\useLog;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Multimedia\Multistore\Core\Http\Collection\TreeCollection;
 
 class Page extends Model
 {
@@ -32,6 +33,10 @@ class Page extends Model
 		'excrept' => 'array',
 		'description' => 'array'
 	];
+
+    public function newCollection(array $models = []) {
+        return new TreeCollection($models);
+    }
 
 	protected function name(): Attribute {
 		return Attribute::make(

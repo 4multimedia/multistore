@@ -437,6 +437,7 @@
     background: #fff;
     line-height: 180%;
     -webkit-overflow-scrolling: touch;
+    z-index:999;
   }
   .vue-treeselect--open-below .vue-treeselect__menu {
     border-radius:.375rem;

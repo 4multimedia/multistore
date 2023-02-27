@@ -36,6 +36,7 @@
 
 		public function store(Request $request) {
 			Page::create([
+                'id_page_parent' => $request->id_page_main,
 				'name' => ['pl' => $request->name],
 				'description' => ['pl' => $request->description],
 				'slug' => ['pl' => Str::slug($request->name)]
@@ -58,4 +59,8 @@
 			$hash->delete();
 			return redirect()->route('backend.page');
 		}
+
+        public function tree(Request $request) {
+            return Page::where('id_page_parent', $request->id_parent == 'null' ? NULL : $request->id_parent)->get()->toTree();
+        }
     }
