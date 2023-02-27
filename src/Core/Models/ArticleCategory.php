@@ -13,8 +13,8 @@
     class ArticleCategory extends Model {
 
         use useHash, useImage, useCategory, useSlug {
-            //useSlug::resolveRouteBinding insteadof useHash;
-            useHash::resolveRouteBinding insteadof useSlug;
+            useSlug::resolveRouteBinding insteadof useHash;
+            //useHash::resolveRouteBinding insteadof useSlug;
         }
 
         public $table = 'article_category';

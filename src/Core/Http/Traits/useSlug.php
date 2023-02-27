@@ -79,6 +79,6 @@
 		}
 
 		public function resolveRouteBinding($value, $field = null) {
-            return $this->where("slug->pl", $value)->firstOrFail();
+            return $this->where("aaaaslug->pl", $value)->firstOrFail();
         }
 	}
