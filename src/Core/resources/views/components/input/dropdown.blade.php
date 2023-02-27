@@ -2,13 +2,13 @@
 	@if ($label) <label class="form-label">{{ $label }}</label> @endif
 	<input type="hidden" name="{{ $name }}" x-model="value.id" />
 	<div class="form-dropdown-value" x-on:click="open = !open">
-		<span x-text="value.text"></span>
+		<span x-text="value.name"></span>
 		<div class="handler"><span class="material-icons-outlined">expand_more</span></div>
 	</div>
 	<div x-show="open" class="form-dropdown-list">
 		<ul>
 			<template x-for="option in options">
-				<li x-on:click="value = option"><span x-text="option.text"></span></li>
+				<li x-on:click="value = option"><span x-text="option.name"></span></li>
 			</template>
 		</ul>
 	</div>
