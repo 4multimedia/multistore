@@ -1,6 +1,6 @@
 <div x-data="data()" x-init="{{ $watch }} $watch('value', newValue => console.log(newValue)); loadOptions('{{ $url ? $url : null }}', {{ $params }})" @click.outside="open = false" class="form-dropdown" :class="open ? 'form-dropdown-open' : ''">
 	@if ($label) <label class="form-label">{{ $label }}</label> @endif
-	<input type="text" x-ref="{{ $id }}" name="{{ $name }}" x-model="value.id" />
+	<input type="hidden" x-ref="{{ $id }}" name="{{ $name }}" x-model="value.id" />
 	<div class="form-dropdown-value" x-on:click="open = !open">
 		<span x-text="value.name"></span>
 		<div class="handler"><span class="material-icons-outlined">expand_more</span></div>
