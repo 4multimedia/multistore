@@ -4,6 +4,7 @@
 .form-box {
     padding:40px;
     border:1px solid var(--gray-200);
+	border-radius:8px;
 }
 .form-box + .form-box {
 	margin-top: 1rem;;
@@ -33,6 +34,15 @@
 	font-size: 12px;
     margin-bottom: 8px;
     display: block;
+}
+.form-input {
+	border:1px solid rgb(224, 224, 224);
+	height:52px;
+	border-radius:4px;
+	outline: none;
+	width:100%;
+	padding: 0 1rem;
+	font-size:14px;
 }
 .form-dropdown {
 	position: relative;

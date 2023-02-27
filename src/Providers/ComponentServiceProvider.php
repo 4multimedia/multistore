@@ -9,6 +9,7 @@ use Multimedia\Multistore\Core\Http\Components\Meta;
 use Multimedia\Multistore\Core\Http\Components\Publish;
 use Multimedia\Multistore\Core\Http\Components\Dictionary\DictionaryCheckbox;
 use Multimedia\Multistore\Core\Http\Components\Input\Dropdown;
+use Multimedia\Multistore\Core\Http\Components\Input\Text;
 
 class ComponentServiceProvider extends ServiceProvider {
 
@@ -26,7 +27,8 @@ class ComponentServiceProvider extends ServiceProvider {
 
 		$this->loadViewComponentsAs('frontend', [
 			Layout::class,
-			Dropdown::class
+			Dropdown::class,
+			Text::class
 		]);
 	}
 }
