@@ -5,6 +5,9 @@
     padding:40px;
     border:1px solid var(--gray-200);
 }
+.form-box + .form-box {
+	margin-top: 1rem;;
+}
 .form-box h4 {
     font-size: 24px;
     color: var(--gray-800);
