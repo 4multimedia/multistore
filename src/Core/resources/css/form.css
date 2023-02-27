@@ -84,6 +84,7 @@
 	border-radius: 4px;
 	background: #fff;
 	z-index:100;
+	overflow:scroll;
 }
 .form-dropdown-list ul {
 	margin:0;
