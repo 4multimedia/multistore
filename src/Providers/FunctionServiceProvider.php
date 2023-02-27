@@ -27,7 +27,6 @@ class FunctionServiceProvider extends ServiceProvider {
         register_slug_model('Multimedia\Multistore\Core\Models\Page');
         register_slug_model('Multimedia\Multistore\Core\Models\Article');
         register_slug_model('Multimedia\Multistore\Core\Models\ArticleCategory');
-        register_slug_model('Multimedia\Multistore\Core\Models\ArticleCategory');
 
         // uzytkownicy
         add_action('add_to_backend_navigation', [

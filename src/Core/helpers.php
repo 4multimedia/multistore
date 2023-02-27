@@ -555,6 +555,9 @@ use Multimedia\Multistore\Support\File;
 		}
 		return null;
 	}
+	function has_column_in_table($table, $column) {
+		return Schema::hasColumn($table, $column);
+	}
 
 	function get_model_namespace_from_table($model) {
 		$models = do_action('register_table_model');

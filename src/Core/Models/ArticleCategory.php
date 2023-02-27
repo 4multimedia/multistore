@@ -21,6 +21,7 @@
         public $primaryKey = 'id_article_category';
 
 		protected $fillable = [
+			'id_article_category_parent',
 			'status',
 			'position',
 			'name',

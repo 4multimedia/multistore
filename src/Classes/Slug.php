@@ -6,7 +6,9 @@
         private $models = [];
 
         public function register_model($model) {
-            $this->models[] = $model;
+			if (!in_array($model, $this->models)) {
+            	$this->models[] = $model;
+			}
         }
 
         public function get_models() {

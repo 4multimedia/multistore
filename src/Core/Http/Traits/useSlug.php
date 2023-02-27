@@ -16,14 +16,20 @@
 
             static::creating(function ($model) {
                 $model->slug = $model->name;
+				register_slug_model(get_class());
             });
         }
 
         protected function findDuplicateSlug($lang, $_model, $name, $level) {
             $model = new $_model;
-            //echo $model->getKeyName();
-            $model->where('slug->'.$lang, $name);
-            $item = $model->first();
+            $key_parent = $model->getKeyName()."_parent";
+			$table = $model->getTable();
+			has_column_in_table($table, $key_parent);
+			if (has_column_in_table($table, $key_parent)) {
+				$item = $model->where('slug->'.$lang, $name)->where($key_parent, $level)->first();
+			} else {
+            	$item = $model->where('slug->'.$lang, $name)->first();
+			}
             if ($item) {
                 return true;
             }
@@ -32,10 +38,14 @@
 
         protected function findSlug($name) {
             $models = slug()->get_models();
+			$id_parent = null;
+			if (request('id_parent')) {
+				$id_parent = request('id_parent');
+			}
             if ($models) {
                 foreach($models as $model) {
-                    $item = $this->findDuplicateSlug('pl', $model, $name, null);
-                    if ($item === true) {
+                    $item = $this->findDuplicateSlug('pl', $model, $name, $id_parent);
+                    if ($item) {
                         return true;
                     }
                 }
@@ -44,13 +54,14 @@
         }
 
         protected function setSlug($name) {
+			$name = trim($name);
             $name = Str::slug($name);
             $org_name = $name;
             $a = 1;
 
             $find = null;
             while($find !== false) {
-                echo $find = $this->findSlug($name);
+                $find = $this->findSlug($name);
                 if ($find) {
                     $name = $org_name.'-'.$a;
                     $a++;

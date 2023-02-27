@@ -181,6 +181,7 @@
                     icon: 'pi pi-exclamation-triangle',
                     accept: async () => {
                         await axios.delete(`/${window.globalConfig.backend}/${this.update}/${node.model.hash}`);
+						window.history.replaceState({}, "", `/${window.globalConfig.backend}/${this.update}`);
                     }
                 });
             }

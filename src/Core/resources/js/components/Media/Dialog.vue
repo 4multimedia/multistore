@@ -1,6 +1,5 @@
 <template>
     <Dialog :visible.sync="display" :modal="true" appendTo="body" class="media-dialog" :closable="false" :closeOnEscape="false">
-        {{ selected }}
         <media root="" mode="dialog" :allow="allow" @onSelect="onSelect"></media>
         <template #footer>
             <div class="col-span-12 flex items-center">
@@ -34,10 +33,15 @@
         },
         methods: {
             onSelect(item) {
-                const index = this.selected.findIndex(e => e === item.hash);
+                const index = this.selected.findIndex(e => e.hash === item.hash);
                 if ((this.allow.length === 0 || this.allow.includes(item.extension)) && index === -1) {
                     if(this.limit === 0 || (this.limit > 0 && (this.selected.length < this.limit))) {
-                        this.selected.push(item.hash);
+                        this.selected.push({
+							id: item.id,
+							hash: item.hash,
+							src: (item && item.paths && item.paths.thumb) ? item.paths.thumb : null,
+							image: (item && item.paths && item.paths.full) ? item.paths.full : null
+						});
                     }
                 } else if (index > -1) {
                     this.selected.splice(index, 1);
@@ -45,6 +49,7 @@
             },
             onSelectFile(hash) {
                 this.$emit('update:display', false);
+				this.$emit('onSelect', this.selected);
             },
             onHandleHideDialog() {
                 this.$emit('update:display', false);
