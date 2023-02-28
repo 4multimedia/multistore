@@ -583,6 +583,10 @@ use Multimedia\Multistore\Support\File;
         return false;
     }
 
+	function lower($string) {
+		return Str::lower($string);
+	}
+
 	// ACTIONS
 	function add_action($tag, $arg, $priority = 10, $accepted_args = []) {
 		hook()->_add_action($tag, $arg, $priority, $accepted_args);
