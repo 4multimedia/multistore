@@ -109,7 +109,7 @@
 	align-items: center;
 }
 .form-radio.form-radio-active {
-	border:1px solid var(--primary);
+	border:1px solid var(--primary-500);
 }
 .form-radio label {
 	display: flex;
@@ -126,14 +126,14 @@
 	border:1px solid rgb(224, 224, 224);
 }
 .form-radio input:checked + span {
-	border-color:var(--primary);
+	border-color:var(--primary-500);
 	position: relative;
 }
 .form-radio input:checked + span:after {
 	content:'';
 	width:16px;
 	height:16px;
-	background: var(--primary);
+	background: var(--primary-500);
 	display: block;
 	top:2px;
 	left:2px;
