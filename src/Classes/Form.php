@@ -104,8 +104,7 @@
         public function text($label, $name, $params = []) {
             $component = 'input-text';
             if ($this->type === 'html') {
-                $component = 'input';
-                $params["type"] = "text";
+                $component = 'x-frontend-text';
             }
 			return $this->field($component, $label, $name, $params);
 		}

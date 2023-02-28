@@ -8,8 +8,10 @@ use Multimedia\Multistore\Core\Http\Components\Layout;
 use Multimedia\Multistore\Core\Http\Components\Meta;
 use Multimedia\Multistore\Core\Http\Components\Publish;
 use Multimedia\Multistore\Core\Http\Components\Dictionary\DictionaryCheckbox;
+use Multimedia\Multistore\Core\Http\Components\Input\Checkbox;
 use Multimedia\Multistore\Core\Http\Components\Input\Dropdown;
 use Multimedia\Multistore\Core\Http\Components\Input\Text;
+use Multimedia\Multistore\Core\Http\Components\Input\Radio;
 
 class ComponentServiceProvider extends ServiceProvider {
 
@@ -28,7 +30,9 @@ class ComponentServiceProvider extends ServiceProvider {
 		$this->loadViewComponentsAs('frontend', [
 			Layout::class,
 			Dropdown::class,
-			Text::class
+			Text::class,
+			Checkbox::class,
+			Radio::class
 		]);
 	}
 }
