@@ -387,12 +387,12 @@ use Multimedia\Multistore\Support\File;
 
     // save option
     function save_option($key, $value, $single = true, $domain = false) {
-        if ($single) {
-            $params = explode('.', $key);
-            if (count($params) === 2) {
-                $group = $params[0];
-                $key = $params[1];
+		$params = explode('.', $key);
+		$group = mb_strtolower($params[0]);
+    	$key = mb_strtolower($params[1]);
 
+		if (count($params) === 2) {
+        	if ($single) {
                 if ($domain) {
                     if ($value) {
                         Option::updateOrCreate(['group' => $group, 'key' => $key, 'id_option_domain' => domain()->current()->id], ['values' => $value]);
@@ -400,8 +400,10 @@ use Multimedia\Multistore\Support\File;
                 } else {
                     Option::updateOrCreate(['group' => $group, 'key' => $key], ['values' => $value]);
                 }
-            }
-        }
+			} else {
+				Option::create(['group' => $group, 'key' => $key, 'values' => $value]);
+			}
+		}
     }
 
     function get_option($key, $default = null, $domain = false) {
