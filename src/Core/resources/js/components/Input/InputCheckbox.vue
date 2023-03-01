@@ -1,7 +1,7 @@
 <template>
-	<div class="flex items-center mr-auto">
+	<div class="flex mr-auto" :class="{'items-center' : center}">
 		<PrimeCheckbox v-bind="$attrs" :name="name" v-model="checked" :binary="binary" @input="onChecked($event)"/>
-		<label class="cursor-pointer select-none ml-2">{{ label }}</label>
+		<label class="cursor-pointer select-none ml-2" v-html="label"></label>
 	</div>
 </template>
 
@@ -23,7 +23,11 @@ export default {
 			type: Boolean,
 			default: false
 		},
-        callback: Function
+        callback: Function,
+        center: {
+            type: Boolean,
+            default: true
+        }
 	},
 	mounted() {
 		this.checked = this.value;

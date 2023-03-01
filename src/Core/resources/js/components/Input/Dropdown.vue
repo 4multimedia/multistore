@@ -1,7 +1,10 @@
 <template>
-    <InputField :label="label" :help="help" :error="error" :modelValue="modelValue" :column="column">
-        <PrimeDropdown :options="options" v-model="modelValue" :value="modelValue" @input="onChange($event)" optionValue="id" optionLabel="name" />
-    </InputField>
+    <div>
+        <input type="hidden" :name="name" v-model="modelValue" />
+        <InputField :label="label" :required="required" :help="help" :error="error" :modelValue="modelValue" :column="column">
+            <PrimeDropdown :options="options" v-model="modelValue" :value="modelValue" @input="onChange($event)" optionValue="id" optionLabel="name" />
+        </InputField>
+    </div>
 </template>
 
 <script>
@@ -23,23 +26,38 @@ export default {
         column: {
             type: Boolean,
             default: false
+        },
+        required: {
+            type: Boolean,
+            default: false
         }
     },
     methods: {
         onChange(value) {
             this.$emit('onChangeValue', value);
-            this.$emit('update:value', value)
+            this.$emit('update:value', value);
         }
     },
     watch: {
         value() {
             this.modelValue = this.value;
+        },
+        options() {
+            if (typeof(this.options) === 'string') {
+                this.options = JSON.parse(this.options);
+            }
         }
     },
     data() {
         return {
             modelValue: ''
         }
-    }
+    },
+    created() {
+        if (typeof(this.options) === 'string') {
+            this.options = JSON.parse(this.options);
+        }
+        this.modelValue = this.value;
+    },
 }
 </script>

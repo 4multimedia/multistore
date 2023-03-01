@@ -155,5 +155,6 @@
     "/public/js/tinymce/themes/silver/theme.min.js": "/public/js/tinymce/themes/silver/theme.min.js",
     "/public/js/tinymce/tinymce.d.ts": "/public/js/tinymce/tinymce.d.ts",
     "/public/js/tinymce/tinymce.js": "/public/js/tinymce/tinymce.js",
-    "/public/js/tinymce/tinymce.min.js": "/public/js/tinymce/tinymce.min.js"
+    "/public/js/tinymce/tinymce.min.js": "/public/js/tinymce/tinymce.min.js",
+    "/public/js/tinymce.js": "/public/js/tinymce.js"
 }

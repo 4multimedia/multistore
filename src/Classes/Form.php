@@ -31,7 +31,7 @@
             if ($this->type === 'html') {
                 return $error;
             }
-            return strtr(json_encode($error), ["\"" => "'"]);
+            return strtr(json_encode($error), ["\"" => "&quot;"]);
         }
 
         public function field($component, $label, $name, $params = []) {
@@ -47,6 +47,10 @@
 			if ($array["value"] == "true" || $array["value"] == "false") {
 				$array[":value"] = $array["value"];
 				unset($array["value"]);
+			}
+            if (isset($array["center"]) && ($array["center"] == "true" || $array["center"] == "false")) {
+				$array[":center"] = $array["center"];
+				unset($array["center"]);
 			}
 			$array[":error"] = $error;
 
@@ -93,7 +97,7 @@
 					}
 				} else {
 					if (is_array($value)) {
-						$value = strtr(json_encode($value), ["\"" => "'"]);
+						$value = strtr(json_encode($value), ["\"" => "&quot;"]);
 					}
 					$html[] = "$key=\"$value\"";
 				}
@@ -123,18 +127,7 @@
         }
 
         public function dropdown($label, $name, $params = []) {
-            $error = $this->error($name);
-
-			$array = [];
-			$array["label"] = $label;
-			$array["name"] = $name;
-			foreach($params as $param_key => $param_value) {
-				$array[$param_key] = $param_value;
-			}
-			$array["value"] = old($name);
-			$array[":error"] = $error;
-
-            return "<dropdown ".$this->attr($array)."></dropdown>";
+            return $this->field('dropdown', $label, $name, $params);
         }
 
 		public function checkbox($label, $name, $params = []) {
