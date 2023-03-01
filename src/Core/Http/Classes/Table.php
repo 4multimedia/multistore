@@ -79,8 +79,8 @@
 
         public function values() {
             $array = [];
-            foreach($this->items as $item) {
-                $array[] = $this->item($item);
+            foreach($this->items as $index => $item) {
+                $array[] = $this->item($item, $index);
             }
             return $array;
         }
@@ -127,7 +127,7 @@
             return $array;
         }
 
-        public function item($item) {
+        public function item($item, $index) {
             $array = [];
             foreach($this->fields as $field) {
                 $id = $field["id"];
@@ -138,6 +138,9 @@
 					} else if ($array[$id]["value"] == 0 || $array[$id]["value"] == false) {
 						$array[$id]["value"] = '<span class="text-red-600"><i data-lucide="x" class="w-4 h-4"></i></span>';
 					}
+				}
+				if ($id == 'no') {
+					$array[$id]["value"] = $index+1;
 				}
                 $array[$id]["actions"] = $this->template_actions($item);
             }

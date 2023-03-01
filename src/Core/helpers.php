@@ -407,9 +407,9 @@ use Multimedia\Multistore\Support\File;
     function save_option($key, $value, $single = true, $domain = false) {
 		$params = explode('.', $key);
 		$group = mb_strtolower($params[0]);
-    	$key = mb_strtolower($params[1]);
 
 		if (count($params) === 2) {
+			$key = mb_strtolower($params[1]);
         	if ($single) {
                 if ($domain) {
                     if ($value) {
@@ -420,6 +420,18 @@ use Multimedia\Multistore\Support\File;
                 }
 			} else {
 				Option::create(['group' => $group, 'key' => $key, 'values' => $value]);
+			}
+		} else if (count($params) === 1) {
+			if ($single) {
+				if ($domain) {
+                    if ($value) {
+                        Option::updateOrCreate(['group' => $group, 'id_option_domain' => domain()->current()->id], ['values' => $value]);
+                    }
+                } else {
+                    Option::updateOrCreate(['group' => $group], ['values' => $value]);
+                }
+			} else {
+				Option::create(['group' => $group, 'values' => $value]);
 			}
 		}
     }
@@ -603,6 +615,14 @@ use Multimedia\Multistore\Support\File;
 
 	function lower($string) {
 		return Str::lower($string);
+	}
+
+	function json_merge($old, $new) {
+		if ($old === null) {
+			return $new;
+		} else {
+			return array_merge($old, $new);
+		}
 	}
 
 	// ACTIONS
