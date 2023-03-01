@@ -628,7 +628,7 @@ use Multimedia\Multistore\Support\File;
 
 	function save_meta($table, $id_record, $meta) {
 		$title = $meta["title"];
-		unset($meta["title"]);
+		$meta = $meta["meta"];
 		$item = Meta::where('table_name', $table)->where('id_record', $id_record)->first();
 		if ($item) {
 			$_title = json_merge($item->title, $title);
@@ -643,6 +643,13 @@ use Multimedia\Multistore\Support\File;
 			]);
 		}
 	}
+
+    function delete_meta($table, $id_record) {
+        $item = Meta::where('table_name', $table)->where('id_record', $id_record)->first();
+        if ($item) {
+            $item->delete();
+        }
+    }
 
 	// ACTIONS
 	function add_action($tag, $arg, $priority = 10, $accepted_args = []) {

@@ -18,6 +18,13 @@
 					save_meta($table, $id, $meta);
 				}
 			});
+
+            static::deleted(function($model) {
+                $table = $model->table;
+				$id = $model->id;
+
+                delete_meta($table, $id);
+            });
 		}
 
 		public function getMetaAttribute() {
