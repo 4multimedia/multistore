@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('seo', function (Blueprint $table) {
-			$table->id('id_seo');
+        Schema::create('meta', function (Blueprint $table) {
+			$table->id('id_meta');
 			$table->timestamps();
 			$table->softDeletes();
 			$table->unsignedBigInteger('id_record');
-			$table->string('table', 64);
+			$table->string('table_name', 64);
 			$table->json('title')->nullable();
 			$table->json('meta')->nullable();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seo');
+        Schema::dropIfExists('meta');
     }
 };

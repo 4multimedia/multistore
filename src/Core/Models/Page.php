@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Multimedia\Multistore\Core\Http\Traits\useHash;
 use Multimedia\Multistore\Core\Http\Traits\useLog;
 use Multimedia\Multistore\Core\Http\Collection\TreeCollection;
+use Multimedia\Multistore\Core\Http\Traits\UseMeta;
 
 class Page extends Model
 {
-	use SoftDeletes, useHash, useLog;
+	use SoftDeletes, useHash, useLog, UseMeta;
 
 	public $table = "page";
 	public $primaryKey = "id_page";

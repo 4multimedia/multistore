@@ -6,8 +6,9 @@
 
 	class Meta extends Component {
         public $robots = [];
+		public $item = [];
 
-        public function __construct()
+        public function __construct($item = [])
         {
             $this->robots = [
                 ['id' => 'all', 'name' => '<b>all</b> <br /> <span class=\'leading-relaxed text-slate-500 text-xs\'>Brak ograniczeń indeksowania i wyświetlania.</span>'],
@@ -21,6 +22,8 @@
                 ['id' => 'notranslate', 'name' => '<b>notranslate</b> <br /> <span class=\'leading-relaxed text-slate-500 text-xs\'>Uniemożliwia proponowanie tłumaczenia danej strony w wynikach wyszukiwania. </span>'],
                 ['id' => 'noimageindex', 'name' => '<b>noimageindex</b> <br /> <span class=\'leading-relaxed text-slate-500 text-xs\'>Uniemożliwia indeksowanie obrazów na tej stronie.</span>'],
             ];
+
+			$this->item = $item;
         }
 
 		public function render() {

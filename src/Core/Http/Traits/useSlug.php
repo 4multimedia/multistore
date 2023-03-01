@@ -11,14 +11,14 @@
 
         }*/
 
-        protected static function boot() {
+        /*protected static function boot() {
             parent::boot();
 
             static::creating(function ($model) {
                 $model->slug = $model->name;
 				register_slug_model(get_class());
             });
-        }
+        }*/
 
         protected function findDuplicateSlug($lang, $_model, $name, $level) {
             $model = new $_model;

@@ -10,6 +10,7 @@ use Multimedia\Multistore\Core\Models\Dictionary;
 use Multimedia\Multistore\Core\Models\DictionaryRelative;
 use Multimedia\Multistore\Core\Models\Navigation;
 use Illuminate\Support\Facades\Request;
+use Multimedia\Multistore\Core\Models\Meta;
 use Multimedia\Multistore\Support\File;
 
 	function hook() {
@@ -622,6 +623,24 @@ use Multimedia\Multistore\Support\File;
 			return $new;
 		} else {
 			return array_merge($old, $new);
+		}
+	}
+
+	function save_meta($table, $id_record, $meta) {
+		$title = $meta["title"];
+		unset($meta["title"]);
+		$item = Meta::where('table_name', $table)->where('id_record', $id_record)->first();
+		if ($item) {
+			$_title = json_merge($item->title, $title);
+			$_meta = json_merge($item->meta, $meta);
+			$item->update(['title' => $_title, 'meta' => $_meta]);
+		} else {
+			Meta::create([
+				'table_name' => $table,
+				'id_record' => $id_record,
+				'title' => $title,
+				'meta' => $meta
+			]);
 		}
 	}
 

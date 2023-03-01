@@ -6,7 +6,7 @@
 
 	trait useLog {
 
-		public static function boot() {
+		/*public static function boot() {
 			parent::boot();
 
 			self::created(function ($model) {
@@ -46,5 +46,5 @@
 				$params["action"] = 'deleted';
 				register_user_log($model->model, $model->id, $params);
 			});
-		}
+		}*/
 	}
