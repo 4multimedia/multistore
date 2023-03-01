@@ -2,7 +2,7 @@
     <div>
         <input type="hidden" :name="name" v-model="modelValue" />
         <InputField :label="label" :required="required" :help="help" :error="error" :modelValue="modelValue" :column="column">
-            <PrimeDropdown :options="options" v-model="modelValue" :value="modelValue" @input="onChange($event)" optionValue="id" optionLabel="name" />
+            <PrimeDropdown :options="values" v-model="modelValue" :value="modelValue" @input="onChange($event)" optionValue="id" optionLabel="name" />
         </InputField>
     </div>
 </template>
@@ -40,7 +40,7 @@ export default {
     },
     watch: {
         value() {
-            this.modelValue = this.value;
+            this.modelValue = this.value.toString();
         },
         options() {
             if (typeof(this.options) === 'string') {
@@ -48,6 +48,15 @@ export default {
             }
         }
     },
+	computed: {
+		values() {
+			let array = [];
+			this.options.forEach(e => {
+				array.push({ id: e.id.toString(), name: e.name });
+			})
+			return array;
+		}
+	},
     data() {
         return {
             modelValue: ''
@@ -57,7 +66,7 @@ export default {
         if (typeof(this.options) === 'string') {
             this.options = JSON.parse(this.options);
         }
-        this.modelValue = this.value;
+        this.modelValue = this.value.toString();
     },
 }
 </script>

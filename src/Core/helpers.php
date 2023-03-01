@@ -385,6 +385,24 @@ use Multimedia\Multistore\Support\File;
         return $items->toArray();
 	}
 
+	function set_back_url() {
+		$url = url()->previous();
+		if (strpos($url, 'page=') !== false) {
+			session()->put('url_back', $url);
+		} else {
+			session()->put('url_back', '');
+		}
+	}
+
+	function get_back_url($route) {
+		$url = session()->get('url_back');
+		if ($url) {
+			return redirect($url);
+		} else {
+			return redirect()->route($route);
+		}
+	}
+
     // save option
     function save_option($key, $value, $single = true, $domain = false) {
 		$params = explode('.', $key);
