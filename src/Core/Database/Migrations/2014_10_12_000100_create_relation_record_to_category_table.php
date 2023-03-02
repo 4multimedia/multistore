@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_record');
             $table->unsignedBigInteger('id_category');
             $table->string('table_name', 64);
-			$table->integer('position');
+			$table->integer('position')->default(0);
 			$table->boolean('main')->default(0);
 
 			$table->primary(['id_record', 'id_category', 'table_name'], 'id_record_to_id_category');

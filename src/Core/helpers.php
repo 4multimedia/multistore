@@ -68,11 +68,17 @@ use Multimedia\Multistore\Support\File;
 	//
 
     /** Funkcja zwracająca widok lub obiekt JSON */
-    function render_view($view, $data = []) {
+    function render_view($view, $data = [], $alias = null) {
         if(Request::wantsJson()) {
             return response()->json($data);
         } else {
             $view_replaced = str_replace('::', '.', $view);
+			if ($alias) {
+				$view_replaced_alias = str_replace('index', '', $view_replaced).$alias;
+				if (view()->exists($view_replaced_alias)) {
+					return view($view_replaced_alias, $data);
+				}
+			}
             if (view()->exists($view_replaced)) {
                 return view($view_replaced, $data);
             } else {
@@ -613,6 +619,20 @@ use Multimedia\Multistore\Support\File;
         }
         return false;
     }
+
+	function path_category($table, $primaryKey, $id, $field = 'name') {
+		$sql = 'SELECT * FROM (SELECT @r AS _id, (SELECT @r := '.$primaryKey.'_parent FROM `'.$table.'` WHERE '.$primaryKey.' = _id) AS '.$primaryKey.'_parent, @l := @l + 1 AS lvl FROM (SELECT @r := '.$id.', @l := 0) vars, `'.$table.'` a WHERE @r <> 0) T1 JOIN `'.$table.'` T2 ON T1._id = T2.'.$primaryKey.'  ORDER BY T1.lvl DESC';
+		$items = DB::select($sql);
+        $array = [];
+        $key = 0;
+        foreach($items as $key => $item) {
+            $item = json_decode($item->{$field});
+            $array[$key] = $item->pl;
+        }
+
+        $key++;
+        return $array;
+	}
 
 	function lower($string) {
 		return Str::lower($string);
