@@ -2,14 +2,13 @@
 
 namespace Multimedia\Multistore\Core\Http\Traits;
 
-use App\Modules\Product\Http\Models\ProductToCategory;
 use Illuminate\Support\Facades\DB;
 use Multimedia\Multistore\Core\Http\Collection\TreeCollection;
 
 trait useCategory {
 	public function category_main() {
-        if (!$this->tableCategory) { throw new \Exception('No public variable $modelCategoryRelative [Err 232]', 500); }
-		return $this->hasOne($this->modelCategoryRelative, 'id_product', 'id_product')->where('main', 1);
+        if (!$this->tableRelationCategory) { throw new \Exception('No public variable $tableRelationCategory [Err 232]', 500); }
+		return $this->hasOne(RelationRecordToCategory::class, 'id_record', 'id_product')->where('main', 1)->where('table_name', $this->tableRelationCategory);
 	}
 
 	public function getIdCategoryMainAttribute() {
