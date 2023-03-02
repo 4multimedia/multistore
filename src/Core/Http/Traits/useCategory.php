@@ -2,7 +2,6 @@
 
 namespace Multimedia\Multistore\Core\Http\Traits;
 
-use Illuminate\Support\Facades\DB;
 use Multimedia\Multistore\Core\Http\Collection\TreeCollection;
 use Multimedia\Multistore\Core\Models\RelationRecordToCategory;
 
@@ -18,7 +17,7 @@ trait useCategory {
 	}
 
 	public function getPathCategoryMainAttribute() {
-		return $this->path_category('product_category', 'id_product_category', $this->id_category_main);
+		return path_category('product_category', 'id_product_category', $this->id_category_main);
 	}
 
     public function newCollection(array $models = []) {
@@ -30,7 +29,7 @@ trait useCategory {
         if (!$this->tablePrimaryKey) { throw new \Exception('No public variable $tablePrimaryKey [Err 231]', 500); }
 
         if ($this->id_category_main) {
-		    $categories = $this->path_category($this->tableCategory, $this->tablePrimaryKey, $this->id_category_main);
+		    $categories = path_category($this->tableCategory, $this->tablePrimaryKey, $this->id_category_main);
             return implode(" / ", $categories);
         }
         return null;
