@@ -28,7 +28,10 @@
 		}
 
 		public function getMetaAttribute() {
-			return Meta::select('title', 'meta')->where('table_name', $this->getTable())->where('id_record', $this->id)->first()->toArray();
+			$item = Meta::select('title', 'meta')->where('table_name', $this->getTable())->where('id_record', $this->id)->first();
+			if($item) {
+				return $item->toArray();
+			}
 		}
 
 		public function title(): Attribute {
