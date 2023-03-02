@@ -147,6 +147,8 @@ textarea.form-input {
 	display: block;
 	top:2px;
 	left:2px;
+    position: absolute;
+    border-radius: 8px;;
 }
 .form-radio .form-radio-label {
 	margin-left:.75rem;
