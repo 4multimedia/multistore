@@ -4,16 +4,17 @@ namespace Multimedia\Multistore\Core\Http\Traits;
 
 use Illuminate\Support\Facades\DB;
 use Multimedia\Multistore\Core\Http\Collection\TreeCollection;
+use Multimedia\Multistore\Core\Models\RelationRecordToCategory;
 
 trait useCategory {
-	public function category_main() {
-        if (!$this->tableRelationCategory) { throw new \Exception('No public variable $tableRelationCategory [Err 232]', 500); }
-		return $this->hasOne(RelationRecordToCategory::class, 'id_record', 'id_product')->where('main', 1)->where('table_name', $this->tableRelationCategory);
+	public function getCategoryMainAttribute() {
+        if (!$this->tableCategory) { throw new \Exception('No public variable $tableCategory [Err 232]', 500); }
+		return RelationRecordToCategory::where('id_record', $this->{$this->primaryKey})->where('main', 1)->where('table_name', $this->tableCategory)->first();
 	}
 
 	public function getIdCategoryMainAttribute() {
 		$category_main = $this->category_main;
-		return $category_main ? $category_main->id_product_category : null;
+		return $category_main ? $category_main->id_category : null;
 	}
 
 	public function path_category($table = '', $primaryKey = '', $id) {
