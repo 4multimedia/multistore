@@ -621,6 +621,7 @@ use Multimedia\Multistore\Support\File;
     }
 
 	function path_category($table, $primaryKey, $id, $field = 'name') {
+		if (!$id) { return []; }
 		$sql = 'SELECT * FROM (SELECT @r AS _id, (SELECT @r := '.$primaryKey.'_parent FROM `'.$table.'` WHERE '.$primaryKey.' = _id) AS '.$primaryKey.'_parent, @l := @l + 1 AS lvl FROM (SELECT @r := '.$id.', @l := 0) vars, `'.$table.'` a WHERE @r <> 0) T1 JOIN `'.$table.'` T2 ON T1._id = T2.'.$primaryKey.'  ORDER BY T1.lvl DESC';
 		$items = DB::select($sql);
         $array = [];
