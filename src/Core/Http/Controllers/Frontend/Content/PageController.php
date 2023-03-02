@@ -17,6 +17,9 @@
 			$page = Page::where('slug->'.$this->lang, $slug)->first();
 			if ($page) {
 				set_title($page->name);
+				if (isset($page->title)) {
+					set_meta_title($page->title);
+				}
 				add_action('set_breadcrumbs', ['label' => $page->name]);
 				$data["page"] = $page;
 				return view('frontend::content.page', $data);

@@ -36,7 +36,7 @@
 
 		public function title(): Attribute {
 			return Attribute::make(
-				get: fn () => $this->meta
+				get: fn () => ($this->meta && $this->meta["title"] && $this->meta["title"]["pl"]) ? $this->meta["title"]["pl"] : null,
 			);
 		}
 	}
