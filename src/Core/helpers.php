@@ -65,7 +65,15 @@ use Multimedia\Multistore\Support\File;
 		return app('slug');
 	}
 
-	//
+	function url_to_array($url) {
+        $urls = explode("&", $url);
+        $array = [];
+        foreach($urls as $url) {
+            list($key, $value) = explode("=", $url);
+            $array[$key] = $value;
+        }
+        return $array;
+    }
 
     /** Funkcja zwracająca widok lub obiekt JSON */
     function render_view($view, $data = [], $alias = null) {
