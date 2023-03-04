@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->json('params')->nullable();
 
             $table->foreign('id_user_status')->references('id_user_status')->on('user_status')->cascadeOnUpdate()->onDelete('set null');
         });

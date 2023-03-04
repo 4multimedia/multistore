@@ -12,6 +12,7 @@ use Multimedia\Multistore\Core\Http\Components\Input\Checkbox;
 use Multimedia\Multistore\Core\Http\Components\Input\Dropdown;
 use Multimedia\Multistore\Core\Http\Components\Input\Text;
 use Multimedia\Multistore\Core\Http\Components\Input\Textarea;
+use Multimedia\Multistore\Core\Http\Components\Input\Password;
 use Multimedia\Multistore\Core\Http\Components\Input\Radio;
 
 class ComponentServiceProvider extends ServiceProvider {
@@ -34,7 +35,8 @@ class ComponentServiceProvider extends ServiceProvider {
 			Text::class,
 			Textarea::class,
 			Checkbox::class,
-			Radio::class
+			Radio::class,
+            Password::class
 		]);
 	}
 }

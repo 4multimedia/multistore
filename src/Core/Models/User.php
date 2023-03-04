@@ -26,7 +26,8 @@ class User extends Authenticatable
         'email',
         'password',
         'id_user_status',
-		'email_verified_at'
+		'email_verified_at',
+        'params'
     ];
 
     /**
@@ -46,6 +47,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'params' => 'array'
     ];
 
     public function getRoles() {
