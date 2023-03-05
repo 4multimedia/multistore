@@ -20,5 +20,10 @@
                 $html .= "<input type=\"text\" />";
                 return $html;
             });
+
+            Blade::directive('render_view', function ($view) {
+                $template = find_view($view);
+                return "<?php echo \$__env->make('$template', Arr::except(get_defined_vars(), array('__data', '__path'))); ?>";
+            });
         }
     }

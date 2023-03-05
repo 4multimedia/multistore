@@ -1,5 +1,6 @@
 <template>
 	<InputField :label="label" :help="help" :error="error" :required="required" :max="max" :modelValue="modelValue" :column="column">
+        {{ modelValue }} - {{ value }}
 		<PrimeInputSwitch :name="name" v-model="modelValue" @input="onChange($event)" />
 	</InputField>
 </template>
@@ -59,7 +60,7 @@ export default {
     },
     data() {
         return {
-            modelValue: ''
+            modelValue: false
         }
     }
 }
