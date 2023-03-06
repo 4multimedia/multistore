@@ -42,6 +42,7 @@ export default {
 	},
     watch: {
         value() {
+			this.checked = false;
             this.checked = this.value;
         }
     },

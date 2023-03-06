@@ -4,15 +4,14 @@
             <div class="2xl:border-r -mb-10 pb-10">
                 <div class="2xl:pr-6 grid grid-cols-12 gap-x-6 2xl:gap-x-0 gap-y-6">
                     <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
-                        <data-tree :url="url" :update="update" root="" @updateForm="updateForm"></data-tree>
+                        <data-tree :url="url" :update="update" root="" @clickNode="clickNode" @updateForm="updateForm"></data-tree>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-span-12 2xl:col-span-9">
             <div class="mt-6">
-                <form-body title="Edytuj kategorię"  language>
-                    {{ form }}
+                <form-body title="Edytuj kategorię" language>
                     <slot />
 
                     <template #buttons>
@@ -40,6 +39,7 @@
         },
         methods: {
             updateForm(form) {
+				this.form.dictionary = [];
                 if (form['dictionary'] !== undefined) {
                     var array = [];
                     this.items.forEach(e => {
@@ -62,6 +62,11 @@
                     }
                 }
             },
+			clickNode(node) {
+				this.node = node;
+				this.form = {};
+				this.form.dictionary = [];
+			},
             findFormElements(children) {
                 children.forEach(el => {
                     const tag = el.$options._componentTag;
@@ -120,6 +125,7 @@
             async onHandleSaveForm() {
                 const href = window.location.href;
                 await axios.put(href, this.form);
+				this.node.model.text = this.form.name;
             }
         },
         data() {
@@ -132,7 +138,8 @@
                     'input-checkbox'
                 ],
                 form: {},
-                items: []
+                items: [],
+				node: {}
             }
         }
     }

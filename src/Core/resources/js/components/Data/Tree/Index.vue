@@ -134,6 +134,7 @@
                 window.history.replaceState({}, "", `/${window.globalConfig.backend}/${this.update}/${node.model.hash}`);
                 const request = await axios.get(`/${window.globalConfig.backend}/${this.update}/${node.model.hash}`);
                 this.$emit("updateForm", request.data);
+				this.$emit("clickNode", node);
             },
             async itemToogle (node) {
                 if (!node.model.loading && node.model.opened) {
