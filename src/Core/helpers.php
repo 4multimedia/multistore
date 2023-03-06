@@ -65,7 +65,25 @@ use Multimedia\Multistore\Support\File;
 		return app('slug');
 	}
 
-	//
+	function url_to_array($url) {
+        $urls = explode("&", $url);
+        $array = [];
+        foreach($urls as $url) {
+            list($key, $value) = explode("=", $url);
+            $array[$key] = $value;
+        }
+        return $array;
+    }
+
+    function find_view($view) {
+        $view_replaced = strtr($view, ['::' => '.', '\'' => '']);
+        if (view()->exists($view_replaced)) {
+            return $view_replaced;
+        } else {
+            $view = strtr($view, ['\'' => '']);
+            return $view;
+        }
+    }
 
     /** Funkcja zwracająca widok lub obiekt JSON */
     function render_view($view, $data = [], $alias = null) {
@@ -415,6 +433,10 @@ use Multimedia\Multistore\Support\File;
 		$params = explode('.', $key);
 		$group = mb_strtolower($params[0]);
 
+        if(is_array($value)) {
+            $value = json_encode($value, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+        }
+
 		if (count($params) === 2) {
 			$key = mb_strtolower($params[1]);
         	if ($single) {
@@ -628,7 +650,7 @@ use Multimedia\Multistore\Support\File;
         $key = 0;
         foreach($items as $key => $item) {
             $item = json_decode($item->{$field});
-            $array[$key] = $item->pl;
+            $array[$key] = isset($item->pl) ? $item->pl : null;
         }
 
         $key++;

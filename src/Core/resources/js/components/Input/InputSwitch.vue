@@ -59,7 +59,7 @@ export default {
     },
     data() {
         return {
-            modelValue: ''
+            modelValue: false
         }
     }
 }
