@@ -648,7 +648,6 @@ use Multimedia\Multistore\Support\File;
 				}
 			}
 		}
-		print_r($modules); die;
         return false;
     }
 

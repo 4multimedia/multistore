@@ -20,11 +20,11 @@
 
         public function register()
         {
+			$this->app->register(RegisterServiceProvider::class);
 			$this->app->register(AssetsServiceProvider::class);
             $this->app->register(ConsoleServiceProvider::class);
             $this->app->register(MiddlewareServiceProvider::class);
             $this->app->register(DirectiveServiceProvider::class);
-			$this->app->register(RegisterServiceProvider::class);
 			$this->app->register(MigrationServiceProvider::class);
             $this->app->register(SeederServiceProvider::class);
             $this->app->register(FunctionServiceProvider::class);
