@@ -636,11 +636,13 @@ use Multimedia\Multistore\Support\File;
 
     function has_module($module) {
         $modules = do_action('register_module');
-        foreach($modules as $module_key) {
-            if ($module_key[0] === $module) {
-                return true;
-            }
-        }
+		if (is_array($modules)) {
+			foreach($modules as $module_key) {
+				if ($module_key[0] === $module) {
+					return true;
+				}
+			}
+		}
         return false;
     }
 
