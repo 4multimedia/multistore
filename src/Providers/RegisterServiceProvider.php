@@ -25,7 +25,7 @@ class RegisterServiceProvider extends ServiceProvider {
 		});
 
 		$this->app->singleton('modules', function($app) {
-			return $app->make(Modules::class);
+			return $app->make(\Multimedia\Multistore\Classes\Modules::class);
 		});
 
 		$this->app->singleton('plugins', function($app) {
