@@ -20,61 +20,59 @@ use Multimedia\Multistore\Classes\Slug;
 class RegisterServiceProvider extends ServiceProvider {
 
 	public function register() {
-
-	}
-
-	public function boot() {
-		$this->app->singleton('hooks', function($app) {
+		$this->app->bind('hooks', function($app) {
 			return new Hooks();
 		});
 
-		$this->app->singleton('modules', function($app) {
-			return new Modules();
-		});
+		$this->app->bind('modules', Modules::class);
 
-		$this->app->singleton('plugins', function($app) {
+		$this->app->bind('plugins', function($app) {
 			return new Plugins();
 		});
 
-        $this->app->singleton('form', function($app) {
+        $this->app->bind('form', function($app) {
 			return new Form();
 		});
 
-		$this->app->singleton('menu', function($app) {
+		$this->app->bind('menu', function($app) {
 			return new Menu();
 		});
 
-        $this->app->singleton('user_log', function($app) {
+        $this->app->bind('user_log', function($app) {
 			return new UserLog();
 		});
 
-		$this->app->singleton('backend', function($app) {
+		$this->app->bind('backend', function($app) {
 			return new Backend();
 		});
 
-		$this->app->singleton('media', function($app) {
+		$this->app->bind('media', function($app) {
 			return new Media();
 		});
 
-		$this->app->singleton('table', function($app) {
+		$this->app->bind('table', function($app) {
 			return new Tables();
 		});
 
-		$this->app->singleton('domain', function($app) {
+		$this->app->bind('domain', function($app) {
 			return new Domain();
 		});
 
-		$this->app->singleton('layout', function($app) {
+		$this->app->bind('layout', function($app) {
 			return new Layout();
 		});
 
-        $this->app->singleton('page', function($app) {
+        $this->app->bind('page', function($app) {
 			return new Page();
 		});
 
-        $this->app->singleton('slug', function($app) {
+        $this->app->bind('slug', function($app) {
 			return new Slug();
 		});
+	}
+
+	public function boot() {
+
 	}
 }
 
