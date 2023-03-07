@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 use Multimedia\Multistore\Classes\Hooks;
 use Multimedia\Multistore\Classes\Backend;
 use Multimedia\Multistore\Classes\Media;
-use Multimedia\Multistore\Classes\Modules;
 use Multimedia\Multistore\Classes\Plugins;
 use Multimedia\Multistore\Classes\Form;
 use Multimedia\Multistore\Classes\Menu;
@@ -24,7 +23,7 @@ class RegisterServiceProvider extends ServiceProvider {
 			return new Hooks();
 		});
 
-		$this->app->bind('modules', Modules::class);
+		$this->app->bind('modules', Multimedia\Multistore\Classes\Modules::class);
 
 		$this->app->bind('plugins', function($app) {
 			return new Plugins();
