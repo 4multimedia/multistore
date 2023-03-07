@@ -5,6 +5,7 @@
 	use Illuminate\Support\Facades\File;
 
 	class Modules {
+		public $modules = [];
 
 		public function get_modules() {
 			$find = false;
@@ -20,5 +21,11 @@
 			asort($array);
 
 			return $array;
+		}
+
+		public function register($module) {
+			if (!in_array($module, $this->modules)) {
+				$this->modules[] = $module;
+			}
 		}
 	}

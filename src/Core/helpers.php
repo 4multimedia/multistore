@@ -610,6 +610,11 @@ use Multimedia\Multistore\Support\File;
 		return table()->render($id);
 	}
 
+	// module
+	function register_module($module) {
+		modules()->register($module);
+	}
+
 	// db
 	function get_primary_key_from_table($table) {
 		$item = DB::select(DB::raw("show columns from `$table` where `Key` = \"PRI\";"));
@@ -635,7 +640,7 @@ use Multimedia\Multistore\Support\File;
 	}
 
     function has_module($module) {
-        $modules = do_action('register_module');
+        $modules = modules()->modules;
 		if (is_array($modules)) {
 			foreach($modules as $module_key) {
 				if ($module_key[0] === $module) {
@@ -643,6 +648,7 @@ use Multimedia\Multistore\Support\File;
 				}
 			}
 		}
+		print_r($modules); die;
         return false;
     }
 
