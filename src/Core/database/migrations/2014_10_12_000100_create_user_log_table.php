@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_log', function (Blueprint $table) {
 			$table->id('id_user_log');
-			$table->unsignedBigInteger('id_user');
+			$table->unsignedBigInteger('id_user')->nullable();
 			$table->timestamps();
 			$table->string('module')->nullable();
 			$table->bigInteger('id_record')->nullable();

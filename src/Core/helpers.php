@@ -474,7 +474,9 @@ use Multimedia\Multistore\Support\File;
 
 			$query = Option::where('group', $group)->where('key', $key);
 			if ($domain) {
-				$query->where('id_option_domain', domain()->current()->id);
+				if (domain()->current()) {
+					$query->where('id_option_domain', domain()->current()->id);
+				}
 			}
 			$option = $query->first();
 			if ($option) {
