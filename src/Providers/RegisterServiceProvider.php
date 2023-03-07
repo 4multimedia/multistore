@@ -23,7 +23,9 @@ class RegisterServiceProvider extends ServiceProvider {
 			return new Hooks();
 		});
 
-		$this->app->bind('modules', Multimedia\Multistore\Classes\Modules::class);
+		$this->app->bind('modules', function ($app) {
+			return $app->make(\Multimedia\Multistore\Classes\Modules::class);
+		});
 
 		$this->app->bind('plugins', function($app) {
 			return new Plugins();

@@ -30,7 +30,7 @@ use Multimedia\Multistore\Support\File;
 	}
 
 	function modules() {
-		//return app('modules');
+		return app('modules');
 	}
 
 	function user_log() {
