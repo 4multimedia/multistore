@@ -20,6 +20,10 @@ use Multimedia\Multistore\Classes\Slug;
 class RegisterServiceProvider extends ServiceProvider {
 
 	public function register() {
+
+	}
+
+	public function boot() {
 		$this->app->singleton('hooks', function($app) {
 			return new Hooks();
 		});
@@ -71,10 +75,6 @@ class RegisterServiceProvider extends ServiceProvider {
         $this->app->singleton('slug', function($app) {
 			return new Slug();
 		});
-	}
-
-	public function boot() {
-
 	}
 }
 
