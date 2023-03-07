@@ -4,7 +4,7 @@ namespace Multimedia\Multistore\Core\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class UserRoleSeeder extends Seeder
+class OptionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
