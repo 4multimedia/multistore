@@ -612,7 +612,7 @@ use Multimedia\Multistore\Support\File;
 
 	// module
 	function register_module($module) {
-		modules()->register($module);
+		//modules()->register($module);
 	}
 
 	// db
