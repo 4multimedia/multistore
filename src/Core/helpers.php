@@ -666,6 +666,20 @@ use Multimedia\Multistore\Support\File;
         return $array;
 	}
 
+    function get_all_tree_category($table, $primaryKey) {
+        $sql = "SELECT id_product_category, (SELECT GROUP_CONCAT(name->>\"$.pl\") FROM (SELECT @r AS _id, (SELECT @r := id_product_category_parent FROM `product_category` WHERE
+        id_product_category = _id) AS id_product_category_parent, @l := @l + 1 AS lvl FROM (SELECT @r := primary_table.id_product_category, @l := 0) vars,
+        `product_category` a WHERE @r <> 0) T1 JOIN `product_category` T2 ON T1._id = T2.id_product_category ORDER BY T1.lvl
+            DESC) as path FROM product_category as primary_table";
+        $items = DB::select($sql);
+        foreach($items as $key => $item) {
+            $category = explode(',', $item->path);
+            krsort($category);
+            $array[$item->id_product_category] = implode("/", $category);
+        }
+        return $array;
+    }
+
 	function lower($string) {
 		return Str::lower($string);
 	}
