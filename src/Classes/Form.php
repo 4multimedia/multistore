@@ -139,6 +139,9 @@
 		}
 
         public function gallery($label, $name, $params = []) {
+			if (isset($params["value"][$name])) {
+				$params["value"] = $params["value"][$name] ? $params["value"][$name] : [];
+			}
 			return $this->field('input-gallery', $label, $name, $params);
 		}
 

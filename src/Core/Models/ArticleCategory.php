@@ -3,7 +3,7 @@
     namespace Multimedia\Multistore\Core\Models;
 
     use Multimedia\Multistore\Core\Http\Traits\useHash;
-	use Multimedia\Multistore\Core\Http\Traits\useImage;
+	use Multimedia\Multistore\Core\Http\Traits\UseImage;
 	use Multimedia\Multistore\Core\Http\Traits\useSlug;
 	use Multimedia\Multistore\Core\Models\Model;
     use Multimedia\Multistore\Core\Http\Traits\useCategory;

@@ -40,7 +40,7 @@
                             <span class="cursor-pointer" @click="onHandleGetItems('', 'directory')">{{ __t('media.Media') }}</span>
                             <div class="flex items-center" v-for="path, index in item.path" :key="index">
                                 <ChevronRight class="mx-1 text-slate-500 w-3 h-3" />
-                                <span  @click="onHandleGetItems(path.hash, 'directory')" class="cursor-pointer">{{ path.name }}</span>
+                                <span @click="onHandleGetItems(path.hash, 'directory')" class="cursor-pointer">{{ path.name }}</span>
                             </div>
                         </div>
                     </div>
@@ -49,9 +49,6 @@
                 <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6" v-if="items.length > 0">
                     <div v-for="item, index in items" :key="index" class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
                         <div v-if="item.type == 'directory' && show.directories" class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in" @click="onHandleGetItems(item.hash, item.type)">
-                            <div class="absolute left-0 top-0 mt-3 ml-3">
-                                <input-checkbox />
-                            </div>
                             <span :class="`w-3/5 file__icon file__icon--${item.count_subdirectory == 0 && item.count_files == 0 ? 'empty-' : ''}directory mx-auto`"></span>
 
                             <span class="block font-medium mt-4 text-center truncate">{{ item.name }}</span>
@@ -64,9 +61,9 @@
                             </div>
                         </div>
 
-                        <div v-if="item.type == 'file' && show.files" class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in" @click="onHandleGetItems(item, item.type)" >
+                        <div v-if="item.type == 'file' && show.files" class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in" >
                             <div class="absolute left-0 top-0 mt-3 ml-3">
-                                <input-checkbox />
+                                <PrimeCheckbox v-model="checked" :value="item.id" @input="onHandleGetItems(item, item.type)" />
                             </div>
 							<div v-if="!images.includes(item.extension) && !previews.includes(item.extension)" class="w-3/5 file__icon file__icon--file mx-auto">
 								<div class="file__icon__file-name">{{ item.extension }}</div>
@@ -122,11 +119,12 @@ import MediaSearch from './Search.vue';
 import { Files, FileImage, FileText, FileArchive, Trash2, Plus, ChevronLeft, ChevronRight } from 'lucide-vue';
 import FileUpload from 'primevue/fileupload';
 import BlockUI from 'primevue/blockui';
+import PrimeCheckbox from 'primevue/checkbox';
 
 export default {
 	props: {
 		root: String,
-        selected: [],
+		selected: Array,
         allow: {
             type: Array,
             default: () => []
@@ -147,11 +145,13 @@ export default {
         ChevronLeft,
         ChevronRight,
         MediaSearch,
-        FileUpload
+        FileUpload,
+		PrimeCheckbox
     },
     inject: ['translate', '__t'],
 	data() {
 		return {
+			checked: [],
 			token: '',
             type: 'all',
 			id_parent: '',
@@ -245,7 +245,12 @@ export default {
 		},
         onChange(value, name) {
             this.show[name] = value;
-        }
+        },
+		onSelectImage(item) {
+			console.log(item);
+			this.$emit('update:selected', [{id:1}]);
+			this.$emit('onSelect', item);
+		}
 	},
     computed: {
         back() {
@@ -269,6 +274,15 @@ export default {
                 self.getItems();
             }, false);
         }
+
+		let array = [];
+		if (this.mode === 'dialog') {
+			this.selected.forEach(e => {
+				array.push(e.id);
+				console.log(e.id);
+			});
+			this.checked = array;
+		}
 	},
 }
 </script>

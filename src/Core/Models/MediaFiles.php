@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Multimedia\Multistore\Core\Http\Traits\useHash;
 use Multimedia\Multistore\Core\Http\Traits\usePath;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Multimedia\Multistore\Core\Http\Traits\useImage;
+use Multimedia\Multistore\Core\Http\Traits\UseImage;
 
 class MediaFiles extends Model
 {
-	use SoftDeletes, useHash, useImage;
+	use SoftDeletes, useHash, UseImage;
 
 	public $table = "media_files";
 	public $primaryKey = "id_media_files";

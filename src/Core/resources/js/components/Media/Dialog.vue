@@ -1,6 +1,6 @@
 <template>
     <Dialog :visible.sync="display" :modal="true" appendTo="body" class="media-dialog" :closable="false" :closeOnEscape="false">
-        <media root="" mode="dialog" :allow="allow" @onSelect="onSelect"></media>
+        <media root="" mode="dialog" :allow="allow" :selected="selected" @onSelect="onSelect"></media>
         <template #footer>
             <div class="col-span-12 flex items-center">
                 <button class="btn bg-white w-32 ml-auto" @click="onHandleHideDialog">Anuluj</button>
@@ -16,7 +16,7 @@
             name: String,
             limit: {
                 type: Number,
-                default: 0
+                default: -1
             },
             selected: {
                 type: Array,
@@ -33,23 +33,27 @@
         },
         methods: {
             onSelect(item) {
+				if (this.limit == 1) {
+					this.selected = [];
+				}
+
                 const index = this.selected.findIndex(e => e.hash === item.hash);
                 if ((this.allow.length === 0 || this.allow.includes(item.extension)) && index === -1) {
-                    if(this.limit === 0 || (this.limit > 0 && (this.selected.length < this.limit))) {
-                        this.selected.push({
-							id: item.id,
-							hash: item.hash,
-							src: (item && item.paths && item.paths.thumb) ? item.paths.thumb : null,
-							image: (item && item.paths && item.paths.full) ? item.paths.full : null
-						});
+                    if(this.limit == -1 || (this.limit > 0 && (this.selected.length < this.limit))) {
+                        this.selected.push(item);
+
+						if (this.limit == 1) {
+							this.$emit('onSelect', this.selected);
+							this.$emit('update:display', false);
+						}
                     }
                 } else if (index > -1) {
                     this.selected.splice(index, 1);
                 }
             },
             onSelectFile(hash) {
-                this.$emit('update:display', false);
 				this.$emit('onSelect', this.selected);
+                this.$emit('update:display', false);
             },
             onHandleHideDialog() {
                 this.$emit('update:display', false);

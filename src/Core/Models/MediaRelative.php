@@ -12,5 +12,13 @@ class MediaRelative extends Model
 		return $this->hasOne(MediaFiles::class, 'id_media_files', 'id_media_files');
 	}
 
-    public $fillable = ['id_media_files', 'id_record', 'name', 'table', 'position', 'active'];
+    public $fillable = [
+		'id_media_files',
+		'id_record',
+		'name',
+		'type',
+		'table',
+		'position',
+		'active'
+	];
 }
