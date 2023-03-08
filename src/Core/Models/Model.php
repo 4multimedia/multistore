@@ -13,7 +13,11 @@
 				if ($lang === null) {
 					$lang = app()->getLocale();
 				}
-				$value = json_decode($value);
+				if (gettype($value) === 'string') {
+					$value = json_decode($value);
+				} else {
+					$value = json_decode(json_encode($value));
+				}
 				if (isset($value->$lang)) {
 					return $value->$lang;
 				}

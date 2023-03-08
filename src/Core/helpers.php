@@ -698,6 +698,15 @@ use Multimedia\Multistore\Support\File;
 		}
 	}
 
+	function get_options_from_model($model) {
+		$model = new $model;
+		$lang = 'pl';
+		$array = $model->get()->map(function ($item) use ($lang) {
+			return ['id' => $item->id, 'name' => $item->name];
+		});
+		return strtr(json_encode($array), ["\"" => "&quot;"]);
+	}
+
 	function save_meta($table, $id_record, $meta) {
 		$title = $meta["title"];
 		$meta = $meta["meta"];

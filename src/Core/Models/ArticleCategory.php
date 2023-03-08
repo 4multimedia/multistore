@@ -6,7 +6,7 @@
 	use Multimedia\Multistore\Core\Http\Traits\UseImage;
 	use Multimedia\Multistore\Core\Http\Traits\useSlug;
 	use Multimedia\Multistore\Core\Models\Model;
-    use Multimedia\Multistore\Core\Http\Traits\useCategory;
+    use Multimedia\Multistore\Core\Http\Traits\UseCategory;
 
 	use Illuminate\Database\Eloquent\Casts\Attribute;
 
