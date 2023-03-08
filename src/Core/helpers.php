@@ -685,8 +685,14 @@ use Multimedia\Multistore\Support\File;
 	}
 
 	function json_merge($old, $new) {
-		if ($old === null) {
-			return $new;
+		if ($old === null || $new === null) {
+			if ($old === null) {
+				return $new;
+			} else if ($new === null) {
+				return $old;
+			} else {
+				return [];
+			}
 		} else {
 			return array_merge($old, $new);
 		}
