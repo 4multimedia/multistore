@@ -55,6 +55,11 @@
 			$array[":error"] = $error;
 
             if ($this->type === 'vue') {
+                if (array_key_exists("value", $array)) {
+                    if (is_string($array["value"]) && is_json($array["value"])) {
+                        $array["value"] = json_str($array["value"]);
+                    }
+                }
                 return "<$component ".$this->attr($array)."></$component>";
             } else {
                 return $this->html_field($component, $array);

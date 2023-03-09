@@ -1,5 +1,5 @@
 /**
- * TinyMCE version 6.3.2 (2023-02-22)
+ * TinyMCE version 6.3.1 (2022-12-06)
  */
 
 (function () {
@@ -2524,6 +2524,7 @@
       const loadedStates = {};
       const edos = SugarElement.fromDom(documentOrShadowRoot);
       const doc = documentOrOwner(edos);
+      const maxLoadTime = settings.maxLoadTime || 5000;
       const _setReferrerPolicy = referrerPolicy => {
         settings.referrerPolicy = referrerPolicy;
       };
@@ -2562,6 +2563,30 @@
         };
         const passed = () => resolve(state.passed, 2);
         const failed = () => resolve(state.failed, 3);
+        const wait = (testCallback, waitCallback) => {
+          if (!testCallback()) {
+            if (Date.now() - startTime < maxLoadTime) {
+              setTimeout(waitCallback);
+            } else {
+              failed();
+            }
+          }
+        };
+        const waitForWebKitLinkLoaded = () => {
+          wait(() => {
+            const styleSheets = documentOrShadowRoot.styleSheets;
+            let i = styleSheets.length;
+            while (i--) {
+              const styleSheet = styleSheets[i];
+              const owner = styleSheet.ownerNode;
+              if (owner && link && owner.id === link.id) {
+                passed();
+                return true;
+              }
+            }
+            return false;
+          }, waitForWebKitLinkLoaded);
+        };
         if (success) {
           state.passed.push(success);
         }
@@ -2586,6 +2611,7 @@
           type: 'text/css',
           id: state.id
         });
+        const startTime = Date.now();
         if (settings.contentCssCors) {
           set$2(linkElem, 'crossOrigin', 'anonymous');
         }
@@ -2593,7 +2619,7 @@
           set$2(linkElem, 'referrerpolicy', settings.referrerPolicy);
         }
         link = linkElem.dom;
-        link.onload = passed;
+        link.onload = waitForWebKitLinkLoaded;
         link.onerror = failed;
         addStyle(linkElem);
         set$2(linkElem, 'href', urlWithSuffix);
@@ -29601,8 +29627,8 @@
       documentBaseURL: null,
       suffix: null,
       majorVersion: '6',
-      minorVersion: '3.2',
-      releaseDate: '2023-02-22',
+      minorVersion: '3.1',
+      releaseDate: '2022-12-06',
       i18n: I18n,
       activeEditor: null,
       focusedEditor: null,

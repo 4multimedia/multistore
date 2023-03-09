@@ -717,6 +717,10 @@ use Multimedia\Multistore\Support\File;
 		return strtr(json_encode($array), ["\"" => "&quot;"]);
 	}
 
+    function json_str($string) {
+        return strtr($string, ["\"" => "&quot;"]);
+    }
+
 	function save_meta($table, $id_record, $meta) {
 		$title = $meta["title"];
 		$meta = $meta["meta"];

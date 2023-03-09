@@ -52,7 +52,6 @@
             </div>
         </div>
     </div>
-
 		<slot />
 		<slot name="buttons">
 			<button type="submit">ZAPISZ</button>
@@ -78,6 +77,14 @@ export default {
 			lang: 'pl'
 		}
 	},
+    provide() {
+        const editLang = {}
+        Object.defineProperty(editLang, 'lang', {
+            enumerable: true,
+            get: () => this.lang,
+        })
+        return { editLang }
+    },
 	mounted() {
 		this.token = document.querySelector('meta[name="csrf-token"]').content;
 		this.languages = window.languages;

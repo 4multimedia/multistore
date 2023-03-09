@@ -57,6 +57,9 @@
         }
 
         protected function setSlug($name) {
+            if (is_array($name)) {
+                $name = $name["pl"];
+            }
 			$name = trim($name);
             $name = Str::slug($name);
             $org_name = $name;
