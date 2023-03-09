@@ -1,6 +1,8 @@
 <template>
 	<InputField :label="label" :required="required" :help="help" :error="error" :max="max" :modelValue="modelValue" :column="column">
-		<PrimeInputText class="form-control" :help="help" :name="name" v-model="modelValue" :placeholder="getplaceholder" :maxlength="max" @input="onChange($event)" />
+		<template v-for="language in languages" :key="language.code">
+			<PrimeInputText class="form-control" :help="help" :name="`name[${language['code']}]`" v-model="modelValue" :placeholder="getplaceholder" :maxlength="max" @input="onChange($event)" />
+		</template>
 	</InputField>
 </template>
 
@@ -32,6 +34,7 @@ export default {
     },
     mounted() {
         this.modelValue = this.value;
+		this.languages = window.languages;
     },
 	computed: {
 		getplaceholder() {
@@ -57,6 +60,7 @@ export default {
     },
     data() {
         return {
+			languages: [],
             modelValue: ''
         }
     }

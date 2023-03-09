@@ -26,6 +26,19 @@ trait UseCategory {
 		});
 	}
 
+	public function getCategoryMainNameAttribute() {
+        if (!$this->tableCategory) { throw new \Exception('No public variable $tableCategory [Err 230]', 500); }
+        if (!$this->tablePrimaryKey) { throw new \Exception('No public variable $tablePrimaryKey [Err 231]', 500); }
+
+		if ($this->id_category_main && $this->tableCategory) {
+			$item = DB::table($this->tableCategory)->where($this->tablePrimaryKey, $this->id_category_main)->first();
+			if ($item) {
+				$name = json_decode($item->name);
+				return isset($name->pl) ? $name->pl : null;
+			}
+		}
+	}
+
 	public function getCategoryMainAttribute() {
         if (!$this->tableCategory) { throw new \Exception('No public variable $tableCategory [Err 232]', 500); }
 		return RelationRecordToCategory::where('id_record', $this->{$this->primaryKey})->where('main', 1)->where('table_name', $this->tableCategory)->first();

@@ -6,21 +6,21 @@
         	<div class="w-full sm:w-auto flex mt-4 sm:mt-0" v-if="language">
             	<div class="dropdown mr-2">
                 	<button class="dropdown-toggle btn box flex items-center" aria-expanded="false" type="button" data-tw-toggle="dropdown">
-                        <span class="fi fi-pl mr-2"></span>
-                        <span>Polski</span>
+                        <span :class="`fi fi-${current_language['flag']} mr-2`"></span>
+                        <span>{{ current_language['name'] }}</span>
                         <ChevronDown class="w-4 h-4 ml-2" />
-                </button>
-                <div class="dropdown-menu w-40">
-                    <ul class="dropdown-content">
-                        <li>
-                            <a href="" class="dropdown-item">
-                                <span class="fi fi-pl mr-2"></span>
-                                <span class="truncate">Polski</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                	</button>
+					<div class="dropdown-menu w-40">
+						<ul class="dropdown-content">
+							<li v-for="language in languages" :key="language.code">
+								<span @click.stop="setLanguage(language['code'])" class="dropdown-item">
+									<span :class="`fi fi-${language['flag']} mr-2`"></span>
+									<span class="truncate">{{ language['name'] }}</span>
+								</span>
+							</li>
+						</ul>
+					</div>
+            	</div>
             <div class="dropdown" style="position: relative;">
                 <button class="dropdown-toggle btn btn-primary shadow-md flex items-center" type="button" aria-expanded="false" data-tw-toggle="dropdown">
                     Zapisz i wróć do listy <ChevronDown class="w-4 h-4 ml-2" />
@@ -73,11 +73,32 @@ export default {
 	},
 	data() {
 		return {
-			token: ''
+			token: '',
+			languages: [],
+			lang: 'pl'
 		}
 	},
 	mounted() {
 		this.token = document.querySelector('meta[name="csrf-token"]').content;
+		this.languages = window.languages;
+	},
+	computed: {
+		current_language() {
+			if (this.languages) {
+				const language = this.languages.find(e => e.code == this.lang);
+				if (language === undefined) {
+					return {flag: null, name: null};
+				} else {
+					return language;
+				}
+			}
+			return {flag: null, name: null};
+		}
+	},
+	methods: {
+		setLanguage(code) {
+			this.lang = code;
+		}
 	},
 	components: {
 		ChevronDown

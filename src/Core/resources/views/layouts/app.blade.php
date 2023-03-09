@@ -6,6 +6,10 @@
 		{{ get_assets_backend_js('before') }}
 		<meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="language" content="{{ app()->getLocale() }}">
+
+		<script>
+			var languages = {!! get_active_languages(true); !!};
+		</script>
     </head>
     <body class="main">
         <!-- BEGIN: Mobile Menu -->

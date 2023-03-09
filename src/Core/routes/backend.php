@@ -87,4 +87,9 @@ Route::namespace('Setting')->prefix('setting')->group(function() {
 		Route::post('/{optionDomain}', 'DomainController@restore')->name('backend.setting.domain.restore');
 		Route::delete('/{optionDomain}', 'DomainController@delete')->name('backend.setting.domain.delete');
 	});
+
+	Route::prefix('language')->group(function() {
+		Route::get('/', 'LanguageController@index')->name('backend.setting.language');
+		Route::post('/', 'LanguageController@store');
+	});
 });

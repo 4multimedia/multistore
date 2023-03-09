@@ -1,0 +1,26 @@
+.checkbox-icon {
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+}
+.checkbox-icon input {
+	display: none;
+}
+.checkbox-icon i,
+.checkbox-icon svg {
+	font-size:18px;
+	width: 18px;
+	height: 18px;
+}
+.checkbox-icon input + i + i,
+.checkbox-icon input + svg + svg {
+	display: none;
+}
+.checkbox-icon input:checked + i,
+.checkbox-icon input:checked + svg  {
+	display: none;
+}
+.checkbox-icon input:checked + i + i,
+.checkbox-icon input:checked + svg + svg  {
+	display: block;
+}

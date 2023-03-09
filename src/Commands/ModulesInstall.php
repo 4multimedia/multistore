@@ -41,6 +41,7 @@ class ModulesInstall extends Command
         $domain = $this->ask('Enter domain');
         add_domain($domain);
         save_option('meta.title', $domain, true, true);
+        save_option('setting.language', ['languages' => ['pl' => 1], 'default' => 'pl'], true, true);
 
         add_hashids(['Article', 'ArticleCategory', 'Dictionary', 'DictionaryRelative', 'Layout', 'MediaDirectory', 'MediaFiles', 'Navigation', 'OptionDomain', 'Page', 'Seo', 'User', 'UserRole']);
 

@@ -106,7 +106,7 @@ class FunctionServiceProvider extends ServiceProvider {
 			add_to_submenu('setting', 'backend::thumbnails.Thumbnails', 'backend.user', 25);
 		}
         if (config('multimedia.modules.translate')) {
-		    add_to_submenu('setting', 'backend::language.Language versions', 'backend.user', 30);
+		    add_to_submenu('setting', 'backend::language.Language versions', 'backend.setting.language', 30);
         }
 		add_to_submenu('setting', 'backend::layout.Layout', 'backend.layout.setting.index', 35);
 		add_to_submenu('setting', 'backend::setting.Domains', 'backend.setting.domain', 35);

@@ -3,7 +3,8 @@
 	namespace Multimedia\Multistore\Core\Http\Traits;
 
 	use Illuminate\Database\Eloquent\Casts\Attribute;
-    use Illuminate\Support\Str;
+	use Illuminate\Support\Facades\Schema;
+	use Illuminate\Support\Str;
 
 	trait useSlug {
 
@@ -24,15 +25,17 @@
             $model = new $_model;
             $key_parent = $model->getKeyName()."_parent";
 			$table = $model->getTable();
-			has_column_in_table($table, $key_parent);
-			if (has_column_in_table($table, $key_parent)) {
-				$item = $model->where('slug->'.$lang, $name)->where($key_parent, $level)->first();
-			} else {
-            	$item = $model->where('slug->'.$lang, $name)->first();
+			if (Schema::hasTable($table)) {
+				has_column_in_table($table, $key_parent);
+				if (has_column_in_table($table, $key_parent)) {
+					$item = $model->where('slug->'.$lang, $name)->where($key_parent, $level)->first();
+				} else {
+					$item = $model->where('slug->'.$lang, $name)->first();
+				}
+				if ($item) {
+					return true;
+				}
 			}
-            if ($item) {
-                return true;
-            }
             return false;
         }
 

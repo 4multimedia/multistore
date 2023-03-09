@@ -65,6 +65,14 @@ use Multimedia\Multistore\Support\File;
 		return app('slug');
 	}
 
+	function is_json($object) {
+		if (is_object(json_decode($object))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	function url_to_array($url) {
         $urls = explode("&", $url);
         $array = [];
@@ -481,7 +489,9 @@ use Multimedia\Multistore\Support\File;
 			$option = $query->first();
 			if ($option) {
 				$data = $option->values;
-				//$data = json_decode($data, true);
+				if (is_json($data)) {
+					$data = json_decode($data, true);
+				}
 				return $data;
 			}
 			return $default;
@@ -722,6 +732,66 @@ use Multimedia\Multistore\Support\File;
 				'title' => $title,
 				'meta' => $meta
 			]);
+		}
+	}
+
+	function get_languages() {
+		$languages = [];
+		$languages[] = ['code' => 'pl', 'name' => 'Polski', 'flag' => 'pl'];
+		$languages[] = ['code' => 'en', 'name' => 'English', 'flag' => 'gb'];
+		$languages[] = ['code' => 'de', 'name' => 'Deutsch', 'flag' => 'de'];
+		$languages[] = ['code' => 'fi', 'name' => 'Suomi', 'flag' => 'fi'];
+		$languages[] = ['code' => 'fr', 'name' => 'Français', 'flag' => 'fr'];
+		$languages[] = ['code' => 'ua', 'name' => 'Українська', 'flag' => 'ua'];
+		$languages[] = ['code' => 'nl', 'name' => 'Nederlands', 'flag' => 'nl'];
+		$languages[] = ['code' => 'se', 'name' => 'Svenska', 'flag' => 'se'];
+		$languages[] = ['code' => 'it', 'name' => 'Italiano', 'flag' => 'it'];
+		$languages[] = ['code' => 'ro', 'name' => 'Română', 'flag' => 'ro'];
+		$languages[] = ['code' => 'md', 'name' => 'Moldovenească', 'flag' => 'md'];
+		$languages[] = ['code' => 'hu', 'name' => 'Magyar', 'flag' => 'hu'];
+		$languages[] = ['code' => 'es', 'name' => 'Español', 'flag' => 'es'];
+		$languages[] = ['code' => 'pt', 'name' => 'Português', 'flag' => 'pt'];
+		$languages[] = ['code' => 'hr', 'name' => 'Hrvatski', 'flag' => 'hr'];
+		$languages[] = ['code' => 'ru', 'name' => 'Русский', 'flag' => 'ru'];
+		$languages[] = ['code' => 'sk', 'name' => 'Slovenčina', 'flag' => 'sk'];
+		$languages[] = ['code' => 'lt', 'name' => 'Lietuvių', 'flag' => 'lt'];
+		$languages[] = ['code' => 'cz', 'name' => 'Čeština', 'flag' => 'cz'];
+		$languages[] = ['code' => 'es', 'name' => 'Eesti', 'flag' => 'es'];
+		$languages[] = ['code' => 'tr', 'name' => 'Turkish', 'flag' => 'tr'];
+		$languages[] = ['code' => 'us', 'name' => 'English (USA)', 'flag' => 'us'];
+		$languages[] = ['code' => 'zh', 'name' => '中文', 'flag' => 'ch'];
+		$languages[] = ['code' => 'ja', 'name' => '日本語', 'flag' => 'jp'];
+		$languages[] = ['code' => 'vi', 'name' => 'Tiếng Việt', 'flag' => 'vi'];
+		$languages[] = ['code' => 'ar', 'name' => 'العربية', 'flag' => 'ar'];
+		$languages[] = ['code' => 'pb', 'name' => 'Português do Brasil', 'flag' => 'br'];
+		$languages[] = ['code' => 'cy', 'name' => 'Cymraeg', 'flag' => 'cy'];
+		$languages[] = ['code' => 'ca', 'name' => 'Català', 'flag' => 'es-ct'];
+		$languages[] = ['code' => 'el', 'name' => 'Ελληνικά', 'flag' => 'gr'];
+
+		return $languages;
+	}
+
+	function get_active_languages($json = false) {
+		$options = get_option('setting.language', ['languages' => [], 'default' => null], true);
+		$array = [];
+		$a = 0;
+		foreach($options["languages"] as $code => $status) {
+			$array[$a] = find_language($code);
+			$array[$a]["default"] = $options["default"] == $code ? true : false;
+
+			$a++;
+		}
+		if($json) {
+			return json_encode($array);
+		}
+		return $array;
+	}
+
+	function find_language($code) {
+		foreach(get_languages() as $language) {
+			if ($language["code"] === $code) {
+				return $language;
+			}
 		}
 	}
 

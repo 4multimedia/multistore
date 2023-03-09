@@ -27,7 +27,7 @@ import "./dropzone";
 import "./validation";
 import "./zoom";
 import "./notification";
-
+import Alpine from 'alpinejs';
 
 /*
  |--------------------------------------------------------------------------
@@ -170,6 +170,9 @@ new Vue({
     el: '#app',
     store,
 });
+
+window.Alpine = Alpine;
+Alpine.start();
 
 /*app.$mount('#app')
 

@@ -188,3 +188,6 @@ textarea.form-input {
     display: block;
     color:#fff;
 }
+.checkbox-icon input {
+	display: none;
+}
