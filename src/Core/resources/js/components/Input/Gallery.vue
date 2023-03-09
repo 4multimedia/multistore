@@ -23,10 +23,12 @@
 </template>
 
 <script>
-import { X } from 'lucide-vue'
+import { X } from 'lucide-vue';
+import FileUpload from 'primevue/fileupload';
 export default {
 	components: {
-		X
+		X,
+		FileUpload
 	},
 	props: {
 		limit: {

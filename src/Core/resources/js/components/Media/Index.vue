@@ -2,7 +2,7 @@
 	<div>
         <div class="intro-y flex items-center mt-8  justify-between">
 			<h2 class="text-lg font-medium mr-auto">{{ __t('media.Media') }}</h2>
-            <FileUpload name="files[]" mode="basic" url="/admin/media/upload" class="ml-2" buttonClass="shadow-md w-32" chooseIcon="pi pi-times" uploadIcon="pi pi-times" chooseLabel="Wgraj pliki" :multiple="true" :auto="true" @before-send="beforeSendMedia" @upload="uploadMedia" />
+            <FileUpload name="files[]" url="/admin/media/upload" class="ml-2" buttonClass="shadow-md w-32" chooseIcon="pi pi-times" uploadIcon="pi pi-times" chooseLabel="Wgraj pliki" multiple="true" :showUploadButton="false" :showCancelButton="false" :auto="true" @before-send="beforeSendMedia" @upload="uploadMedia" />
             <Button @click="onHandleOpenDialog('directory')" class="btn btn-primary shadow-md w-32 ml-2" label="Dodaj folder"></Button>
 		</div>
         <div class="grid grid-cols-12 gap-6 mt-8">
