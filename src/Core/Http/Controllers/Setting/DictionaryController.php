@@ -53,7 +53,21 @@
 		public function update(Dictionary $dictionary) {
 			$data = [];
 			$data["group"] = $dictionary->group;
-			$data["title"] = 'Dodaj pozycję do słownika - '.$dictionary->parent->id;
+			$data["title"] = 'Dodaj pozycję do słownika - '.$dictionary->parent->name;
+            $data["dictionary"] = $dictionary;
 			return view('backend::setting.dictionary.form', $data);
+		}
+
+        public function restore(Dictionary $dictionary, Request $request) {
+			$dictionary->update([
+				'name' => $request->name
+			]);
+
+			return redirect()->route('backend.dictionary', ['group' => $dictionary->parent->group]);
+		}
+
+        public function delete(Dictionary $dictionary) {
+			$dictionary->delete();
+			return redirect()->route('backend.dictionary', ['group' => $dictionary->parent->group]);
 		}
 	}
