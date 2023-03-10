@@ -65,6 +65,10 @@ use Multimedia\Multistore\Support\File;
 		return app('slug');
 	}
 
+	function dictionary() {
+		return app('dictionary');
+	}
+
 	function is_json($object) {
 		if (is_object(json_decode($object))) {
 			return true;
@@ -805,6 +809,18 @@ use Multimedia\Multistore\Support\File;
             $item->delete();
         }
     }
+
+	function register_dictionary($label, $group, $priority) {
+		dictionary()->register($label, $group, $priority);
+	}
+
+	function get_dictionary_name($group) {
+		return dictionary()->get_name($group);
+	}
+
+	function get_dictionary_id($group) {
+		return dictionary()->get_id($group);
+	}
 
 	// ACTIONS
 	function add_action($tag, $arg, $priority = 10, $accepted_args = []) {

@@ -1,8 +1,8 @@
 <div>
     <ui-box header="Zawartość dla wyszukiwarki">
-        {!! form()->text('Tytuł strony', 'seo[title][pl]', ['value' => ($item["title"]["pl"]) ?? '', 'column' => true]) !!}
-        {!! form()->text('Opis strony', 'seo[meta][description][pl]', ['value' => ($item["meta"]["description"]["pl"]) ?? '', 'column' => true]) !!}
-        {!! form()->text('Link kanoniczny', 'seo[meta][canonical][pl]', ['value' => ($item["meta"]["canonical"]["pl"]) ?? '', 'column' => true]) !!}
+        {!! form()->text('Tytuł strony', 'seo[title]', ['value' => ($item["title"]) ?? '', 'column' => true, ':translate' => true]) !!}
+        {!! form()->text('Opis strony', 'seo[meta][description]', ['value' => ($item["meta"]["description"]) ?? '', 'column' => true, ':translate' => true]) !!}
+        {!! form()->text('Link kanoniczny', 'seo[meta][canonical]', ['value' => ($item["meta"]["canonical"]) ?? '', 'column' => true, ':translate' => true]) !!}
     </ui-box>
     <ui-box header="Reguły indeksowania i wyświetlania">
         @foreach($robots as $key)

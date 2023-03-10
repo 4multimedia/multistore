@@ -6,10 +6,14 @@
 
 	class Editor extends Component {
         public $label = '';
+		public $translate = false;
+		public $languages = [];
 
-        public function __construct($label = null)
+        public function __construct($label = null, $translate = false)
         {
             $this->label = $label;
+			$this->translate = $translate;
+			$this->languages = get_active_languages();
         }
 
 		public function render() {

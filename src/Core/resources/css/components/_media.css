@@ -25,10 +25,17 @@
 .media-dialog.p-dialog .p-dialog-header {
     display: none;
 }
-.p-dialog.media-dialog .p-dialog-content .p-fileupload-content {
+.p-dialog.media-dialog .dialog-add-folder .p-dialog-header {
+	display: flex;
+	padding-bottom: 0;
+}
+.p-dialog.media-dialog .dialog-add-folder .p-dialog-content {
+	height: auto;
+}
+.file-upload-multiple .p-fileupload-content {
 	display: none;
 }
-.p-dialog.media-dialog .p-dialog-content .p-fileupload .p-fileupload-buttonbar {
+.file-upload-multiple .p-fileupload-buttonbar {
 	background: none;
 	border:none;
 	padding: 0;

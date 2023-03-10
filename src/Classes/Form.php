@@ -118,6 +118,14 @@
 			return $this->field($component, $label, $name, $params);
 		}
 
+		public function html($label, $name, $params = []) {
+            $component = 'input-html';
+            if ($this->type === 'html') {
+                $component = 'x-frontend-html';
+            }
+			return $this->field($component, $label, $name, $params);
+		}
+
         public function password($label, $name, $params = []) {
 			$component = 'input-password';
             if ($this->type === 'html') {

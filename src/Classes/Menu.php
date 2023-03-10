@@ -15,6 +15,7 @@
 				"label" => $label,
 				"route" => $route,
 				"icon" => isset($params["icon"]) ? $params["icon"] : null,
+				"route_params" => isset($params["route"]) ? $params["route"] : [],
 				"items" => []
 			];
 		}
@@ -61,7 +62,8 @@
 			foreach($this->items as $key => $item) {
 				$array[$key] = $item;
 				$array[$key]["label"] = __($array[$key]["label"]);
-				$array[$key]["path"] = $item["route"] ? route($item["route"]) : '';
+
+				$array[$key]["path"] = $item["route"] ? route($item["route"], $item["params"]["route"]) : '';
 
 				foreach($item["items"] as $subkey => $subitem) {
 					$array[$key]["items"][$subkey] = $subitem;
@@ -77,6 +79,7 @@
 		}
 
 		public function items($items) {
+
 			$html = '<ul class="">';
 			foreach($items as $item) {
                 if (isset($item["type"]) && $item["type"] === 'devider') {
@@ -84,7 +87,7 @@
                 } else {
 				$html .= '
                     <li>
-                        <a href="'.($item["route"] ? route($item["route"]) : 'javascript:;').'" class="side-menu '.($this->current_route() === $item["route"] ? 'side-menu--active' : '').'">
+                        <a href="'.($item["route"] ? route($item["route"], $item["route_params"]) : 'javascript:;').'" class="side-menu '.($this->current_route() === $item["route"] ? 'side-menu--active' : '').'">
                             '.($item["icon"] ? '<div class="side-menu__icon"> <i data-lucide="'.$item["icon"].'"></i> </div>' : '').'
                             <div class="side-menu__title">
                                 '.__($item["label"]).'
@@ -104,6 +107,7 @@
 				"label" => $label,
 				"route" => $route,
 				"icon" => isset($params["icon"]) ? $params["icon"] : null,
+				"route_params" => isset($params["route"]) ? $params["route"] : [],
 				"items" => []
 			];
 		}

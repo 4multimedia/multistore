@@ -61,6 +61,7 @@ import VisualBuilder from './components/VisualBuilder/Index.vue';
 import InputGallery from './components/Input/Gallery.vue';
 import InputImage from './components/Input/InputImage.vue';
 import InputTreeSelect from './components/Input/Treeselect.vue';
+import InputHtml from './components/Input/InputHtml.vue';
 import SelectButton from './components/Input/SelectButton.vue';
 
 import VisualComponent from './components/VisualBuilder/Components/Component';
@@ -124,6 +125,7 @@ Vue.component('FormModule', FormModule);
 Vue.component('FormSection', FormSection);
 Vue.component('FormTree', FormTree);
 Vue.component('VisualBuilder', VisualBuilder);
+Vue.component('InputHtml', InputHtml);
 //Vue.component('Paragraph', Paragraph);
 //Vue.component('Container', Container);
 //Vue.component('Column', Column);

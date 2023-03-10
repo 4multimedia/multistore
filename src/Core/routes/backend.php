@@ -92,4 +92,13 @@ Route::namespace('Setting')->prefix('setting')->group(function() {
 		Route::get('/', 'LanguageController@index')->name('backend.setting.language');
 		Route::post('/', 'LanguageController@store');
 	});
+
+	Route::prefix('dictionary')->group(function() {
+		Route::get('/{group}', 'DictionaryController@index')->name('backend.dictionary');
+		Route::get('/{group}/create', 'DictionaryController@create')->name('backend.dictionary.create');
+		Route::post('/{group}/create', 'DictionaryController@store');
+		Route::get('/item/{dictionary}', 'DictionaryController@update')->name('backend.dictionary.update');
+		Route::post('/item/{dictionary}', 'DictionaryController@restore');
+		Route::delete('/item/{dictionary}', 'DictionaryController@delete')->name('backend.dictionary.delete');
+	});
 });

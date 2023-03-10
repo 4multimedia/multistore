@@ -7,8 +7,7 @@
         </div>
     </div>
     @endif
-    <textarea class="editor-instance" name="description">{{ $slot }}</textarea>
+	<div>1
+	<input-html></input-html>
+	2</div>
 </div>
-
-{{ register_assets_js('js/tinymce/tinymce.min.js') }}
-{{ register_assets_js('js/tinymce.js') }}

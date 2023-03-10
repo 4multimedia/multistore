@@ -28,6 +28,10 @@ class RegisterServiceProvider extends ServiceProvider {
 			return $app->make(\Multimedia\Multistore\Classes\Modules::class);
 		});
 
+		$this->app->singleton('dictionary', function($app) {
+			return $app->make(\Multimedia\Multistore\Classes\Dictionary::class);
+		});
+
 		$this->app->singleton('plugins', function($app) {
 			return new Plugins();
 		});

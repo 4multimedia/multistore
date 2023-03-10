@@ -25,33 +25,22 @@
                 <button class="dropdown-toggle btn btn-primary shadow-md flex items-center" type="button" aria-expanded="false" data-tw-toggle="dropdown">
                     Zapisz i wróć do listy <ChevronDown class="w-4 h-4 ml-2" />
                 </button>
-                <div class="dropdown-menu w-40" id="_o877v7wuw">
+                <div class="dropdown-menu w-56" id="_o877v7wuw">
                     <ul class="dropdown-content">
                         <li>
-                            <a href="" class="dropdown-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="file-text" data-lucide="file-text" class="lucide lucide-file-text w-4 h-4 mr-2"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg> As New Post
-                            </a>
+                            <a href="" class="dropdown-item"><ListEnd class="lucide-file-text w-4 h-4 mr-2" /> Zapisz i wróć do listy</a>
                         </li>
                         <li>
-                            <a href="" class="dropdown-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="file-text" data-lucide="file-text" class="lucide lucide-file-text w-4 h-4 mr-2"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg> As Draft
-                            </a>
+                            <a href="" class="dropdown-item"><ListVideo class="lucide-file-text w-4 h-4 mr-2" /> Zapisz i przejdź do edycji</a>
                         </li>
                         <li>
-                            <a href="" class="dropdown-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="file-text" data-lucide="file-text" class="lucide lucide-file-text w-4 h-4 mr-2"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg> Export to PDF
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="dropdown-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="file-text" data-lucide="file-text" class="lucide lucide-file-text w-4 h-4 mr-2"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg> Export to Word
-                            </a>
+                            <a href="" class="dropdown-item"><ListPlus class="lucide-file-text w-4 h-4 mr-2" /> Zapisz i dodaj nowy</a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
+        	</div>
+    	</div>
 		<slot />
 		<slot name="buttons">
 			<button type="submit">ZAPISZ</button>
@@ -60,19 +49,16 @@
 </template>
 
 <script>
-import { ChevronDown } from 'lucide-vue';
+import { ChevronDown, ListEnd, ListPlus, ListVideo } from 'lucide-vue';
 
 export default {
 	props: {
-		language: {
-			type: Boolean,
-			default: false
-		},
 		title: String
 	},
 	data() {
 		return {
 			token: '',
+			language: false,
 			languages: [],
 			lang: 'pl'
 		}
@@ -86,6 +72,7 @@ export default {
         return { editLang }
     },
 	mounted() {
+        this.findFormElements(this.$children);
 		this.token = document.querySelector('meta[name="csrf-token"]').content;
 		this.languages = window.languages;
 	},
@@ -105,10 +92,23 @@ export default {
 	methods: {
 		setLanguage(code) {
 			this.lang = code;
-		}
+		},
+		findFormElements(children) {
+            children.forEach(el => {
+                const translate = el.$options.propsData.translate !== undefined ? el.$options.propsData.translate : false;
+
+                if (translate) {
+					this.language = true;
+				}
+                this.findFormElements(el.$children);
+            });
+        },
 	},
 	components: {
-		ChevronDown
+		ChevronDown,
+		ListEnd,
+		ListPlus,
+		ListVideo
 	}
 }
 </script>
