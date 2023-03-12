@@ -1,8 +1,8 @@
 <template>
 	<form-body :title="title" :language="language">
 		<template #buttons>
-            <div class="text-right">
-                <button type="submit" class="btn btn-primary w-40">Zapisz zmiany</button>
+            <div class="flex justify-end">
+                <ButtonAction></ButtonAction>
             </div>
         </template>
 		<div class="flex mt-5 pb-5">
@@ -19,8 +19,7 @@
 					</ul>
 				</div>
 				<ui-box v-if="publish" class="mt-5" :noTab="true" header="Publikacja">
-
-				</ui-box>
+                </ui-box>
 			</div>
 			<div class="intro-y flex-auto pl-5 mt-5">
 				<slot />
@@ -30,6 +29,8 @@
 </template>
 
 <script>
+    import ButtonAction from './ButtonAction';
+
     export default {
         props: {
             publish: {
@@ -60,11 +61,14 @@
         mounted() {
             this.tabs = [];
             this.$children[0].$children.forEach((tab, i) => {
-                if (tab.$options.propsData.noTab !== true) {
+                if (tab.$options !== undefined && tab.$options.propsData !== undefined && tab.$options.propsData.noTab !== true) {
                     this.tabs.push(tab);
                 }
             });
             this.changeTab(0);
         },
+        components: {
+            ButtonAction
+        }
     }
 </script>
