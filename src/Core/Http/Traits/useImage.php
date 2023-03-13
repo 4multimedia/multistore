@@ -18,6 +18,7 @@ trait UseImage {
 			if (array_key_exists('_image', $request)) {
 				$images = $request['_image'];
 				foreach($images as $type => $files) {
+
 					foreach($files as $position => $id) {
 						MediaRelative::create([
 							'id_media_files' => $id,
