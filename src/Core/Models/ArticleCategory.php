@@ -12,7 +12,7 @@
 
     class ArticleCategory extends Model {
 
-        use useHash, useImage, useCategory, useSlug {
+        use useHash, UseImage, UseCategory, useSlug {
             useSlug::resolveRouteBinding insteadof useHash;
             //useHash::resolveRouteBinding insteadof useSlug;
         }
