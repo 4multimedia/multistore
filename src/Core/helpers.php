@@ -822,6 +822,10 @@ use Multimedia\Multistore\Support\File;
 		return dictionary()->get_id($group);
 	}
 
+	function get_dictionary_by_group($group) {
+		return dictionary()->get($group);
+	}
+
 	// ACTIONS
 	function add_action($tag, $arg, $priority = 10, $accepted_args = []) {
 		hook()->_add_action($tag, $arg, $priority, $accepted_args);

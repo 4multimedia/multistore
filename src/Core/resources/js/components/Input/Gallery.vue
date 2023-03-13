@@ -1,6 +1,6 @@
 <template>
-	<div class="form-inline items-start first:mt-0 first:pt-0 mt-3 flex-col xl:flex-row">
-		<div class="w-full xl:w-64 xl:!mr-10">
+	<div class="form-inline items-start first:mt-0 first:pt-0 mt-3 flex-col" :class="{'xl:flex-row' : !column}">
+		<div class="w-full xl:w-64 xl:!mr-10" :class="{'mb-2' : column}">
 			<div class="font-medium">{{ label }}</div>
 			<div v-if="help" class="leading-relaxed text-slate-500 text-xs mt-3">{{ help }}</div>
 		</div>
@@ -31,6 +31,10 @@ export default {
 		FileUpload
 	},
 	props: {
+		column: {
+            type: Boolean,
+            default: false
+        },
 		limit: {
 			type: Number,
 			default: -1

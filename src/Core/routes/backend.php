@@ -100,5 +100,8 @@ Route::namespace('Setting')->prefix('setting')->group(function() {
 		Route::get('/item/{dictionary}', 'DictionaryController@update')->name('backend.dictionary.update');
 		Route::post('/item/{dictionary}', 'DictionaryController@restore');
 		Route::delete('/item/{dictionary}', 'DictionaryController@delete')->name('backend.dictionary.delete');
+
+		Route::get('/setting/{group}', 'DictionaryController@setting')->name('backend.dictionary.setting');
+		Route::post('/setting/{group}', 'DictionaryController@storeSetting');
 	});
 });

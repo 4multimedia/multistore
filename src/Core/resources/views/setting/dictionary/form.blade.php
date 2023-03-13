@@ -3,7 +3,18 @@
 @section('content')
 <form-module title="{{ $title }}">
 	<ui-box header="Podstawowe informacje" class="mb-5">
-		{!! form()->text(null, 'name', ['value' => $dictionary->names ?? '', 'column' => true, 'placeholder' => 'Tytuł pozycji', ':translate' => true]) !!}
+		{!! form()->text('Nazwa pozycji', 'name', ['value' => $dictionary->names ?? '', 'column' => true, 'placeholder' => 'Tytuł pozycji', ':translate' => true]) !!}
+
+		@foreach($cols as $col)
+			@php
+				$type = $col["type"];
+				$name = $col["id"];
+				$label = $col['name'];
+				$value = $type == 'gallery' ? (isset($dictionary->all_images) ? $dictionary->all_images : []) : $dictionary->options[$col["id"]] ?? '';
+				unset($col['name']);
+			@endphp
+			{!! form()->$type($label, $name, array_merge(['value' => $value ?? '', 'column' => true, 'placeholder' => $label], $col)) !!}
+		@endforeach
 	</ui-box>
 </form-module>
 @endsection

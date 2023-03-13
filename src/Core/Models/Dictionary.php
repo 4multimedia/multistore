@@ -5,10 +5,11 @@ namespace Multimedia\Multistore\Core\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Multimedia\Multistore\Core\Http\Traits\useHash;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Multimedia\Multistore\Core\Http\Traits\UseImage;
 
 class Dictionary extends Model
 {
-	use SoftDeletes, useHash;
+	use SoftDeletes, useHash, UseImage;
 
 	public $table = "dictionary";
 	public $primaryKey = "id_dictionary";

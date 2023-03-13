@@ -32,4 +32,8 @@
 			}
 			return $item->id_dictionary;
 		}
+
+		public function get($group) {
+			return ModelsDictionary::where('options->group', $group)->first();
+		}
 	}

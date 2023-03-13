@@ -2,7 +2,8 @@
 	<form-body :title="title" :language="language">
 		<template #buttons>
             <div class="flex justify-end">
-                <ButtonAction></ButtonAction>
+                <ButtonAction v-if="actionSplit"></ButtonAction>
+				<button v-else class="btn btn-primary shadow-md w-32">Zapisz zmiany</button>
             </div>
         </template>
 		<div class="flex mt-5 pb-5">
@@ -40,6 +41,10 @@
 			language: {
 				type: Boolean,
 				default: false
+			},
+			actionSplit: {
+				type: Boolean,
+				default: true
 			},
 			title: String
         },

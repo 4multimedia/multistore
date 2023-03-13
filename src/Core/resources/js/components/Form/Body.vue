@@ -32,7 +32,8 @@
 </template>
 
 <script>
-import ButtonAction from './ButtonAction.vue'
+import ButtonAction from './ButtonAction.vue';
+import { ChevronDown } from 'lucide-vue';
 
 export default {
 	props: {
@@ -88,7 +89,8 @@ export default {
         },
 	},
     components: {
-        ButtonAction
+        ButtonAction,
+		ChevronDown
     }
 }
 </script>
