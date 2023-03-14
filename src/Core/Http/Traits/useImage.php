@@ -89,7 +89,7 @@ trait UseImage {
 				'extension' => $image->file->extension,
 				'paths' => $image->file->paths,
 				'type' => 'file',
-				'alt' => $image->name
+				'alt' => $image->alt
 			];
 		}
 
