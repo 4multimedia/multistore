@@ -372,7 +372,7 @@ use Multimedia\Multistore\Support\File;
         DictionaryRelative::where('id_record', $id_record)->where('table', $table)->delete();
 
         if ($request) {
-            foreach($request as $id_dictionary) {
+            foreach($request as $id_dictionary => $status) {
                 DictionaryRelative::updateOrCreate(['id_dictionary' => $id_dictionary, 'id_record' => $id_record, 'table' => $table]);
             }
         }
@@ -412,7 +412,7 @@ use Multimedia\Multistore\Support\File;
         ->get();
 
         if ($flat) {
-            $items = $query->pluck('name.'.$lang, 'id_dictionary');
+            $items = $query->pluck('name', 'id_dictionary');
         } else {
             $items = $query->map(function ($item) use ($lang) {
                 return ['id' => $item->id, 'name' => $item->name[$lang]];
