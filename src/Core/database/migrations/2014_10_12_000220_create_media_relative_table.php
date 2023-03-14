@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->timestamps();
 			$table->unsignedBigInteger('id_record');
 			$table->string('type', 32)->nullable();
-			$table->json('name')->nullable();
+			$table->json('alt')->nullable();
 			$table->string('table', 64);
 			$table->integer('position')->default(0);
 			$table->integer('active')->default(1);

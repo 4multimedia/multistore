@@ -24,7 +24,7 @@ trait UseImage {
 							'id_media_files' => $file["id"],
 							'id_record' => $id_record,
 							'table' => $table,
-							'name' => $file["name"],
+							'alt' => $file["alt"],
 							'type' => $type,
 							'position' => $index++,
 							'active' => $active

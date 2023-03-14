@@ -13,13 +13,13 @@ class MediaRelative extends Model
 	}
 
 	public $casts = [
-		'name' => 'array'
+		'alt' => 'array'
 	];
 
     public $fillable = [
 		'id_media_files',
 		'id_record',
-		'name',
+		'alt',
 		'type',
 		'table',
 		'position',

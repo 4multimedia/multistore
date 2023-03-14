@@ -9,7 +9,7 @@
 				<draggable v-model="selected" class="flex flex-wrap">
 					<div v-for="item, index in selected" :key="index" class="relative w-32 h-32 mb-5 mr-5 cursor-pointer image-fit zoom-in">
 						<input type="hidden" :name="`_image[${name}][${index}][id]`" :value="item.id" />
-						<input type="hidden" :name="`_image[${name}][${index}][name][pl]`" :value="item.alt.pl" />
+						<input type="hidden" :name="`_image[${name}][${index}][alt][pl]`" :value="item.alt.pl" />
 						<img class="rounded-md" alt="" :src="item.paths.thumb">
 						<div class="absolute top-0 right-0 dropdown ml-auto">
 							<a href="avascript:;" class="dropdown-toggle flex items-center justify-center w-5 h-5 -mt-2 -mr-2 text-white rounded-full bg-green-500" aria-expanded="false" data-tw-toggle="dropdown">

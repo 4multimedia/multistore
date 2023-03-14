@@ -40,6 +40,11 @@
                 const index = this.selected.findIndex(e => e.hash === item.hash);
                 if ((this.allow.length === 0 || this.allow.includes(item.extension)) && index === -1) {
                     if(this.limit == -1 || (this.limit > 0 && (this.selected.length < this.limit))) {
+
+						if (item.alt.pl === undefined) {
+							item.alt = {pl: ''};
+						}
+
                         this.selected.push(item);
 
 						if (this.limit == 1) {
