@@ -8,26 +8,46 @@
 			<div v-if="selected.length > 0">
 				<draggable v-model="selected" class="flex flex-wrap">
 					<div v-for="item, index in selected" :key="index" class="relative w-32 h-32 mb-5 mr-5 cursor-pointer image-fit zoom-in">
-						<input type="hidden" :name="`_image[${name}][]`" :value="item.id" />
+						<input type="hidden" :name="`_image[${name}][${index}][id]`" :value="item.id" />
+						<input type="hidden" :name="`_image[${name}][${index}][name][pl]`" :value="item.alt.pl" />
 						<img class="rounded-md" alt="" :src="item.paths.thumb">
-						<div class="cursor-pointer absolute top-0 right-0 flex items-center justify-center w-5 h-5 -mt-2 -mr-2 text-white rounded-full bg-danger">
-							<X color="white" @click="removeImage(index)" :size="16" />
+						<div class="absolute top-0 right-0 dropdown ml-auto">
+							<a href="avascript:;" class="dropdown-toggle flex items-center justify-center w-5 h-5 -mt-2 -mr-2 text-white rounded-full bg-green-500" aria-expanded="false" data-tw-toggle="dropdown">
+								<Settings color="white" :size="16" />
+							</a>
+							<div class="dropdown-menu w-48">
+                                <ul class="dropdown-content">
+                                    <li><a href="javascript:;" @click="editImage(item)" class="dropdown-item"><Pencil class="w-4 h-4 mr-2" /> Edytuj </a></li>
+									<li><a href="javascript:;" class="dropdown-item"><RefreshCw class="w-4 h-4 mr-2" /> Regeneruj rozmiary </a></li>
+                                    <li><a href="javascript:;" @click="removeImage(index)" class="dropdown-item"><Trash2 class="w-4 h-4 mr-2" /> Usuń zdjęcie </a></li>
+                                </ul>
+                            </div>
 						</div>
 					</div>
 				</draggable>
 			</div>
 			<button @click="onHandleOpenDialog" class="btn bg-white w-32 ml-auto" type="button">Wybierz zdjęcia</button>
 			<dialog-media :append-to="self" :display.sync="dialog" :selected="selected" :limit="limit" @onSelect="onSelect" :allow="['jpg', 'jpeg', 'svg', 'png', 'gif']"></dialog-media>
+			<Dialog :visible.sync="dialogEdit" header="Edytuj" appendTo="body" :modal="true" :closable="false" :closeOnEscape="false">
+				<input-text label="Tekst alternatywny [alt]" />
+				<template #footer>
+					<Button label="Anuluj" icon="pi pi-times" class="p-button-text"/>
+					<Button label="Zapisz" icon="pi pi-check" autofocus />
+				</template>
+			</Dialog>
 		</div>
 	</div>
 </template>
 
 <script>
-import { X } from 'lucide-vue';
+import { Settings, Trash2, Pencil, RefreshCw } from 'lucide-vue';
 import FileUpload from 'primevue/fileupload';
 export default {
 	components: {
-		X,
+		Settings,
+		Trash2,
+		Pencil,
+		RefreshCw,
 		FileUpload
 	},
 	props: {
@@ -48,7 +68,8 @@ export default {
     data() {
         return {
 			selected: [],
-            dialog: false
+            dialog: false,
+			dialogEdit: false
         }
     },
 	mounted() {
@@ -65,6 +86,9 @@ export default {
 		},
 		removeImage(index) {
 			this.selected.splice(index, 1);
+		},
+		editImage(item) {
+			this.dialogEdit = true;
 		}
     }
 }

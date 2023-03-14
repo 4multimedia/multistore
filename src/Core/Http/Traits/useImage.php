@@ -18,14 +18,15 @@ trait UseImage {
 			if (array_key_exists('_image', $request)) {
 				$images = $request['_image'];
 				foreach($images as $type => $files) {
-
-					foreach($files as $position => $id) {
+					$index = 0;
+					foreach($files as $position => $file) {
 						MediaRelative::create([
-							'id_media_files' => $id,
+							'id_media_files' => $file["id"],
 							'id_record' => $id_record,
 							'table' => $table,
+							'name' => $file["name"],
 							'type' => $type,
-							'position' => $position,
+							'position' => $index++,
 							'active' => $active
 						]);
 					}
@@ -78,7 +79,7 @@ trait UseImage {
 	public function allImages(): Attribute {
 		$array = [];
 
-		$images = MediaRelative::where('table', $this->table)->where('id_record', $this->id)->get();
+		$images = MediaRelative::where('table', $this->table)->where('id_record', $this->id)->orderBy('position')->get();
 		foreach($images as $image) {
 			$array[$image->type][] = [
 				'id' => $image->file->id,
@@ -87,7 +88,8 @@ trait UseImage {
 				'human_size' => $image->file->human_size,
 				'extension' => $image->file->extension,
 				'paths' => $image->file->paths,
-				'type' => 'file'
+				'type' => 'file',
+				'alt' => $image->name
 			];
 		}
 
