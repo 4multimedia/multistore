@@ -70,7 +70,7 @@ use Multimedia\Multistore\Support\File;
 	}
 
 	function is_json($object) {
-		if (is_object(json_decode($object))) {
+		if (is_array(json_decode($object)) || is_object(json_decode($object))) {
 			return true;
 		} else {
 			return false;
