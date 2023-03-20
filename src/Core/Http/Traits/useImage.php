@@ -104,6 +104,6 @@ trait UseImage {
 	}
 
 	public function sizes() {
-		return get_option('setting.language', ['thumb' => ['width' => 150, 'height' => 150]], true);
+		return get_option('setting.sizes', ['thumb' => ['width' => 150, 'height' => 150]], true);
 	}
 }
