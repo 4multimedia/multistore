@@ -15,7 +15,7 @@
 		public function __construct()
 		{
 			$this->sizes = [];
-			$sizes = get_option('setting.sizes', ['thumb' => ['width' => 150, 'height' => 150]]);
+			$sizes = get_option('setting.sizes', ['thumb' => ['width' => 200, 'height' => 200]]);
 			$array = [];
 			foreach($sizes as $size) {
 				$array[$size["id"]] = ["width" => $size["width"], "height" => $size["height"]];
@@ -24,6 +24,10 @@
 		}
 
 		/* FILES */
+
+        public function get_sizes() {
+            return $this->sizes;
+        }
 
 		public function upload_image() {
 
@@ -55,12 +59,30 @@
 			$file_extension = $path_array[count($path_array)-1];
 			unset($path_array[count($path_array)-1]);
 			$new_path = implode(".", $path_array).'_'.$width.'x'.$height.'.'.$file_extension;
+
+            $file = str_replace(request()->getSchemeAndHttpHost().'/', '', $new_path);
+            if (!file_exists($file)) {
+                $file = str_replace('_'.$width.'x'.$height, '', $file);
+                $file = str_replace('upload/', '', $file);
+                $file = storage_path('app/public/'.$file);
+                $this->image_resize($file, $width, $height, $key);
+            }
 			return $new_path;
 		}
 
-		public function image_resize($path, $width, $height) {
-			$new_path = $this->get_resize_name($path, 'thumb');
+        public function get_size_path($path, $key) {
+            $sized = $this->sizes[$key];
+            $width = $sized['width'];
+			$height = $sized['height'];
 
+            $path_array = explode(".", $path);
+			$file_extension = $path_array[count($path_array)-1];
+			unset($path_array[count($path_array)-1]);
+			return implode(".", $path_array).'_'.$width.'x'.$height.'.'.$file_extension;
+        }
+
+		public function image_resize($path, $width, $height, $key = 'thumb') {
+			$new_path = $this->get_size_path($path, $key);
 			$image = Image::make($path);
 			$image->resize($width, $height, function ($constraint) { $constraint->aspectRatio(); });
 			return $image->save($new_path);

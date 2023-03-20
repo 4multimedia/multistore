@@ -104,6 +104,6 @@ trait UseImage {
 	}
 
 	public function sizes() {
-		return media()->$sizes;
+		return media()->get_sizes();
 	}
 }
