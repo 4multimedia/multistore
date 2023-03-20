@@ -129,6 +129,10 @@ use Multimedia\Multistore\Support\File;
 		return hook()->get_header();
 	}
 
+	function get_footer() {
+		return hook()->get_header();
+	}
+
 	function get_meta_all_tags() {
 		$tags = [];
         $meta_tags = do_action('set_meta_tag');

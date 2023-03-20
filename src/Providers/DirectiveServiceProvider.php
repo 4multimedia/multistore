@@ -29,5 +29,18 @@
 			Blade::directive('header', function () {
 				return "<?php echo get_header(); ?>";
 			});
+
+			Blade::directive('html', function () {
+				return "<!DOCTYPE HTML>
+	<html lang=\"en\">";
+			});
+
+			Blade::directive('endhtml', function () {
+				return "</html>";
+			});
+
+			Blade::directive('footer', function () {
+				return "<script src=\"".asset('js/web.js')."\"></script>";
+			});
         }
     }
