@@ -47,6 +47,11 @@ trait UseImage {
         return $image ? $image->file->paths["full"] : null;
 	}
 
+	public function image($type) {
+		$image = media()->get_images($this->table, $this->id, 1);
+        return $image ? $image->file->paths[$type] : null;
+	}
+
 	public function getThumbAttribute() {
 		$image = media()->get_images($this->table, $this->id, 1);
         return $image ? $image->file->paths["thumb"] : null;

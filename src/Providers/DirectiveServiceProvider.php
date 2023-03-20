@@ -42,5 +42,9 @@
 			Blade::directive('footer', function () {
 				return "<script src=\"".asset('js/web.js')."\"></script>";
 			});
+
+			Blade::directive('breadcrumbs', function () {
+				return "<?php echo get_breadcrumbs(); ?>";
+			});
         }
     }
