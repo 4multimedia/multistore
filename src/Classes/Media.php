@@ -14,7 +14,13 @@
 
 		public function __construct()
 		{
-			$this->sizes['thumb'] = ['width' => 200, 'height' => 200];
+			$this->sizes = [];
+			$sizes = get_option('setting.sizes', ['thumb' => ['width' => 150, 'height' => 150]]);
+			$array = [];
+			foreach($sizes as $size) {
+				$array[$size["id"]] = ["width" => $size["width"], "height" => $size["height"]];
+			}
+			$this->sizes = $array;
 		}
 
 		/* FILES */
