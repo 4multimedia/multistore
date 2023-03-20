@@ -25,5 +25,9 @@
                 $template = find_view($view);
                 return "<?php echo \$__env->make('$template', Arr::except(get_defined_vars(), array('__data', '__path'))); ?>";
             });
+
+			Blade::directive('header', function () {
+				return "<?php echo get_header(); ?>";
+			});
         }
     }
