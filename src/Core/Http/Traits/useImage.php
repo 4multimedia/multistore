@@ -104,6 +104,11 @@ trait UseImage {
 	}
 
 	public function sizes() {
-		return get_option('setting.sizes', ['thumb' => ['width' => 150, 'height' => 150]], true);
+		$sizes = get_option('setting.sizes', ['thumb' => ['width' => 150, 'height' => 150]]);
+        $array = [];
+        foreach($sizes as $size) {
+            $array[$size["id"]] = ["width" => $size["width"], "height" => $size["height"]];
+        }
+        return $array;
 	}
 }
