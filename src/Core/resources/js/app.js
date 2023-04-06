@@ -161,7 +161,7 @@ const __t = (value) => {
     return (translate[lang][group] !== undefined && translate[lang][group][key]) ? translate[lang][group][key] : key;
 };
 
-new Vue({
+window.app = new Vue({
     provide: {
         __t,
         csrfToken,

@@ -955,5 +955,7 @@
 
         <script src="{{ asset('js/backend.js') }}"></script>
 		{{ get_assets_backend_js('after') }}
+
+		@stack('scripts')
     </body>
 </html>
