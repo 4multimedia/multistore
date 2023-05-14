@@ -2,6 +2,7 @@
     "name": "multimedia/multistore",
     "type": "library",
     "require": {
+        "inertiajs/inertia-laravel": "^0.6.9",
 		"doctrine/dbal": "^3.5",
         "jenssegers/agent": "^2.6",
 		"vinkla/hashids": "^11.0",

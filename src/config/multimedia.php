@@ -30,6 +30,9 @@ return [
 			'popup' => true,
 			'slider' => true,
 			'navigation' => true,
-		]
+        ],
+        'user' => [
+            'role' => true
+        ]
 	]
 ];
