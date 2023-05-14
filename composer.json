@@ -4,7 +4,7 @@
     "require": {
 		"doctrine/dbal": "^3.5",
         "jenssegers/agent": "^2.6",
-		"vinkla/hashids": "^10.0",
+		"vinkla/hashids": "^11.0",
 		"tinymce/tinymce": "^6.3",
 		"intervention/image": "^2.7",
 		"sabre/xml": "^4.0",
