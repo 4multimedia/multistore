@@ -1,5 +1,6 @@
 <?php
 
+use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -98,12 +99,14 @@ use Multimedia\Multistore\Support\File;
     }
 
     /** Funkcja zwracająca widok lub obiekt JSON */
-    function render_view($view = null, $data = [], $alias = null) {
+    function render_view($view = null, $data = [], $alias = null, $inertia = false) {
         if ($view === null && empty($data)) {
             return null;
         }
         if(Request::wantsJson()) {
             return response()->json($data);
+        } else if ($inertia) {
+            return Inertia::render($view, $data);
         } else {
             $view_replaced = str_replace('::', '.', $view);
 			if ($alias) {
