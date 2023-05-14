@@ -7,6 +7,11 @@ return [
 		'route' => 'profil',
 		'register' => true,
 		'login' => true,
+        'otp' => [
+            'login' => false,
+            'register' => false,
+            'recovery' => false
+        ],
 	],
 	'assets' => [
 		'bootstrap' => true
