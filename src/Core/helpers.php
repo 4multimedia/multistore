@@ -98,7 +98,10 @@ use Multimedia\Multistore\Support\File;
     }
 
     /** Funkcja zwracająca widok lub obiekt JSON */
-    function render_view($view, $data = [], $alias = null) {
+    function render_view($view = null, $data = [], $alias = null) {
+        if ($view === null && empty($data)) {
+            return null;
+        }
         if(Request::wantsJson()) {
             return response()->json($data);
         } else {
