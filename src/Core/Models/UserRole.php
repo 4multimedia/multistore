@@ -21,6 +21,7 @@ class UserRole extends Model
      */
     protected $fillable = [
         'name',
-        'area'
+        'area',
+		'system'
     ];
 }
