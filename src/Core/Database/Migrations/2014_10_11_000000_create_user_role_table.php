@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('user_role', function (Blueprint $table) {
             $table->id('id_user_role');
             $table->timestamps();
+			$table->boolean('system')->default(0);
 			$table->json('name');
             $table->json('area');
             $table->json('permission')->nullable();
