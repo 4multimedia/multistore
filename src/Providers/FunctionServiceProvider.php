@@ -96,7 +96,7 @@ class FunctionServiceProvider extends ServiceProvider {
         add_to_submenu('user', 'backend::user.create', 'backend.user.create');
         add_to_submenu('user', 'backend::user.group', 'backend.user.group');
 
-		if (config('multimedia.user.role')) {
+		if (config('multimedia.modules.user.role')) {
 			add_to_submenu('user', 'backend::user.role', 'backend.user.role');
 		}
 

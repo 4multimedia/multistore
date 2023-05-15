@@ -33,6 +33,10 @@ Route::prefix('user')->namespace('User')->group(function() {
     Route::prefix('group')->group(function() {
         Route::get('/', 'GroupController@index')->name('backend.user.group');
     });
+
+	Route::prefix('role')->group(function() {
+        Route::get('/', 'RoleController@index')->name('backend.user.role');
+    });
 });
 
 Route::prefix('media')->namespace('Media')->group(function() {
