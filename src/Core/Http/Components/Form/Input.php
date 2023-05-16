@@ -19,9 +19,11 @@ class Input extends Component
      */
     public function __construct($label = null, $name = null, $value = null, $checked = false)
     {
+        $request = request()->all();
+
         $this->label = $label;
         $this->name = $name;
-        $this->value = old($name) !== null ? old($name) : (isset($value) ? $value : '');
+        $this->value = $request[$name] ?? (old($name) !== null ? old($name) : (isset($value) ? $value : ''));
 
         $errors = Session::get('errors');
         if ($errors) {
