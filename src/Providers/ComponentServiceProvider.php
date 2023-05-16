@@ -15,6 +15,7 @@ use Multimedia\Multistore\Core\Http\Components\Input\Textarea;
 use Multimedia\Multistore\Core\Http\Components\Input\Password;
 use Multimedia\Multistore\Core\Http\Components\Input\Radio;
 use Multimedia\Multistore\Core\Http\Components\Form\FormInput;
+use Multimedia\Multistore\Core\Http\Components\Form\FormField;
 
 class ComponentServiceProvider extends ServiceProvider {
 
@@ -38,7 +39,8 @@ class ComponentServiceProvider extends ServiceProvider {
 			Checkbox::class,
 			Radio::class,
             Password::class,
-            FormInput::class
+            FormInput::class,
+            FormField::class
 		]);
 	}
 }
