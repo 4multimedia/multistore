@@ -2,5 +2,5 @@
     <div>{{ $label }}</div>
     {{ $slot }}
 
-    <x-form-error :error="$error" />
+    <x-frontend-form-error :error="$error" />
 </div>
