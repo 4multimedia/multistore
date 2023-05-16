@@ -12,6 +12,9 @@ class RouteServiceProvider extends ServiceProvider {
     public $namespace_frontend = "Multimedia\Multistore\Core\Http\Controllers\Frontend";
 	public $namespace_api = "Multimedia\Multistore\Core\Http\Controllers\Api";
 
+    public $web_namespace_backend = "App\Http\Controllers\Backend";
+    public $web_namespace_frontend = "App\Http\Controllers\Frontend";
+
     public function register() {
 
     }
@@ -31,12 +34,12 @@ class RouteServiceProvider extends ServiceProvider {
         ->middleware(['web'])
         ->group(dirname(__FILE__).'/../Core/routes/frontend.php');
 
-		Route::namespace($this->namespace)
+		Route::namespace($this->web_namespace_backend)
         ->prefix(config('multimedia.backend'))
         ->middleware(['web', 'multimedia.backend'])
         ->group(base_path('routes/backend.php'));
 
-		Route::namespace($this->namespace_frontend)
+		Route::namespace($this->web_namespace_frontend)
         ->middleware(['web', 'multimedia.web'])
         ->group(base_path('routes/frontend.php'));
     }
