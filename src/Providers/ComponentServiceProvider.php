@@ -14,6 +14,7 @@ use Multimedia\Multistore\Core\Http\Components\Input\Text;
 use Multimedia\Multistore\Core\Http\Components\Input\Textarea;
 use Multimedia\Multistore\Core\Http\Components\Input\Password;
 use Multimedia\Multistore\Core\Http\Components\Input\Radio;
+use Multimedia\Multistore\Core\Http\Components\Form\FormInput;
 
 class ComponentServiceProvider extends ServiceProvider {
 
@@ -26,7 +27,7 @@ class ComponentServiceProvider extends ServiceProvider {
 			Editor::class,
             Meta::class,
             Publish::class,
-            DictionaryCheckbox::class
+            DictionaryCheckbox::class,
 		]);
 
 		$this->loadViewComponentsAs('frontend', [
@@ -36,7 +37,8 @@ class ComponentServiceProvider extends ServiceProvider {
 			Textarea::class,
 			Checkbox::class,
 			Radio::class,
-            Password::class
+            Password::class,
+            FormInput::class
 		]);
 	}
 }
