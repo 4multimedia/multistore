@@ -6,6 +6,6 @@ class FormInput extends Input
 {
     public function render()
     {
-        return view('frontent::components.form.input');
+        return view('frontend::components.form.input');
     }
 }
