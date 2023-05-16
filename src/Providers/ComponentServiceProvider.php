@@ -16,6 +16,7 @@ use Multimedia\Multistore\Core\Http\Components\Input\Password;
 use Multimedia\Multistore\Core\Http\Components\Input\Radio;
 use Multimedia\Multistore\Core\Http\Components\Form\FormInput;
 use Multimedia\Multistore\Core\Http\Components\Form\FormField;
+use Multimedia\Multistore\Core\Http\Components\Form\FormError;
 
 class ComponentServiceProvider extends ServiceProvider {
 
@@ -40,7 +41,8 @@ class ComponentServiceProvider extends ServiceProvider {
 			Radio::class,
             Password::class,
             FormInput::class,
-            FormField::class
+            FormField::class,
+            FormError::class
 		]);
 	}
 }
