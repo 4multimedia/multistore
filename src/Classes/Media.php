@@ -17,8 +17,8 @@
 			$this->sizes = [];
 			$sizes = get_option('setting.sizes', ['thumb' => ['width' => 200, 'height' => 200]]);
 			$array = [];
-			foreach($sizes as $size) {
-				$array[$size["id"]] = ["width" => $size["width"], "height" => $size["height"]];
+			foreach($sizes as $key => $size) {
+				$array[$key] = ["width" => $size["width"], "height" => $size["height"]];
 			}
 			$this->sizes = $array;
 		}
